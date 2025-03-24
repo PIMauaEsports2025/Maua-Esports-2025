@@ -81,11 +81,11 @@ npm start  # Iniciar servidor frontend
 ```
 
 ## 📌 Funcionalidades
-✅ Cadastro e login de usuários
-✅ Página principal com informações e atualizações
-✅ Sistema de gerenciamento de torneios
-✅ Perfil dos jogadores e estatísticas
-✅ Dashboard para administradores
+#### ✅ Cadastro e login de usuários 
+#### ✅ Página principal com informações e atualizações
+#### ✅ Sistema de gerenciamento de torneios
+#### ✅ Perfil dos jogadores e estatísticas
+#### ✅ Dashboard para administradores
 
 ## 📸 Preview (Figma)
 🔗 [Clique aqui para visualizar o design](https://www.figma.com/design/ANWM55epeLisAus2vfac3R/PI-3%C2%BA-Semestre---Mau%C3%A1-E-Sports?node-id=0-1&p=f&t=pgtO1yUtCPUn8CyO-0)
@@ -103,8 +103,8 @@ Este projeto está sob a licença **MIT**. Sinta-se à vontade para utilizá-lo 
 
 ---
 **Desenvolvido com 💙 pela equipe Mauá Esports.**
-🧑‍💻 [Breno Augusto - 24.01496-6](https://github.com/BrenoAugustoOG)
-🧑‍💻 [Gustavo Seripierri - 24.00630-0](https://github.com/GustavoSeripierri)
-👩‍💻 [Leticia de Carvalho - 24.00141-4](https://github.com/leticiacarvalhoo)
-👩‍💻 [Lyssa Okawa - 24.01193-2](https://github.com/lyssaokawaperini)
+#### 🧑‍💻 [Breno Augusto - 24.01496-6](https://github.com/BrenoAugustoOG)
+#### 🧑‍💻 [Gustavo Seripierri - 24.00630-0](https://github.com/GustavoSeripierri)
+#### 👩‍💻 [Leticia de Carvalho - 24.00141-4](https://github.com/leticiacarvalhoo)
+#### 👩‍💻 [Lyssa Okawa - 24.01193-2](https://github.com/lyssaokawaperini)
 
