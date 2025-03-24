@@ -98,6 +98,9 @@ Quer contribuir com o projeto? Siga os passos:
 4. Faça o **push** para a branch (`git push origin feature/minha-feature`) 🚀
 5. Abra um **Pull Request** 📝
 
+## 🔥 Padrão de Commits
+Utilizamos o padrão [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para manter um histórico de commits organizado e padronizado.
+
 ## 📝 Licença
 Este projeto está sob a licença **MIT**. Sinta-se à vontade para utilizá-lo e modificá-lo conforme necessário.
 
