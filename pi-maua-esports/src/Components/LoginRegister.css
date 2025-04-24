@@ -1,7 +1,7 @@
 .wrapper{
     position: relative;
     width: 420px;
-    height: 450px;
+    height: 520px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .1);
     backdrop-filter: blur(30px);
@@ -15,18 +15,18 @@
 }
 
 .wrapper.active{
-    height: 520px;
+    height: 500px;
 }
 
 .wrapper .form-box{
     position: absolute;
-  top: 0;
-  width: 100%;
-  padding: 40px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(20px);
-  transition: 0.3s ease;
+    top: 0;
+    width: 100%;
+    padding: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(20px);
+    transition: 0.3s ease;
 }
 
 .wrapper .form-box.login{
@@ -93,7 +93,7 @@ form .input-box{
     outline: none;
     border: 2px solid rgba(255, 255, 255, .1);
     border-radius: 40px;
-    font-size: 16px;
+    font-size: 15px;
     color: #fff;
     padding: 20px 45px 20px 20px;
 }
@@ -113,7 +113,7 @@ form .input-box{
 form .remember-forgot{
     display: flex;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 15px;
     margin: -15px 0 15px ;
 }
 
@@ -140,13 +140,13 @@ form button{
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     color: #333;
     font-weight: 700;
 }
 
 form .register-link{
-    font-size: 16px;
+    font-size: 15px;
     text-align: center;
     margin: 20px 0 15px;
 }
@@ -166,10 +166,65 @@ form .register-link{
     visibility: visible;
     transform: translateX(0);
     transition-delay: 0.1s;
-  }
+}
 
 .forgot-message {
+    font-size: 15px;
     text-align: center;
     margin: 20px 0;
-    line-height: 1.6;
+    line-height: 1.2;
+}
+
+.login-options {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.divider {
+    padding-top: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+}
+
+.divider span {
+    margin: 0 0.7rem;
+    color: #888;
+}
+
+.auth-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.auth-button.microsoft {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1.2rem;
+    background: rgba(0, 0, 0, 0.05); /* Levemente escuro com transparência */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 500;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.auth-button.microsoft:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.auth-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
 }
