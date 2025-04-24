@@ -19,8 +19,14 @@
 }
 
 .wrapper .form-box{
-    width: 100%;
-    padding: 40px;
+    position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 40px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(20px);
+  transition: 0.3s ease;
 }
 
 .wrapper .form-box.login{
@@ -42,6 +48,29 @@
 .wrapper.active .form-box.register{
     transition: translate .18s ease;
     translate: 0;
+}
+
+/* Add these styles for the forgot password form */
+
+.wrapper .form-box.forgot {
+    position: absolute;
+    transition: none;
+    translate: 400px;
+}
+
+.wrapper.forgot-active .form-box.login {
+    transition: none;
+    translate: -400px;
+}
+
+.wrapper.forgot-active .form-box.forgot {
+    transition: translate .18s ease;
+    translate: 0;
+}
+
+/* Make sure the wrapper is tall enough for the forgot password form */
+.wrapper.forgot-active {
+    height: 400px;
 }
 
 form h1{
@@ -130,4 +159,17 @@ form .register-link{
 
 .register-link p a:hover{
     text-decoration: underline;
+}
+
+.form-box.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    transition-delay: 0.1s;
+  }
+
+.forgot-message {
+    text-align: center;
+    margin: 20px 0;
+    line-height: 1.6;
 }
