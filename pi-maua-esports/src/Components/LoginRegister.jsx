@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import './LoginRegister.css';
-import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
+import { FaUser, FaLock, FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginRegister = () => {
     const [active, setActive] = useState('login');
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     // Add wrapper class based on which form is active
     const getWrapperClass = () => {
         if (active === 'register') return 'wrapper active';
         if (active === 'forgot') return 'wrapper forgot-active';
+        if (active === 'reset') return 'wrapper reset-active';
         return 'wrapper';
     };
 
@@ -25,6 +30,25 @@ const LoginRegister = () => {
     const forgotLink = (e) => {
         e.preventDefault();
         setActive('forgot');
+    };
+
+    const resetLink = (e) => {
+        e.preventDefault();
+        setActive('reset');
+    };
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+
+    const toggleConfirmPasswordVisibility = () => {
+        setConfirmPasswordVisible(!confirmPasswordVisible);
+    };
+
+    const handleResetSubmit = (e) => {
+        e.preventDefault();
+        // Add password reset logic here
+        console.log("Password reset confirmed");
     };
 
     return (
@@ -107,10 +131,59 @@ const LoginRegister = () => {
                         <input type="text" placeholder="Email" required />
                         <FaEnvelope className="icon" />
                     </div>
-                    <button type="submit">Confirmar Email</button>
+                    <button type="submit" onClick={resetLink}>Confirmar Email</button>
                     <div className="register-link">
                         <p><a href="#" onClick={loginLink}>Voltar para Login</a></p>
                     </div>
+                </form>
+            </div>
+
+            <div className={`form-box reset ${active === 'reset' ? 'active' : ''}`}>
+                <form onSubmit={handleResetSubmit}>
+                    <h1>NOVA SENHA</h1>
+                    <p className="reset-message">
+                        Digite sua nova senha nos campos abaixo e confirme para 
+                        concluir a alteração. Certifique-se de escolher uma senha 
+                        segura e fácil de lembrar.
+                    </p>
+                    
+                    <div className="input-box">
+                        <input 
+                            type={passwordVisible ? "text" : "password"} 
+                            placeholder="Nova senha" 
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required 
+                        />
+                        <FaLock className="icon" />
+                        <button 
+                            type="button" 
+                            className="visibility-toggle" 
+                            onClick={togglePasswordVisibility}
+                        >
+                            {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                        </button>
+                    </div>
+
+                    <div className="input-box">
+                        <input 
+                            type={confirmPasswordVisible ? "text" : "password"} 
+                            placeholder="Confirme a nova senha"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)} 
+                            required 
+                        />
+                        <FaLock className="icon" />
+                        <button 
+                            type="button" 
+                            className="visibility-toggle" 
+                            onClick={toggleConfirmPasswordVisibility}
+                        >
+                            {confirmPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+                        </button>
+                    </div>
+
+                    <button type="submit" className="confirm-button">CONFIRMAR SENHA</button>
                 </form>
             </div>
         </div>
