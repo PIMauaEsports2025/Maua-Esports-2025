@@ -50,8 +50,6 @@
     translate: 0;
 }
 
-/* Add these styles for the forgot password form */
-
 .wrapper .form-box.forgot {
     position: absolute;
     transition: none;
@@ -68,7 +66,7 @@
     translate: 0;
 }
 
-/* Make sure the wrapper is tall enough for the forgot password form */
+
 .wrapper.forgot-active {
     height: 400px;
 }
@@ -114,7 +112,7 @@ form .remember-forgot{
     display: flex;
     justify-content: space-between;
     font-size: 15px;
-    margin: -15px 0 15px ;
+    margin: -15px 0 15px;
 }
 
 .remember-forgot label input{
@@ -227,4 +225,48 @@ form .register-link{
     width: 20px;
     height: 20px;
     margin-right: 0.5rem;
+}
+
+.visibility-toggle {
+    position: absolute;
+    right: 340px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    width: 30px;
+    height: 30px;
+}
+
+.reset-message {
+    text-align: center;
+    margin: 20px 0;
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.wrapper.reset-active .form-box.reset {
+    transition: transform 0.18s ease;
+    transform: translateX(0);
+}
+
+.form-box.reset {
+    
+    transition: transform 0.18s ease;
+    transform: translateX(300px);
+    
+    
+}
+
+.wrapper.reset-active {
+    height: 420px;
+    
+     
 }
