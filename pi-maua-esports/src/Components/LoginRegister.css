@@ -206,7 +206,7 @@ form .register-link{
     display: flex;
     align-items: center;
     padding: 0.6rem 1.2rem;
-    background: rgba(0, 0, 0, 0.05); /* Levemente escuro com transparência */
+    background: rgba(0, 0, 0, 0.05); 
     border: 1px solid #ccc;
     border-radius: 8px;
     cursor: pointer;
