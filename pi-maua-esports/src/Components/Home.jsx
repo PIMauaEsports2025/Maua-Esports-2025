@@ -29,7 +29,7 @@ const Home = () => {
             <li><Link to="/about">Sobre</Link></li>
             <li><Link to="/events">Eventos</Link></li>
             <li><Link to="/teams">Times</Link></li>
-            <li><Link to="/contact">Contato</Link></li>
+            <li><Link to="/Contact">Contato</Link></li>
             <li>
               <div className="auth-links">
                 <Link to="/login" className="login-btn">Login</Link>
