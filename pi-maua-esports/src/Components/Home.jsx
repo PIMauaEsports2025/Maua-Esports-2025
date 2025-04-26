@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 import { FaBars } from 'react-icons/fa'; 
+import mauaLogo from '../assets/maua-branco.png';
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,23 +15,24 @@ const Home = () => {
     <div className="home-container">
       <header className="home-header">
         <div className="logo">
+          <img src={mauaLogo} alt="Logo Mauá" className="logo-img" />
           <h1>Mauá Esports</h1>
           <button 
             className="mobile-menu-button" 
             onClick={toggleMobileMenu}
             aria-label="Toggle navigation menu"
           >
-            <FaBars />
-          </button>
+      <FaBars />
+    </button>
         </div>
         <nav className={`navigation ${mobileMenuOpen ? 'mobile-open' : ''}`}>
           <ul>
             <li><Link to="/" className="active">Home</Link></li>
-            <li><Link to="/about">Sobre</Link></li>
-            <li><Link to="/events">Eventos</Link></li>
+            <li><Link to="/about">Sobre</Link></li>           
             <li><Link to="/teams">Times</Link></li>
-            <li><Link to="/Contact">Contato</Link></li>
-            <li>
+            <li><Link to="/treinos">Treinos</Link></li>
+            <li><Link to="/campeonatos">Campeonatos</Link></li>
+            <li>             
               <div className="auth-links">
                 <Link to="/login" className="login-btn">Login</Link>
               </div>           
@@ -38,15 +40,16 @@ const Home = () => {
           </ul>
         </nav>
       </header>
-
       <main className="hero-section">
         <div className="hero-content">
           <h1>Bem-vindo ao Mauá Esports</h1>
           <p>A equipe de esports do Instituto Mauá de Tecnologia</p>
-          <button className="cta-button">Saiba Mais</button>
+          <div className="hero-buttons">
+            <button className="inscrever-button">Inscrever-se</button>
+            <button className="times-button">Times</button>
+          </div>
         </div>
       </main>
-
       <section className="features">
         <div className="feature-card">
           <h3>Eventos</h3>
