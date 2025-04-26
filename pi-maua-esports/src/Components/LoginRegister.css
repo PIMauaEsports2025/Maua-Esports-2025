@@ -258,15 +258,10 @@ form .register-link{
 }
 
 .form-box.reset {
-    
     transition: transform 0.18s ease;
     transform: translateX(300px);
-    
-    
 }
 
 .wrapper.reset-active {
     height: 420px;
-    
-     
 }
