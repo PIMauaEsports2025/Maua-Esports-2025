@@ -83,43 +83,66 @@ html, body, #root {
 
 .login-btn {
   padding: 8px 20px;
-  background-color: #1E88E5;
+  background-color: #120a5e;
   color: white !important;
-  border-radius: 4px;
   text-decoration: none;
   font-weight: 600;
-  transition: background-color 0.3s;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.login-icon {
+  margin-right: 5px;
+  font-size: 1.2rem;
+  vertical-align: middle;
 }
 
 .login-btn:hover {
-  background-color: #1565C0;
+  background-color: #34358a;
 }
 
 
 .hero-section {
   min-height: 60vh;
-  background: linear-gradient(135deg, #161b22, #0d1117);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; 
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: left;
+  text-align: left;
   padding: 2rem;
-  position: relative; /* Necessário para posicionamento absoluto dos botões */
 }
 
-/* Container para os botões */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(13, 17, 23, 0.7); /* Overlay escuro com 70% de opacidade */
+  z-index: 1;
+}
+
+.hero-content {
+  z-index: 2; 
+  max-width: 800px;
+}
+
+
 .hero-buttons {
   position: absolute;
   bottom: 30px;
   left: 30px;
   display: flex;
-  flex-direction: row; /* Botões um abaixo do outro */
+  flex-direction: row; 
   align-items: flex-start;
-  gap: 20px; /* Espaçamento entre os botões */
+  gap: 20px; 
 }
 
-/* Estilo dos botões */
 .inscrever-button, .times-button {
   font-family: "Jersey 25", sans-serif;
   padding: 0.8rem 2rem;
@@ -127,8 +150,8 @@ html, body, #root {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
-  margin: 8px 0; /* Espaçamento vertical entre botões */
-  width: 180px; /* Largura fixa */
+  margin: 8px 0; 
+  width: 180px; 
   text-align: center;
 }
 

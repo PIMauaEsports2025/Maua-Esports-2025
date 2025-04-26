@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Home.css';
 import { FaBars } from 'react-icons/fa'; 
 import mauaLogo from '../assets/maua-branco.png';
+import heroBanner from '../assets/HeroBanner.jpg';
+import { CiLogin } from "react-icons/ci";
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,14 +35,19 @@ const Home = () => {
             <li><Link to="/treinos">Treinos</Link></li>
             <li><Link to="/campeonatos">Campeonatos</Link></li>
             <li>             
-              <div className="auth-links">
-                <Link to="/login" className="login-btn">Login</Link>
-              </div>           
+            <div className="auth-links">
+              <Link to="/login" className="login-btn">
+                <CiLogin className="login-icon" /> Login
+              </Link>
+            </div>           
             </li>
           </ul>
         </nav>
       </header>
-      <main className="hero-section">
+      <main 
+        className="hero-section" 
+        style={{ backgroundImage: `url(${heroBanner})` }}
+      >
         <div className="hero-content">
           <h1>Bem-vindo ao Mauá Esports</h1>
           <p>A equipe de esports do Instituto Mauá de Tecnologia</p>
