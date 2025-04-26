@@ -119,8 +119,6 @@ html, body, #root {
   gap: 20px; /* Espaçamento entre os botões */
 }
 
-
-
 /* Estilo dos botões */
 .inscrever-button, .times-button {
   font-family: "Jersey 25", sans-serif;
