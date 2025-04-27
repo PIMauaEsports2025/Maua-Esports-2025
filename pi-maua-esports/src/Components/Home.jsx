@@ -142,7 +142,7 @@ const Home = () => {
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
               <a href="https://discord.com" target="_blank" rel="noopener noreferrer"><FaDiscord /></a>
               <a href="https://twitch.tv" target="_blank" rel="noopener noreferrer"><FaTwitch /></a>
-              <a href="https://twitch.tv" target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
             </div>
           </div>
         </div>
