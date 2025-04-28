@@ -144,16 +144,18 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 
 .hero-content h1{
   font-size: 50px;
+  margin-left: 7%;
 }
 
 .hero-content p{
   margin-top: 2%;
+  margin-left: 7%;
 }
 
 .hero-buttons {
   position: absolute;
   bottom: 30px;
-  left: 30px;
+  margin-left: 4.1%;
   display: flex;
   flex-direction: row; 
   align-items: flex-start;
@@ -262,13 +264,19 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 .feature-card .icon{
   font-size: 35px;
 }
+
+.feature-card h1{
+  font-size: 30px;
+}
+
 .feature-card h3 {
-  font-size: 1.5rem;
+  font-size: 20px;
   margin-bottom: 5%;
   color: #fff;
 }
 
 .feature-card p {
+  margin-top: 5%;
   color: #ffffffc0;
 }
 
