@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import { FaBars, FaMedal } from 'react-icons/fa';
+import { FaBars, FaMedal, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import mauaLogo from '../assets/maua-branco.png';
 import heroBanner from '../assets/HeroBanner.jpg';
 import { CiLogin } from "react-icons/ci";
 import { IoGameController } from "react-icons/io5";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { FaInstagram, FaDiscord, FaTwitch, FaYoutube } from 'react-icons/fa';
+
+import cs2Image from '../assets/cs2.jpg';
+import r6Image from '../assets/rainbow6.jpg';
+import rocketLeagueImage from '../assets/rocketleague.jpg';
+import eafc25Image from '../assets/eafc25.jpg';
+import lolImage from '../assets/lol.jpg';
+import valorantImage from '../assets/valorant.jpg';
+import tftImage from '../assets/tft.jpg';
+
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,8 +30,59 @@ const Home = () => {
     { number: '10+', description: 'Lorem ipsum dolor sit amet' },
     { number: '20+', description: 'Lorem ipsum dolor sit amet' },
     { number: '14+', description: 'Lorem ipsum dolor sit amet' },
-    { number: '8+', description: 'Lorem ipsum dolor sit amet' },
+    { number: '8+', description: 'Lorem ipsum dolor sit amet' }, 
   ];
+
+  const games = [
+    { name: "Counter Strike 2", image: cs2Image },
+    { name: "Rainbow Six Siege", image: r6Image },
+    { name: "Rocket League", image: rocketLeagueImage },
+    { name: "EA FC 25", image: eafc25Image },
+    { name: "League of Legends", image: lolImage },
+    { name: "Valorant", image: valorantImage },
+    { name: "Team Fight Tactics", image: tftImage }
+  ];
+
+  
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === games.length - 3 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? games.length - 3 : prevIndex - 1
+    );
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      nextSlide();
+    }
+    if (touchStart - touchEnd < -75) {
+      prevSlide();
+    }
+  };
 
   return (
     <div className="home-container">
@@ -116,6 +176,41 @@ const Home = () => {
           </p>
         </div>
       </section>
+      
+      <section className="games-carousel-section">
+          <h2>Nossos Jogos</h2>
+          
+          <div className="games-carousel-container">
+            <button className="carousel-control prev" onClick={prevSlide}>
+              <FaChevronLeft />
+            </button>
+            
+            <div 
+              className="games-carousel"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div 
+                className="carousel-track" 
+                style={{ transform: `translateX(-${currentIndex * 33.33}%)` }}
+              >
+                {games.map((game, index) => (
+                  <div key={index} className="game-card">
+                    <img src={game.image} alt={game.name} />
+                    <div className="game-overlay">
+                      <h3>{game.name}</h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <button className="carousel-control next" onClick={nextSlide}>
+              <FaChevronRight />
+            </button>
+          </div>
+        </section>
 
       <footer className="home-footer">
         <div className="footer-container">
