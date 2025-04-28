@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(#020024, #090979, #00d4ff);
+    color: white;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .about-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .about-image {
+    width: 50%;
+    border-radius: 8px;
+  }
+  
+  .about-text {
+    width: 50%;
+  }
+  
+  .btn {
+    background-color: #1a73e8;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  .results {
+    text-align: center;
+    margin: 50px 0;
+  }
+  
+  .results-numbers {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .number {
+    font-size: 24px;
+  }
+  
+  .history {
+    margin: 50px 0;
+  }
+  
+  .timeline {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .timeline-item {
+    width: 22%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .awards {
+    text-align: center;
+    margin: 50px 0;
+  }
+  
+  .awards-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .award-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+  }
+  
+  .selection-process {
+    text-align: center;
+    margin: 50px 0;
+  }
+  
+  .steps {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .step {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    width: 30%;
+  }
+  
+  .footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 14px;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 8px;
+  }
+  

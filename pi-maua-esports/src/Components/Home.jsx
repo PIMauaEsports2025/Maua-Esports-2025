@@ -101,7 +101,7 @@ const Home = () => {
         <nav className={`navigation ${mobileMenuOpen ? 'mobile-open' : ''}`}>
           <ul>
             <li><Link to="/" className="active">Home</Link></li>
-            <li><Link to="/about">Sobre</Link></li>
+            <li><Link to="/Sobre">Sobre</Link></li>
             <li><Link to="/teams">Times</Link></li>
             <li><Link to="/treinos">Treinos</Link></li>
             <li><Link to="/campeonatos">Campeonatos</Link></li>
@@ -111,6 +111,10 @@ const Home = () => {
                 <Link to="/login" className="login-btn"> Login
                   <CiLogin className="login-icon" />
                 </Link>
+                <Link to="/sobre" className="sobre-btn"> Login
+                  <CiLogin className="sobre-icon" />
+                </Link>
+
               </div>
             </li>
           </ul>
