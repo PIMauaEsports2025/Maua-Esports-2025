@@ -34,13 +34,13 @@ const Home = () => {
   ];
 
   const games = [
-    { name: "Counter Strike 2", image: cs2Image },
-    { name: "Rainbow Six Siege", image: r6Image },
-    { name: "Rocket League", image: rocketLeagueImage },
-    { name: "EA FC 25", image: eafc25Image },
-    { name: "League of Legends", image: lolImage },
-    { name: "Valorant", image: valorantImage },
-    { name: "Team Fight Tactics", image: tftImage }
+    { name: "Counter Strike 2", image: cs2Image, url: "https://www.counter-strike.net/" },
+    { name: "Rainbow Six Siege", image: r6Image, url: "https://www.ubisoft.com/en-us/game/rainbow-six/siege" },
+    { name: "Rocket League", image: rocketLeagueImage, url: "https://www.rocketleague.com/" },
+    { name: "EA FC 25", image: eafc25Image, url: "https://www.ea.com/games/ea-sports-fc/fc-25" },
+    { name: "League of Legends", image: lolImage, url: "https://www.leagueoflegends.com/" },
+    { name: "Valorant", image: valorantImage, url: "https://playvalorant.com/" },
+    { name: "Team Fight Tactics", image: tftImage, url: "https://teamfighttactics.leagueoflegends.com/" }
   ];
 
 
@@ -196,10 +196,17 @@ const Home = () => {
             >
               {games.map((game, index) => (
                 <div key={index} className="game-card">
-                  <img src={game.image} alt={game.name} />
-                  <div className="game-overlay">
-                    <h3>{game.name}</h3>
-                  </div>
+                  <a 
+                    href={game.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="game-link"
+                  >
+                    <img src={game.image} alt={game.name} />
+                    <div className="game-overlay">
+                      <h3>{game.name}</h3>
+                    </div>
+                  </a>
                 </div>
               ))}
             </div>
