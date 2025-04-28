@@ -111,10 +111,6 @@ const Home = () => {
                 <Link to="/login" className="login-btn"> Login
                   <CiLogin className="login-icon" />
                 </Link>
-                <Link to="/sobre" className="sobre-btn"> Login
-                  <CiLogin className="sobre-icon" />
-                </Link>
-
               </div>
             </li>
           </ul>
