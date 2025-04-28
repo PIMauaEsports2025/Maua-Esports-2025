@@ -515,13 +515,138 @@ img {
   color: #003B6D;
 }
 
-@media screen and (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
+.games-carousel-section {
+  padding: 3rem 0;
+  background-color: #0B060F;
+  text-align: center;
+}
+
+.games-carousel-section h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-family: "Jersey 25", sans-serif;
+}
+
+.games-carousel-container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.games-carousel {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.game-card {
+  min-width: 33.33%;
+  padding: 0 15px;
+  box-sizing: border-box;
+  position: relative;
+  transition: transform 0.3s ease;
+  overflow: hidden; 
+}
+
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  right: 15px;
+  bottom: 0;
+  background-color: rgba(7, 30, 65, 0.493);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; /* Inicialmente invisível */
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+}
+
+.game-card:hover .game-overlay {
+  opacity: 1; /* Visível no hover */
+}
+
+.game-overlay h3 {
+  color: white;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+}
+
+.game-card img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.3s;
+}
+
+.carousel-control:hover {
+  background: rgba(0, 32, 59, 0.466);
+}
+
+.carousel-control.prev {
+  left: 0;
+}
+
+.carousel-control.next {
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .game-card {
+    min-width: 50%;
+    max-width: 300px; /* Limitando a largura máxima em telas médias */
   }
   
-  .footer-description, .footer-links {
-    padding: 1rem 0;
+  .game-card img {
+    height: 300px; /* Menor altura para telas médias */
   }
 }
 
+/* Ajuste para telas pequenas */
+@media (max-width: 480px) {
+  .game-card {
+    min-width: 100%;
+    max-width: 280px; /* Limitando a largura máxima em telas pequenas */
+  }
+  
+  .game-card img {
+    height: 250px; /* Menor altura para telas pequenas */
+  }
+  
+  .games-carousel-container {
+    max-width: 95%; /* Ligeiramente maior em telas pequenas para melhor aproveitamento */
+  }
+}
