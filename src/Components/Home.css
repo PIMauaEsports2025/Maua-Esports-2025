@@ -280,6 +280,68 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   color: #ffffffc0;
 }
 
+.games-carousel-section{
+  max-width: 85%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.games-carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1%; 
+}
+
+.game-card {
+  min-width: 33.33%;
+  padding: 0 15px;
+  box-sizing: border-box;
+  position: relative;
+  transition: transform 0.3s ease;
+  overflow: hidden; 
+}
+
+.game-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.game-card a:hover {
+  text-decoration: none;
+}
+
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  right: 15px;
+  bottom: 0;
+  background-color: rgba(7, 30, 65, 0.603);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+}
+
+.game-card:hover .game-overlay {
+  opacity: 1; 
+}
+
+.game-overlay h3 {
+  color: white;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
 .home-footer {
   background-color: #161b22; 
   text-align: center;
@@ -550,55 +612,6 @@ img {
   transition: transform 0.5s ease;
 }
 
-.game-card {
-  min-width: 33.33%;
-  padding: 0 15px;
-  box-sizing: border-box;
-  position: relative;
-  transition: transform 0.3s ease;
-  overflow: hidden; 
-}
-
-.game-link {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.game-card a:hover {
-  text-decoration: none;
-}
-
-.game-overlay {
-  position: absolute;
-  top: 0;
-  left: 15px;
-  right: 15px;
-  bottom: 0;
-  background-color: rgba(7, 30, 65, 0.493);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0; /* Inicialmente invisível */
-  transition: opacity 0.3s ease;
-  border-radius: 10px;
-}
-
-.game-card:hover .game-overlay {
-  opacity: 1; /* Visível no hover */
-}
-
-.game-overlay h3 {
-  color: white;
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-
 .game-card:hover {
   transform: translateY(-5px);
 }
@@ -616,6 +629,7 @@ img {
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
+  font-size: 20px;
   color: white;
   border: none;
   width: 40px;
@@ -634,17 +648,17 @@ img {
 }
 
 .carousel-control.prev {
-  left: 0;
+  left: -2%;
 }
 
 .carousel-control.next {
-  right: 0;
+  right: -2%;
 }
 
 @media (max-width: 768px) {
   .game-card {
     min-width: 50%;
-    max-width: 300px; /* Limitando a largura máxima em telas médias */
+    max-width: 300px; 
   }
   
   .game-card img {
@@ -652,7 +666,6 @@ img {
   }
 }
 
-/* Ajuste para telas pequenas */
 @media (max-width: 480px) {
   .game-card {
     min-width: 100%;
