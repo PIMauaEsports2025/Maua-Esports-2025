@@ -24,31 +24,47 @@ O **Mauá Esports** é a plataforma oficial da equipe de esports do Instituto Ma
 ## 📂 Estrutura do Projeto
 ```
 Maua-Esports-2025/
-├─ pi-maua-esports/
-│  ├─ public/
-│  │  ├─ favicon.ico
-│  │  ├─ index.html
-│  │  ├─ logo192.png
-│  │  ├─ logo512.png
-│  │  ├─ manifest.json
-│  │  └─ robots.txt
-│  ├─ src/
-│  │  ├─ App.css
-│  │  ├─ App.js
-│  │  ├─ App.test.js
-│  │  ├─ index.css
-│  │  ├─ index.js
-│  │  ├─ logo.svg
-│  │  ├─ reportWebVitals.js
-│  │  └─ setupTests.js
-│  ├─ .gitignore
-│  ├─ package-lock.json
-│  ├─ package.json
-│  └─ README.md
+├─ public/
+│  ├─ index.html
+│  ├─ logo192.png
+│  ├─ logo512.png
+│  ├─ manifest.json
+│  └─ robots.txt
+├─ src/
+│  ├─ assets/
+│  │  ├─ cs2.jpg
+│  │  ├─ eafc25.jpg
+│  │  ├─ HeroBanner.jpg
+│  │  ├─ LoginBack.png
+│  │  ├─ lol.jpg
+│  │  ├─ maua-branco.png
+│  │  ├─ rainbow6.jpg
+│  │  ├─ rocketleague.jpg
+│  │  ├─ tft.jpg
+│  │  └─ valorant.jpg
+│  ├─ Components/
+│  │  ├─ Contact.css
+│  │  ├─ Contact.jsx
+│  │  ├─ Home.css
+│  │  ├─ Home.jsx
+│  │  ├─ LoginRegister.css
+│  │  └─ LoginRegister.jsx
+│  ├─ App.css
+│  ├─ App.js
+│  ├─ App.test.js
+│  ├─ index.css
+│  ├─ index.js
+│  ├─ logo.svg
+│  ├─ reportWebVitals.js
+│  ├─ setupTests.js
+│  ├─ Sobre.css
+│  └─ Sobre.Js
+├─ .gitignore
+├─ .hintrc
+├─ LICENSE
 ├─ package-lock.json
 ├─ package.json
-└─ README.md
-
+└─ Readme.md
 ```
 
 ## 📜 Instalação e Execução
