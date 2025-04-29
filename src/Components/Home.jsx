@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css';
+import '../styles/Home.css';
 import { FaBars, FaMedal, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import mauaLogo from '../assets/maua-branco.png';
-import heroBanner from '../assets/HeroBanner.jpg';
+import mauaLogo from '../assets/ui/maua-branco.png';
+import heroBanner from '../assets/ui/HeroBanner.jpg';
 import { CiLogin } from "react-icons/ci";
 import { IoGameController } from "react-icons/io5";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { FaInstagram, FaDiscord, FaTwitch, FaYoutube } from 'react-icons/fa';
-
-import cs2Image from '../assets/cs2.jpg';
-import r6Image from '../assets/rainbow6.jpg';
-import rocketLeagueImage from '../assets/rocketleague.jpg';
-import eafc25Image from '../assets/eafc25.jpg';
-import lolImage from '../assets/lol.jpg';
-import valorantImage from '../assets/valorant.jpg';
-import tftImage from '../assets/tft.jpg';
-
+import cs2Image from '../assets/games/cs2.jpg';
+import r6Image from '../assets/games/rainbow6.jpg';
+import rocketLeagueImage from '../assets/games/rocketleague.jpg';
+import eafc25Image from '../assets/games/eafc25.jpg';
+import lolImage from '../assets/games/lol.jpg';
+import valorantImage from '../assets/games/valorant.jpg';
+import tftImage from '../assets/games/tft.jpg';
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
