@@ -9,7 +9,6 @@ const LoginRegister = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // Add wrapper class based on which form is active
   const getWrapperClass = () => {
     if (active === "register") return "wrapper active";
     if (active === "forgot") return "wrapper forgot-active";
@@ -47,12 +46,13 @@ const LoginRegister = () => {
 
   const handleResetSubmit = (e) => {
     e.preventDefault();
-    // Add password reset logic here
     console.log("Password reset confirmed");
   };
 
   return (
     <div className="login-container">
+      <button className="home-button" onClick={() => window.location.href = "/"}> ← </button>
+
       <div className={getWrapperClass()}>
         <div className={`form-box login ${active === "login" ? "active" : ""}`}>
           <form action="">
