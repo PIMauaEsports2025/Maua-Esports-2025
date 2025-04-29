@@ -194,7 +194,8 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 
 .stats-section {
   background-color: #0B060F;
-  padding-top: 3%;
+  padding-top: 5%;
+  padding-bottom: 2%;
 }
 
 .stats-container {
@@ -245,14 +246,13 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 
 .feature-card {
   flex: 1 1 300px; 
-  max-width: 100%;
+  max-width: 40%;
   border: 1px solid #ffffff6b;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 5px;
   text-align: center;
   backdrop-filter: blur(30px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  margin-bottom: 1%;
   transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 

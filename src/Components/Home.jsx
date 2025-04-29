@@ -26,11 +26,11 @@ const Home = () => {
   };
 
   const stats = [
-    { number: '22+', description: 'Lorem ipsum dolor sit amet' },
-    { number: '10+', description: 'Lorem ipsum dolor sit amet' },
-    { number: '20+', description: 'Lorem ipsum dolor sit amet' },
-    { number: '14+', description: 'Lorem ipsum dolor sit amet' },
-    { number: '8+', description: 'Lorem ipsum dolor sit amet' },
+    { number: '22+', description: 'Torneios universitários disputados' },
+    { number: '10+', description: 'Títulos conquistados' },
+    { number: '20+', description: 'Jogadores ativos na equipe' },
+    { number: '14+', description: 'Jogos diferentes competidos' },
+    { number: '8+', description: 'Anos de tradição em e-sports' },
   ];
 
   const games = [
@@ -196,9 +196,9 @@ const Home = () => {
             >
               {games.map((game, index) => (
                 <div key={index} className="game-card">
-                  <a 
-                    href={game.url} 
-                    target="_blank" 
+                  <a
+                    href={game.url}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="game-link"
                   >
@@ -222,13 +222,21 @@ const Home = () => {
         <div className="feature-card">
           <h1>Carol Emoto</h1>
           <h3>Vice-Presidente</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          <p>
+            Formanda em Engenharia de Computação, Carol lidera o time com paixão pelos e-sports desde 2022.
+            Competidora de Rainbow Six Siege, trouxe para a equipe sua experiência em gestão de comunidades gamers
+            e organização de torneios. Sob sua liderança, o Mauá E-Sports expandiu para 7 modalidades diferentes
+            e conquistou 3 títulos regionais.
           </p>
         </div>
         <div className="feature-card">
           <h1>Leonardo Stubber</h1>
           <h3>Ex-Presidente</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          <p>
+            Fundador do Mauá E-Sports em 2018, Leo transformou um grupo de amigos jogadores em uma das equipes
+            universitárias mais respeitadas do estado. Especialista em estratégia de MOBAs, deixou como legado
+            a estruturação dos treinos semanais e parcerias com grandes marcas do cenário gamer. Hoje atua como
+            consultor da equipe enquanto finaliza seu MBA em Gestão Esportiva.
           </p>
         </div>
       </section>
