@@ -21,97 +21,6 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   width: 100%;
 }
 
-.home-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 5%;
-  background: rgba(11, 6, 15, 0.7); 
-  backdrop-filter: blur(8px); 
-  -webkit-backdrop-filter: blur(8px); 
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  flex-wrap: wrap;
-  position: absolute; 
-  top: 0;
-  left: 0;
-  z-index: 10; 
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 20px; 
-}
-
-.logo h1 {
-  font-size: 1.8rem;
-  color: #fff;
-  margin: 0;
-}
-
-.logo-img {
-  height: 60px; 
-  width: auto;
-  object-fit: contain;
-}
-
-.navigation {
-  width: auto;
-  display: flex;
-  align-items: center;
-}
-
-.navigation ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  flex-wrap: wrap; 
-  justify-content: flex-end;
-  align-items: center; 
-}
-
-.navigation li {
-  margin: 0 1rem;
-  padding: 0.5rem 0;
-}
-
-.navigation a {
-  text-decoration: none;
-  color: #c9d1d9;
-  font-size: 20px;
-  font-weight: 500;
-  transition: color 0.3s;
-  white-space: nowrap;
-}
-
-.navigation a:hover, .navigation a.active {
-  color: #003B6D;
-  transform: translateY(-2px); 
-}
-
-.login-btn {
-  padding: 8px 20px;
-  background-color: #003B6D;
-  color: white !important;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center; 
-  justify-content: center; 
-}
-
-.login-icon {
-  margin-left: 5px;
-  font-size: 1.2rem;
-  vertical-align: middle;
-}
-
-.login-btn:hover {
-  background-color: #002f58;
-}
-
 .hero-section {
   min-height: 80vh; 
   padding-top: 100px; 
@@ -342,13 +251,6 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-.home-footer {
-  background-color: #161b22; 
-  text-align: center;
-  padding: 2rem;
-  color: #8b949e;
-}
-
 .mobile-menu-button {
   display: none;
   background: none;
@@ -364,39 +266,6 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .home-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .logo {
-    width: 100%;
-    justify-content: space-between;
-  }
-  
-  .logo h1 {
-    font-size: 1.4rem; 
-  }
-  
-  .logo-img {
-    height: 30px; 
-  }
-  
-  .navigation {
-    width: 100%;
-    overflow-x: auto; 
-  }
-  
-  .navigation ul {
-    flex-direction: column;
-    padding: 0.5rem 0;
-    align-items: flex-start; 
-  }
-  
-  .navigation li {
-    margin: 0.5rem 0;
-  }
-
   .features {
     flex-direction: column;
   }
@@ -404,30 +273,6 @@ img {
   .feature-card {
     max-width: 100%;
     margin-bottom: 2rem;
-  }
-
-  .mobile-menu-button {
-    display: block;
-  }
-  
-  .navigation {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-  
-  .navigation.mobile-open {
-    max-height: 100%;
-    align-items: flex-start;
-  }
-  
-  .navigation ul {
-    flex-direction: column;
-    padding: 0.5rem 0;
-  }
-  
-  .navigation li {
-    margin: 0.5rem 0;
   }
 
   .hero-buttons {
@@ -445,14 +290,6 @@ img {
 }
 
 @media screen and (max-width: 480px) {
-  .home-header {
-    padding: 1rem;
-  }
-  
-  .navigation li {
-    margin: 0 0.5rem;
-  }
-  
   .hero-section {
     padding: 1rem;
   }
@@ -469,116 +306,6 @@ img {
     padding: 0.6rem 1.5rem;
     font-size: 0.9rem;
   }
-}
-
-.home-footer {
-  background-color: #0B060F;
-  color: #f5f5f5;
-  padding: 2rem 0;
-  width: 100%;
-}
-
-.footer-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex: 1;
-  min-width: 200px;
-  margin-bottom: 1rem;
-}
-
-.footer-logo-img {
-  height: 80px;
-  width: auto;
-}
-
-.footer-logo-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-logo-text h2 {
-  font-family: "Jersey 25", sans-serif;
-  font-size: 1.8rem;
-  margin: 0;
-}
-
-.footer-logo-text h3 {
-  font-family: "Jersey 25", sans-serif;
-  font-size: 1.4rem;
-  margin: 0;
-}
-
-.footer-description {
-  flex: 2;
-  padding: 0 2rem;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  max-width: 500px;
-  display: flex;
-  align-items: center;
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
-  margin-right: 1.5rem;
-}
-
-.footer-links {
-  flex: 1;
-  min-width: 200px;
-  display: flex;
-  flex-direction: column;
-  padding-left: 1.5rem;
-}
-
-.footer-nav {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1rem 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-nav li {
-  margin-bottom: 0.5rem;
-}
-
-.footer-nav a {
-  color: #f5f5f5;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: color 0.3s;
-}
-
-.footer-nav a:hover {
-  color: #003B6D;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center; 
-  gap: 1.5rem; 
-  width: 100%; 
-  padding-top: 0.5rem; 
-}
-
-.social-icons a {
-  color: #f5f5f5;
-  font-size: 1.5rem;
-  transition: color 0.3s;
-  display: flex; 
-  align-items: center; 
-}
-.social-icons a:hover {
-  color: #003B6D;
 }
 
 .games-carousel-section {
