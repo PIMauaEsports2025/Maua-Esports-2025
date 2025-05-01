@@ -8,6 +8,8 @@ const LoginRegister = () => {
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const getWrapperClass = () => {
     if (active === "register") return "wrapper active";
@@ -49,60 +51,150 @@ const LoginRegister = () => {
     console.log("Password reset confirmed");
   };
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setLoginError("");
+    
+    try {
+      const username = e.target.username.value;
+      const password = e.target.password.value;
+      
+      // SOLUÇÃO TEMPORÁRIA ATÉ A API ESTAR FUNCIONANDO:
+      // Verifica credenciais fixas para desenvolvimento
+      if (username === "admin" && password === "admin") {
+        // Simula um token de autenticação
+        localStorage.setItem('token', 'dev-token-1234567890');
+        
+        // Espera um pouco para simular o processamento
+        setTimeout(() => {
+          setIsLoading(false);
+          // Redirecionar para o painel admin
+          window.location.href = '/admin';
+        }, 1000);
+        
+        return; // Encerra a função aqui para não tentar acessar a API
+      }
+      
+      // Credenciais inválidas
+      setLoginError("Credenciais inválidas. Use admin/admin para teste.");
+      setIsLoading(false);
+      
+      /* 
+      // REMOVA ESTE COMENTÁRIO QUANDO A API ESTIVER PRONTA:
+      
+      const response = await fetch('http://localhost:3001/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Falha na autenticação');
+      }
+      
+      const data = await response.json();
+      localStorage.setItem('token', data.token);
+      
+      // Redirecionar para o painel admin após login bem-sucedido
+      window.location.href = '/admin';
+      */
+      
+    } catch (error) {
+      console.error('Erro no login:', error);
+      setLoginError(error.message || "Erro ao fazer login. Verifique suas credenciais.");
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="login-container">
       <button className="home-button" onClick={() => window.location.href = "/"}> ← </button>
 
       <div className={getWrapperClass()}>
         <div className={`form-box login ${active === "login" ? "active" : ""}`}>
-          <form action="">
-            <h1>LOGIN</h1>
-            <div className="input-box">
-              <input type="text" placeholder="Usuário" required />
-              <FaUser className="icon" />
+        <form onSubmit={handleLogin}>
+          <h1>LOGIN</h1>
+          
+          {loginError && (
+            <div className="error-message">
+              {loginError}
             </div>
-            <div className="input-box">
-              <input type="password" placeholder="Senha" required />
-              <FaLock className="icon" />
-            </div>
+          )}
+          
+          <div className="input-box">
+            <input 
+              type="text" 
+              name="username" 
+              placeholder="Usuário" 
+              required 
+            />
+            <FaUser className="icon" />
+          </div>
+          
+          <div className="input-box">
+            <input 
+              type={passwordVisible ? "text" : "password"} 
+              name="password" 
+              placeholder="Senha" 
+              required 
+            />
+            <FaLock className="icon" />
+            <button
+              type="button"
+              className="visibility-toggle"
+              onClick={togglePasswordVisibility}
+            >
+              {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
 
-            <div className="remember-forgot">
-              <label>
-                <input type="checkbox" /> Lembre-me
-              </label>
-              <a href="#" onClick={forgotLink}>
-                Esqueceu senha?
+          <div className="remember-forgot">
+            <label>
+              <input type="checkbox" name="remember" /> Lembre-me
+            </label>
+            <a href="#" onClick={forgotLink}>
+              Esqueceu senha?
+            </a>
+          </div>
+
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Carregando..." : "Login"}
+            
+          </button>
+
+          <div className="register-link">
+            <p>
+              Ainda não tem uma conta?{" "}
+              <a href="#" onClick={registerLink}>
+                Cadastre-se
               </a>
+            </p>
+          </div>
+
+          <div className="login-options">
+            <div className="divider">
+              <span>ou acesse rapidamente</span>
             </div>
 
-            <button type="submit">Login</button>
-
-            <div className="register-link">
-              <p>
-                Ainda não tem uma conta?{" "}
-                <a href="#" onClick={registerLink}>
-                  Cadastre-se
-                </a>
-              </p>
+            <div className="auth-buttons">
+              <button type="button" className="auth-button microsoft">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+                  alt="Microsoft logo"
+                  className="auth-icon"
+                />
+                <span>Microsoft</span>
+              </button>
             </div>
-
-            <div className="login-options">
-              <div className="divider">
-                <span>ou acesse rapidamente</span>
-              </div>
-
-              <div className="auth-buttons">
-                <button type="button" className="auth-button microsoft">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
-                    alt="Microsoft logo"
-                    className="auth-icon"
-                  />
-                  <span>Microsoft</span>
-                </button>
-              </div>
-            </div>
-          </form>
+          </div>
+        </form>
         </div>
 
         <div
