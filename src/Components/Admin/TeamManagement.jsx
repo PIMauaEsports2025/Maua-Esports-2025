@@ -30,7 +30,7 @@ const TeamManagement = () => {
             name: "MAUÁ LOL BLUE", 
             modality: "LOL",
             members: [
-              { ra: "23.01234-5", name: "Maria Costa", role: "Capitã" },
+              { ra: "23.01234-5", name: "Maria Costa", role: "Capitão" },
               { ra: "22.12345-6", name: "Felipe Torres", role: "Top" },
               { ra: "21.23456-7", name: "Bruno Oliveira", role: "Jungle" },
               { ra: "20.34567-8", name: "Juliana Pereira", role: "Mid" },
