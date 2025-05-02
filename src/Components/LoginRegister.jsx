@@ -10,6 +10,7 @@ const LoginRegister = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [registrationError, setRegistrationError] = useState("");
 
   const getWrapperClass = () => {
     if (active === "register") return "wrapper active";
@@ -60,55 +61,83 @@ const LoginRegister = () => {
       const username = e.target.username.value;
       const password = e.target.password.value;
       
-      // SOLUÇÃO TEMPORÁRIA ATÉ A API ESTAR FUNCIONANDO:
-      // Verifica credenciais fixas para desenvolvimento
+      // Solução temporária com múltiplas contas
       if (username === "admin" && password === "admin") {
-        // Simula um token de autenticação
-        localStorage.setItem('token', 'dev-token-1234567890');
-        
-        // Espera um pouco para simular o processamento
+        localStorage.setItem('token', 'admin-token-1234');
+        localStorage.setItem('userRole', 'admin');
         setTimeout(() => {
           setIsLoading(false);
-          // Redirecionar para o painel admin
           window.location.href = '/admin';
         }, 1000);
-        
-        return; // Encerra a função aqui para não tentar acessar a API
+        return;
+      } 
+      else if (username === "captain" && password === "captain") {
+        localStorage.setItem('token', 'captain-token-5678');
+        localStorage.setItem('userRole', 'captain');
+        setTimeout(() => {
+          setIsLoading(false);
+          window.location.href = '/admin';
+        }, 1000);
+        return;
+      }
+      else if (username === "member" && password === "member") {
+        localStorage.setItem('token', 'member-token-9012');
+        localStorage.setItem('userRole', 'member');
+        setTimeout(() => {
+          setIsLoading(false);
+          window.location.href = '/admin';
+        }, 1000);
+        return;
       }
       
       // Credenciais inválidas
-      setLoginError("Credenciais inválidas. Use admin/admin para teste.");
+      setLoginError("Credenciais inválidas. Use admin/admin, captain/captain ou member/member para teste.");
       setIsLoading(false);
-      
-      /* 
-      // REMOVA ESTE COMENTÁRIO QUANDO A API ESTIVER PRONTA:
-      
-      const response = await fetch('http://localhost:3001/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Falha na autenticação');
-      }
-      
-      const data = await response.json();
-      localStorage.setItem('token', data.token);
-      
-      // Redirecionar para o painel admin após login bem-sucedido
-      window.location.href = '/admin';
-      */
       
     } catch (error) {
       console.error('Erro no login:', error);
       setLoginError(error.message || "Erro ao fazer login. Verifique suas credenciais.");
+      setIsLoading(false);
+    }
+  };
+
+  const validateRA = (ra) => {
+    // Formato: XX.XXXXX-X
+    const raRegex = /^\d{2}\.\d{5}-\d$/;
+    return raRegex.test(ra);
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setRegistrationError("");
+    
+    try {
+      const ra = e.target.ra.value;
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+      
+      // Validar RA
+      if (!validateRA(ra)) {
+        throw new Error("Formato de RA inválido. Use o formato XX.XXXXX-X");
+      }
+      
+      // Verificar se o email corresponde ao RA
+      const expectedEmail = `${ra}@maua.br`;
+      if (email !== expectedEmail) {
+        throw new Error(`O email deve ser ${expectedEmail}`);
+      }
+      
+      // Simulação de registro bem-sucedido
+      setTimeout(() => {
+        setIsLoading(false);
+        setActive("login");
+        // Mostrar alguma mensagem de sucesso
+      }, 1000);
+      
+    } catch (error) {
+      console.error('Erro no registro:', error);
+      setRegistrationError(error.message || "Erro ao registrar. Verifique seus dados.");
       setIsLoading(false);
     }
   };
@@ -202,19 +231,38 @@ const LoginRegister = () => {
             active === "register" ? "active" : ""
           }`}
         >
-          <form action="">
+          <form onSubmit={handleRegister}>
             <h1>CADASTRO</h1>
+            
+            {registrationError && (
+              <div className="error-message">
+                {registrationError}
+              </div>
+            )}
+            
             <div className="input-box">
-              <input type="text" placeholder="Usuário" required />
+              <input type="text" name="ra" placeholder="RA (xx.xxxxx-x)" required />
               <FaUser className="icon" />
             </div>
             <div className="input-box">
-              <input type="email" placeholder="Email" required />
+              <input type="email" name="email" placeholder="Email" required />
               <FaEnvelope className="icon" />
             </div>
             <div className="input-box">
-              <input type="password" placeholder="Senha" required />
+              <input 
+                type={passwordVisible ? "text" : "password"} 
+                name="password" 
+                placeholder="Senha"
+                required 
+              />
               <FaLock className="icon" />
+              <button
+                type="button"
+                className="visibility-toggle"
+                onClick={togglePasswordVisibility}
+              >
+                {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+              </button>
             </div>
 
             <div className="remember-forgot">
