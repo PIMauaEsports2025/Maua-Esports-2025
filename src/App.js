@@ -1,10 +1,10 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Components/Home';
 import LoginRegister from './Components/LoginRegister';
 import Sobre from './Components/Sobre';
 import DashBoard from './Components/Admin/DashBoard';
+import NotificationManager from './Components/UI/NotificationManager';
 
 // Função para verificar se usuário está autenticado
 const isAuthenticated = () => {
@@ -23,6 +23,7 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   return (
     <BrowserRouter>
+      <NotificationManager />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginRegister />} />

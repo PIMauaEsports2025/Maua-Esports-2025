@@ -1,35 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 import '../../styles/Admin/ModalitiesList.css';
+import { fetchModalities } from '../../Service/api';
+import ScheduledTrainingsEditor from './ScheduledTrainingsEditor';
 
 const ModalitiesList = () => {
   const [modalities, setModalities] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [editingModality, setEditingModality] = useState(null);
+
+  const loadModalities = async () => {
+    try {
+      setLoading(true);
+      const data = await fetchModalities();
+      setModalities(data);
+      setError(null);
+    } catch (err) {
+      setError('Falha ao carregar modalidades: ' + err.message);
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const getModalities = async () => {
-      try {
-        setLoading(true);
-        // Dados mockados temporários
-        const mockData = {
-          "1": { Name: "Counter-Strike 2", Tag: "CS2", ScheduledTrainings: [1, 2, 3] },
-          "2": { Name: "League of Legends", Tag: "LoL", ScheduledTrainings: [4, 5] },
-          "3": { Name: "Valorant", Tag: "VAL", ScheduledTrainings: [6] }
-        };
-        
-        setModalities(mockData);
-        setError(null);
-      } catch (err) {
-        setError('Falha ao carregar modalidades');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getModalities();
+    loadModalities();
   }, []);
+
+  const handleEditClick = (modalityId) => {
+    const modality = modalities[modalityId];
+    setEditingModality({
+      id: modalityId,
+      name: modality.Name,
+      trainings: modality.ScheduledTrainings || []
+    });
+  };
+
+  const handleCloseEditor = () => {
+    setEditingModality(null);
+  };
+
+  const handleEditorSuccess = () => {
+    // Recarregar modalidades após atualização bem-sucedida
+    loadModalities();
+  };
 
   if (loading) return <div className="loading">Carregando modalidades...</div>;
   if (error) return <div className="error">{error}</div>;
@@ -59,7 +74,11 @@ const ModalitiesList = () => {
               <td>{modality.Tag}</td>
               <td>{modality.ScheduledTrainings?.length || 0}</td>
               <td>
-                <button className="edit-button" title="Editar">
+                <button 
+                  className="edit-button" 
+                  title="Editar Treinos"
+                  onClick={() => handleEditClick(id)}
+                >
                   <FaEdit />
                 </button>
                 <button className="delete-button" title="Excluir">
@@ -70,6 +89,16 @@ const ModalitiesList = () => {
           ))}
         </tbody>
       </table>
+      
+      {editingModality && (
+        <ScheduledTrainingsEditor 
+          modalityId={editingModality.id}
+          modalityName={editingModality.name}
+          initialTrainings={editingModality.trainings}
+          onClose={handleCloseEditor}
+          onSuccess={handleEditorSuccess}
+        />
+      )}
     </div>
   );
 };
