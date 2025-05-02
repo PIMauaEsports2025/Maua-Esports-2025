@@ -83,7 +83,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-
       <Header />
 
       <main
@@ -91,14 +90,14 @@ const Home = () => {
         style={{ backgroundImage: `url(${heroBanner})` }}
       >
         <div className="hero-content">
-          <h1>Bem-vindo</h1>
+          <h1>BEM-VINDO</h1>
           <p>O Mauá e-Sports é a equipe de esportes eletrônicos do Instituto Mauá de Tecnologia (IMT), representando
             a instituição em competições universitárias e promovendo o desenvolvimento de
             habilidades em áreas como engenharia, design, administração e comunicação.
           </p>
           <div className="hero-buttons">
-            <button className="inscrever-button">Inscrever-se</button>
-            <button className="times-button">Times</button>
+            <button className="inscrever-button">SOBRE NÓS</button>
+            <button className="times-button">TIMES</button>
           </div>
         </div>
       </main>
@@ -147,7 +146,9 @@ const Home = () => {
       </section>
 
       <section className="games-carousel-section">
-        <h2>Nossos Jogos</h2>
+        <h2>EQUIPE</h2>
+        <p>A equipe é composta por representantes de diferentes cursos que atuam de forma organizada e disciplinada em diversos títulos do cenário competitivo, como League of Legends, Valorant, Counter-Strike 2, EA FC e Teamfight Tactics, entre outros.</p>
+        <p className='last-p'>Mais do que participar de torneios, buscamos consolidar uma cultura de e-sports responsável, integrando atividades de treinamento, planejamento estratégico e representação institucional.</p>
 
         <div className="games-carousel-container">
           <button className="carousel-control prev" onClick={prevSlide}>

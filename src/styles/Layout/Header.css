@@ -71,6 +71,7 @@
   }
   
   .login-btn {
+    border-radius: 10px;
     padding: 8px 20px;
     background-color: #003B6D;
     color: white !important;
