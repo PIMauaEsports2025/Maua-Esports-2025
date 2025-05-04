@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Components/Home';
 import LoginRegister from './Components/LoginRegister';
+import AdminInterface from './Components/AdminInterface';
 import Sobre from './Components/Sobre';
 import DashBoard from './Components/Admin/DashBoard';
 import NotificationManager from './Components/UI/NotificationManager';
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginRegister />} />
         <Route path="/sobre" element={<Sobre />} />
+        <Route path="/admin" element={<AdminInterface />} />
         <Route 
           path="/admin" 
           element={

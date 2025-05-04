@@ -39,6 +39,9 @@ const Header = () => {
                 Login
                 <CiLogin className="login-icon" />
               </Link>
+              <Link to="/admin">
+                <button className="times-button">Painel Admin</button>
+              </Link>
             </div>
           </li>
         </ul>

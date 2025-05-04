@@ -85,6 +85,8 @@ const Home = () => {
     <div className="home-container">
       <Header />
 
+      
+
       <main
         className="hero-section"
         style={{ backgroundImage: `url(${heroBanner})` }}
