@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/Sobre.css';
-<<<<<<< Updated upstream
 import Header from './Layout/Header';
 import Footer from './Layout/Footer';
 
@@ -102,58 +101,5 @@ function Sobre() {
         </div>
     );
 }
-=======
-
-const Sobre = () => {
-  return (
-    <div className="sobre-container">
-      <header className="top-header">
-        <div className="logo-section">
-          <img src="/logo-maua.png" alt="Mauá E-SPORTS" className="logo" />
-          <h1 className="title">E-SPORTS</h1>
-        </div>
-        <div className="user-section">
-          <span>Bem vindo, Mateus Martins</span>
-          <span className="dropdown">▼</span>
-        </div>
-      </header>
-
-      <main className="main-panel">
-        <div className="button-panel">
-          <button className="main-button">GERENCIAR MEMBROS</button>
-          <button className="main-button">GERENCIAR ADMINS</button>
-          <button className="main-button">CONSULTAR HORAS PAE</button>
-          <button className="main-button">GERENCIAR MODALIDADES</button>
-          <button className="main-button">GERENCIAR TIMES</button>
-        </div>
-      </main>
-
-      <footer className="footer">
-        <div className="footer-left">
-          <img src="/logo-maua.png" alt="Logo Mauá" className="footer-logo" />
-          <div>
-            <strong>MAUÁ E-SPORTS</strong>
-            <p>
-              Liga universitária de e-sports do Instituto Mauá de Tecnologia, promovendo
-              competições, treinamentos e representando a instituição em torneios acadêmicos.
-            </p>
-          </div>
-        </div>
-        <div className="footer-right">
-          <nav>
-            <a href="#">HOME</a>
-            <a href="#">LOJA</a>
-            <a href="#">SOBRE</a>
-            <a href="#">CAMPEONATOS</a>
-          </nav>
-          <div className="social-icons">
-            {/* Insira os ícones corretos aqui ou importe as bibliotecas necessárias */}
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-};
->>>>>>> Stashed changes
 
 export default Sobre;

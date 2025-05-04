@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Components/Home';
-import Sobre from './Components/Sobre';
 import LoginRegister from './Components/LoginRegister';
 import Sobre from './Components/Sobre';
 import DashBoard from './Components/Admin/DashBoard';
@@ -29,7 +28,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginRegister />} />
         <Route path="/sobre" element={<Sobre />} />
-<<<<<<< Updated upstream
         <Route 
           path="/admin" 
           element={
@@ -38,8 +36,6 @@ function App() {
             </ProtectedRoute>
           } 
         />
-=======
->>>>>>> Stashed changes
       </Routes>
     </BrowserRouter>
   );
