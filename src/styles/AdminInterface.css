@@ -104,17 +104,43 @@ body {
   .dropdown-menu button {
     background: none;
     border: none;
-    color: white;
-    text-align: left;
+    color: #ffffff;
     font-size: 0.9rem;
     cursor: pointer;
-    padding: 0.3rem 0.5rem;
+    padding: 0.4rem 0.6rem;
     border-radius: 3px;
-    transition: background 0.2s ease;
+    transition: color 0.3s ease;
+    text-align: left;
   }
   
   .dropdown-menu button:hover {
-    background-color: #1e40af;
+    color: #38bdf8; /* Azul claro suave */
   }
   
+  .dropdown-menu button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: 3px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  text-align: left;
+  opacity: 0.9;
+}
+
+.dropdown-menu button:hover {
+  color: #38bdf8;
+  opacity: 1;
+}
+.user-dropdown-wrapper {
+  position: relative;
+}
+
+.hover-buffer {
+  padding: 10px; /* aumenta a área de interação pra não sumir tão fácil */
+}
+
+
   
