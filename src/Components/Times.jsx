@@ -12,13 +12,8 @@ function Times() {
             <Header/>
 
             <main className="comeco-content">
-                <h1>COMO COMEÇAMOS</h1>
-                <p>A Mauá e-Sports nasceu da paixão de um grupo de estudantes do Instituto Mauá de Tecnologia
-                    por e-sports e pela vontade de representar a instituição em torneios acadêmicos.
-                    O projeto surgiu de conversas informais entre amigos que, unidos pelo interesse comum,
-                    decidiram formar uma equipe organizada para competir e promover a cultura gamer dentro da Mauá.
-                    Desde o início, a missão foi criar um ambiente de aprendizado, disciplina e crescimento,
-                    tanto no competitivo quanto no desenvolvimento pessoal.
+                <h1>EQUIPES</h1>
+                <p>A Mauá e-Sports é composta por alunos dedicados e apaixonados por jogos eletrônicos, que atuam em diferentes funções para garantir o crescimento e o bom desempenho da liga. 
                 </p>
             </main>
 
@@ -33,13 +28,13 @@ function Times() {
                     <h1>League of Legends</h1>
                 </div>
                 <div className="feature-card">
-                    <h1>Rainbow Six Siege</h1>
-                </div>
-                <div className="feature-card">
                     <h1>Rocket League</h1>
                 </div>
                 <div className="feature-card">
                     <h1>TFT - Team Fight Tactics</h1>
+                </div>
+                <div className="feature-card">
+                    <h1>Tom Clancy's Rainbow Six Siege</h1>
                 </div>
                 <div className="feature-card">
                     <h1>Valorant - Line Blue</h1>
