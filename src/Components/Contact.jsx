@@ -15,18 +15,14 @@ function Contact() {
 
             <main className="comeco-content">
                 <h1>CONTATO</h1>
-                <p>Preencha o formulário abaixo com sua mensagem, dúvida ou sugestão. 
-                    As informações enviadas serão encaminhadas diretamente para o nosso 
+                <p>Preencha o formulário abaixo com sua mensagem, dúvida ou sugestão.
+                    As informações enviadas serão encaminhadas diretamente para o nosso
                     e-mail institucional e entraremos em contato o mais breve possível.
                 </p>
             </main>
-
-            
-
             <section className="contato-form">
-                
-            </section>
 
+            </section>
             <Footer />
         </div>
     );
