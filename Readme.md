@@ -131,21 +131,12 @@ git clone https://github.com/PIMauaEsports2025/Maua-Esports-2025.git
 cd maua-esports
 ```
 
-#### 📌 **Backend**
+#### 📌 **Rodar o Projeto**
 ```sh
-cd backend
 npm install  # Instalar dependências
-cp .env.example .env  # Configurar variáveis de ambiente
-npm start  # Iniciar servidor backend
+npm start  # Iniciar servidor backend e frontend 
+# Dependências já instaladas no npm
 ```
-
-#### 🎨 **Frontend**
-```sh
-cd ../frontend
-npm install  # Instalar dependências
-npm start  # Iniciar servidor frontend
-```
-
 ## 📌 Funcionalidades
 #### ✅ Cadastro e login de usuários 
 #### ✅ Página principal com informações e atualizações
