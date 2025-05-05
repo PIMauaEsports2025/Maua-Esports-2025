@@ -29,42 +29,92 @@ Maua-Esports-2025/
 │  ├─ logo192.png
 │  ├─ logo512.png
 │  ├─ manifest.json
+│  ├─ maua-branco.png
 │  └─ robots.txt
 ├─ src/
 │  ├─ assets/
-│  │  ├─ cs2.jpg
-│  │  ├─ eafc25.jpg
-│  │  ├─ HeroBanner.jpg
-│  │  ├─ LoginBack.png
-│  │  ├─ lol.jpg
-│  │  ├─ maua-branco.png
-│  │  ├─ rainbow6.jpg
-│  │  ├─ rocketleague.jpg
-│  │  ├─ tft.jpg
-│  │  └─ valorant.jpg
+│  │  ├─ games/
+│  │  │  ├─ cs2.jpg
+│  │  │  ├─ eafc25.jpg
+│  │  │  ├─ lol.jpg
+│  │  │  ├─ rainbow6.jpg
+│  │  │  ├─ rocketleague.jpg
+│  │  │  ├─ tft.jpg
+│  │  │  └─ valorant.jpg
+│  │  ├─ ui/
+│  │  │  ├─ HeroBanner.jpg
+│  │  │  └─ maua-branco.png
+│  │  └─ LoginBack.png
 │  ├─ Components/
-│  │  ├─ Contact.css
+│  │  ├─ Admin/
+│  │  │  ├─ DashBoard.jsx
+│  │  │  ├─ ModalitiesList.jsx
+│  │  │  ├─ PaeHoursControl.jsx
+│  │  │  ├─ PaeHoursView.jsx
+│  │  │  ├─ ScheduledTrainingsEditor.jsx
+│  │  │  ├─ TeamManagement.jsx
+│  │  │  ├─ TrainingList.jsx
+│  │  │  └─ UserManagement.jsx
+│  │  ├─ Layout/
+│  │  │  ├─ Footer.jsx
+│  │  │  └─ Header.jsx
+│  │  ├─ UI/
+│  │  │  ├─ Notification.jsx
+│  │  │  └─ NotificationManager.jsx
+│  │  ├─ AdminInterface.jsx
 │  │  ├─ Contact.jsx
-│  │  ├─ Home.css
 │  │  ├─ Home.jsx
+│  │  ├─ LoginRegister.jsx
+│  │  └─ Sobre.jsx
+│  ├─ models/
+│  │  └─ models.js
+│  ├─ Service/
+│  │  └─ api.js
+│  ├─ Stage-API-Maua-Esports-main/
+│  │  ├─ .env.example
+│  │  ├─ .gitattributes
+│  │  ├─ .gitignore
+│  │  ├─ defaultModalities.json
+│  │  ├─ defaultTrains.json
+│  │  ├─ index.js
+│  │  ├─ LICENSE
+│  │  ├─ package.json
+│  │  └─ README.md
+│  ├─ styles/
+│  │  ├─ Admin/
+│  │  │  ├─ Dashboard.css
+│  │  │  ├─ ModalitiesList.css
+│  │  │  ├─ PaeHoursControl.css
+│  │  │  ├─ PaeHoursView.css
+│  │  │  ├─ ScheduledTrainingsEditor.css
+│  │  │  ├─ TeamManagement.css
+│  │  │  ├─ TrainingsList.css
+│  │  │  └─ UserManagement.css
+│  │  ├─ Layout/
+│  │  │  ├─ Footer.css
+│  │  │  └─ Header.css
+│  │  ├─ UI/
+│  │  │  └─ Notification.css
+│  │  ├─ AdminInterface.css
+│  │  ├─ App.css
+│  │  ├─ Contact.css
+│  │  ├─ Home.css
+│  │  ├─ index.css
 │  │  ├─ LoginRegister.css
-│  │  └─ LoginRegister.jsx
-│  ├─ App.css
+│  │  └─ Sobre.css
 │  ├─ App.js
 │  ├─ App.test.js
-│  ├─ index.css
 │  ├─ index.js
 │  ├─ logo.svg
 │  ├─ reportWebVitals.js
-│  ├─ setupTests.js
-│  ├─ Sobre.css
-│  └─ Sobre.Js
+│  └─ setupTests.js
 ├─ .gitignore
 ├─ .hintrc
 ├─ LICENSE
 ├─ package-lock.json
 ├─ package.json
-└─ Readme.md
+└─ README.md
+
 ```
 
 ## 📜 Instalação e Execução
