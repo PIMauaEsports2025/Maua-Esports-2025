@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import '../styles/AdminInterface.css';
-import Footer from './Layout/Footer.jsx';
 
 const AdminInterface = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -29,7 +28,7 @@ const AdminInterface = () => {
     <div className="admin-container">
       <header className="top-header">
         <div className="logo-section">
-          <img src="/logo-maua.png" alt="Mauá E-SPORTS" className="logo" />
+          <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
           <h1 className="title">E-SPORTS</h1>
         </div>
 
@@ -67,7 +66,7 @@ const AdminInterface = () => {
         </div>
       </main>
 
-      <Footer />
+
     </div>
   );
 };
