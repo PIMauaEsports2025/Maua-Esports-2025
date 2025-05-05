@@ -41,7 +41,7 @@ function Sobre() {
                         crescimento pessoal e espírito de equipe, sempre em alinhamento com os valores educacionais e
                         tecnológicos da Mauá.
                     </p>
-                </div>
+                </div>  
                 <div className="feature-card">
                     <h1>Visão</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -97,7 +97,7 @@ function Sobre() {
                 </div>
             </section>
 
-            <Footer />
+            <Footer/>
         </div>
     );
 }

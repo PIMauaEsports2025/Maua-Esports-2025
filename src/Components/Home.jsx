@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 import { FaMedal, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import heroBanner from '../assets/ui/HeroBanner.jpg';
@@ -62,7 +61,7 @@ const Home = () => {
       nextSlide();
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  });
 
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
