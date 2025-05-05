@@ -27,7 +27,7 @@ const Header = () => {
       </div>
       <nav className={`navigation ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         <ul>
-          <li><Link to="/" className="active">Home</Link></li>
+          <li><Link to="/">Home</Link></li>
           <li><Link to="/sobre">Sobre</Link></li>
           <li><Link to="/times">Times</Link></li>
           <li><Link to="/treinos">Treinos</Link></li>
