@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste API Mauá Esports</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .response { background: #f5f5f5; padding: 15px; border-radius: 5px; margin-top: 10px; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        .data-grid { 
+            display: grid; 
+            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+        .data-card { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .data-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .data-card h3 { 
+            margin-top: 0; 
+            color: #2c3e50;
+            font-size: 1.4em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .data-item { 
+            margin: 12px 0;
+            line-height: 1.4;
+        }
+        .data-label { 
+            font-weight: bold; 
+            color: #34495e;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .error { 
+            color: #e74c3c; 
+            background: #fde8e8; 
+            padding: 15px; 
+            border-radius: 5px;
+            border-left: 4px solid #e74c3c;
+        }
+        .search-box { 
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            width: 250px;
+            font-size: 1em;
+            transition: border-color 0.2s;
+        }
+        .search-box:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .tag-suggestion {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 8px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .training-schedule {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .training-schedule li {
+            margin: 5px 0;
+            padding: 5px;
+            background: white;
+            border-radius: 3px;
+            border-left: 3px solid #3498db;
+        }
+        .tag-badge {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            margin-left: 8px;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Teste da API Mauá Esports</h1>
+        
+        <div>
+            <h2>Testar Modalidades</h2>
+            <button onclick="testarModalidades()">Buscar Todas Modalidades</button>
+            <div class="search-container">
+                <input type="text" id="tagSearch" class="search-box" placeholder="Digite a Tag (ex: CS, VAL, LOL)">
+                <button onclick="testarModalidadesPorTag()">Buscar por Tag</button>
+            </div>
+            <div class="tag-suggestion">
+                Sugestões: CS (CSA, CSB), VAL (VALFEM, VALMISBLUE, VALMISBLACK), LOL (LOLA, LOLB)
+            </div>
+            <div id="modalidadesResponse" class="response"></div>
+        </div>
+
+        <div>
+            <h2>Testar Treinos</h2>
+            <button onclick="testarTreinos()">Buscar Todos Treinos</button>
+            <div id="treinosResponse" class="response"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000';
+        const API_TOKEN = 'frontendmauaesports';
+        let modalidadesCache = null;
+
+        async function fazerRequisicao(endpoint, params = {}) {
+            try {
+                const url = new URL(`${API_URL}${endpoint}`);
+                Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
+                console.log('Fazendo requisição para:', url.toString());
+                console.log('Headers:', {
+                    'Authorization': `Bearer ${API_TOKEN}`
+                });
+
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${API_TOKEN}`
+                    }
+                });
+
+                console.log('Status da resposta:', response.status);
+                console.log('Headers da resposta:', Object.fromEntries(response.headers.entries()));
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Erro ${response.status}: ${response.statusText}\nResposta: ${errorText}`);
+                }
+
+                const data = await response.json();
+                console.log('Dados recebidos:', data);
+                return data;
+            } catch (error) {
+                console.error('Erro detalhado na requisição:', error);
+                throw error;
+            }
+        }
+
+        function formatarData(timestamp) {
+            return new Date(timestamp).toLocaleString('pt-BR');
+        }
+
+        function getModalityNameById(id) {
+            if (!modalidadesCache) return `Modalidade ${id}`;
+            const modality = modalidadesCache[id];
+            if (!modality) {
+                console.warn(`Modalidade não encontrada para o ID: ${id}`);
+                return `Modalidade ${id}`;
+            }
+            return modality.Name;
+        }
+
+        function renderizarModalidades(data) {
+            const container = document.getElementById('modalidadesResponse');
+            const grid = document.createElement('div');
+            grid.className = 'data-grid';
+            
+            Object.values(data).forEach(modality => {
+                const card = document.createElement('div');
+                card.className = 'data-card';
+                
+                card.innerHTML = `
+                    <h3>${modality.Name} <span class="tag-badge">${modality.Tag}</span></h3>
+                    <div class="data-item">
+                        <span class="data-label">Canais de Voz:</span>
+                        ${modality.VoiceChannelsIds.length} canais configurados
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Treinos Agendados:</span>
+                        <div class="training-schedule">
+                            ${modality.ScheduledTrainings.length > 0 ? `
+                                <ul>
+                                    ${modality.ScheduledTrainings.map(training => `
+                                        <li>Início: ${training.Start} | Fim: ${training.End}</li>
+                                    `).join('')}
+                                </ul>
+                            ` : '<p>Nenhum treino agendado</p>'}
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+            
+            container.innerHTML = '';
+            container.appendChild(grid);
+        }
+
+        function renderizarTreinos(data) {
+            const container = document.getElementById('treinosResponse');
+            const grid = document.createElement('div');
+            grid.className = 'data-grid';
+            
+            data.forEach(treino => {
+                const card = document.createElement('div');
+                card.className = 'data-card';
+                const modalityName = getModalityNameById(treino.ModalityId);
+                
+                card.innerHTML = `
+                    <h3>Treino de ${modalityName}</h3>
+                    <div class="data-item">
+                        <span class="data-label">Status:</span> ${treino.Status}
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Início:</span> ${formatarData(treino.StartTimestamp)}
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Fim:</span> ${formatarData(treino.EndTimestamp)}
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">Jogadores Presentes:</span> ${treino.AttendedPlayers.length}
+                    </div>
+                    <div class="data-item">
+                        <span class="data-label">ID do Treino:</span> ${treino._id}
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+            
+            container.innerHTML = '';
+            container.appendChild(grid);
+        }
+
+        async function testarModalidades() {
+            try {
+                const data = await fazerRequisicao('/modality/all');
+                modalidadesCache = data; // Armazena para uso posterior
+                renderizarModalidades(data);
+            } catch (error) {
+                document.getElementById('modalidadesResponse').innerHTML = 
+                    `<div class="error">Erro: ${error.message}</div>`;
+            }
+        }
+
+        async function testarModalidadesPorTag() {
+            const tag = document.getElementById('tagSearch').value;
+            if (!tag) {
+                alert('Por favor, digite uma tag para buscar');
+                return;
+            }
+
+            try {
+                const data = await fazerRequisicao('/modality/all', { Tag: tag });
+                modalidadesCache = data; // Atualiza o cache
+                renderizarModalidades(data);
+            } catch (error) {
+                document.getElementById('modalidadesResponse').innerHTML = 
+                    `<div class="error">Erro: ${error.message}</div>`;
+            }
+        }
+
+        async function testarTreinos() {
+            try {
+                // Se ainda não temos o cache de modalidades, vamos buscá-lo
+                if (!modalidadesCache) {
+                    await testarModalidades();
+                }
+                const data = await fazerRequisicao('/trains/all');
+                renderizarTreinos(data);
+            } catch (error) {
+                document.getElementById('treinosResponse').innerHTML = 
+                    `<div class="error">Erro: ${error.message}</div>`;
+            }
+        }
+
+        // Adiciona evento de tecla para buscar ao pressionar Enter
+        document.getElementById('tagSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                testarModalidadesPorTag();
+            }
+        });
+    </script>
+</body>
+</html> 
