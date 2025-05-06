@@ -2,6 +2,8 @@ import React from 'react';
 import '../styles/Sobre.css';
 import Header from './Layout/Header';
 import Footer from './Layout/Footer';
+import { FaBullseye, FaEye, FaHeart } from 'react-icons/fa';
+
 
 function Sobre() {
     const premios = [
@@ -36,6 +38,7 @@ function Sobre() {
 
             <section className="features">
                 <div className="feature-card">
+                    <FaBullseye className="feature-icon" />
                     <h1>Missão</h1>
                     <p>Promover os e-sports de forma estruturada e responsável, aliando desempenho competitivo,
                         crescimento pessoal e espírito de equipe, sempre em alinhamento com os valores educacionais e
@@ -43,6 +46,7 @@ function Sobre() {
                     </p>
                 </div>
                 <div className="feature-card">
+                    <FaEye className="feature-icon" />
                     <h1>Visão</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -50,6 +54,7 @@ function Sobre() {
                     </p>
                 </div>
                 <div className="feature-card">
+                    <FaHeart className="feature-icon" />
                     <h1>Valores</h1>
                     <p>Valorizamos o trabalho em equipe, a disciplina nos treinos e competições, e promovemos a
                         inclusão e o respeito entre os membros. Acreditamos na competitividade saudável e no
@@ -61,7 +66,20 @@ function Sobre() {
             <section className='premios-section'>
                 <div className="premios-section">
                     <div className="premios-container">
-                        {premios.map((premio, index) => (
+                        {[
+                            {
+                                titulo: "Campeão da Liga Universitária",
+                                descricao: "Conquistamos o 1º lugar na competição nacional, enfrentando mais de 50 times universitários em uma disputa acirrada de League of Legends."
+                            },
+                            {
+                                titulo: "Campeonato Interfaculdades",
+                                descricao: "Nosso atleta foi eleito o MVP do torneio, com destaque para sua precisão e liderança em partidas decisivas."
+                            },
+                            {
+                                titulo: "Finalista da Copa Gamer Brasil",
+                                descricao: "O time representou a faculdade entre os finalistas da Copa Gamer Brasil, garantindo visibilidade nacional e apoio de patrocinadores."
+                            },
+                        ].map((premio, index) => (
                             <div className="premio-card" key={index}>
                                 <h3 className="premio-titulo">{premio.titulo}</h3>
                                 <p className="premio-descricao">{premio.descricao}</p>
@@ -70,6 +88,9 @@ function Sobre() {
                     </div>
                 </div>
             </section>
+
+            <hr className="divisoria-premios" />
+
 
             <section className='processo-content'>
                 <div className="processo-seletivo">
