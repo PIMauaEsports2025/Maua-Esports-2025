@@ -5,10 +5,7 @@ import Times from './Components/Times';
 import LoginRegister from './Components/LoginRegister';
 import AdminInterface from './Components/AdminInterface';
 import Sobre from './Components/Sobre';
-import Contato from './Components/Contact';
-import DashBoard from './Components/Admin/DashBoard';
-import NotificationManager from './Components/UI/NotificationManager';
-import Contact from './Components/Contact';
+import GerenciarModalidades from './Components/GerenciarModalidades';
 
 // Função para verificar se usuário está autenticado
 const isAuthenticated = () => {
@@ -27,22 +24,15 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   return (
     <BrowserRouter>
-      <NotificationManager />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginRegister />} />
+        <Route path="/gerenciar-modalidades" element={<GerenciarModalidades />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/times" element={<Times />} />
         <Route path="/admin" element={<AdminInterface />} />
-        <Route path="/contato" element={<Contact />} />
-        <Route 
-          path="/admin" 
-          element={
-            <ProtectedRoute>
-              <DashBoard />
-            </ProtectedRoute>
-          } 
-        />
+        
+        
       </Routes>
     </BrowserRouter>
   );
