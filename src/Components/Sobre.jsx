@@ -41,7 +41,7 @@ function Sobre() {
                         crescimento pessoal e espírito de equipe, sempre em alinhamento com os valores educacionais e
                         tecnológicos da Mauá.
                     </p>
-                </div>  
+                </div>
                 <div className="feature-card">
                     <h1>Visão</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -75,12 +75,23 @@ function Sobre() {
                 <div className="processo-seletivo">
                     <h2 className="titulo">PROCESSO SELETIVO</h2>
                     <div className="etapas-container">
-                        {["1° Etapa", "2° Etapa", "3° Etapa"].map((etapa, index) => (
+                        {[
+                            {
+                                titulo: "1° Etapa",
+                                descricao: "Preenchimento de formulário online com informações pessoais, interesses e experiências prévias. Essa etapa nos ajuda a conhecer melhor você e suas motivações."
+                            },
+                            {
+                                titulo: "2° Etapa",
+                                descricao: "Dinâmica em grupo com outros candidatos, voltada para análise de trabalho em equipe, comunicação e resolução de problemas em tempo real."
+                            },
+                            {
+                                titulo: "3° Etapa",
+                                descricao: "Entrevista individual com os líderes das áreas. Aqui vamos explorar seu perfil, expectativas e como você pode contribuir com o time Mauá E-SPORTS."
+                            }
+                        ].map((etapa, index) => (
                             <div className="etapa" key={index}>
-                                <h3 className="etapa-titulo">{etapa}</h3>
-                                <p className="etapa-texto">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                                </p>
+                                <h3 className="etapa-titulo">{etapa.titulo}</h3>
+                                <p className="etapa-texto">{etapa.descricao}</p>
                             </div>
                         ))}
                     </div>
@@ -97,7 +108,8 @@ function Sobre() {
                 </div>
             </section>
 
-            <Footer/>
+
+            <Footer />
         </div>
     );
 }
