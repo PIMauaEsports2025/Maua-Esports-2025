@@ -65,7 +65,7 @@ const AdminInterface = () => {
 
       <main className="main-panel">
         <div className="button-panel">
-          <button className="main-button" onClick={() => handleNavigation('/admin/membros')}>GERENCIAR MEMBROS</button>
+          <button className="main-button" onClick={() => handleNavigation('/gerenciar-membros')}>GERENCIAR MEMBROS</button>
           <button className="main-button" onClick={() => handleNavigation('/admin/admins')}>GERENCIAR ADMINS</button>
           <button className="main-button" onClick={() => handleNavigation('/admin/horas-pae')}>CONSULTAR HORAS PAE</button>
           <button className="main-button" onClick={() => handleNavigation('/gerenciar-modalidades')}>GERENCIAR MODALIDADES</button>
