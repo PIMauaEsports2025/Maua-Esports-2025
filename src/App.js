@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home';
 import Times from './Components/Times';
+import Contato from './Components/Contato';
 import LoginRegister from './Components/LoginRegister';
 import AdminInterface from './Components/AdminInterface';
 import Sobre from './Components/Sobre';
@@ -20,6 +21,7 @@ function App() {
         <Route path="/gerenciar-modalidades" element={<GerenciarModalidades />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/times" element={<Times />} />
+        <Route path="/contato" element={<Contato />} />
         <Route path="/admin" element={<AdminInterface />} />
       </Routes>
     </BrowserRouter>

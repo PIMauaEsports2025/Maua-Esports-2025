@@ -1,0 +1,82 @@
+.formulario-secao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario-contato {
+    margin-top: 3%;
+    width: 55%;
+    background-color: #040812;
+    padding: 20px 50px 50px 50px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+}
+
+.rotulo-campo {
+    display: block;
+    margin-top: 4%;
+    margin-bottom: 2%;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.input-campo,
+.textarea-campo {
+    width: 100%;
+    padding: 10px;
+    background-color: #040812;
+    border: 1px solid #7D7D7D;
+    color: white;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.textarea-campo {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.input-campo:-webkit-autofill,
+.textarea-campo:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #040812 inset;
+    -webkit-text-fill-color: white;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.botao-enviar {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #003B6D;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.botao-enviar:hover {
+    background-color: #002f58;
+}
+
+.contato-info {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.link-instagram {
+    color: inherit;
+    text-decoration: none;
+}
+
+.link-instagram:hover {
+    text-decoration: underline;
+
+}
