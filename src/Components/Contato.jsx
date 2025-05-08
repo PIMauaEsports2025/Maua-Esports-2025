@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import '../styles/Contato.css';
+import { FaInstagram } from "react-icons/fa";
+import { IoMail } from "react-icons/io5";
 import Header from './Layout/Header';
 import Footer from './Layout/Footer';
+
+import ReactVLibras from 'react-vlibras-plugin';
 
 function Contato() {
     const [formData, setFormData] = useState({
@@ -32,6 +37,51 @@ function Contato() {
             alert('Erro ao enviar a mensagem. Tente novamente.');
         });
     };
+
+    const [faqOpenIndex, setFaqOpenIndex] = useState(null);
+
+    const faqList = [
+        {
+            question: 'O processo seletivo está aberto?',
+            answer: 'Sim! As inscrições estão abertas durante o mês de março.',
+        },
+        {
+            question: 'Devo cumprir algum pré-requisito para me inscrever?',
+            answer: 'Não há pré-requisitos técnicos. Qualquer aluno pode se inscrever!',
+        },
+        {
+            question: 'Quais campeonatos vocês participam?',
+            answer: 'Participamos de torneios universitários e campeonatos online.',
+        },
+        {
+            question: 'Quais times que tem no Mauá E-Sports?',
+            answer: 'Temos times de League of Legends, Valorant, CS:GO, e Rocket League.',
+        },
+        {
+            question: 'Quais times que tem no Mauá E-Sports?',
+            answer: 'Temos times de League of Legends, Valorant, CS:GO, e Rocket League.',
+        },
+        {
+            question: 'Quais times que tem no Mauá E-Sports?',
+            answer: 'Temos times de League of Legends, Valorant, CS:GO, e Rocket League.',
+        },
+    ];
+
+    const toggleFAQ = (index) => {
+        setFaqOpenIndex(faqOpenIndex === index ? null : index);
+    };
+
+    useEffect(() => {
+        const checkVLibras = setInterval(() => {
+            const pluginRoot = document.querySelector('.vw-plugin-wrapper');
+            if (pluginRoot) {
+                console.log('VLibras carregado com sucesso');
+                clearInterval(checkVLibras);
+            }
+        }, 500);
+
+        return () => clearInterval(checkVLibras);
+    }, []);
 
     return (
         <div className="contato-container">
@@ -84,15 +134,42 @@ function Contato() {
             </section>
 
             <div className="contato-info">
-                <span>mauaesports@gmail.com</span>
+                <span> <IoMail className='icon-info' /> esports@maua.br</span>
                 <a
                     href="https://www.instagram.com/esportsmaua/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="link-instagram"
                 >
-                    @esportsmaua
+                    <FaInstagram className='icon-info' /> @esportsmaua
                 </a>
+            </div>
+
+            <section className="faq-container">
+                <h2 className="faq-title">PERGUNTAS FREQUENTES</h2>
+                <div className="faq-list">
+                    {faqList.map((item, index) => (
+                        <div
+                            key={index}
+                            className={`faq-item ${faqOpenIndex === index ? 'open' : ''}`}
+                        >
+                            <button
+                                className="faq-question"
+                                onClick={() => toggleFAQ(index)}
+                                aria-expanded={faqOpenIndex === index}
+                            >
+                                {faqOpenIndex === index ? '− ' : '+ '} {item.question}
+                            </button>
+                            {faqOpenIndex === index && (
+                                <div className="faq-answer">{item.answer}</div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <div style={{ zIndex: 9999, position: 'relative' }}>
+                <ReactVLibras position="right" avatar="guga" opacity={1} />
             </div>
 
             <Footer />
