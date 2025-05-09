@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Times.css';
 import Header from './Layout/Header.jsx';
 import Footer from './Layout/Footer.jsx';
+import { Link } from 'react-router-dom';
 
 import csImage from '../assets/ui/cs.png';
 import rocketImage from '../assets/ui/rocket.png';
@@ -18,7 +19,7 @@ function Times() {
         { nome: "Tom Clancy's Rainbow Six Siege", imagem: rainbowImage },
         { nome: 'Valorant - Line Blue', imagem: valorantImage },
         { nome: 'Valorant - Line Purple', imagem: valorantImage },
-        { nome: 'Valorant - Line White', imagem: valorantImage, link: '#' }
+        { nome: 'Valorant - Line White', imagem: valorantImage, link: '/time-valorant-a' }
     ];
 
     return (
@@ -37,7 +38,10 @@ function Times() {
                     <div className="feature-card" key={index}>
                         <img src={time.imagem} alt={time.nome} className="feature-image" />
                         <h1>{time.nome}</h1>
-                        <a href={time.link} className="view-button">VER EQUIPE</a>
+                        {time.link ? (
+                            <Link to={time.link} className="view-button">VER EQUIPE</Link>
+                        ) : null}
+
                     </div>
                 ))}
             </section>
