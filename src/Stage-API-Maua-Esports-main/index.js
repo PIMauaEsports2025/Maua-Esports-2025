@@ -218,3 +218,5 @@ app.listen(PORT, () => {
     console.log(`Total de modalidades carregadas: ${Object.keys(modalities).length}`);
     console.log(`Total de treinos carregados: ${trains.length}`);
 });
+
+
