@@ -16,16 +16,18 @@
 
 .footer-logo {
   display: flex;
-  align-items: center;
   gap: 15px;
   flex: 1;
   min-width: 200px;
-  margin-bottom: 1rem;
+  margin-top: 55px;
 }
 
 .footer-logo-img {
   height: 80px;
   width: auto;
+  display: flex;
+  align-self: center;
+  margin: auto 0; 
 }
 
 .footer-logo-text {

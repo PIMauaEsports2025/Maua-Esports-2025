@@ -146,7 +146,7 @@ function Contato() {
             </div>
 
             <section className="faq-container">
-                <h2 className="faq-title">PERGUNTAS FREQUENTES</h2>
+                <h2 className="faq-title">Perguntas Frequentes</h2>
                 <div className="faq-list">
                     {faqList.map((item, index) => (
                         <div
@@ -158,11 +158,9 @@ function Contato() {
                                 onClick={() => toggleFAQ(index)}
                                 aria-expanded={faqOpenIndex === index}
                             >
-                                {faqOpenIndex === index ? '− ' : '+ '} {item.question}
+                                {item.question}
                             </button>
-                            {faqOpenIndex === index && (
-                                <div className="faq-answer">{item.answer}</div>
-                            )}
+                            <div className="faq-answer">{item.answer}</div>
                         </div>
                     ))}
                 </div>

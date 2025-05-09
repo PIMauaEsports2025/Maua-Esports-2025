@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Sobre.css';
 import Header from './Layout/Header';
 import Footer from './Layout/Footer';
-import { FaBullseye, FaEye, FaHeart } from 'react-icons/fa';
+import { FaGamepad, FaTrophy, FaMedal, FaBullseye, FaEye, FaHeart } from 'react-icons/fa';
 
 
 function Sobre() {
@@ -63,29 +63,34 @@ function Sobre() {
                 </div>
             </section>
 
-            <section className='premios-section'>
-                <div className="premios-section">
-                    <div className="premios-container">
-                        {[
-                            {
-                                titulo: "Campeão da Liga Universitária",
-                                descricao: "Conquistamos o 1º lugar na competição nacional, enfrentando mais de 50 times universitários em uma disputa acirrada de League of Legends."
-                            },
-                            {
-                                titulo: "Campeonato Interfaculdades",
-                                descricao: "Nosso atleta foi eleito o MVP do torneio, com destaque para sua precisão e liderança em partidas decisivas."
-                            },
-                            {
-                                titulo: "Finalista da Copa Gamer Brasil",
-                                descricao: "O time representou a faculdade entre os finalistas da Copa Gamer Brasil, garantindo visibilidade nacional e apoio de patrocinadores."
-                            },
-                        ].map((premio, index) => (
-                            <div className="premio-card" key={index}>
+            <section className="premios-section">
+                <h2 className="premios-title">Conquistas</h2>
+                <div className="premios-container">
+                    {[
+                        {
+                            titulo: "Campeão da Liga Universitária",
+                            descricao: "Conquistamos o 1º lugar na competição nacional, enfrentando mais de 50 times universitários em uma disputa acirrada de League of Legends.",
+                            icon: <FaTrophy className="feature-icon" />
+                        },
+                        {
+                            titulo: "Campeonato Interfaculdades",
+                            descricao: "Nosso atleta foi eleito o MVP do torneio, com destaque para sua precisão e liderança em partidas decisivas.",
+                            icon: <FaMedal className="feature-icon" />
+                        },
+                        {
+                            titulo: "Finalista da Copa Gamer Brasil",
+                            descricao: "O time representou a faculdade entre os finalistas da Copa Gamer Brasil, garantindo visibilidade nacional e apoio de patrocinadores.",
+                            icon: <FaGamepad className="feature-icon" />
+                        },
+                    ].map((premio, index) => (
+                        <div className="premio-card" key={index}>
+                            <div>
+                                <div className="premio-icon">{premio.icon}</div>
                                 <h3 className="premio-titulo">{premio.titulo}</h3>
-                                <p className="premio-descricao">{premio.descricao}</p>
                             </div>
-                        ))}
-                    </div>
+                            <p className="premio-descricao">{premio.descricao}</p>
+                        </div>
+                    ))}
                 </div>
             </section>
 
@@ -98,19 +103,23 @@ function Sobre() {
                     <div className="etapas-container">
                         {[
                             {
-                                titulo: "1° Etapa",
+                                numero: "1",
+                                titulo: "Inscrição Online",
                                 descricao: "Preenchimento de formulário online com informações pessoais, interesses e experiências prévias. Essa etapa nos ajuda a conhecer melhor você e suas motivações."
                             },
                             {
-                                titulo: "2° Etapa",
+                                numero: "2",
+                                titulo: "Dinâmica em Grupo",
                                 descricao: "Dinâmica em grupo com outros candidatos, voltada para análise de trabalho em equipe, comunicação e resolução de problemas em tempo real."
                             },
                             {
-                                titulo: "3° Etapa",
+                                numero: "3",
+                                titulo: "Entrevista Individual",
                                 descricao: "Entrevista individual com os líderes das áreas. Aqui vamos explorar seu perfil, expectativas e como você pode contribuir com o time Mauá E-SPORTS."
                             }
                         ].map((etapa, index) => (
                             <div className="etapa" key={index}>
+                                <div className="etapa-numero">{etapa.numero}</div>
                                 <h3 className="etapa-titulo">{etapa.titulo}</h3>
                                 <p className="etapa-texto">{etapa.descricao}</p>
                             </div>
@@ -123,7 +132,7 @@ function Sobre() {
                             rel="noopener noreferrer"
                             className="botao"
                         >
-                            FAZER PARTE
+                            FAZER PARTE <span>→</span>
                         </a>
                     </div>
                 </div>
