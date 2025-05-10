@@ -84,7 +84,7 @@ const Home = () => {
     <div className="home-container">
       <Header />
 
-      
+
 
       <main
         className="hero-section"
@@ -116,6 +116,20 @@ const Home = () => {
           ))}
         </div>
         <hr className="stats-divider" />
+      </section>
+
+      <section className="quem-somos-box">
+        <div className="quem-somos-conteudo">
+          <h2 className="quem-somos-titulo">QUEM SOMOS</h2>
+          <p className="quem-somos-texto">
+            O <strong>Mauá e-Sports</strong> é uma comunidade universitária apaixonada por jogos eletrônicos, estratégia e inovação.
+            Fundado em 2018, nosso time cresceu de um grupo de amigos para uma organização com presença regional e espírito competitivo.
+          </p>
+          <p className="quem-somos-texto">
+            Reunimos estudantes de várias áreas para competir, criar e evoluir juntos. Acreditamos que e-sports é mais que um jogo — é formação,
+            trabalho em equipe e superação.
+          </p>
+        </div>
       </section>
 
       <section className="features">
@@ -190,28 +204,23 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="features">
-        <div className="feature-card">
-          <h1>Carol Emoto</h1>
-          <h3>Vice-Presidente</h3>
-          <p>
-            Formanda em Engenharia de Computação, Carol lidera o time com paixão pelos e-sports desde 2022.
-            Competidora de Rainbow Six Siege, trouxe para a equipe sua experiência em gestão de comunidades gamers
-            e organização de torneios. Sob sua liderança, o Mauá E-Sports expandiu para 7 modalidades diferentes
-            e conquistou 3 títulos regionais.
+      <section className="depoimentos">
+        <div className="depoimento">
+          <p className="depoimento-texto">
+            “Fundar o Mauá E-Sports foi um dos maiores desafios da minha vida universitária. Ver a equipe crescer e conquistar respeito no cenário foi gratificante.”
           </p>
+          <h3 className="depoimento-autor">Leonardo Stubber</h3>
+          <span className="depoimento-cargo">Presidente</span>
         </div>
-        <div className="feature-card">
-          <h1>Leonardo Stubber</h1>
-          <h3>Ex-Presidente</h3>
-          <p>
-            Fundador do Mauá E-Sports em 2018, Leo transformou um grupo de amigos jogadores em uma das equipes
-            universitárias mais respeitadas do estado. Especialista em estratégia de MOBAs, deixou como legado
-            a estruturação dos treinos semanais e parcerias com grandes marcas do cenário gamer. Hoje atua como
-            consultor da equipe enquanto finaliza seu MBA em Gestão Esportiva.
+        <div className="depoimento">
+          <p className="depoimento-texto">
+            “Ter liderado o time feminino em campeonatos nacionais me ensinou mais sobre trabalho em equipe do que qualquer sala de aula. Mauá E-Sports mudou minha trajetória.”
           </p>
+          <h3 className="depoimento-autor">Carol Emoto</h3>
+          <span className="depoimento-cargo">Vice-Presidente</span>
         </div>
       </section>
+
 
       <Footer />
     </div>

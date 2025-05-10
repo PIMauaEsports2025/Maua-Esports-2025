@@ -103,7 +103,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 }
 
 .stats-section {
-  background-color: #060D1D; 
+  background-color: #040D1D; 
   padding-top: 5%;
   padding-bottom: 2%;
 }
@@ -145,6 +145,57 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   display: block;
 }
 
+.quem-somos-box {
+  width: 100%;
+  max-width: 85%;
+  margin: 3% auto;
+  padding: 3rem;
+  background-color: #0b0b0f;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+.quem-somos-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #00d4ff, #003B6D, #00d4ff);
+  background-size: 200%;
+  background-position: left;
+  transition: background-position 0.6s ease-in-out;
+  z-index: 1;
+}
+
+.quem-somos-box:hover::before {
+  background-position: right;
+}
+
+.quem-somos-conteudo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 1;
+}
+
+.quem-somos-titulo {
+  font-family: "Jersey 25", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: #00d4ff;
+  margin-bottom: 1rem;
+}
+
+.quem-somos-texto {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #ffffff;
+}
+
 .features {
   display: flex;
   justify-content: space-around;
@@ -155,7 +206,6 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 
 .feature-card {
   flex: 1 1 300px; 
-  max-width: 40%;
   border: 1px solid #01CCFE;
   padding: 2rem;
   border-radius: 5px;
@@ -187,6 +237,54 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 .feature-card p {
   margin-top: 5%;
   color: #ffffffc0;
+}
+
+.depoimentos {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 4% 6%;
+  flex-wrap: wrap;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.depoimento {
+  flex: 1 1 400px;
+  border: 1px solid #01CCFE;
+  padding: 2rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(25px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  color: #ffffffd9;
+  text-align: left;
+}
+
+.depoimento:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.depoimento-texto {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  color: #ffffffcc;
+}
+
+.depoimento-autor {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  color: #fff;
+}
+
+.depoimento-cargo {
+  font-size: 0.95rem;
+  color: #ffffffa0;
 }
 
 .games-carousel-section{
