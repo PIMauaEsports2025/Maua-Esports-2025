@@ -79,7 +79,8 @@
     font-weight: 600;
     display: inline-flex;
     align-items: center; 
-    justify-content: center; 
+    justify-content: center;
+    margin-right: 1rem;
   }
   
   .login-icon {
