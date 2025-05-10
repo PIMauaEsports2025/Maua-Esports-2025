@@ -6,6 +6,7 @@ import Contato from './Components/Contato';
 import LoginRegister from './Components/LoginRegister';
 import AdminInterface from './Components/AdminInterface';
 import Sobre from './Components/Sobre';
+import Campeonato from './Components/Campeonato';
 import GerenciarModalidades from './Components/GerenciarModalidades';
 import GerenciarMembros from './Components/GerenciarMembros';
 import TimeValorantA from './Components/TimeValorantA';
@@ -21,6 +22,7 @@ function App() {
         <Route path='/gerenciar-membros' element={<GerenciarMembros />} />
         <Route path="/gerenciar-modalidades" element={<GerenciarModalidades />} />
         <Route path="/sobre" element={<Sobre />} />
+        <Route path="/campeonatos" element={<Campeonato />} />
         <Route path="/times" element={<Times />} />
         <Route path="/contato" element={<Contato />} />
         <Route path="/admin" element={<AdminInterface />} />
