@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Layout/Footer";
+import Header from './Layout/HeaderAdmin.jsx';
 import { FaSearch, FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 import '../styles/GerenciarMembros.css';
 import { fetchMembers, updateMember, deleteMember } from '../Service/memberApi.js';
+import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
 
 const GerenciarMembros = () => {
   const navigate = useNavigate();
@@ -88,17 +90,8 @@ const GerenciarMembros = () => {
   );
 
   return (
-    <div className="gerenciar-membros-page">
-      <header className="membros-header">
-        <div className="logo-title" onClick={handleBackToAdmin}>
-          <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
-          <h1>E-SPORTS</h1>
-        </div>
-        <div className="user-info">
-          <span>Bem vindo, Mateus Martins</span>
-          <span className="dropdown-icon">▼</span>
-        </div>
-      </header>
+    <div className="gerenciar-membros-page">     
+      <HeaderAdmin />
 
       <main className="membros-main">
         <div className="title-search">

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/GerenciarTreinos.css';
 import { FaSearch, FaEdit, FaTrashAlt, FaFilter, FaPlus } from 'react-icons/fa';
 import Footer from './Layout/Footer.jsx';
+import Header from './Layout/HeaderAdmin.jsx';
+import HeaderAdmin from './Layout/HeaderAdmin.jsx';
 
 // URL e token da API
 const API_URL = 'http://localhost:3000';
@@ -279,16 +281,8 @@ const GerenciarTreinos = () => {
 
   return (
     <div className="gerenciar-treinos-page">
-      <header className="treinos-header">
-        <div className="logo-title" onClick={handleVoltar}>
-          <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
-          <h1>E-SPORTS</h1>
-        </div>
-        <div className="user-info">
-          <span>Bem vindo, Mateus Martins</span>
-          <span className="dropdown-icon">▼</span>
-        </div>
-      </header>
+      
+      <HeaderAdmin />
 
       <main className="treinos-main">
         <div className="title-search">
