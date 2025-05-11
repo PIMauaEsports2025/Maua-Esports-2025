@@ -127,7 +127,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 }
 
 .stat-plus {
-  color: #003B6D; 
+  color: #00CDFF; 
 }
 
 .stat-description {
@@ -186,7 +186,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   font-family: "Jersey 25", sans-serif;
   font-size: 30px;
   font-weight: bold;
-  color: #00d4ff;
+  color: #00CDFF;
   margin-bottom: 1rem;
 }
 
@@ -206,7 +206,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 
 .feature-card {
   flex: 1 1 300px; 
-  border: 1px solid #01CCFE;
+  border: 1px solid #ffffff;
   padding: 2rem;
   border-radius: 5px;
   text-align: center;
@@ -251,14 +251,14 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 
 .depoimento {
   flex: 1 1 400px;
-  border: 1px solid #01CCFE;
+  border: 1px solid #ffffff;
   padding: 2rem;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(25px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  color: #ffffffd9;
+  color: #ffffff;
   text-align: left;
 }
 
@@ -279,7 +279,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 0.25rem;
-  color: #fff;
+  color: #00CDFF;
 }
 
 .depoimento-cargo {

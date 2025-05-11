@@ -1,0 +1,113 @@
+.championships-section {
+    display: flex;
+    justify-content: center;
+    padding: 60px 40px;
+    background: #030b17;
+}
+
+.championships-wrapper {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.championship-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.championship-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 350px;
+    min-height: 350px;
+    background: #111;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.championship-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px #00CDFF;
+}
+
+.card-image {
+    height: 290px;
+    background-size: cover;
+    background-position: center;
+}
+
+.valorant .card-image {
+    background-image: url('https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/67fbd4c273f3d5e92a18666c6379db09e74b7cda-1920x1080.jpg?auto=format&fit=fill&q=80&w=1541');
+}
+
+.rainbow .card-image {
+    background-image: url('https://s2-ge.glbimg.com/Mn4MpbfOftUzZYusjMjY6ucisp4=/0x0:1920x1080/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2023/b/d/MsAo0RQq25hzLuK95lew/r6-thumb.jpg');
+}
+
+.fc24 .card-image {
+    background-image: url('https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000061749/bd653d83bdcc1613cfacae62845933633ce97fffc52e7e4070014eb41f9e75f7');
+}
+
+.lol .card-image {
+    background-image: url('https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/EGS_LeagueofLegends_RiotGames_S1_2560x1440-80471666c140f790f28dff68d72c384b');
+}
+
+.csgo .card-image {
+    background-image: url('https://img.hvg.hu/Img/981ba3b7-9144-4244-a8b1-39094b1840d5/ef02f444-c088-40a9-8c29-5ea2743361c8.jpg');
+}
+
+.rocket .card-image {
+    background-image: url('https://cdn1.epicgames.com/offer/9773aa1aa54f4f7b80e44bef04986cea/EGS_RocketLeague_PsyonixLLC_S3_2560x1440-18eac9b5df1028fdcd5bad480ab6b085');
+}
+
+.card-type {
+    font-size: 0.8rem;
+    color: #00CDFF;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin: 10px 0 5px;
+    color: #fff;
+}
+
+.card-date {
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.card-content {
+    padding: 20px;
+    background-color: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-button {
+    margin-top: auto;
+    padding: 10px 20px;
+    background: #003B6D;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+    align-self: flex-start;
+}
+
+.card-button:hover {
+    background: #002f58;
+}
+
+@media (max-width: 768px) {
+    .championship-card {
+        max-width: 100%;
+    }
+}
