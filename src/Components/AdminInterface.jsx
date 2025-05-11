@@ -69,7 +69,7 @@ const AdminInterface = () => {
           <button className="main-button" onClick={() => handleNavigation('/admin/admins')}>GERENCIAR ADMINS</button>
           <button className="main-button" onClick={() => handleNavigation('/admin/horas-pae')}>CONSULTAR HORAS PAE</button>
           <button className="main-button" onClick={() => handleNavigation('/gerenciar-modalidades')}>GERENCIAR MODALIDADES</button>
-          <button className="main-button" onClick={() => handleNavigation('/admin/times')}>GERENCIAR TIMES</button>
+          <button className="main-button" onClick={() => handleNavigation('/gerenciar-treinos')}>GERENCIAR TREINOS</button>
         </div>
       </main>
     </div>

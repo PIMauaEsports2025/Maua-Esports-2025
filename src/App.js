@@ -8,6 +8,7 @@ import AdminInterface from './Components/AdminInterface';
 import Sobre from './Components/Sobre';
 import Campeonato from './Components/Campeonato';
 import GerenciarModalidades from './Components/GerenciarModalidades';
+import GerenciarTreinos from './Components/GerenciarTreinos';
 import GerenciarMembros from './Components/GerenciarMembros';
 import TimeCs from './Components/TimeCs';
 import TimeEaFc from './Components/TimeEaFc';
@@ -27,6 +28,7 @@ function App() {
         <Route path="/login" element={<LoginRegister />} />
         <Route path='/gerenciar-membros' element={<GerenciarMembros />} />
         <Route path="/gerenciar-modalidades" element={<GerenciarModalidades />} />
+        <Route path="/gerenciar-treinos" element={<GerenciarTreinos />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/campeonatos" element={<Campeonato />} />
         <Route path="/times" element={<Times />} />
