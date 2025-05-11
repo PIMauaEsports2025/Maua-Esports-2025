@@ -1,6 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/AdminInterface.css';
+import { 
+  FaUserCog, 
+  FaSignOutAlt, 
+  FaUsers, 
+  FaUserShield, 
+  FaClock, 
+  FaGamepad, 
+  FaCalendarAlt, 
+  FaChevronRight 
+} from 'react-icons/fa';
+import Footer from "./Layout/Footer";
 
 const AdminInterface = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -34,7 +45,7 @@ const AdminInterface = () => {
   return (
     <div className="admin-container">
       <header className="top-header">
-        <div className="logo-section">
+        <div className="logo-section" onClick={() => navigate('/admin')}>
           <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
           <h1 className="title">E-SPORTS</h1>
         </div>
@@ -50,14 +61,13 @@ const AdminInterface = () => {
           </div>
 
           {isDropdownOpen && (
-            <div
-              className="dropdown-menu hover-buffer"
-              onMouseLeave={() => {
-                setTimeout(() => setIsDropdownOpen(false), 300);
-              }}
-            >
-              <button onClick={handleEditProfile}>Editar Perfil</button>
-              <button onClick={handleLogout}>Sair da Conta</button>
+            <div className="dropdown-menu">
+              <button onClick={handleEditProfile}>
+                <FaUserCog /> Editar Perfil
+              </button>
+              <button onClick={handleLogout}>
+                <FaSignOutAlt /> Sair da Conta
+              </button>
             </div>
           )}
         </div>
@@ -65,13 +75,44 @@ const AdminInterface = () => {
 
       <main className="main-panel">
         <div className="button-panel">
-          <button className="main-button" onClick={() => handleNavigation('/gerenciar-membros')}>GERENCIAR MEMBROS</button>
-          <button className="main-button" onClick={() => handleNavigation('/admin/admins')}>GERENCIAR ADMINS</button>
-          <button className="main-button" onClick={() => handleNavigation('/admin/horas-pae')}>CONSULTAR HORAS PAE</button>
-          <button className="main-button" onClick={() => handleNavigation('/gerenciar-modalidades')}>GERENCIAR MODALIDADES</button>
-          <button className="main-button" onClick={() => handleNavigation('/gerenciar-treinos')}>GERENCIAR TREINOS</button>
+          <div className="admin-greeting">
+            <h2>Painel Administrativo</h2>
+            <p>Selecione uma opção para gerenciar</p>
+          </div>
+          
+          <button className="main-button" onClick={() => handleNavigation('/gerenciar-membros')}>
+            <span className="button-icon"><FaUsers /></span>
+            <span className="button-text">GERENCIAR MEMBROS</span>
+            <span className="button-arrow"><FaChevronRight /></span>
+          </button>
+          
+          <button className="main-button" onClick={() => handleNavigation('/admin/admins')}>
+            <span className="button-icon"><FaUserShield /></span>
+            <span className="button-text">GERENCIAR ADMINS</span>
+            <span className="button-arrow"><FaChevronRight /></span>
+          </button>
+          
+          <button className="main-button" onClick={() => handleNavigation('/admin/horas-pae')}>
+            <span className="button-icon"><FaClock /></span>
+            <span className="button-text">CONSULTAR HORAS PAE</span>
+            <span className="button-arrow"><FaChevronRight /></span>
+          </button>
+          
+          <button className="main-button" onClick={() => handleNavigation('/gerenciar-modalidades')}>
+            <span className="button-icon"><FaGamepad /></span>
+            <span className="button-text">GERENCIAR MODALIDADES</span>
+            <span className="button-arrow"><FaChevronRight /></span>
+          </button>
+          
+          <button className="main-button" onClick={() => handleNavigation('/gerenciar-treinos')}>
+            <span className="button-icon"><FaCalendarAlt /></span>
+            <span className="button-text">GERENCIAR TREINOS</span>
+            <span className="button-arrow"><FaChevronRight /></span>
+          </button>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };

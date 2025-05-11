@@ -10,6 +10,8 @@ import lolImage from '../assets/games/lol.jpg';
 import valorantImage from '../assets/games/valorant.jpg';
 import tftImage from '../assets/games/tft.jpg';
 import Footer from './Layout/Footer.jsx';
+import Header from './Layout/HeaderAdmin.jsx';
+import HeaderAdmin from './Layout/HeaderAdmin.jsx';
 
 const API_URL = 'http://localhost:3000';
 const API_TOKEN = 'frontendmauaesports';
@@ -170,16 +172,8 @@ const GerenciarModalidades = () => {
 
   return (
     <div className="gerenciar-modalidades-page">
-      <header className="modalidades-header">
-        <div className="logo-title" onClick={handleVoltar}>
-          <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
-          <h1>E-SPORTS</h1>
-        </div>
-        <div className="user-info">
-          <span>Bem vindo, Mateus Martins</span>
-          <span className="dropdown-icon">▼</span>
-        </div>
-      </header>
+      
+      <HeaderAdmin />
 
       <main className="modalidades-main">
         <div className="title-search">
