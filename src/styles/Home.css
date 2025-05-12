@@ -16,9 +16,9 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 
 .home-container {
   color: #f5f5f5;
-  background-color: #060D1D; 
   overflow-x: hidden; 
   width: 100%;
+  background-color: #040d1d;
 }
 
 .hero-section {
@@ -78,7 +78,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
   margin: 8px 0; 
-  width: 180px; 
+  width: 150px; 
   text-align: center;
   border-radius: 5px;
 }
@@ -89,21 +89,22 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 }
 
 .inscrever-button:hover {
-  background-color: #002f58;
-  border: 2px solid #002f58;
+  background-color: #040d1d;
+  border: 2px solid #040d1d;
 }
 
 .times-button {
-  background-color: #120a5e00;
-  border: 2px solid #003B6D;
+  background-color: #003B6D;
+  border: 2px solid #003B6D; 
 }
 
 .times-button:hover {
-  background-color: #003B6D;
+  background-color: #040d1d;
+  border: 2px solid #040d1d;
 }
 
 .stats-section {
-  background-color: #040D1D; 
+
   padding-top: 5%;
   padding-bottom: 2%;
 }
@@ -135,26 +136,16 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   font-size: 15px; 
 }
 
-.stats-divider {
-  border: none; 
-  border-top: 2px solid #ffffff6b;
-  margin-top: 3%;
-  width: 90%; 
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
 .quem-somos-box {
   width: 100%;
   max-width: 85%;
   margin: 3% auto;
   padding: 3rem;
   background-color: #0b0b0f;
-  border-radius: 12px;
+  border-radius: 5px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 .quem-somos-box::before {
   content: "";
@@ -180,20 +171,22 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   flex-direction: column;
   gap: 1.5rem;
   z-index: 1;
+ 
 }
 
 .quem-somos-titulo {
   font-family: "Jersey 25", sans-serif;
   font-size: 30px;
   font-weight: bold;
-  color: #00CDFF;
+  color: #00cdff;
   margin-bottom: 1rem;
 }
 
 .quem-somos-texto {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.8;
   color: #ffffff;
+  margin-bottom: -1%;
 }
 
 .features {
@@ -202,17 +195,19 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   padding: 4% 6%;
   flex-wrap: wrap; 
   gap: 2rem; 
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .feature-card {
   flex: 1 1 300px; 
-  border: 1px solid #ffffff;
   padding: 2rem;
-  border-radius: 5px;
   text-align: center;
   backdrop-filter: blur(30px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+  border: none !important;
+  background: #0b0b0f !important;
 }
 
 .feature-card:hover {
@@ -229,42 +224,69 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
 }
 
 .feature-card h3 {
-  font-size: 20px;
+  font-size: 15px;
   margin-bottom: 5%;
-  color: #fff;
+  color: #ffffff;
 }
 
 .feature-card p {
   margin-top: 5%;
-  color: #ffffffc0;
+  color: #ffffff;
 }
 
 .depoimentos {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 4% 6%;
-  flex-wrap: wrap;
+  width: 100%;
   max-width: 90%;
-  margin: 0 auto;
+  margin: 2% auto;
+  padding: 1rem 1rem;
+}
+
+.depoimentos-titulo {
+  font-family: "Jersey 25", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: #00cdff;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.depoimentos-conteudo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
 }
 
 .depoimento {
+  position: relative;
   flex: 1 1 400px;
-  border: 1px solid #ffffff;
+  max-width: 500px;
   padding: 2rem;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(25px);
+  border-radius: 5px;
+  background-color: #0b0b0f;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   color: #ffffff;
   text-align: left;
 }
 
-.depoimento:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+.depoimento::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #00d4ff, #003B6D, #00d4ff);
+  background-size: 200%;
+  background-position: left;
+  transition: background-position 0.6s ease-in-out;
+  z-index: 1;
+}
+
+.depoimento:hover::before {
+  background-position: right;
 }
 
 .depoimento-texto {
@@ -273,6 +295,8 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   font-style: italic;
   margin-bottom: 1.5rem;
   color: #ffffffcc;
+  position: relative;
+  z-index: 2;
 }
 
 .depoimento-autor {
@@ -280,20 +304,33 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   font-weight: bold;
   margin-bottom: 0.25rem;
   color: #00CDFF;
+  position: relative;
+  z-index: 2;
 }
 
 .depoimento-cargo {
   font-size: 0.95rem;
   color: #ffffffa0;
+  position: relative;
+  z-index: 2;
+}
+
+.depoimento:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
 .games-carousel-section{
   max-width: 85%;
   margin: 0 auto;
 }
+.games-carousel-section h2{
+  text-align: left;
+}
 
-.games-carousel-section .last-p{
-  margin-bottom: 3%;
+.games-carousel-section p{
+  margin-bottom: 1%;
+  text-align: left;
 }
 
 .games-carousel-container {
@@ -335,7 +372,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a{
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .game-card:hover .game-overlay {
@@ -385,7 +422,7 @@ img {
   }
 
   .feature-card h1 {
-    font-size: 26px;
+    font-size: 25px;
   }
 
   .hero-buttons {
@@ -399,6 +436,7 @@ img {
   
   .inscrever-button, .times-button {
     margin: 8px;
+    
   }
 }
 
@@ -428,15 +466,14 @@ img {
 
   .feature-card {
     max-width: 100%;
-    width: 95%; /* Use almost full width on very small screens */
+    width: 95%; 
     padding: 1.5rem;
     margin-bottom: 1rem;
-    /* Ensure cards stretch properly */
     flex: 0 0 auto;
   }
 
   .feature-card:hover {
-    transform: scale(1.03); /* Reduce the hover effect scale */
+    transform: scale(1.03); 
   }
 
   .feature-card .icon {
@@ -460,7 +497,6 @@ img {
 
 .games-carousel-section {
   padding: 3rem 0;
-  background-color: #060D1D; 
   text-align: center;
 }
 
@@ -497,7 +533,7 @@ img {
   width: 100%;
   height: 450px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
@@ -506,12 +542,12 @@ img {
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
-  font-size: 20px;
+  font-size: 15px;
   color: white;
   border: none;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -539,21 +575,21 @@ img {
   }
   
   .game-card img {
-    height: 300px; /* Menor altura para telas médias */
+    height: 300px; 
   }
 }
 
 @media (max-width: 480px) {
   .game-card {
     min-width: 100%;
-    max-width: 280px; /* Limitando a largura máxima em telas pequenas */
+    max-width: 280px; 
   }
   
   .game-card img {
-    height: 250px; /* Menor altura para telas pequenas */
+    height: 250px; 
   }
   
   .games-carousel-container {
-    max-width: 95%; /* Ligeiramente maior em telas pequenas para melhor aproveitamento */
+    max-width: 95%; 
   }
 }

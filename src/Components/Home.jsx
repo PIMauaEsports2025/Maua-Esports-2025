@@ -56,13 +56,6 @@ const Home = () => {
     );
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 3000);
-    return () => clearInterval(interval);
-  });
-
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
   };
@@ -115,20 +108,24 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <hr className="stats-divider" />
       </section>
 
       <section className="quem-somos-box">
         <div className="quem-somos-conteudo">
           <h2 className="quem-somos-titulo">QUEM SOMOS</h2>
           <p className="quem-somos-texto">
-            O <strong>Mauá e-Sports</strong> é uma comunidade universitária apaixonada por jogos eletrônicos, estratégia e inovação.
-            Fundado em 2018, nosso time cresceu de um grupo de amigos para uma organização com presença regional e espírito competitivo.
+            O <strong>Mauá e-Sports</strong> é uma comunidade universitária apaixonada por <strong>jogos eletrônicos</strong>, <strong>inovação</strong> e <strong>competitividade</strong>.
+            Fundado em 2018, começamos como um grupo de amigos com um sonho em comum: colocar o nome da Mauá no cenário dos e-sports.
           </p>
           <p className="quem-somos-texto">
-            Reunimos estudantes de várias áreas para competir, criar e evoluir juntos. Acreditamos que e-sports é mais que um jogo — é formação,
-            trabalho em equipe e superação.
+            Hoje, somos uma organização com presença regional, diversas <strong>modalidades ativas</strong> e uma base sólida de jogadores, staffs e entusiastas.
           </p>
+          <p className="quem-somos-texto">
+            Valorizamos o <strong>crescimento pessoal</strong>, o <strong>trabalho em equipe</strong> e o desenvolvimento de <strong>habilidades técnicas e emocionais</strong>.
+            Para nós, e-sports é mais do que jogo, é <strong>formação e transformação</strong>. Seja como atleta, staff, analista ou criador de conteúdo, cada membro ajuda a construir algo maior.
+            Mais do que um time, somos uma <strong>família que joga, aprende e cresce junto</strong>.
+          </p>
+
         </div>
       </section>
 
@@ -205,21 +202,25 @@ const Home = () => {
       </section>
 
       <section className="depoimentos">
-        <div className="depoimento">
-          <p className="depoimento-texto">
-            “Fundar o Mauá E-Sports foi um dos maiores desafios da minha vida universitária. Ver a equipe crescer e conquistar respeito no cenário foi gratificante.”
-          </p>
-          <h3 className="depoimento-autor">Leonardo Stubber</h3>
-          <span className="depoimento-cargo">Presidente</span>
-        </div>
-        <div className="depoimento">
-          <p className="depoimento-texto">
-            “Ter liderado o time feminino em campeonatos nacionais me ensinou mais sobre trabalho em equipe do que qualquer sala de aula. Mauá E-Sports mudou minha trajetória.”
-          </p>
-          <h3 className="depoimento-autor">Carol Emoto</h3>
-          <span className="depoimento-cargo">Vice-Presidente</span>
+        <h2 className="depoimentos-titulo">DEPOIMENTOS</h2>
+        <div className="depoimentos-conteudo">
+          <div className="depoimento">
+            <p className="depoimento-texto">
+              “Fundar o Mauá E-Sports foi um dos maiores desafios da minha vida universitária. Ver a equipe crescer e conquistar respeito no cenário foi gratificante.”
+            </p>
+            <h3 className="depoimento-autor">Leonardo Stubber</h3>
+            <span className="depoimento-cargo">Presidente</span>
+          </div>
+          <div className="depoimento">
+            <p className="depoimento-texto">
+              “Ter liderado o time feminino em campeonatos nacionais me ensinou mais sobre trabalho em equipe do que qualquer sala de aula. Mauá E-Sports mudou minha trajetória.”
+            </p>
+            <h3 className="depoimento-autor">Carol Emoto</h3>
+            <span className="depoimento-cargo">Vice-Presidente</span>
+          </div>
         </div>
       </section>
+
 
 
       <Footer />
