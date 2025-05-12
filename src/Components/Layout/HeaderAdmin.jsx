@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaUserCog, FaSignOutAlt } from 'react-icons/fa';
-import '../../styles/Layout/HeaderAdmin.css';
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaUserCog, FaSignOutAlt } from "react-icons/fa";
+import "../../styles/Layout/HeaderAdmin.css";
 
 const HeaderAdmin = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -17,7 +17,7 @@ const HeaderAdmin = () => {
   };
 
   const handleVoltar = () => {
-    navigate('/admin');
+    navigate("/admin");
   };
 
   // Fecha o dropdown ao clicar fora
@@ -39,7 +39,10 @@ const HeaderAdmin = () => {
       </div>
 
       <div className="user-dropdown-wrapper" ref={dropdownRef}>
-        <div className="user-section" onClick={() => setIsDropdownOpen((prev) => !prev)}>
+        <div
+          className="user-section"
+          onClick={() => setIsDropdownOpen((prev) => !prev)}
+        >
           <span>Bem vindo, Mateus Martins</span>
           <span className="dropdown">▼</span>
         </div>

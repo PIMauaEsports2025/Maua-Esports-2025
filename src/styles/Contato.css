@@ -111,26 +111,26 @@
 }
 
 .contato-info {
-    margin-top: 2%;
-    margin-bottom: 8%; 
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    font-size: 15px;
-    color: #ffffff;
+  margin-top: 2%;
+  margin-bottom: 8%;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  font-size: 15px;
+  color: #ffffff;
 }
 
-.contato-info .icon-info{
-    padding-top: 1%;
+.contato-info .icon-info {
+  padding-top: 1%;
 }
 
 .link-instagram {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .link-instagram:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .faq-container {
@@ -257,7 +257,7 @@
     padding: 2rem;
     width: 90%;
   }
-  
+
   .botao-enviar {
     width: 100%;
   }
@@ -266,7 +266,7 @@
     padding: 3rem 1.5rem;
     margin-bottom: 3rem;
   }
-  
+
   .faq-title {
     font-size: 2rem;
   }
@@ -277,7 +277,7 @@
     padding: 1.5rem;
     width: 95%;
   }
-  
+
   .rotulo-campo {
     font-size: 0.8rem;
   }
@@ -286,12 +286,12 @@
     padding: 2rem 1rem;
     border-radius: 8px;
   }
-  
+
   .faq-question {
     font-size: 1rem;
     padding: 1rem;
   }
-  
+
   .faq-answer {
     font-size: 0.9rem;
   }

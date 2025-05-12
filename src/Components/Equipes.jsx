@@ -1,29 +1,29 @@
-import React from 'react';
-import '../styles/Times.css';
-import Header from './Layout/Header.jsx';
-import Footer from './Layout/Footer.jsx';
-import valorantIcon from '../assets/ui/valorant.png';
+import React from "react";
+import "../styles/Times.css";
+import Header from "./Layout/Header.jsx";
+import Footer from "./Layout/Footer.jsx";
+import valorantIcon from "../assets/ui/valorant.png";
 
 function ValorantTeamPage() {
   const players = [
     {
-      nome: 'Mateus Doro',
-      apelido: 'MATIAS',
-      curso: 'IA 2º ano',
-      funcao: 'CONTROLADOR'
+      nome: "Mateus Doro",
+      apelido: "MATIAS",
+      curso: "IA 2º ano",
+      funcao: "CONTROLADOR",
     },
     {
-      nome: 'Emanuel Silva',
-      apelido: 'VITU',
-      curso: 'CIC 4º ano',
-      funcao: 'DUELISTA'
+      nome: "Emanuel Silva",
+      apelido: "VITU",
+      curso: "CIC 4º ano",
+      funcao: "DUELISTA",
     },
     {
-      nome: 'Leonardo Belo',
-      apelido: 'SID',
-      curso: 'ENG 2º ano',
-      funcao: 'INICIADOR'
-    }
+      nome: "Leonardo Belo",
+      apelido: "SID",
+      curso: "ENG 2º ano",
+      funcao: "INICIADOR",
+    },
   ];
 
   return (
@@ -38,15 +38,17 @@ function ValorantTeamPage() {
       </main>
 
       <section className="features-times">
-        {players.map((player, i) => (
+        {players.map((player, i) =>
           Array.from({ length: 3 }).map((_, idx) => (
             <div className="feature-card" key={`${i}-${idx}`}>
-              <p style={{ color: '#00BFFF' }}>{player.nome} | {player.curso}</p>
+              <p style={{ color: "#00BFFF" }}>
+                {player.nome} | {player.curso}
+              </p>
               <h1>{player.apelido}</h1>
               <p>{player.funcao}</p>
             </div>
           ))
-        ))}
+        )}
       </section>
       <Footer />
     </div>

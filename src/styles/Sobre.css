@@ -1,6 +1,7 @@
 .dropdown {
   margin-left: 5px;
 }
+
 body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.4;
@@ -184,7 +185,7 @@ body {
   .premios-container {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .premio-titulo {
     font-size: 1.3rem;
   }
@@ -194,7 +195,7 @@ body {
   .premios-section {
     padding: 3rem 1.5rem;
   }
-  
+
   .premios-title {
     font-size: 2rem;
     margin-bottom: 2rem;
@@ -206,7 +207,7 @@ body {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .premio-card {
     padding: 1.5rem;
   }
@@ -243,12 +244,12 @@ body {
     justify-content: space-between;
     align-items: stretch;
   }
-  
+
   .etapa {
     flex: 1;
     position: relative;
   }
-  
+
   .etapa:not(:last-child)::after {
     content: "→";
     position: absolute;
@@ -351,11 +352,11 @@ body {
     font-size: 2rem;
     margin-bottom: 2rem;
   }
-  
+
   .etapa {
     padding: 1.5rem;
   }
-  
+
   .etapa:not(:last-child)::after {
     content: "↓";
     position: absolute;
@@ -372,7 +373,7 @@ body {
   .processo-content {
     padding: 3rem 0;
   }
-  
+
   .botao {
     width: 100%;
     justify-content: center;
@@ -387,8 +388,8 @@ body {
   width: 85%;
   margin: 40px auto;
 }
+
 .feature-icon {
   font-size: 2.5rem;
   color: #ffffff;
 }
-

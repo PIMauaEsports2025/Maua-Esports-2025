@@ -224,13 +224,13 @@ body {
   .modalidades-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .title-search {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
   }
-  
+
   .search-box {
     width: 100%;
   }

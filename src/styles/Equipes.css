@@ -1,26 +1,25 @@
 /* ValorantTeamPage.css */
 
 .valorant-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .valorant-icon {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
-    margin-bottom: 1rem;
-  }
-  
-  .valorant-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    margin-top: 0.5rem;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.valorant-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  margin-bottom: 1rem;
+}
+
+.valorant-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 0.5rem;
+}

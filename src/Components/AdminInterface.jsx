@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import '../styles/AdminInterface.css';
-import { 
-  FaUserCog, 
-  FaSignOutAlt, 
-  FaUsers, 
-  FaUserShield, 
-  FaClock, 
-  FaGamepad, 
-  FaCalendarAlt, 
-  FaChevronRight 
-} from 'react-icons/fa';
+import "../styles/AdminInterface.css";
+import {
+  FaUserCog,
+  FaSignOutAlt,
+  FaUsers,
+  FaUserShield,
+  FaClock,
+  FaGamepad,
+  FaCalendarAlt,
+  FaChevronRight,
+} from "react-icons/fa";
 import Footer from "./Layout/Footer";
 
 const AdminInterface = () => {
@@ -45,17 +45,17 @@ const AdminInterface = () => {
   return (
     <div className="admin-container">
       <header className="top-header">
-        <div className="logo-section" onClick={() => navigate('/admin')}>
+        <div className="logo-section" onClick={() => navigate("/admin")}>
           <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
           <h1 className="title">E-SPORTS</h1>
         </div>
 
         {/* Wrapper com clique e ref para detectar clique fora */}
-        <div
-          className="user-dropdown-wrapper"
-          ref={dropdownRef}
-        >
-          <div className="user-section" onClick={() => setIsDropdownOpen((prev) => !prev)}>
+        <div className="user-dropdown-wrapper" ref={dropdownRef}>
+          <div
+            className="user-section"
+            onClick={() => setIsDropdownOpen((prev) => !prev)}
+          >
             <span>Bem vindo, Mateus Martins</span>
             <span className="dropdown">▼</span>
           </div>
@@ -79,35 +79,70 @@ const AdminInterface = () => {
             <h2>Painel Administrativo</h2>
             <p>Selecione uma opção para gerenciar</p>
           </div>
-          
-          <button className="main-button" onClick={() => handleNavigation('/gerenciar-membros')}>
-            <span className="button-icon"><FaUsers /></span>
+
+          <button
+            className="main-button"
+            onClick={() => handleNavigation("/gerenciar-membros")}
+          >
+            <span className="button-icon">
+              <FaUsers />
+            </span>
             <span className="button-text">GERENCIAR MEMBROS</span>
-            <span className="button-arrow"><FaChevronRight /></span>
+            <span className="button-arrow">
+              <FaChevronRight />
+            </span>
           </button>
-          
-          <button className="main-button" onClick={() => handleNavigation('/admin/admins')}>
-            <span className="button-icon"><FaUserShield /></span>
+
+          <button
+            className="main-button"
+            onClick={() => handleNavigation("/admin/admins")}
+          >
+            <span className="button-icon">
+              <FaUserShield />
+            </span>
             <span className="button-text">GERENCIAR ADMINS</span>
-            <span className="button-arrow"><FaChevronRight /></span>
+            <span className="button-arrow">
+              <FaChevronRight />
+            </span>
           </button>
-          
-          <button className="main-button" onClick={() => handleNavigation('/admin/horas-pae')}>
-            <span className="button-icon"><FaClock /></span>
+
+          <button
+            className="main-button"
+            onClick={() => handleNavigation("/admin/horas-pae")}
+          >
+            <span className="button-icon">
+              <FaClock />
+            </span>
             <span className="button-text">CONSULTAR HORAS PAE</span>
-            <span className="button-arrow"><FaChevronRight /></span>
+            <span className="button-arrow">
+              <FaChevronRight />
+            </span>
           </button>
-          
-          <button className="main-button" onClick={() => handleNavigation('/gerenciar-modalidades')}>
-            <span className="button-icon"><FaGamepad /></span>
+
+          <button
+            className="main-button"
+            onClick={() => handleNavigation("/gerenciar-modalidades")}
+          >
+            <span className="button-icon">
+              <FaGamepad />
+            </span>
             <span className="button-text">GERENCIAR MODALIDADES</span>
-            <span className="button-arrow"><FaChevronRight /></span>
+            <span className="button-arrow">
+              <FaChevronRight />
+            </span>
           </button>
-          
-          <button className="main-button" onClick={() => handleNavigation('/gerenciar-treinos')}>
-            <span className="button-icon"><FaCalendarAlt /></span>
+
+          <button
+            className="main-button"
+            onClick={() => handleNavigation("/gerenciar-treinos")}
+          >
+            <span className="button-icon">
+              <FaCalendarAlt />
+            </span>
             <span className="button-text">GERENCIAR TREINOS</span>
-            <span className="button-arrow"><FaChevronRight /></span>
+            <span className="button-arrow">
+              <FaChevronRight />
+            </span>
           </button>
         </div>
       </main>

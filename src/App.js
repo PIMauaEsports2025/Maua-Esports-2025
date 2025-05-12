@@ -1,24 +1,24 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Components/Home';
-import Times from './Components/Times';
-import Contato from './Components/Contato';
-import LoginRegister from './Components/LoginRegister';
-import AdminInterface from './Components/AdminInterface';
-import Sobre from './Components/Sobre';
-import Campeonato from './Components/Campeonato';
-import GerenciarModalidades from './Components/GerenciarModalidades';
-import GerenciarTreinos from './Components/GerenciarTreinos';
-import GerenciarMembros from './Components/GerenciarMembros';
-import TimeCs from './Components/TimeCs';
-import TimeEaFc from './Components/TimeEaFc';
-import TimeLol from './Components/TimeLol';
-import TimeRocketLeague from './Components/TimeRocket';
-import TimeTft from './Components/TimeTft';
-import TimeRainbow from './Components/TimeRainbow';
-import TimeValorantBlue from './Components/TimeValorantBlue';
-import TimeValorantPurple from './Components/TimeValorantPurple';
-import TimeValorantWhite from './Components/TimeValorantWhite';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Components/Home";
+import Times from "./Components/Times";
+import Contato from "./Components/Contato";
+import LoginRegister from "./Components/LoginRegister";
+import AdminInterface from "./Components/AdminInterface";
+import Sobre from "./Components/Sobre";
+import Campeonato from "./Components/Campeonato";
+import GerenciarModalidades from "./Components/GerenciarModalidades";
+import GerenciarTreinos from "./Components/GerenciarTreinos";
+import GerenciarMembros from "./Components/GerenciarMembros";
+import TimeCs from "./Components/TimeCs";
+import TimeEaFc from "./Components/TimeEaFc";
+import TimeLol from "./Components/TimeLol";
+import TimeRocketLeague from "./Components/TimeRocket";
+import TimeTft from "./Components/TimeTft";
+import TimeRainbow from "./Components/TimeRainbow";
+import TimeValorantBlue from "./Components/TimeValorantBlue";
+import TimeValorantPurple from "./Components/TimeValorantPurple";
+import TimeValorantWhite from "./Components/TimeValorantWhite";
 
 function App() {
   return (
@@ -26,8 +26,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginRegister />} />
-        <Route path='/gerenciar-membros' element={<GerenciarMembros />} />
-        <Route path="/gerenciar-modalidades" element={<GerenciarModalidades />} />
+        <Route path="/gerenciar-membros" element={<GerenciarMembros />} />
+        <Route
+          path="/gerenciar-modalidades"
+          element={<GerenciarModalidades />}
+        />
         <Route path="/gerenciar-treinos" element={<GerenciarTreinos />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/campeonatos" element={<Campeonato />} />

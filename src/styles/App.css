@@ -4,7 +4,7 @@ body, html, .App {
   font-family: 'Orbitron', sans-serif;
   margin: 0;
   padding: 0;
-  
+
 }
 
 .custom-navbar {
@@ -23,13 +23,13 @@ body, html, .App {
   letter-spacing: 1px;
 }
 
-.navbar-nav{
+.navbar-nav {
   margin-left: 55%;
   padding: 2%;
 }
 
 .navbar-nav .nav-link {
-  color: white ;
+  color: white;
   font-weight: 600;
   text-decoration: none;
   margin-left: 1.5rem;

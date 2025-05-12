@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FaBars } from 'react-icons/fa';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
 import { CiLogin } from "react-icons/ci";
-import mauaLogo from '../../assets/ui/maua-branco.png';
-import '../../styles/Layout/Header.css';
+import mauaLogo from "../../assets/ui/maua-branco.png";
+import "../../styles/Layout/Header.css";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,14 +25,26 @@ const Header = () => {
           <FaBars />
         </button>
       </div>
-      <nav className={`navigation ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+      <nav className={`navigation ${mobileMenuOpen ? "mobile-open" : ""}`}>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/sobre">Sobre</Link></li>
-          <li><Link to="/times">Times</Link></li>
-          <li><Link to="/treinos">Treinos</Link></li>
-          <li><Link to="/campeonatos">Campeonatos</Link></li>
-          <li><Link to="/contato">Contato</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/sobre">Sobre</Link>
+          </li>
+          <li>
+            <Link to="/times">Times</Link>
+          </li>
+          <li>
+            <Link to="/treinos">Treinos</Link>
+          </li>
+          <li>
+            <Link to="/campeonatos">Campeonatos</Link>
+          </li>
+          <li>
+            <Link to="/contato">Contato</Link>
+          </li>
           <li>
             <div className="auth-links">
               <Link to="/login" className="login-btn">
