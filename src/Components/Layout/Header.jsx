@@ -34,12 +34,6 @@ const Header = () => {
             <Link to="/sobre">Sobre</Link>
           </li>
           <li>
-            <Link to="/times">Times</Link>
-          </li>
-          <li>
-            <Link to="/treinos">Treinos</Link>
-          </li>
-          <li>
             <Link to="/campeonatos">Campeonatos</Link>
           </li>
           <li>

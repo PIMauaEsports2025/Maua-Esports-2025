@@ -41,35 +41,49 @@ Maua-Esports-2025/
 │  │  │  ├─ rocketleague.jpg
 │  │  │  ├─ tft.jpg
 │  │  │  └─ valorant.jpg
-│  │  ├─ ui/
-│  │  │  ├─ HeroBanner.jpg
-│  │  │  └─ maua-branco.png
-│  │  └─ LoginBack.png
+│  │  └─ ui/
+│  │     ├─ AdminBack.png
+│  │     ├─ cs.png
+│  │     ├─ fc25.png
+│  │     ├─ HeroBanner.jpg
+│  │     ├─ LoginBack.png
+│  │     ├─ lol.png
+│  │     ├─ maua-branco.png
+│  │     ├─ rainbow.png
+│  │     ├─ rocket.png
+│  │     ├─ tft.png
+│  │     ├─ valorant.png
+│  │     └─ valorantBanner.jpeg
 │  ├─ Components/
-│  │  ├─ Admin/
-│  │  │  ├─ DashBoard.jsx
-│  │  │  ├─ ModalitiesList.jsx
-│  │  │  ├─ PaeHoursControl.jsx
-│  │  │  ├─ PaeHoursView.jsx
-│  │  │  ├─ ScheduledTrainingsEditor.jsx
-│  │  │  ├─ TeamManagement.jsx
-│  │  │  ├─ TrainingList.jsx
-│  │  │  └─ UserManagement.jsx
 │  │  ├─ Layout/
 │  │  │  ├─ Footer.jsx
-│  │  │  └─ Header.jsx
-│  │  ├─ UI/
-│  │  │  ├─ Notification.jsx
-│  │  │  └─ NotificationManager.jsx
+│  │  │  ├─ Header.jsx
+│  │  │  └─ HeaderAdmin.jsx
 │  │  ├─ AdminInterface.jsx
-│  │  ├─ Contact.jsx
+│  │  ├─ Campeonato.jsx
+│  │  ├─ Contato.jsx
+│  │  ├─ Equipes.jsx
+│  │  ├─ GerenciarMembros.jsx
+│  │  ├─ GerenciarModalidades.jsx
+│  │  ├─ GerenciarTreinos.jsx
 │  │  ├─ Home.jsx
 │  │  ├─ LoginRegister.jsx
-│  │  └─ Sobre.jsx
+│  │  ├─ Sobre.jsx
+│  │  ├─ TimeCs.jsx
+│  │  ├─ TimeEaFc.jsx
+│  │  ├─ TimeLol.jsx
+│  │  ├─ TimeRainbow.jsx
+│  │  ├─ TimeRocket.jsx
+│  │  ├─ Times.jsx
+│  │  ├─ TimeTft.jsx
+│  │  ├─ TimeValorantBlue.jsx
+│  │  ├─ TimeValorantPurple.jsx
+│  │  └─ TimeValorantWhite.jsx
 │  ├─ models/
 │  │  └─ models.js
 │  ├─ Service/
-│  │  └─ api.js
+│  │  ├─ api.js
+│  │  └─ memberApi.js
 │  ├─ Stage-API-Maua-Esports-main/
 │  │  ├─ .env.example
 │  │  ├─ .gitattributes
@@ -81,33 +95,40 @@ Maua-Esports-2025/
 │  │  ├─ package.json
 │  │  └─ README.md
 │  ├─ styles/
-│  │  ├─ Admin/
-│  │  │  ├─ Dashboard.css
-│  │  │  ├─ ModalitiesList.css
-│  │  │  ├─ PaeHoursControl.css
-│  │  │  ├─ PaeHoursView.css
-│  │  │  ├─ ScheduledTrainingsEditor.css
-│  │  │  ├─ TeamManagement.css
-│  │  │  ├─ TrainingsList.css
-│  │  │  └─ UserManagement.css
 │  │  ├─ Layout/
 │  │  │  ├─ Footer.css
-│  │  │  └─ Header.css
-│  │  ├─ UI/
-│  │  │  └─ Notification.css
+│  │  │  ├─ Header.css
+│  │  │  └─ HeaderAdmin.css
 │  │  ├─ AdminInterface.css
 │  │  ├─ App.css
-│  │  ├─ Contact.css
+│  │  ├─ Campeonato.css
+│  │  ├─ Contato.css
+│  │  ├─ Equipes.css
+│  │  ├─ GerenciarMembros.css
+│  │  ├─ GerenciarModalidades.css
+│  │  ├─ GerenciarTreinos.css
 │  │  ├─ Home.css
 │  │  ├─ index.css
 │  │  ├─ LoginRegister.css
-│  │  └─ Sobre.css
+│  │  ├─ Sobre.css
+│  │  ├─ Time-ValorantBlue.css
+│  │  ├─ Time-ValorantPurple.css
+│  │  ├─ Time-ValorantWhite.css
+│  │  ├─ TimeCs.css
+│  │  ├─ TimeEaFc.css
+│  │  ├─ TimeLol.css
+│  │  ├─ TimeRainbow.css
+│  │  ├─ TimeRocket.css
+│  │  ├─ Times.css
+│  │  └─ TimeTft.css
+│  ├─ .env
 │  ├─ App.js
 │  ├─ App.test.js
 │  ├─ index.js
 │  ├─ logo.svg
 │  ├─ reportWebVitals.js
-│  └─ setupTests.js
+│  ├─ setupTests.js
+│  └─ test-api.html
 ├─ .gitignore
 ├─ .hintrc
 ├─ LICENSE

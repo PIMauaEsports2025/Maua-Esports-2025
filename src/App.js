@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
-import Times from "./Components/Times";
 import Contato from "./Components/Contato";
 import LoginRegister from "./Components/LoginRegister";
 import AdminInterface from "./Components/AdminInterface";
@@ -34,7 +33,6 @@ function App() {
         <Route path="/gerenciar-treinos" element={<GerenciarTreinos />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/campeonatos" element={<Campeonato />} />
-        <Route path="/times" element={<Times />} />
         <Route path="/contato" element={<Contato />} />
         <Route path="/admin" element={<AdminInterface />} />
         <Route path="/time-cs" element={<TimeCs />} />
