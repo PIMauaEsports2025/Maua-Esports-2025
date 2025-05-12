@@ -140,10 +140,10 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.15rem;
   z-index: 1;
-  margin-left: 110px;
-  margin-right: 110px;
+  margin-left: 150px;
+  margin-right: 150px;
   margin-top: 60px;
   margin-bottom: 60px;
 }
@@ -152,7 +152,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
   font-family: "Jersey 25", sans-serif;
   font-size: 35px;
   font-weight: bold;
-  color: #00cdff;
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 
@@ -163,65 +163,85 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
   margin-bottom: -1%;
 }
 
-.features {
+.features-hobbie {
   display: flex;
-  justify-content: space-around;
-  padding: 4% 6%;
-  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
-  margin-left: 20px;
-  margin-right: 20px;
+  flex-wrap: wrap; 
+  padding: 2rem;
 }
 
 .feature-card {
-  flex: 1 1 300px;
-  padding: 2rem;
+  background-color: #0000005f;
+  border: 1px solid #fff;
+  padding: 2.3rem 1.5rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-  border: none !important;
-  background: #0b0b0f !important;
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex: 1 1 300px; 
+  max-width: 350px;
 }
 
-.feature-card:hover {
+.features-hobbie .feature-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.feature-card .icon {
-  font-size: 35px;
+
+.feature-card-hobbies:hover {
+  transform: scale(1.05);
+} 
+
+.icon {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
 }
 
 .feature-card h1 {
-  font-size: 35px;
-}
-
-.feature-card h3 {
-  font-size: 15px;
-  margin-bottom: 5%;
-  color: #ffffff;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  margin-bottom: 15px;
 }
 
 .feature-card p {
-  margin-top: 5%;
   color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-bottom: 1rem;
 }
 
-.depoimentos {
-  width: 100%;
+
+.depoimentos-section {
   max-width: 90%;
-  margin: 2% auto;
-  padding: 1rem 1rem;
+  margin: 0 auto;
+  padding: 2rem 0;
 }
 
+.depoimentos-header {
+  text-align: left;
+  margin-bottom: 2rem;
+
+}
+.depoimentos-descricao{
+  margin-left: 160px;
+  font-size: 15px;
+  color: #ccc;
+  max-width: 500px;
+}
 .depoimentos-titulo {
   font-family: "Jersey 25", sans-serif;
   font-size: 35px;
   font-weight: bold;
-  color: #00cdff;
-  margin-bottom: 2rem;
-  text-align: center;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  margin-left: 160px;
+
 }
+
 
 .depoimentos-conteudo {
   display: flex;
@@ -231,70 +251,46 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
 }
 
 .depoimento {
-  position: relative;
-  flex: 1 1 400px;
-  max-width: 500px;
-  padding: 2rem;
+  flex: 1 1 350px;
+  max-width: 530px;
+  background-color: rgba(255, 255, 255, 0.02);
+  padding: 1.5rem;
   border-radius: 5px;
-  background-color: #0b0b0f;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  color: #ffffff;
-  text-align: left;
-}
-
-.depoimento::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 4px;
-  width: 100%;
-  background: linear-gradient(90deg, #00d4ff, #003B6D, #00d4ff);
-  background-size: 200%;
-  background-position: left;
-  transition: background-position 0.6s ease-in-out;
-  z-index: 1;
-}
-
-.depoimento:hover::before {
-  background-position: right;
+  border: 1px solid #2c2c2c;
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-family: sans-serif;
+  position: relative;
+  margin-top: 30px;
 }
 
 .depoimento-texto {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.6;
+  color: #cccccc;
   font-style: italic;
-  margin-bottom: 1.5rem;
-  color: #ffffffcc;
-  position: relative;
-  z-index: 2;
+  margin-bottom: 1rem;
 }
 
 .depoimento-autor {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
-  margin-bottom: 0.25rem;
   color: #00CDFF;
-  position: relative;
-  z-index: 2;
 }
 
 .depoimento-cargo {
-  font-size: 0.95rem;
-  color: #ffffffa0;
-  position: relative;
-  z-index: 2;
+  font-size: 0.9rem;
+  color: #aaa;
 }
 
-.depoimento:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+
+.carousel-control{
+  margin-left: -15px;
+  margin-right: -35px;
 }
 
 .games-carousel-section {
-  max-width: 85%;
+  max-width: 79%;
   margin: 0 auto;
 }
 
@@ -313,7 +309,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
 }
 
 .game-card {
-  min-width: 33.33%;
+  min-width: 34%;
   padding: 0 15px;
   box-sizing: border-box;
   position: relative;
@@ -340,7 +336,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
   left: 15px;
   right: 15px;
   bottom: 0;
-  background-color: rgba(4, 19, 43, 0.603);
+  background-color: rgba(4, 19, 43, 0.696);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -485,7 +481,6 @@ img {
   position: relative;
   max-width: 100%;
   margin: 0 auto;
-  padding: 0 40px;
 }
 
 .games-carousel {
@@ -505,10 +500,11 @@ img {
 
 .game-card img {
   width: 100%;
-  height: 450px;
+  height: 350px;
   object-fit: cover;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
 }
 
 .carousel-control {

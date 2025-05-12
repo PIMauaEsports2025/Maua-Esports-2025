@@ -1,9 +1,8 @@
 .features-times {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1em;
-  padding: 1rem 3%;
-  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 3%;
   justify-items: center;
   font-family: 'Roboto', sans-serif;
 }
@@ -20,22 +19,21 @@
   }
 }
 
-.feature-card {
+.feature-card-times {
   background-color: #0d1117;
   border: 1px solid #fff;
-  padding: 2.5rem 1.5rem;
-  border-radius: 3px;
+  padding: 2rem 1.5rem;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
-  width: 20%;
-  max-width: 400px;
-
+  width: 100%;
+  max-width: 350px;
 }
 
-.feature-card:hover {
+.feature-card-times:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(0, 132, 255, 0.5);
 }
@@ -47,40 +45,31 @@
   filter: brightness(0) invert(1);
 }
 
-.features-times .feature-card h1 {
+.feature-card-times h1 {
   color: white;
   font-size: 20px;
-  margin: 0.5rem 0 0.25rem 0;
-  font-family: 'Roboto', sans-serif;
-}
-
-.feature-card h1 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
   margin-bottom: 15px;
+  font-family: 'Roboto', sans-serif;
 }
 
-.features-times .feature-card p {
+.feature-card-times p {
   color: #ccc;
-  font-family: 'Roboto', sans-serif;
   font-size: 15px;
-  margin: 0 0 1rem 0;
+  margin-bottom: 1rem;
 }
 
 .view-button {
   margin-top: 1rem;
-  /* Adiciona um pequeno espaço entre o botão e o fundo */
   padding: 0.75rem 1rem;
   background-color: #003B6D;
   color: white;
   border: none;
   font-weight: bold;
   font-size: 15px;
-  border-radius: 3px;
+  border-radius: 4px;
   text-decoration: none;
   transition: background 0.3s ease;
 }
-
 
 .view-button:hover {
   background-color: rgb(0, 35, 70);

@@ -22,13 +22,13 @@ const Home = () => {
   };
 
   const stats = [
-    { number: "22+", description: "Torneios universitários disputados" },
-    { number: "10+", description: "Títulos conquistados" },
-    { number: "20+", description: "Jogadores ativos na equipe" },
-    { number: "14+", description: "Jogos diferentes competidos" },
-    { number: "8+", description: "Anos de tradição em e-sports" },
+    { number: "22+", description: <strong>Torneios universitários disputados</strong> },
+    { number: "10+", description: <strong>Títulos conquistados</strong> },
+    { number: "20+", description: <strong>Jogadores ativos na equipe</strong> },
+    { number: "14+", description: <strong>Jogos diferentes competidos</strong> },
+    { number: "8+", description: <strong>Anos de tradição em e-sports</strong> },
   ];
-
+  
   const games = [
     {
       name: "Counter Strike 2",
@@ -163,7 +163,7 @@ const Home = () => {
           </p>
         </div>
 
-      <section className="features">
+      <section className="features-hobbie">
         <div className="feature-card">
           <IoGameController className="icon" />
           <h1>HOBBIE</h1>
@@ -171,8 +171,7 @@ const Home = () => {
             Treinar <strong>jogos como hobby</strong> proporciona{" "}
             <strong>entretenimento</strong> enquanto desenvolve várias{" "}
             <strong>habilidades</strong>, como raciocínio rápido e tomada de
-            decisão. Além disso, esse treino se torna uma forma{" "}
-            <strong>saudável e divertida</strong> de passar o tempo.
+            decisão.
           </p>
         </div>
         <div className="feature-card">
@@ -181,10 +180,7 @@ const Home = () => {
           <p>
             <strong>Competições de e-sports</strong> são uma forma de testar
             suas habilidades contra jogadores de diferentes níveis, oferecendo{" "}
-            <strong>desafios constantes</strong>. Participar de campeonatos
-            permite obter <strong>reconhecimento</strong> e
-            <strong> prêmios</strong>, além de ser uma motivação extra para
-            treinar mais.
+            <strong>desafios constantes</strong>. 
           </p>
         </div>
         <div className="feature-card">
@@ -193,9 +189,7 @@ const Home = () => {
           <p>
             Participar do <strong>Mauá E-Sports</strong> oferece uma ótima
             oportunidade de fazer novas amizades com pessoas que compartilham o
-            mesmo interesse por <strong>jogos online</strong>. Além disso, você
-            pode desenvolver habilidades de <strong>trabalho em equipe</strong>{" "}
-            e <strong>comunicação</strong>.
+            mesmo interesse por <strong>jogos online</strong>. 
           </p>
         </div>
       </section>
@@ -254,28 +248,32 @@ const Home = () => {
       </section>
 
       <section className="depoimentos">
-        <h2 className="depoimentos-titulo">DEPOIMENTOS</h2>
-        <div className="depoimentos-conteudo">
-          <div className="depoimento">
-            <p className="depoimento-texto">
-              “Fundar o Mauá E-Sports foi um dos maiores desafios da minha vida
-              universitária. Ver a equipe crescer e conquistar respeito no
-              cenário foi gratificante.”
-            </p>
-            <h3 className="depoimento-autor">Leonardo Stubber</h3>
-            <span className="depoimento-cargo">Presidente</span>
-          </div>
-          <div className="depoimento">
-            <p className="depoimento-texto">
-              “Ter liderado o time feminino em campeonatos nacionais me ensinou
-              mais sobre trabalho em equipe do que qualquer sala de aula. Mauá
-              E-Sports mudou minha trajetória.”
-            </p>
-            <h3 className="depoimento-autor">Carol Emoto</h3>
-            <span className="depoimento-cargo">Vice-Presidente</span>
-          </div>
-        </div>
-      </section>
+  <h2 className="depoimentos-titulo">DEPOIMENTOS</h2>
+  <p className="depoimentos-descricao">
+    Conheça histórias reais de quem fez parte do Mauá E-Sports.
+  </p>
+  <div className="depoimentos-conteudo">
+    <div className="depoimento">
+      <p className="depoimento-texto">
+        “Fundar o Mauá E-Sports foi um dos maiores desafios da minha vida
+        universitária. Ver a equipe crescer e conquistar respeito no
+        cenário foi gratificante.”
+      </p>
+      <h3 className="depoimento-autor">Leonardo Stubber</h3>
+      <span className="depoimento-cargo">Presidente</span>
+    </div>
+    <div className="depoimento">
+      <p className="depoimento-texto">
+        “Ter liderado o time feminino em campeonatos nacionais me ensinou
+        mais sobre trabalho em equipe do que qualquer sala de aula. Mauá
+        E-Sports mudou minha trajetória.”
+      </p>
+      <h3 className="depoimento-autor">Carol Emoto</h3>
+      <span className="depoimento-cargo">Vice-Presidente</span>
+    </div>
+  </div>
+</section>
+
 
       <Footer />
     </div>

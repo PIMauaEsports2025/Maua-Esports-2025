@@ -79,9 +79,9 @@ function Times() {
         </p>
       </main>
 
-      <section className="features">
+      <section className="features-times">
         {times.map((time, index) => (
-          <div className="feature-card" key={index}>
+          <div className="feature-card-times" key={index}>
             <img src={time.imagem} alt={time.nome} className="feature-image" />
             <h1>{time.nome}</h1>
             {time.link ? (

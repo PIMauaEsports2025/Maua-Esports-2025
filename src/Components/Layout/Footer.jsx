@@ -16,10 +16,6 @@ const Footer = () => {
           </div>
         </div>
 
-
-
-
-
         <div className="footer-description">
           <p>
             Liga Universitária de Esports do Instituto Mauá de Tecnologia,
