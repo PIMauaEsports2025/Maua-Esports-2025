@@ -5,6 +5,7 @@ import Contato from "./Components/Contato";
 import LoginRegister from "./Components/LoginRegister";
 import AdminInterface from "./Components/AdminInterface";
 import Sobre from "./Components/Sobre";
+import Times from "./Components/Times";
 import Campeonato from "./Components/Campeonato";
 import GerenciarModalidades from "./Components/GerenciarModalidades";
 import GerenciarTreinos from "./Components/GerenciarTreinos";
@@ -32,6 +33,7 @@ function App() {
         />
         <Route path="/gerenciar-treinos" element={<GerenciarTreinos />} />
         <Route path="/sobre" element={<Sobre />} />
+        <Route path="/times" element={<Times />} />
         <Route path="/campeonatos" element={<Campeonato />} />
         <Route path="/contato" element={<Contato />} />
         <Route path="/admin" element={<AdminInterface />} />
