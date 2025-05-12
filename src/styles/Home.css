@@ -104,7 +104,6 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
 }
 
 .stats-section {
-
   padding-top: 5%;
   padding-bottom: 2%;
 }
@@ -132,39 +131,10 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
 }
 
 .stat-description {
-  margin-top: 1%;
+  margin-top: -2%;
   font-size: 15px;
 }
 
-.quem-somos-box {
-  width: 100%;
-  max-width: 85%;
-  margin: 3% auto;
-  padding: 3rem;
-  background-color: #0b0b0f;
-  border-radius: 5px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.quem-somos-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 4px;
-  width: 100%;
-  background: linear-gradient(90deg, #00d4ff, #003B6D, #00d4ff);
-  background-size: 200%;
-  background-position: left;
-  transition: background-position 0.6s ease-in-out;
-  z-index: 1;
-}
-
-.quem-somos-box:hover::before {
-  background-position: right;
-}
 
 .quem-somos-conteudo {
   position: relative;
@@ -172,12 +142,15 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
   flex-direction: column;
   gap: 1.5rem;
   z-index: 1;
-
+  margin-left: 110px;
+  margin-right: 110px;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .quem-somos-titulo {
   font-family: "Jersey 25", sans-serif;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: bold;
   color: #00cdff;
   margin-bottom: 1rem;
@@ -204,7 +177,6 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
   flex: 1 1 300px;
   padding: 2rem;
   text-align: center;
-  backdrop-filter: blur(30px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
   border: none !important;
@@ -221,7 +193,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
 }
 
 .feature-card h1 {
-  font-size: 30px;
+  font-size: 35px;
 }
 
 .feature-card h3 {
@@ -244,7 +216,7 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
 
 .depoimentos-titulo {
   font-family: "Jersey 25", sans-serif;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: bold;
   color: #00cdff;
   margin-bottom: 2rem;

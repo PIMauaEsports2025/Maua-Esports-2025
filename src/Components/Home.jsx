@@ -137,7 +137,6 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="quem-somos-box">
         <div className="quem-somos-conteudo">
           <h2 className="quem-somos-titulo">QUEM SOMOS</h2>
           <p className="quem-somos-texto">
@@ -163,12 +162,11 @@ const Home = () => {
             <strong>família que joga, aprende e cresce junto</strong>.
           </p>
         </div>
-      </section>
 
       <section className="features">
         <div className="feature-card">
           <IoGameController className="icon" />
-          <h1>Hobbie</h1>
+          <h1>HOBBIE</h1>
           <p>
             Treinar <strong>jogos como hobby</strong> proporciona{" "}
             <strong>entretenimento</strong> enquanto desenvolve várias{" "}
@@ -179,7 +177,7 @@ const Home = () => {
         </div>
         <div className="feature-card">
           <FaMedal className="icon" />
-          <h1>Participar de Campeonatos</h1>
+          <h1>CAMPEONATOS</h1>
           <p>
             <strong>Competições de e-sports</strong> são uma forma de testar
             suas habilidades contra jogadores de diferentes níveis, oferecendo{" "}
@@ -191,7 +189,7 @@ const Home = () => {
         </div>
         <div className="feature-card">
           <FaPeopleGroup className="icon" />
-          <h1>Conexões</h1>
+          <h1>CONEXÕES</h1>
           <p>
             Participar do <strong>Mauá E-Sports</strong> oferece uma ótima
             oportunidade de fazer novas amizades com pessoas que compartilham o
