@@ -45,9 +45,9 @@ function Sobre() {
         </p>
       </main>
 
-      <section className="features">
-        <div className="feature-card">
-          <FaBullseye className="feature-icon" />
+      <section className="features-mvv">
+        <div className="feature-mvv-card">
+          <FaBullseye className="feature-mvv-icon" />
           <h1>Missão</h1>
           <p>
             Promover os e-sports de forma estruturada e responsável, aliando
@@ -56,8 +56,8 @@ function Sobre() {
             Mauá.
           </p>
         </div>
-        <div className="feature-card">
-          <FaEye className="feature-icon" />
+        <div className="feature-mvv-card">
+          <FaEye className="feature-mvv-icon" />
           <h1>Visão</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -66,8 +66,8 @@ function Sobre() {
             aliquip ex ea commodo consequat.
           </p>
         </div>
-        <div className="feature-card">
-          <FaHeart className="feature-icon" />
+        <div className="feature-mvv-card">
+          <FaHeart className="feature-mvv-icon" />
           <h1>Valores</h1>
           <p>
             Valorizamos o trabalho em equipe, a disciplina nos treinos e

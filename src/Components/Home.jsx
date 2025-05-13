@@ -195,7 +195,7 @@ const Home = () => {
       </section>
 
       <section className="games-carousel-section">
-        <h2>EQUIPE</h2>
+        <h2>GAMES</h2>
         <p>
           A equipe é composta por representantes de diferentes cursos que atuam
           de forma organizada e disciplinada em diversos títulos do cenário

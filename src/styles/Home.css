@@ -189,7 +189,6 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
   transform: scale(1.05);
 }
 
-
 .feature-card-hobbies:hover {
   transform: scale(1.05);
 } 
@@ -213,7 +212,6 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
   font-size: 15px;
   margin-bottom: 1rem;
 }
-
 
 .depoimentos-section {
   max-width: 90%;
@@ -241,7 +239,6 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
   margin-left: 160px;
 
 }
-
 
 .depoimentos-conteudo {
   display: flex;

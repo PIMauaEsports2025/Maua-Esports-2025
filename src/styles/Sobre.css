@@ -118,6 +118,53 @@ body {
   margin-left: 6%;
 }
 
+.features-mvv {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
+
+.feature-mvv-card {
+  background-color: #0000005f;
+  border: 1px solid #fff;
+  padding: 2% 2% 1% 2%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex: 1 1 300px;
+  max-width: 360px;
+}
+
+.feature-mvv-card:hover {
+  transform: scale(1.05);
+}
+
+.feature-mvv-icon {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.feature-mvv-card h1 {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.feature-mvv-card p {
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-bottom: 1rem;
+}
+
 .premios-section {
   padding: 4rem 2rem;
   color: white;
@@ -155,7 +202,6 @@ body {
 }
 
 .premio-card:hover {
-  transform: translateY(-5px);
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
   border-left: 4px solid #00CDFF;
 }
