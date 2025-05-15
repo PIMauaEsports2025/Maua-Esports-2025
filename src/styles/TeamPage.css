@@ -1,0 +1,188 @@
+.team-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #040D1D 0%, #0B1423 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-banner {
+  background: rgba(1, 204, 254, 0.1);
+  padding: 100px 0 40px 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.team-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #01CCFE, transparent);
+}
+
+.team-banner h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(1, 204, 254, 0.7);
+  letter-spacing: 2px;
+  font-family: 'Jersey 25', sans-serif;
+}
+
+.team-banner h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #01CCFE;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+.team-container {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.team-description {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.team-description p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #ccc;
+}
+
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.player-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  backdrop-filter: blur(5px);
+}
+
+.player-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #01CCFE;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.player-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(1, 204, 254, 0.4);
+}
+
+.player-card:hover::after {
+  transform: scaleX(1);
+}
+
+.player-header {
+  padding: 20px;
+  background: rgba(1, 204, 254, 0.1);
+}
+
+.player-info {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-fullname {
+  font-size: 0.9rem;
+  color: #aaa;
+  display: block;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.player-name {
+  font-size: 2.2rem;
+  color: #fff;
+  margin: 0;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  line-height: 1;
+  font-family: 'Jersey 25', sans-serif;
+  text-shadow: 0 0 10px rgba(1, 204, 254, 0.5);
+}
+
+.player-role-container {
+  display: inline-block;
+  padding: 5px 10px;
+  background: rgba(1, 204, 254, 0.8);
+  border-radius: 20px;
+  color: #040D1D;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.captain {
+  background: linear-gradient(90deg, #FFD700, #FFA500);
+  color: #000;
+}
+
+.coach {
+  background: linear-gradient(90deg, #9370DB, #6A5ACD);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .team-banner h1 {
+    font-size: 2.8rem;
+  }
+  
+  .team-banner h2 {
+    font-size: 1.3rem;
+  }
+  
+  .player-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-banner h1 {
+    font-size: 2.2rem;
+  }
+  
+  .team-banner h2 {
+    font-size: 1.1rem;
+  }
+  
+  .player-name {
+    font-size: 1.8rem;
+  }
+}

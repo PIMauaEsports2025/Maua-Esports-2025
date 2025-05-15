@@ -1,8 +1,7 @@
 import React from "react";
-import "../styles/Time-ValorantBlue.css";
+import "../styles/TeamPage.css";
 import Header from "./Layout/Header.jsx";
 import Footer from "./Layout/Footer.jsx";
-import valorantLogo from "../assets/ui/valorant.png";
 
 function TimeValorantBlue() {
   const jogadores = [
@@ -37,23 +36,37 @@ function TimeValorantBlue() {
       funcao: "PLAYER",
     },
   ];
-
   return (
-    <section className="timeValorantBlue">
+    <section className="team-page">
       <Header />
-      <main className="team-container">
+      
+      <div className="team-banner">
         <h1>VALORANT</h1>
-        <h2>Line Purple</h2>
+        <h2>Equipe Blue</h2>
+      </div>
+      
+      <main className="team-container">
+        <div className="team-description">
+          <p>Nossa equipe Blue de Valorant é composta por jogadores dedicados que representam a Mauá com habilidade e estratégia em diversos campeonatos universitários.</p>
+        </div>
+        
         <div className="player-grid">
           {jogadores.map((jogador, index) => (
             <div className="player-card" key={index}>
-              <span className="player-fullname">{jogador.nomeCompleto}</span>
-              <h3 className="player-name">{jogador.nome}</h3>
-              <span className="player-role">{jogador.funcao}</span>
+              <div className="player-header">
+                <h3 className="player-name">{jogador.nome}</h3>
+              </div>
+              <div className="player-info">
+                <span className="player-fullname">{jogador.nomeCompleto}</span>
+                <span className={`player-role-container ${jogador.funcao === "CAPITÃO" ? "captain" : jogador.funcao === "COACH" ? "coach" : ""}`}>
+                  {jogador.funcao}
+                </span>
+              </div>
             </div>
           ))}
         </div>
       </main>
+      
       <Footer />
     </section>
   );

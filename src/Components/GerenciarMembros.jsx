@@ -29,7 +29,6 @@ const GerenciarMembros = () => {
     email: "",
     role: "member",
     modality: "",
-    teams: [],
     paeHours: 0
   });
   // Fetch members from API

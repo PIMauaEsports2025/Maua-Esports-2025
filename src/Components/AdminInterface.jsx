@@ -95,20 +95,7 @@ const AdminInterface = () => {
 
           <button
             className="main-button"
-            onClick={() => handleNavigation("/admin/admins")}
-          >
-            <span className="button-icon">
-              <FaUserShield />
-            </span>
-            <span className="button-text">GERENCIAR ADMINS</span>
-            <span className="button-arrow">
-              <FaChevronRight />
-            </span>
-          </button>
-
-          <button
-            className="main-button"
-            onClick={() => handleNavigation("/admin/horas-pae")}
+            onClick={() => handleNavigation("/consulta-horas-pae")}
           >
             <span className="button-icon">
               <FaClock />

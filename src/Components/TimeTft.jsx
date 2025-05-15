@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/TimeTft.css";
+import "../styles/TeamPage.css";
 import Header from "./Layout/Header.jsx";
 import Footer from "./Layout/Footer.jsx";
 
@@ -31,23 +31,37 @@ function TimeTft() {
       funcao: "PLAYER",
     },
   ];
-
   return (
-    <section className="timeTft">
+    <section className="team-page">
       <Header />
+      
+      <div className="team-banner">
+        <h1>TEAMFIGHT TACTICS</h1>
+        <h2>Equipe TFT</h2>
+      </div>
+      
       <main className="team-container">
-        <h1>Team Fight Tactics</h1>
-        <h2>Esta são as nossas lines de TFT, confira</h2>
+        <div className="team-description">
+          <p>Nossa equipe de TFT se destaca nas competições universitárias com jogadores de alta habilidade estratégica e conhecimento profundo das mecânicas do jogo.</p>
+        </div>
+        
         <div className="player-grid">
           {jogadores.map((jogador, index) => (
             <div className="player-card" key={index}>
-              <span className="player-fullname">{jogador.nomeCompleto}</span>
-              <h3 className="player-name">{jogador.nome}</h3>
-              <span className="player-role">{jogador.funcao}</span>
+              <div className="player-header">
+                <h3 className="player-name">{jogador.nome}</h3>
+              </div>
+              <div className="player-info">
+                <span className="player-fullname">{jogador.nomeCompleto}</span>
+                <span className={`player-role-container ${jogador.funcao === "CAPITÃO" ? "captain" : jogador.funcao === "CO-CAPITÃO" ? "captain" : jogador.funcao === "COACH" ? "coach" : ""}`}>
+                  {jogador.funcao}
+                </span>
+              </div>
             </div>
           ))}
         </div>
       </main>
+      
       <Footer />
     </section>
   );
