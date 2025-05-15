@@ -5,58 +5,58 @@ import { API_URL, getHeaders } from './api';
 const MOCK_MEMBERS = [
   {
     _id: '1',
-    ra: "24.01193-2",
+    discordId: "lucas.silva#1234",
     email: "24.01193-2@maua.br",
     name: "Lucas Silva",
     role: "admin",
     password: "hashed_password",
     modality: "CS2",
-    paeHours: 15,
-    teams: ["CS A"]
+    teams: ["CS A"],
+    paeHours: 15
   },
   {
     _id: '2',
-    ra: "24.00981-4",
+    discordId: "maria.oliveira#5678",
     email: "24.00981-4@maua.br",
     name: "Maria Oliveira",
     role: "member",
     password: "hashed_password",
     modality: "LoL",
-    paeHours: 8,
-    teams: ["LoL B"]
+    teams: ["LoL B"],
+    paeHours: 8
   },
   {
     _id: '3',
-    ra: "24.01567-9",
+    discordId: "joao.pereira#9012",
     email: "24.01567-9@maua.br",
     name: "João Pereira",
     role: "member",
     password: "hashed_password",
     modality: "Valorant",
-    paeHours: 12,
-    teams: ["VAL A"]
+    teams: ["VAL A"],
+    paeHours: 12
   },
   {
     _id: '4',
-    ra: "24.00345-1",
+    discordId: "ana.costa#3456",
     email: "24.00345-1@maua.br",
     name: "Ana Costa",
     role: "captain",
     password: "hashed_password",
     modality: "TFT",
-    paeHours: 20,
-    teams: ["TFT A"]
+    teams: ["TFT A"],
+    paeHours: 20
   },
   {
     _id: '5',
-    ra: "24.00759-7",
+    discordId: "pedro.rocha#7890",
     email: "24.00759-7@maua.br",
     name: "Pedro Rocha",
     role: "captain",
     password: "hashed_password",
     modality: "CS2",
-    paeHours: 18,
-    teams: ["CS B"]
+    teams: ["CS B"],
+    paeHours: 18
   }
 ];
 
