@@ -19,6 +19,7 @@ import TimeRainbow from "./Components/TimeRainbow";
 import TimeValorantBlue from "./Components/TimeValorantBlue";
 import TimeValorantPurple from "./Components/TimeValorantPurple";
 import TimeValorantWhite from "./Components/TimeValorantWhite";
+import ConsultaHorasPAE from "./Components/ConsultaHorasPAE";
 
 function App() {
   return (
@@ -27,11 +28,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginRegister />} />
         <Route path="/gerenciar-membros" element={<GerenciarMembros />} />
-        <Route
-          path="/gerenciar-modalidades"
-          element={<GerenciarModalidades />}
-        />
+        <Route path="/gerenciar-modalidades" element={<GerenciarModalidades />} />
         <Route path="/gerenciar-treinos" element={<GerenciarTreinos />} />
+
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/times" element={<Times />} />
         <Route path="/campeonatos" element={<Campeonato />} />
@@ -46,6 +45,7 @@ function App() {
         <Route path="/time-valorant-blue" element={<TimeValorantBlue />} />
         <Route path="/time-valorant-purple" element={<TimeValorantPurple />} />
         <Route path="/time-valorant-white" element={<TimeValorantWhite />} />
+        <Route path="/consulta-horas-pae" element={<ConsultaHorasPAE />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/TimeRocket.css";
+import "../styles/TeamPage.css";
 import Header from "./Layout/Header.jsx";
 import Footer from "./Layout/Footer.jsx";
 
@@ -33,21 +33,36 @@ function TimeRocket() {
   ];
 
   return (
-    <section className="timeRocket">
+    <section className="team-page">
       <Header />
+      
+      <div className="team-banner">
+        <h1>ROCKET LEAGUE</h1>
+        <h2>Equipe RL</h2>
+      </div>
+      
       <main className="team-container">
-        <h1>Rocket League</h1>
-        <h2>Está é a nossa line de Rocket League</h2>
+        <div className="team-description">
+          <p>Nossa equipe de Rocket League combina habilidade, reflexos e trabalho em equipe para representar o Instituto Mauá de Tecnologia nas principais competições universitárias do cenário nacional.</p>
+        </div>
+        
         <div className="player-grid">
           {jogadores.map((jogador, index) => (
             <div className="player-card" key={index}>
-              <span className="player-fullname">{jogador.nomeCompleto}</span>
-              <h3 className="player-name">{jogador.nome}</h3>
-              <span className="player-role">{jogador.funcao}</span>
+              <div className="player-header">
+                <h3 className="player-name">{jogador.nome}</h3>
+              </div>
+              <div className="player-info">
+                <span className="player-fullname">{jogador.nomeCompleto}</span>
+                <span className={`player-role-container ${jogador.funcao === "CAPITÃO" ? "captain" : jogador.funcao === "COACH" ? "coach" : ""}`}>
+                  {jogador.funcao}
+                </span>
+              </div>
             </div>
           ))}
         </div>
       </main>
+      
       <Footer />
     </section>
   );

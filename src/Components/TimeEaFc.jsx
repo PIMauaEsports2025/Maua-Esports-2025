@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/TimeCs.css";
+import "../styles/TeamPage.css";
 import Header from "./Layout/Header.jsx";
 import Footer from "./Layout/Footer.jsx";
 
@@ -21,23 +21,37 @@ function TimeEaFc() {
       funcao: "PLAYER",
     },
   ];
-
   return (
-    <section className="timeEaFc">
+    <section className="team-page">
       <Header />
+      
+      <div className="team-banner">
+        <h1>EA FC 25</h1>
+        <h2>Equipe de Futebol</h2>
+      </div>
+      
       <main className="team-container">
-        <h1>EA FC25</h1>
-        <h2>Esta é a nossa line de EA FC25</h2>
+        <div className="team-description">
+          <p>Nossa equipe de EA FC 25 representa o Instituto Mauá de Tecnologia em competições universitárias, com jogadores talentosos que demonstram habilidade e paixão pelo esporte virtual.</p>
+        </div>
+        
         <div className="player-grid">
           {jogadores.map((jogador, index) => (
             <div className="player-card" key={index}>
-              <span className="player-fullname">{jogador.nomeCompleto}</span>
-              <h3 className="player-name">{jogador.nome}</h3>
-              <span className="player-role">{jogador.funcao}</span>
+              <div className="player-header">
+                <h3 className="player-name">{jogador.nome}</h3>
+              </div>
+              <div className="player-info">
+                <span className="player-fullname">{jogador.nomeCompleto}</span>
+                <span className={`player-role-container ${jogador.funcao === "CAPITÃO" ? "captain" : jogador.funcao === "COACH" ? "coach" : ""}`}>
+                  {jogador.funcao}
+                </span>
+              </div>
             </div>
           ))}
         </div>
       </main>
+      
       <Footer />
     </section>
   );
