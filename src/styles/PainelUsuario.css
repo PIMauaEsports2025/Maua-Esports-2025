@@ -1,0 +1,67 @@
+@import "./AdminInterface.css";
+
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 16px 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #fff;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.info-card label {
+    font-weight: bold;
+    color: #0ea5e9;
+}
+
+.nome-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.botao-editar {
+    background: none;
+    border: none;
+    color: #0ea5e9;
+    cursor: pointer;
+    padding: 4px;
+    transition: transform 0.2s ease;
+}
+
+.botao-editar:hover {
+    transform: scale(1.1);
+}
+
+.edit-nome-wrapper {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.edit-nome-wrapper input {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(14, 165, 233, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.botao-salvar {
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #0ea5e9;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.botao-salvar:hover {
+    background: #0284c7;
+}
