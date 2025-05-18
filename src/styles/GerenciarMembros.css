@@ -479,8 +479,8 @@
   justify-content: flex-end;
 }
 
-.save-button {
-  background-color: #2ea043;
+.salvar-button {
+  background-color: #2ea043 ;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -490,11 +490,10 @@
   transition: background-color 0.2s;
 }
 
-.save-button:hover {
+.salvar-button:hover {
   background-color: #3cb054;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .title-search {
     flex-direction: column;

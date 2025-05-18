@@ -20,6 +20,8 @@ import TimeValorantBlue from "./Components/TimeValorantBlue";
 import TimeValorantPurple from "./Components/TimeValorantPurple";
 import TimeValorantWhite from "./Components/TimeValorantWhite";
 import ConsultaHorasPAE from "./Components/ConsultaHorasPAE";
+import CapitaoInterface from "./Components/CapitaoInterface";
+import PainelUsuario from "./Components/PainelUsuario";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
 
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/times" element={<Times />} />
+        <Route path="/capitao" element={<CapitaoInterface />} />
+        <Route path="/painelUsuario" element={<PainelUsuario />} />
         <Route path="/campeonatos" element={<Campeonato />} />
         <Route path="/contato" element={<Contato />} />
         <Route path="/admin" element={<AdminInterface />} />

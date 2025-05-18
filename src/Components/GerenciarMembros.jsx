@@ -344,7 +344,7 @@ const GerenciarMembros = () => {
               />
             </div>            <div className="modal-actions">
               <button
-                className="save-button"
+                className="salvar-button"
                 onClick={() => handleSaveMember(currentMember)}
               >
                 SALVAR
