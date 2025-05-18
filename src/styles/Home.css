@@ -51,9 +51,13 @@ h1, .stat-number, .inscrever-button, .times-button, .navigation a {
   max-width: 800px;
 }
 
-.hero-content h1 {
-  font-size: 50px;
-  margin-left: 7%;
+h1 .bemvindo {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  font-family: 'Jersey 25', sans-serif;
+  color: #01CCFE;
+  text-shadow: 0 0 15px rgba(1, 204, 254, 0.6);
+  letter-spacing: 3px;
 }
 
 .hero-content p {

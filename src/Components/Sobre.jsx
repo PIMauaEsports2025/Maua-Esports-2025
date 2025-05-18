@@ -73,8 +73,7 @@ function Sobre() {
             Valorizamos o trabalho em equipe, a disciplina nos treinos e
             competições, e promovemos a inclusão e o respeito entre os membros.
             Acreditamos na competitividade saudável e no desenvolvimento
-            contínuo, buscando sempre melhorar, tanto como jogadores quanto como
-            indivíduos.
+            contínuo.
           </p>
         </div>
       </section>

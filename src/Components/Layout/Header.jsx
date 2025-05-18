@@ -43,6 +43,12 @@ const Header = () => {
             <Link to="/contato">Contato</Link>
           </li>
           <li>
+            <Link to="/capitao">Capitao</Link>
+          </li>
+          <li>
+            <Link to="/painelUsuario">ususario</Link>
+          </li>
+          <li>
             <div className="auth-links">
               <Link to="/login" className="login-btn">
                 Login

@@ -109,7 +109,7 @@ const Home = () => {
         style={{ backgroundImage: `url(${heroBanner})` }}
       >
         <div className="hero-content">
-          <h1>BEM-VINDO</h1>
+          <h1 className="bemvindo">BEM-VINDO</h1>
           <p>
             O Mauá e-Sports é a equipe de esportes eletrônicos do Instituto Mauá
             de Tecnologia (IMT), representando a instituição em competições
