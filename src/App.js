@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
 import Contato from "./Components/Contato";
-import LoginRegister from "./Components/LoginRegister";
 import AdminInterface from "./Components/AdminInterface";
 import Sobre from "./Components/Sobre";
 import Times from "./Components/Times";
@@ -22,15 +21,18 @@ import TimeValorantWhite from "./Components/TimeValorantWhite";
 import ConsultaHorasPAE from "./Components/ConsultaHorasPAE";
 import CapitaoInterface from "./Components/CapitaoInterface";
 import PainelUsuario from "./Components/PainelUsuario";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginRegister />} />
         <Route path="/gerenciar-membros" element={<GerenciarMembros />} />
-        <Route path="/gerenciar-modalidades" element={<GerenciarModalidades />} />
+        <Route
+          path="/gerenciar-modalidades"
+          element={<GerenciarModalidades />}
+        />
         <Route path="/gerenciar-treinos" element={<GerenciarTreinos />} />
 
         <Route path="/sobre" element={<Sobre />} />
@@ -39,7 +41,14 @@ function App() {
         <Route path="/painelUsuario" element={<PainelUsuario />} />
         <Route path="/campeonatos" element={<Campeonato />} />
         <Route path="/contato" element={<Contato />} />
-        <Route path="/admin" element={<AdminInterface />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminInterface />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/time-cs" element={<TimeCs />} />
         <Route path="/time-ea-fc" element={<TimeEaFc />} />
         <Route path="/time-league-of-legends" element={<TimeLol />} />

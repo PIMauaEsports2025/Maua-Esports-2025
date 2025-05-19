@@ -5,7 +5,7 @@ import { CiLogin } from "react-icons/ci";
 import mauaLogo from "../../assets/ui/maua-branco.png";
 import "../../styles/Layout/Header.css";
 
-const Header = () => {
+const Header = ({ onLoginClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -50,10 +50,13 @@ const Header = () => {
           </li>
           <li>
             <div className="auth-links">
-              <Link to="/login" className="login-btn">
+              <button
+                className="login-btn"
+                onClick={onLoginClick}
+              >
                 Login
                 <CiLogin className="login-icon" />
-              </Link>
+              </button>
               <Link to="/admin">
                 <button className="times-button">Painel Admin</button>
               </Link>

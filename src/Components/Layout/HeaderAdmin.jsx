@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useMsal, useAccount } from "@azure/msal-react";
 import { useNavigate } from "react-router-dom";
 import { FaUserCog, FaSignOutAlt } from "react-icons/fa";
 import "../../styles/Layout/HeaderAdmin.css";
@@ -7,13 +8,22 @@ const HeaderAdmin = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const { instance, accounts } = useMsal();
+  const account = useAccount(accounts[0] || null);
+
+  useEffect(() => {
+    if (account && account.username && !account.username.endsWith("@maua.br")) {
+      alert("Apenas contas @maua.br podem acessar.");
+      instance.logoutRedirect();
+    }
+  }, [account, instance]);
 
   const handleEditProfile = () => {
     alert("Editar perfil clicado");
   };
 
   const handleLogout = () => {
-    alert("Sair da conta clicado");
+    instance.logoutRedirect();
   };
 
   const handleVoltar = () => {
@@ -43,7 +53,7 @@ const HeaderAdmin = () => {
           className="user-section"
           onClick={() => setIsDropdownOpen((prev) => !prev)}
         >
-          <span>Bem vindo, Mateus Martins</span>
+          <span>Bem vindo, {account.name || account.username}</span>
           <span className="dropdown">▼</span>
         </div>
 

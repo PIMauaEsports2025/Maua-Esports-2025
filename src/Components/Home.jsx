@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Home.css";
+import { useMsal } from "@azure/msal-react";
+import { loginRequest } from "../authConfig.js";
+import { useNavigate } from "react-router-dom";
 import { FaMedal, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import heroBanner from "../assets/ui/HeroBanner.jpg";
 import { IoGameController } from "react-icons/io5";
@@ -16,6 +19,24 @@ import Footer from "./Layout/Footer.jsx";
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { instance } = useMsal();
+  const navigate = useNavigate();
+  const [loginError, setLoginError] = useState("");
+
+  const handleMicrosoftLogin = async () => {
+    try {
+      const response = await instance.loginPopup(loginRequest);
+      const account = response.account;
+
+      localStorage.setItem("token", response.idToken);
+      localStorage.setItem("userEmail", account.username);
+
+      navigate("/admin");
+    } catch (error) {
+      console.error("Erro ao fazer login com Microsoft:", error);
+      setLoginError("Erro ao fazer login com Microsoft. Por favor, tente novamente.");
+    }
+  };
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -102,7 +123,9 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Header />
+      <Header
+        onLoginClick={handleMicrosoftLogin}
+      />
 
       <main
         className="hero-section"
@@ -120,6 +143,7 @@ const Home = () => {
             <button className="inscrever-button">SOBRE NÓS</button>
             <button className="times-button">TIMES</button>
           </div>
+          {loginError && <div className="error-message">{loginError}</div>}
         </div>
       </main>
 
@@ -137,31 +161,31 @@ const Home = () => {
         </div>
       </section>
 
-        <div className="quem-somos-conteudo">
-          <h2 className="quem-somos-titulo">QUEM SOMOS</h2>
-          <p className="quem-somos-texto">
-            O <strong>Mauá e-Sports</strong> é uma comunidade universitária
-            apaixonada por <strong>jogos eletrônicos</strong>,{" "}
-            <strong>inovação</strong> e <strong>competitividade</strong>.
-            Fundado em 2018, começamos como um grupo de amigos com um sonho em
-            comum: colocar o nome da Mauá no cenário dos e-sports.
-          </p>
-          <p className="quem-somos-texto">
-            Hoje, somos uma organização com presença regional, diversas{" "}
-            <strong>modalidades ativas</strong> e uma base sólida de jogadores,
-            staffs e entusiastas.
-          </p>
-          <p className="quem-somos-texto">
-            Valorizamos o <strong>crescimento pessoal</strong>, o{" "}
-            <strong>trabalho em equipe</strong> e o desenvolvimento de{" "}
-            <strong>habilidades técnicas e emocionais</strong>. Para nós,
-            e-sports é mais do que jogo, é{" "}
-            <strong>formação e transformação</strong>. Seja como atleta, staff,
-            analista ou criador de conteúdo, cada membro ajuda a construir algo
-            maior. Mais do que um time, somos uma{" "}
-            <strong>família que joga, aprende e cresce junto</strong>.
-          </p>
-        </div>
+      <div className="quem-somos-conteudo">
+        <h2 className="quem-somos-titulo">QUEM SOMOS</h2>
+        <p className="quem-somos-texto">
+          O <strong>Mauá e-Sports</strong> é uma comunidade universitária
+          apaixonada por <strong>jogos eletrônicos</strong>,{" "}
+          <strong>inovação</strong> e <strong>competitividade</strong>.
+          Fundado em 2018, começamos como um grupo de amigos com um sonho em
+          comum: colocar o nome da Mauá no cenário dos e-sports.
+        </p>
+        <p className="quem-somos-texto">
+          Hoje, somos uma organização com presença regional, diversas{" "}
+          <strong>modalidades ativas</strong> e uma base sólida de jogadores,
+          staffs e entusiastas.
+        </p>
+        <p className="quem-somos-texto">
+          Valorizamos o <strong>crescimento pessoal</strong>, o{" "}
+          <strong>trabalho em equipe</strong> e o desenvolvimento de{" "}
+          <strong>habilidades técnicas e emocionais</strong>. Para nós,
+          e-sports é mais do que jogo, é{" "}
+          <strong>formação e transformação</strong>. Seja como atleta, staff,
+          analista ou criador de conteúdo, cada membro ajuda a construir algo
+          maior. Mais do que um time, somos uma{" "}
+          <strong>família que joga, aprende e cresce junto</strong>.
+        </p>
+      </div>
 
       <section className="features-hobbie">
         <div className="feature-card">
@@ -248,32 +272,31 @@ const Home = () => {
       </section>
 
       <section className="depoimentos">
-  <h2 className="depoimentos-titulo">DEPOIMENTOS</h2>
-  <p className="depoimentos-descricao">
-    Conheça histórias reais de quem fez parte do Mauá E-Sports.
-  </p>
-  <div className="depoimentos-conteudo">
-    <div className="depoimento">
-      <p className="depoimento-texto">
-        “Fundar o Mauá E-Sports foi um dos maiores desafios da minha vida
-        universitária. Ver a equipe crescer e conquistar respeito no
-        cenário foi gratificante.”
-      </p>
-      <h3 className="depoimento-autor">Leonardo Stubber</h3>
-      <span className="depoimento-cargo">Presidente</span>
-    </div>
-    <div className="depoimento">
-      <p className="depoimento-texto">
-        “Ter liderado o time feminino em campeonatos nacionais me ensinou
-        mais sobre trabalho em equipe do que qualquer sala de aula. Mauá
-        E-Sports mudou minha trajetória.”
-      </p>
-      <h3 className="depoimento-autor">Carol Emoto</h3>
-      <span className="depoimento-cargo">Vice-Presidente</span>
-    </div>
-  </div>
-</section>
-
+        <h2 className="depoimentos-titulo">DEPOIMENTOS</h2>
+        <p className="depoimentos-descricao">
+          Conheça histórias reais de quem fez parte do Mauá E-Sports.
+        </p>
+        <div className="depoimentos-conteudo">
+          <div className="depoimento">
+            <p className="depoimento-texto">
+              “Fundar o Mauá E-Sports foi um dos maiores desafios da minha vida
+              universitária. Ver a equipe crescer e conquistar respeito no
+              cenário foi gratificante.”
+            </p>
+            <h3 className="depoimento-autor">Leonardo Stubber</h3>
+            <span className="depoimento-cargo">Presidente</span>
+          </div>
+          <div className="depoimento">
+            <p className="depoimento-texto">
+              “Ter liderado o time feminino em campeonatos nacionais me ensinou
+              mais sobre trabalho em equipe do que qualquer sala de aula. Mauá
+              E-Sports mudou minha trajetória.”
+            </p>
+            <h3 className="depoimento-autor">Carol Emoto</h3>
+            <span className="depoimento-cargo">Vice-Presidente</span>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
