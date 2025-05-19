@@ -20,6 +20,9 @@ import TimeValorantBlue from "./Components/TimeValorantBlue";
 import TimeValorantPurple from "./Components/TimeValorantPurple";
 import TimeValorantWhite from "./Components/TimeValorantWhite";
 import ConsultaHorasPAE from "./Components/ConsultaHorasPAE";
+import CaptainInterface from "./Components/CaptainInterface";
+import ConsultaHorasEquipe from "./Components/ConsultaHorasEquipe";
+import GerenciarTreinosEquipe from "./Components/GerenciarTreinosEquipe";
 
 function App() {
   return (
@@ -30,7 +33,10 @@ function App() {
         <Route path="/gerenciar-membros" element={<GerenciarMembros />} />
         <Route path="/gerenciar-modalidades" element={<GerenciarModalidades />} />
         <Route path="/gerenciar-treinos" element={<GerenciarTreinos />} />
-
+        <Route path="/captain-interface" element={<CaptainInterface />} />
+        <Route path="/consultar-horas-equipe" element={<ConsultaHorasEquipe />} />
+        <Route path="/gerenciar-treinos-equipe" element={<GerenciarTreinosEquipe />} />
+        
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/times" element={<Times />} />
         <Route path="/campeonatos" element={<Campeonato />} />

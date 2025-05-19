@@ -75,7 +75,7 @@ const LoginRegister = () => {
         localStorage.setItem("userRole", "captain");
         setTimeout(() => {
           setIsLoading(false);
-          window.location.href = "/admin";
+          window.location.href = "/captain-interface";
         }, 1000);
         return;
       } else if (username === "member" && password === "member") {

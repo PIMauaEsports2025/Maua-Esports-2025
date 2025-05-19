@@ -8,10 +8,50 @@ const MOCK_MEMBERS = [
     discordId: "000000000000000001",
     email: "24.01193-2@maua.br",
     name: "Lucas Silva",
-    role: "admin",
+    role: "captain",
     password: "hashed_password",
     modality: "Counter-Strike: Global Offensive A",
     paeHours: 15
+  },
+  {
+    _id: '6',
+    discordId: "000000000000000006",
+    email: "24.01529-3@maua.br",
+    name: "Carlos Santos",
+    role: "member",
+    password: "hashed_password",
+    modality: "Counter-Strike: Global Offensive A",
+    paeHours: 22
+  },
+  {
+    _id: '7',
+    discordId: "000000000000000007",
+    email: "24.01234-5@maua.br",
+    name: "Felipe Andrade",
+    role: "member",
+    password: "hashed_password",
+    modality: "Counter-Strike: Global Offensive A",
+    paeHours: 18
+  },
+  {
+    _id: '8',
+    discordId: "000000000000000008",
+    email: "24.01456-7@maua.br",
+    name: "Gabriela Souza",
+    role: "member",
+    password: "hashed_password",
+    modality: "Counter-Strike: Global Offensive A",
+    paeHours: 20
+  },
+  {
+    _id: '9',
+    discordId: "000000000000000009",
+    email: "24.01678-9@maua.br",
+    name: "Henrique Lima",
+    role: "member",
+    password: "hashed_password",
+    modality: "Counter-Strike: Global Offensive A",
+    paeHours: 25
   },
   {
     _id: '2',
