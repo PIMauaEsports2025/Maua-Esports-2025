@@ -11,19 +11,44 @@ import {
   FaCalendarAlt,
   FaChevronRight,
 } from "react-icons/fa";
+import { useMsal, useAccount } from "@azure/msal-react";
 import Footer from "./Layout/Footer";
 
 const AdminInterface = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const { instance, accounts } = useMsal();
+  const account = useAccount(accounts[0] || null);
+
+  // Verifica se o usuário está autenticado
+  useEffect(() => {
+    if (!account) {
+      // Se não estiver autenticado, redireciona para login
+      navigate("/login");
+    }
+  }, [account, navigate]);
 
   const handleEditProfile = () => {
     alert("Editar perfil clicado");
   };
 
-  const handleLogout = () => {
-    alert("Sair da conta clicado");
+  const handleLogout = async () => {
+    try {
+      await instance.logoutPopup({
+        postLogoutRedirectUri: "http://localhost:3000",
+        mainWindowRedirectUri: "http://localhost:3000"
+      });
+      
+      // Limpa o localStorage
+      localStorage.removeItem("token");
+      localStorage.removeItem("userEmail");
+      
+      // Redireciona para a página inicial
+      navigate("/");
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
   };
 
   // Handles navigation to different sections
@@ -42,6 +67,11 @@ const AdminInterface = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Se não há conta (não autenticado), retorna null (será redirecionado pelo useEffect)
+  if (!account) {
+    return null;
+  }
+
   return (
     <div className="admin-container">
       <header className="top-header">
@@ -56,7 +86,7 @@ const AdminInterface = () => {
             className="user-section"
             onClick={() => setIsDropdownOpen((prev) => !prev)}
           >
-            <span>Bem vindo, Mateus Martins</span>
+            <span>Bem vindo, {account.name || account.username}</span>
             <span className="dropdown">▼</span>
           </div>
 
