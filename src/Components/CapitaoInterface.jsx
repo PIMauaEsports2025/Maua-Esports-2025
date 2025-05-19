@@ -47,7 +47,7 @@ const CapitaoInterface = ({ user }) => {
 
                     <button
                         className="main-button"
-                        onClick={() => navigate("/capitao/treinos")}
+                        onClick={() => navigate("/capitao/treinos-equipe")}
                     >
                         <FaCalendarAlt />
                         <span className="button-text">TREINOS</span>

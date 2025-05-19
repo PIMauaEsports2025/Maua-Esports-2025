@@ -1,0 +1,299 @@
+/* Base Layout */
+.consulta-equipe-page {
+  background-color: #0B060F;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content styling */
+.consulta-equipe-main {
+  flex: 1;
+  padding: 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.title-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title-section h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #01CCFE;
+  font-family: "Jersey 25", sans-serif;
+  margin-bottom: 10px;
+}
+
+.team-info {
+  font-size: 1.1rem;
+  color: #e6edf3;
+  opacity: 0.8;
+}
+
+/* Search and filter */
+.search-filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 8px 15px;
+  flex-grow: 1;
+  max-width: 400px;
+}
+
+.search-icon {
+  color: #8b949e;
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.search-box input::placeholder {
+  color: #8b949e;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #01CCFE;
+  color: #0D1117;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.filter-button:hover {
+  background-color: #33d6ff;
+  transform: translateY(-2px);
+}
+
+/* Filters panel */
+.filters-panel {
+  background-color: rgba(13, 17, 23, 0.8);
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid rgba(1, 204, 254, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-option {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter-option label {
+  font-size: 0.8rem;
+  color: #8b949e;
+}
+
+.filter-option select {
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(1, 204, 254, 0.3);
+  border-radius: 4px;
+  outline: none;
+  min-width: 140px;
+}
+
+/* Team members grid */
+.team-members-container {
+  margin-bottom: 30px;
+}
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.member-card {
+  background-color: rgba(13, 17, 23, 0.8);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  border: 1px solid rgba(1, 204, 254, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(1, 204, 254, 0.3);
+  border-color: rgba(1, 204, 254, 0.5);
+}
+
+.member-avatar {
+  background-color: rgba(1, 204, 254, 0.1);
+  color: #01CCFE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  font-size: 3rem;
+}
+
+.member-info {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.member-name {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #e6edf3;
+}
+
+.member-email {
+  font-size: 0.9rem;
+  color: #8b949e;
+  margin-bottom: 10px;
+}
+
+.member-hours {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hours-icon {
+  color: #01CCFE;
+}
+
+.hours-value {
+  font-weight: 600;
+  color: #01CCFE;
+}
+
+/* Summary panel */
+.summary-panel {
+  background-color: rgba(13, 17, 23, 0.8);
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid rgba(1, 204, 254, 0.3);
+  margin-bottom: 30px;
+}
+
+.summary-panel h3 {
+  margin-bottom: 15px;
+  color: #01CCFE;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.summary-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.stat-item {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #8b949e;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e6edf3;
+}
+
+/* Loading and error states */
+.loading, .error-message, .no-results {
+  text-align: center;
+  padding: 40px;
+  font-size: 1rem;
+}
+
+.error-message {
+  color: #f85149;
+  background-color: rgba(248, 81, 73, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .consulta-equipe-main {
+    padding: 15px;
+  }
+  
+  .search-filter-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-box {
+    max-width: none;
+  }
+  
+  .filters-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .members-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .summary-stats {
+    grid-template-columns: 1fr;
+  }
+}

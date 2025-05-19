@@ -30,8 +30,7 @@ const GerenciarMembros = () => {
     role: "member",
     modality: "",
     paeHours: 0
-  });
-  // Fetch members from API
+  });  // Fetch members from API
   useEffect(() => {
     const loadMembers = async () => {
       try {
@@ -39,6 +38,7 @@ const GerenciarMembros = () => {
         const data = await fetchMembers();
         setMembers(data);
         setError(null);
+        console.log("Membros carregados do MongoDB:", data);
       } catch (err) {
         console.error("Erro ao carregar membros:", err);
         setError(
