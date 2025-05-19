@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../styles/LoginRegister.css";
 import { FaUser, FaLock, FaEnvelope, FaEye, FaEyeSlash } from "react-icons/fa";
+import { useMsal, useAccount } from "@azure/msal-react";
+import { loginRequest } from "../authConfig";
 
 const LoginRegister = () => {
   const [active, setActive] = useState("login");
@@ -11,6 +13,23 @@ const LoginRegister = () => {
   const [loginError, setLoginError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [registrationError, setRegistrationError] = useState("");
+  const { instance, accounts } = useMsal();
+  const account = useAccount(accounts[0] || null);
+
+  const handleMicrosoftLogin = async () => {
+    try {
+      const response = await instance.loginPopup(loginRequest);
+      const account = response.account;
+
+      localStorage.setItem("token", response.idToken);
+      localStorage.setItem("userEmail", account.username);
+
+      window.location.href = "/admin";
+    } catch (error) {
+      console.error("Erro ao fazer login com Microsoft:", error);
+      setLoginError("Erro ao fazer login com Microsoft. Por favor, tente novamente.");
+    }
+  };
 
   const getWrapperClass = () => {
     if (active === "register") return "wrapper active";
@@ -133,7 +152,6 @@ const LoginRegister = () => {
       setTimeout(() => {
         setIsLoading(false);
         setActive("login");
-        // Mostrar alguma mensagem de sucesso
       }, 1000);
     } catch (error) {
       console.error("Erro no registro:", error);
@@ -158,6 +176,12 @@ const LoginRegister = () => {
         <div className={`form-box login ${active === "login" ? "active" : ""}`}>
           <form onSubmit={handleLogin}>
             <h1>LOGIN</h1>
+
+            {account && (
+              <div className="user-info">
+                <p>Bem vindo, {account.name} ({account.username})</p>
+              </div>
+            )}
 
             {loginError && <div className="error-message">{loginError}</div>}
 
@@ -216,7 +240,11 @@ const LoginRegister = () => {
               </div>
 
               <div className="auth-buttons">
-                <button type="button" className="auth-button microsoft">
+                <button 
+                  type="button" 
+                  className="auth-button microsoft"
+                  onClick={handleMicrosoftLogin}
+                >
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
                     alt="Microsoft logo"
