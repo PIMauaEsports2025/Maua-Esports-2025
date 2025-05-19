@@ -92,9 +92,6 @@ const AdminInterface = () => {
 
           {isDropdownOpen && (
             <div className="dropdown-menu">
-              <button onClick={handleEditProfile}>
-                <FaUserCog /> Editar Perfil
-              </button>
               <button onClick={handleLogout}>
                 <FaSignOutAlt /> Sair da Conta
               </button>

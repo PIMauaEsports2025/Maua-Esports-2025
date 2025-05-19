@@ -45,8 +45,9 @@ const Header = ({ onLoginClick }) => {
           <li>
             <Link to="/capitao">Capitao</Link>
           </li>
+          {/* LINKS TEMPORÁRIOS PARA REALIZAR ALTERÇÕES NO FRONT-END E DEPOIS ALTERAMOS O BACK-END */}
           <li>
-            <Link to="/painelUsuario">ususario</Link>
+            <Link to="/painelUsuario">Usuário</Link>
           </li>
           <li>
             <div className="auth-links">
@@ -57,9 +58,6 @@ const Header = ({ onLoginClick }) => {
                 Login
                 <CiLogin className="login-icon" />
               </button>
-              <Link to="/admin">
-                <button className="times-button">Painel Admin</button>
-              </Link>
             </div>
           </li>
         </ul>
