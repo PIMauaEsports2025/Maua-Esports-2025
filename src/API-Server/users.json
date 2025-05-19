@@ -1,0 +1,185 @@
+{
+    "users": [
+      {
+        "_id": "1",
+        "email": "24.00630-0@maua.br",
+        "discordId": "000000000000000001",
+        "name": "Gustavo Seripierri",
+        "role": "admin",
+        "modality": "Counter-Strike: Global Offensive A",
+        "paeHours": 15
+      },
+      {
+        "_id": "2",
+        "email": "24.01496-6@maua.br",
+        "discordId": "000000000000000002",
+        "name": "Breno Augusto",
+        "role": "admin",
+        "modality": "Valorant Misto Blue",
+        "paeHours": 12
+      },
+      {
+        "_id": "3",
+        "email": "24.00141-4@maua.br",
+        "discordId": "000000000000000003",
+        "name": "Leticia Carvalho",
+        "role": "admin",
+        "modality": "League of Legends A",
+        "paeHours": 10
+      },
+      {
+        "_id": "4",
+        "email": "24.01193-2@maua.br",
+        "discordId": "000000000000000004",
+        "name": "Lyssa Okawa",
+        "role": "admin",
+        "modality": "EA SPORTS FC™ 25",
+        "paeHours": 18
+      },
+      {
+        "_id": "5",
+        "email": "24.00567-8@maua.br",
+        "discordId": "000000000000000005",
+        "name": "Gabriel Santos",
+        "role": "captain",
+        "modality": "Valorant Feminino",
+        "paeHours": 15
+      },
+      {
+        "_id": "6",
+        "email": "24.00892-3@maua.br",
+        "discordId": "000000000000000006",
+        "name": "Mariana Costa",
+        "role": "member",
+        "modality": "Rocket League",
+        "paeHours": 7
+      },
+      {
+        "_id": "7",
+        "email": "24.01233-4@maua.br",
+        "discordId": "000000000000000007",
+        "name": "Ricardo Oliveira",
+        "role": "captain",
+        "modality": "Counter-Strike: Global Offensive A",
+        "paeHours": 22
+      },
+      {
+        "_id": "8",
+        "email": "24.00782-1@maua.br",
+        "discordId": "000000000000000008",
+        "name": "Julia Ferreira",
+        "role": "member",
+        "modality": "Valorant Misto Blue",
+        "paeHours": 9
+      },
+      {
+        "_id": "9",
+        "email": "24.00653-9@maua.br",
+        "discordId": "000000000000000009",
+        "name": "Felipe Martins",
+        "role": "captain",
+        "modality": "Valorant Misto Black",
+        "paeHours": 18
+      },
+      {
+        "_id": "10",
+        "email": "24.00444-5@maua.br",
+        "discordId": "000000000000000010",
+        "name": "Carolina Silva",
+        "role": "member",
+        "modality": "League of Legends A",
+        "paeHours": 12
+      },
+      {
+        "_id": "11",
+        "email": "24.00987-6@maua.br",
+        "discordId": "000000000000000011",
+        "name": "Bruno Almeida",
+        "role": "member",
+        "modality": "Counter-Strike: Global Offensive B",
+        "paeHours": 5
+      },
+      {
+        "_id": "12",
+        "email": "24.01345-7@maua.br",
+        "discordId": "000000000000000012",
+        "name": "Tatiane Souza",
+        "role": "captain",
+        "modality": "Rainbow Six",
+        "paeHours": 20
+      },
+      {
+        "_id": "13",
+        "email": "24.00234-3@maua.br",
+        "discordId": "000000000000000013",
+        "name": "Lucas Pereira",
+        "role": "member",
+        "modality": "Rainbow Six Academy",
+        "paeHours": 8
+      },
+      {
+        "_id": "14",
+        "email": "24.01098-5@maua.br",
+        "discordId": "000000000000000014",
+        "name": "Amanda Costa",
+        "role": "member",
+        "modality": "Teamfight Tactics",
+        "paeHours": 10
+      },
+      {
+        "_id": "15",
+        "email": "24.00765-2@maua.br",
+        "discordId": "000000000000000015",
+        "name": "Rafael Nunes",
+        "role": "captain",
+        "modality": "EA SPORTS FC™ 25",
+        "paeHours": 16
+      },
+      {
+        "_id": "16",
+        "email": "24.01432-8@maua.br",
+        "discordId": "000000000000000016",
+        "name": "Fernanda Santos",
+        "role": "member",
+        "modality": "League of Legends B",
+        "paeHours": 9
+      },
+      {
+        "_id": "17",
+        "email": "24.00559-4@maua.br",
+        "discordId": "000000000000000017",
+        "name": "Daniel Rocha",
+        "role": "captain",
+        "modality": "Teamfight Tactics B",
+        "paeHours": 17
+      },
+      {
+        "_id": "18",
+        "email": "24.00676-5@maua.br",
+        "discordId": "000000000000000018",
+        "name": "Camila Oliveira",
+        "role": "member",
+        "modality": "Valorant Feminino",
+        "paeHours": 6
+      },
+      {
+        "_id": "19",
+        "email": "24.01276-9@maua.br",
+        "discordId": "000000000000000019",
+        "name": "Eduardo Lima",
+        "role": "member",
+        "modality": "Rocket League",
+        "paeHours": 11
+      },
+      {
+        "_id": "20",
+        "email": "24.00823-7@maua.br",
+        "discordId": "000000000000000020",
+        "name": "Beatriz Gonçalves",
+        "role": "admin",
+        "modality": "Counter-Strike: Global Offensive A",
+        "paeHours": 25
+      }
+    ],
+    "lastUpdate": "2023-11-14T16:30:00.000Z"
+  }
