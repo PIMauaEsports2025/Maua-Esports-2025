@@ -55,9 +55,8 @@ function Times() {
       <div className="teams-hero">
         <div className="hero-content">
           <h1>NOSSAS EQUIPES</h1>
-          <p className="hero-text">
-            A elite dos games universitários representando o Instituto Mauá de Tecnologia
-          </p>
+            A elite dos games universitários representa o Instituto Mauá com talento, estratégia e paixão. 
+            Mais que jogadores, somos um time unido que leva o nome Mauá ao topo dos eSports!
         </div>
       </div>
       
@@ -101,30 +100,6 @@ function Times() {
               </div>
             </Link>
           ))}
-        </div>
-      </section>
-      
-      <section className="teams-values">
-        <div className="values-content">
-          <h2>NOSSOS VALORES</h2>
-          <div className="values-grid">
-            <div className="value-item">
-              <h3>Excelência</h3>
-              <p>Buscamos sempre o melhor desempenho em tudo o que fazemos</p>
-            </div>
-            <div className="value-item">
-              <h3>Trabalho em Equipe</h3>
-              <p>Acreditamos na força da colaboração e apoio mútuo</p>
-            </div>
-            <div className="value-item">
-              <h3>Disciplina</h3>
-              <p>Comprometimento com treinamentos e melhorias constantes</p>
-            </div>
-            <div className="value-item">
-              <h3>Inclusão</h3>
-              <p>Valorizamos a diversidade e oportunidades iguais para todos</p>
-            </div>
-          </div>
         </div>
       </section>
       

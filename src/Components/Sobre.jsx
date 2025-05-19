@@ -79,7 +79,6 @@ function Sobre() {
       </section>
 
       <section className="premios-section">
-        <h2 className="premios-title">Conquistas</h2>
         <div className="premios-container">
           {[
             {

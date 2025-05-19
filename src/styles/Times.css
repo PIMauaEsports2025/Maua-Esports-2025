@@ -1,23 +1,18 @@
-.times-container {
-  background-color: #0B060F;
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   min-height: 100vh;
-  color: white;
+  overflow-x: hidden;
 }
 
-/* Hero Section */
 .teams-hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(11, 6, 15, 0.9)), 
-              url("../assets/ui/TeamGamer.jpg") no-repeat center center;
-  background-size: cover;
-  background-position: center top;
-  background-attachment: fixed;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding-top: 190px;
+  padding-bottom: 50px;
+  margin: 0 auto;
+  background-color: #0101015d;
+  font-size: 15px;
   position: relative;
-  overflow: hidden;
-  padding: 0 20px;
 }
 
 .teams-hero::after {
@@ -31,25 +26,19 @@
 }
 
 .hero-content {
-  text-align: center;
-  max-width: 800px;
-  z-index: 1;
+  text-align: left;
+  padding-right: 6%;
+  margin-left: 6%;
 }
 
 .hero-content h1 {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-  font-family: 'Jersey 25', sans-serif;
-  color: #01CCFE;
-  text-shadow: 0 0 15px rgba(1, 204, 254, 0.6);
-  letter-spacing: 3px;
+  font-size: 45px;
+  margin-bottom: 2rem;
+  color: #00CDFF;
+  font-family: "Jersey 25", sans-serif;
+  position: relative;
 }
 
-.hero-text {
-  font-size: 1.3rem;
-  line-height: 1.6;
-  color: #fff;
-}
 
 /* Teams Description */
 .teams-description {
@@ -84,11 +73,10 @@
 /* Teams Grid */
 .teams-grid-section {
   padding: 60px 20px;
-  background-color: #040D1D;
 }
 
 .section-title {
-  text-align: center;
+  text-align: left;
   font-size: 2.2rem;
   color: #01CCFE;
   margin-bottom: 40px;
