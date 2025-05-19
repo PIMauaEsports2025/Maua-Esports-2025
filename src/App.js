@@ -22,6 +22,8 @@ import ConsultaHorasPAE from "./Components/ConsultaHorasPAE";
 import CapitaoInterface from "./Components/CapitaoInterface";
 import PainelUsuario from "./Components/PainelUsuario";
 import ProtectedRoute from "./ProtectedRoute";
+import ConsultaHorasEquipe from "./Components/ConsultaHorasEquipe";
+import GerenciarTreinosEquipe from "./Components/GerenciarTreinosEquipe";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/times" element={<Times />} />
         <Route path="/capitao" element={<CapitaoInterface />} />
+        <Route path="/capitao/horas-pae" element={<ConsultaHorasEquipe />} />
+        <Route path="/capitao/treinos-equipe" element={<GerenciarTreinosEquipe />} />
         <Route path="/painelUsuario" element={<PainelUsuario />} />
         <Route path="/campeonatos" element={<Campeonato />} />
         <Route path="/contato" element={<Contato />} />

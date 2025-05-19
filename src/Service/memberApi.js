@@ -1,79 +1,16 @@
 // API client for members management
-import { API_URL, getHeaders } from './api';
+import axios from 'axios';
 
-// Mock member data structure based on the User model in models.js
-const MOCK_MEMBERS = [
-  {
-    _id: '1',
-    discordId: "000000000000000001",
-    email: "24.01193-2@maua.br",
-    name: "Lucas Silva",
-    role: "admin",
-    password: "hashed_password",
-    modality: "Counter-Strike: Global Offensive A",
-    paeHours: 15
-  },
-  {
-    _id: '2',
-    discordId: "000000000000000002",
-    email: "24.00981-4@maua.br",
-    name: "Maria Oliveira",
-    role: "member",
-    password: "hashed_password",
-    modality: "League of Legends A",
-    paeHours: 8
-  },
-  {
-    _id: '3',
-    discordId: "000000000000000003",
-    email: "24.01567-9@maua.br",
-    name: "João Pereira",
-    role: "member",
-    password: "hashed_password",
-    modality: "Valorant Feminino",
-    paeHours: 12
-  },
-  {
-    _id: '4',
-    discordId: "000000000000000003",
-    email: "24.00345-1@maua.br",
-    name: "Ana Costa",
-    role: "captain",
-    password: "hashed_password",
-    modality: "Teamfight Tactics B",
-    paeHours: 20
-  },
-  {
-    _id: '5',
-    discordId: "000000000000000004",
-    email: "24.00759-7@maua.br",
-    name: "Pedro Rocha",
-    role: "captain",
-    password: "hashed_password",
-    modality: "Rainbow Six",
-    paeHours: 18
-  }
-];
+// API Base URL (servidor backend)
+const API_BASE_URL = 'http://localhost:5000/api';
 
 // Fetch all members
 export const fetchMembers = async () => {
   try {
-    // In a real application, you'd make an API call here
-    // const response = await fetch(`${API_URL}/members`, {
-    //   headers: getHeaders(),
-    //   mode: 'cors',
-    //   cache: 'no-cache'
-    // });
-    
-    // if (!response.ok) {
-    //   throw new Error(`Error ${response.status}: ${response.statusText}`);
-    // }
-    
-    // return await response.json();
-
-    // For now, return the mock data
-    console.log("Using mock data for members");
-    return MOCK_MEMBERS;
+    // Chamada real para a API
+    const response = await axios.get(`${API_BASE_URL}/users`);
+    console.log("Dados recuperados do MongoDB:", response.data);
+    return response.data;
   } catch (error) {
     console.error('Error fetching members:', error);
     
@@ -81,29 +18,16 @@ export const fetchMembers = async () => {
       window.showNotification('error', 'Failed to load members. Using local data.', 5000);
     }
     
-    return MOCK_MEMBERS;
   }
 };
 
 // Update a member
 export const updateMember = async (id, memberData) => {
   try {
-    // In a real application, you'd make an API call here
-    // const response = await fetch(`${API_URL}/members/${id}`, {
-    //   method: 'PUT',
-    //   headers: getHeaders(),
-    //   body: JSON.stringify(memberData)
-    // });
-    
-    // if (!response.ok) {
-    //   throw new Error(`Error ${response.status}: ${response.statusText}`);
-    // }
-    
-    // return await response.json();
-
-    // Mock update response
-    console.log("Mock updating member:", id, memberData);
-    return memberData;
+    // Chamada real para a API
+    const response = await axios.put(`${API_BASE_URL}/users/${id}`, memberData);
+    console.log("Atualizado com sucesso:", response.data);
+    return response.data;
   } catch (error) {
     console.error('Error updating member:', error);
     throw error;
@@ -113,20 +37,9 @@ export const updateMember = async (id, memberData) => {
 // Delete a member
 export const deleteMember = async (id) => {
   try {
-    // In a real application, you'd make an API call here
-    // const response = await fetch(`${API_URL}/members/${id}`, {
-    //   method: 'DELETE',
-    //   headers: getHeaders()
-    // });
-    
-    // if (!response.ok) {
-    //   throw new Error(`Error ${response.status}: ${response.statusText}`);
-    // }
-    
-    // return await response.json();
-
-    // Mock delete response
-    console.log("Mock deleting member:", id);
+    // Chamada real para a API
+    const response = await axios.delete(`${API_BASE_URL}/users/${id}`);
+    console.log("Excluído com sucesso:", response.data);
     return { success: true };
   } catch (error) {
     console.error('Error deleting member:', error);
@@ -137,25 +50,10 @@ export const deleteMember = async (id) => {
 // Create a new member
 export const createMember = async (memberData) => {
   try {
-    // In a real application, you'd make an API call here
-    // const response = await fetch(`${API_URL}/members`, {
-    //   method: 'POST',
-    //   headers: getHeaders(),
-    //   body: JSON.stringify(memberData)
-    // });
-    
-    // if (!response.ok) {
-    //   throw new Error(`Error ${response.status}: ${response.statusText}`);
-    // }
-    
-    // return await response.json();
-
-    // Mock create response
-    console.log("Mock creating member:", memberData);
-    return {
-      ...memberData,
-      _id: Date.now().toString() // Generate a mock ID
-    };
+    // Chamada real para a API
+    const response = await axios.post(`${API_BASE_URL}/users`, memberData);
+    console.log("Criado com sucesso:", response.data);
+    return response.data;
   } catch (error) {
     console.error('Error creating member:', error);
     throw error;
