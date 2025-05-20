@@ -54,17 +54,24 @@ function TimeCs() {
   return (
     <section className="team-page">
       <Header />
-      
+
       <div className="team-banner">
         <h1>COUNTER STRIKE 2</h1>
         <h2>Equipe CS2</h2>
       </div>
-      
+
       <main className="team-container">
         <div className="team-description">
-          <p>Nossa equipe de Counter-Strike 2 representa a Mauá em diversas competições universitárias, com foco em estratégia, trabalho em equipe e alta performance.</p>
+          <p>
+            O clássico dos jogos de tiro tático em primeira pessoa,
+            Counter-Strike é sinônimo de estratégia, reflexo e trabalho em
+            equipe. Na Mauá E-Sports, formamos equipes que treinam
+            constantemente para competir com excelência em campeonatos
+            universitários e externos, mantendo a frieza nas rodadas decisivas e
+            dominando mapas com inteligência.
+          </p>
         </div>
-        
+
         <div className="player-grid">
           {jogadores.map((jogador, index) => (
             <div className="player-card" key={index}>
@@ -73,7 +80,15 @@ function TimeCs() {
               </div>
               <div className="player-info">
                 <span className="player-fullname">{jogador.nomeCompleto}</span>
-                <span className={`player-role-container ${jogador.funcao === "CAPITÃO" ? "captain" : jogador.funcao === "COACH" ? "coach" : ""}`}>
+                <span
+                  className={`player-role-container ${
+                    jogador.funcao === "CAPITÃO"
+                      ? "captain"
+                      : jogador.funcao === "COACH"
+                      ? "coach"
+                      : ""
+                  }`}
+                >
                   {jogador.funcao}
                 </span>
               </div>
@@ -81,7 +96,7 @@ function TimeCs() {
           ))}
         </div>
       </main>
-      
+
       <Footer />
     </section>
   );

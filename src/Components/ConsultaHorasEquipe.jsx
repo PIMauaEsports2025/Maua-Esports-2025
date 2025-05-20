@@ -18,7 +18,7 @@ const ConsultaHorasEquipe = () => {
   // Simulação de dados do capitão (em uma aplicação real, viria do contexto de autenticação)
   const captainInfo = {
     name: "LEOZIN",
-    modality: "Counter-Strike: Global Offensive A"
+    modality: "Counter-Strike: Global Offensive A",
   };
 
   useEffect(() => {
@@ -26,12 +26,12 @@ const ConsultaHorasEquipe = () => {
       try {
         setLoading(true);
         const allMembers = await fetchMembers();
-        
+
         // Filtra apenas membros da mesma modalidade que o capitão
-        const teamMembers = allMembers.filter(member => 
-          member.modality === captainInfo.modality
+        const teamMembers = allMembers.filter(
+          (member) => member.modality === captainInfo.modality
         );
-        
+
         setMembers(teamMembers);
         setFilteredMembers(teamMembers);
         setError("");
@@ -49,16 +49,17 @@ const ConsultaHorasEquipe = () => {
   useEffect(() => {
     // Aplica filtros e ordenação aos membros
     let results = [...members];
-    
+
     // Aplicar pesquisa
     if (searchTerm) {
-      results = results.filter(member => 
-        member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        member.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        member.discordId?.toLowerCase().includes(searchTerm.toLowerCase())
+      results = results.filter(
+        (member) =>
+          member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          member.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          member.discordId?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-    
+
     // Aplicar ordenação
     results.sort((a, b) => {
       let comparison = 0;
@@ -67,10 +68,10 @@ const ConsultaHorasEquipe = () => {
       } else if (sortBy === "paeHours") {
         comparison = (a.paeHours || 0) - (b.paeHours || 0);
       }
-      
+
       return sortOrder === "asc" ? comparison : -comparison;
     });
-    
+
     setFilteredMembers(results);
   }, [members, searchTerm, sortBy, sortOrder]);
 
@@ -90,13 +91,13 @@ const ConsultaHorasEquipe = () => {
   return (
     <div className="consulta-equipe-page">
       <HeaderAdmin />
-      
+
       <main className="consulta-equipe-main">
         <div className="title-section">
           <h1>HORAS PAE DA EQUIPE</h1>
           <p className="team-info">Modalidade: {captainInfo.modality}</p>
         </div>
-        
+
         <div className="search-filter-container">
           <div className="search-box">
             <FaSearch className="search-icon" />
@@ -107,20 +108,20 @@ const ConsultaHorasEquipe = () => {
               onChange={handleSearch}
             />
           </div>
-          
-          <button 
+
+          <button
             className="filter-button"
             onClick={() => setShowFilters(!showFilters)}
           >
             <FaFilter /> Filtros
           </button>
         </div>
-        
+
         {showFilters && (
           <div className="filters-panel">
             <div className="filter-option">
               <label>Ordenar por:</label>
-              <select 
+              <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
               >
@@ -128,10 +129,10 @@ const ConsultaHorasEquipe = () => {
                 <option value="paeHours">Horas PAE</option>
               </select>
             </div>
-            
+
             <div className="filter-option">
               <label>Ordem:</label>
-              <select 
+              <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
               >
@@ -147,11 +148,9 @@ const ConsultaHorasEquipe = () => {
             <p>Carregando dados dos membros...</p>
           </div>
         )}
-        
-        {error && !loading && (
-          <div className="error-message">{error}</div>
-        )}
-        
+
+        {error && !loading && <div className="error-message">{error}</div>}
+
         {!loading && !error && (
           <div className="team-members-container">
             <div className="members-grid">
@@ -166,7 +165,9 @@ const ConsultaHorasEquipe = () => {
                       <p className="member-email">{member.email}</p>
                       <div className="member-hours">
                         <FaClock className="hours-icon" />
-                        <span className="hours-value">{member.paeHours || 0} horas</span>
+                        <span className="hours-value">
+                          {member.paeHours || 0} horas
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -179,7 +180,7 @@ const ConsultaHorasEquipe = () => {
             </div>
           </div>
         )}
-        
+
         <div className="summary-panel">
           <h3>Resumo da Equipe</h3>
           <div className="summary-stats">
@@ -190,8 +191,13 @@ const ConsultaHorasEquipe = () => {
             <div className="stat-item">
               <span className="stat-label">Média de Horas PAE:</span>
               <span className="stat-value">
-                {filteredMembers.length > 0 
-                  ? (filteredMembers.reduce((sum, m) => sum + (m.paeHours || 0), 0) / filteredMembers.length).toFixed(1)
+                {filteredMembers.length > 0
+                  ? (
+                      filteredMembers.reduce(
+                        (sum, m) => sum + (m.paeHours || 0),
+                        0
+                      ) / filteredMembers.length
+                    ).toFixed(1)
                   : 0}
               </span>
             </div>

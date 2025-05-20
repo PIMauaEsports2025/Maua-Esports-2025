@@ -34,17 +34,22 @@ function TimeTft() {
   return (
     <section className="team-page">
       <Header />
-      
+
       <div className="team-banner">
         <h1>TEAMFIGHT TACTICS</h1>
         <h2>Equipe TFT</h2>
       </div>
-      
+
       <main className="team-container">
         <div className="team-description">
-          <p>Nossa equipe de TFT se destaca nas competições universitárias com jogadores de alta habilidade estratégica e conhecimento profundo das mecânicas do jogo.</p>
+          <p>
+            Raciocínio rápido, adaptação e estratégia de longo prazo são
+            essenciais em Team Fight Tactics. Aqui, nossos jogadores representam
+            a Mauá no estilo “auto chess” da Riot Games, buscando a melhor
+            composição e decisões táticas a cada rodada para alcançar o pódio.
+          </p>
         </div>
-        
+
         <div className="player-grid">
           {jogadores.map((jogador, index) => (
             <div className="player-card" key={index}>
@@ -53,7 +58,17 @@ function TimeTft() {
               </div>
               <div className="player-info">
                 <span className="player-fullname">{jogador.nomeCompleto}</span>
-                <span className={`player-role-container ${jogador.funcao === "CAPITÃO" ? "captain" : jogador.funcao === "CO-CAPITÃO" ? "captain" : jogador.funcao === "COACH" ? "coach" : ""}`}>
+                <span
+                  className={`player-role-container ${
+                    jogador.funcao === "CAPITÃO"
+                      ? "captain"
+                      : jogador.funcao === "CO-CAPITÃO"
+                      ? "captain"
+                      : jogador.funcao === "COACH"
+                      ? "coach"
+                      : ""
+                  }`}
+                >
                   {jogador.funcao}
                 </span>
               </div>
@@ -61,7 +76,7 @@ function TimeTft() {
           ))}
         </div>
       </main>
-      
+
       <Footer />
     </section>
   );

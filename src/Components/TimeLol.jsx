@@ -45,17 +45,23 @@ function TimeLol() {
   return (
     <section className="team-page">
       <Header />
-      
+
       <div className="team-banner">
         <h1>LEAGUE OF LEGENDS</h1>
         <h2>Equipe LoL</h2>
       </div>
-      
+
       <main className="team-container">
         <div className="team-description">
-          <p>Nossa equipe de League of Legends compete nos principais campeonatos universitários do país, trazendo estratégia, habilidade e trabalho em equipe para as lanes do Summoner's Rift.</p>
+          <p>
+            Um verdadeiro fenômeno global, o League of Legends é um campo de
+            batalha onde estratégia, reflexo e sinergia entre jogadores decidem
+            a vitória. Nossos times treinam e se organizam como verdadeiras
+            equipes profissionais, representando a Mauá com orgulho nas
+            competições acadêmicas de LoL.
+          </p>
         </div>
-        
+
         <div className="player-grid">
           {jogadores.map((jogador, index) => (
             <div className="player-card" key={index}>
@@ -64,7 +70,15 @@ function TimeLol() {
               </div>
               <div className="player-info">
                 <span className="player-fullname">{jogador.nomeCompleto}</span>
-                <span className={`player-role-container ${jogador.funcao === "CAPITÃO" ? "captain" : jogador.funcao === "COACH" ? "coach" : ""}`}>
+                <span
+                  className={`player-role-container ${
+                    jogador.funcao === "CAPITÃO"
+                      ? "captain"
+                      : jogador.funcao === "COACH"
+                      ? "coach"
+                      : ""
+                  }`}
+                >
                   {jogador.funcao}
                 </span>
               </div>
@@ -72,7 +86,7 @@ function TimeLol() {
           ))}
         </div>
       </main>
-      
+
       <Footer />
     </section>
   );

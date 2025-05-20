@@ -8,7 +8,7 @@ import {
   fetchMembers,
   updateMember,
   deleteMember,
-  createMember, 
+  createMember,
 } from "../Service/memberApi.js";
 import { fetchModalities } from "../Service/api.js";
 import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
@@ -23,14 +23,15 @@ const GerenciarMembros = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [currentMember, setCurrentMember] = useState(null);
   const [modalities, setModalities] = useState([]);
-  const [loadingModalities, setLoadingModalities] = useState(false);  const [newMember, setNewMember] = useState({
+  const [loadingModalities, setLoadingModalities] = useState(false);
+  const [newMember, setNewMember] = useState({
     name: "",
     discordId: "",
     email: "",
     role: "member",
     modality: "",
-    paeHours: 0
-  });  // Fetch members from API
+    paeHours: 0,
+  }); // Fetch members from API
   useEffect(() => {
     const loadMembers = async () => {
       try {
@@ -51,7 +52,7 @@ const GerenciarMembros = () => {
 
     loadMembers();
   }, []);
-  
+
   // Fetch modalities from API
   useEffect(() => {
     const loadModalities = async () => {
@@ -125,14 +126,15 @@ const GerenciarMembros = () => {
     try {
       const result = await createMember(newMember);
       setMembers([...members, result]);
-      setShowAddModal(false);      setNewMember({
+      setShowAddModal(false);
+      setNewMember({
         name: "",
         discordId: "",
         email: "",
         role: "member",
         modality: "",
         teams: [],
-        paeHours: 0
+        paeHours: 0,
       });
       if (typeof window.showNotification === "function") {
         window.showNotification(
@@ -151,33 +153,39 @@ const GerenciarMembros = () => {
 
   const handleBackToAdmin = () => {
     navigate("/admin");
-  };  // Filter members based on search term - com validação para evitar erro quando members é undefined
-  const filteredMembers = members && members.length > 0 
-    ? members.filter(
-        (member) =>
-          (member.name &&
-            member.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          (member.discordId &&
-            member.discordId.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          (member.email &&
-            member.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          (member.modality &&
-            member.modality.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          (member.teams &&
-            Array.isArray(member.teams) && 
-            member.teams.some((team) =>
-              team.toLowerCase().includes(searchTerm.toLowerCase())
-            )) ||
-          (member.role &&
-            member.role.toLowerCase().includes(searchTerm.toLowerCase()))
-      ) 
-    : [];
+  }; // Filter members based on search term - com validação para evitar erro quando members é undefined
+  const filteredMembers =
+    members && members.length > 0
+      ? members.filter(
+          (member) =>
+            (member.name &&
+              member.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (member.discordId &&
+              member.discordId
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())) ||
+            (member.email &&
+              member.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (member.modality &&
+              member.modality
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())) ||
+            (member.teams &&
+              Array.isArray(member.teams) &&
+              member.teams.some((team) =>
+                team.toLowerCase().includes(searchTerm.toLowerCase())
+              )) ||
+            (member.role &&
+              member.role.toLowerCase().includes(searchTerm.toLowerCase()))
+        )
+      : [];
 
   return (
     <div className="gerenciar-membros-page">
       <HeaderAdmin />
-
-      <main className="membros-main">        <div className="title-search">
+      <main className="membros-main">
+        {" "}
+        <div className="title-search">
           <div className="title-actions">
             <h1>GERENCIAR MEMBROS</h1>
             <button
@@ -199,13 +207,14 @@ const GerenciarMembros = () => {
             </div>
           </div>
         </div>
-
         {loading ? (
           <div className="loading">Carregando membros...</div>
         ) : error ? (
           <div className="error-message">{error}</div>
         ) : (
-          <div className="members-table-container">            <table className="members-table">
+          <div className="members-table-container">
+            {" "}
+            <table className="members-table">
               <thead>
                 <tr>
                   <th>NOME</th>
@@ -225,11 +234,11 @@ const GerenciarMembros = () => {
                     <td>{member.email}</td>
                     <td>{member.modality || "-"}</td>
                     <td>
-                      {member.role === "member" 
-                        ? "Membro" 
-                        : member.role === "captain" 
-                          ? "Capitão" 
-                          : "Admin"}
+                      {member.role === "member"
+                        ? "Membro"
+                        : member.role === "captain"
+                        ? "Capitão"
+                        : "Admin"}
                     </td>
                     <td>{member.paeHours || 0}</td>
                     <td className="actions-column">
@@ -252,7 +261,8 @@ const GerenciarMembros = () => {
             </table>
           </div>
         )}
-      </main>      {showEditModal && (
+      </main>{" "}
+      {showEditModal && (
         <div
           className="edit-modal-backdrop"
           onClick={() => setShowEditModal(false)}
@@ -261,18 +271,21 @@ const GerenciarMembros = () => {
             className="edit-modal-content"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2>EDITAR MEMBRO</h2>            <div className="form-group">
+            <h2>EDITAR MEMBRO</h2>{" "}
+            <div className="form-group">
               <label>DISCORD ID</label>
               <input
                 type="text"
                 value={currentMember.discordId || ""}
                 onChange={(e) =>
-                  setCurrentMember({ ...currentMember, discordId: e.target.value })
+                  setCurrentMember({
+                    ...currentMember,
+                    discordId: e.target.value,
+                  })
                 }
                 placeholder="Ex: usuario#1234"
               />
             </div>
-
             <div className="form-group">
               <label>EMAIL</label>
               <input
@@ -283,7 +296,6 @@ const GerenciarMembros = () => {
                 }
               />
             </div>
-
             <div className="form-group">
               <label>NOME</label>
               <input
@@ -293,7 +305,8 @@ const GerenciarMembros = () => {
                   setCurrentMember({ ...currentMember, name: e.target.value })
                 }
               />
-            </div>            <div className="form-group">
+            </div>{" "}
+            <div className="form-group">
               <label>MODALIDADE</label>
               <div className="select-wrapper">
                 {loadingModalities ? (
@@ -309,15 +322,18 @@ const GerenciarMembros = () => {
                     }
                   >
                     <option value="">Selecione uma modalidade</option>
-                    {modalities && modalities.length > 0 && modalities.map((modality) => (
-                      <option key={modality._id} value={modality.Tag}>
-                        {modality.Name}
-                      </option>
-                    ))}
+                    {modalities &&
+                      modalities.length > 0 &&
+                      modalities.map((modality) => (
+                        <option key={modality._id} value={modality.Tag}>
+                          {modality.Name}
+                        </option>
+                      ))}
                   </select>
                 )}
               </div>
-            </div>            <div className="form-group">
+            </div>{" "}
+            <div className="form-group">
               <label>FUNÇÃO</label>
               <div className="select-wrapper">
                 <select
@@ -332,7 +348,6 @@ const GerenciarMembros = () => {
                 </select>
               </div>
             </div>
-
             <div className="form-group">
               <label>HORAS PAE</label>
               <input
@@ -345,7 +360,8 @@ const GerenciarMembros = () => {
                   })
                 }
               />
-            </div>            <div className="modal-actions">
+            </div>{" "}
+            <div className="modal-actions">
               <button
                 className="salvar-button"
                 onClick={() => handleSaveMember(currentMember)}
@@ -356,7 +372,6 @@ const GerenciarMembros = () => {
           </div>
         </div>
       )}
-
       {showAddModal && (
         <div
           className="edit-modal-backdrop"
@@ -367,7 +382,6 @@ const GerenciarMembros = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <h2>ADICIONAR MEMBRO</h2>
-
             <div className="form-group">
               <label>NOME</label>
               <input
@@ -378,7 +392,8 @@ const GerenciarMembros = () => {
                 }
                 placeholder="Nome completo do aluno"
               />
-            </div>            <div className="form-group">
+            </div>{" "}
+            <div className="form-group">
               <label>DISCORD ID</label>
               <input
                 type="text"
@@ -389,7 +404,6 @@ const GerenciarMembros = () => {
                 placeholder="Ex: usuario#1234"
               />
             </div>
-
             <div className="form-group">
               <label>EMAIL</label>
               <input
@@ -401,7 +415,6 @@ const GerenciarMembros = () => {
                 placeholder="Ex: 24.00000-0@maua.br"
               />
             </div>
-
             <div className="form-group">
               <label>FUNÇÃO</label>
               <div className="select-wrapper">
@@ -416,7 +429,8 @@ const GerenciarMembros = () => {
                   <option value="admin">Admin</option>
                 </select>
               </div>
-            </div>            <div className="form-group">
+            </div>{" "}
+            <div className="form-group">
               <label>MODALIDADE</label>
               <div className="select-wrapper">
                 {loadingModalities ? (
@@ -429,16 +443,17 @@ const GerenciarMembros = () => {
                     }
                   >
                     <option value="">Selecione uma modalidade</option>
-                    {modalities && modalities.length > 0 && modalities.map((modality) => (
-                      <option key={modality._id} value={modality.Tag}>
-                        {modality.Name}
-                      </option>
-                    ))}
+                    {modalities &&
+                      modalities.length > 0 &&
+                      modalities.map((modality) => (
+                        <option key={modality._id} value={modality.Tag}>
+                          {modality.Name}
+                        </option>
+                      ))}
                   </select>
                 )}
               </div>
             </div>
-            
             <div className="form-group">
               <label>HORAS PAE</label>
               <input
@@ -451,12 +466,13 @@ const GerenciarMembros = () => {
                   })
                 }
               />
-            </div>            <div className="modal-actions">
+            </div>{" "}
+            <div className="modal-actions">
               <button className="save-button" onClick={handleAddMember}>
                 ADICIONAR
               </button>
-              <button 
-                className="cancel-button" 
+              <button
+                className="cancel-button"
                 onClick={() => setShowAddModal(false)}
               >
                 CANCELAR
@@ -465,7 +481,6 @@ const GerenciarMembros = () => {
           </div>
         </div>
       )}
-
       <Footer />
     </div>
   );

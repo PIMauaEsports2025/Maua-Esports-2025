@@ -45,17 +45,22 @@ function TimeRainbow() {
   return (
     <section className="team-page">
       <Header />
-      
+
       <div className="team-banner">
         <h1>RAINBOW SIX: SIEGE</h1>
         <h2>Equipe R6</h2>
       </div>
-      
+
       <main className="team-container">
         <div className="team-description">
-          <p>Nossa equipe de Rainbow Six: Siege representa a Mauá com dedicação e habilidade tática, competindo nos principais torneios universitários com foco em trabalho em equipe e estratégia.</p>
+          <p>
+            Mais do que um FPS, Rainbow Six é sobre tática, paciência e
+            coordenação. Cada operador tem um papel único e nossos times sabem
+            como utilizá-los com precisão. Representamos a Mauá com orgulho em
+            confrontos de alto nível e decisões milimétricas a cada round.
+          </p>
         </div>
-        
+
         <div className="player-grid">
           {jogadores.map((jogador, index) => (
             <div className="player-card" key={index}>
@@ -64,7 +69,15 @@ function TimeRainbow() {
               </div>
               <div className="player-info">
                 <span className="player-fullname">{jogador.nomeCompleto}</span>
-                <span className={`player-role-container ${jogador.funcao === "CAPITÃO" ? "captain" : jogador.funcao === "COACH" ? "coach" : ""}`}>
+                <span
+                  className={`player-role-container ${
+                    jogador.funcao === "CAPITÃO"
+                      ? "captain"
+                      : jogador.funcao === "COACH"
+                      ? "coach"
+                      : ""
+                  }`}
+                >
                   {jogador.funcao}
                 </span>
               </div>
@@ -72,7 +85,7 @@ function TimeRainbow() {
           ))}
         </div>
       </main>
-      
+
       <Footer />
     </section>
   );

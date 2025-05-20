@@ -37,13 +37,13 @@ const AdminInterface = () => {
     try {
       await instance.logoutPopup({
         postLogoutRedirectUri: "http://localhost:3000",
-        mainWindowRedirectUri: "http://localhost:3000"
+        mainWindowRedirectUri: "http://localhost:3000",
       });
-      
+
       // Limpa o localStorage
       localStorage.removeItem("token");
       localStorage.removeItem("userEmail");
-      
+
       // Redireciona para a página inicial
       navigate("/");
     } catch (error) {

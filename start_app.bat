@@ -36,7 +36,7 @@ if %ERRORLEVEL% neq 0 (
   echo  - Se as credenciais do MongoDB estão corretas
   echo Continuando mesmo assim...
   echo.
-) else (
+  ) else (
   echo Servidor verificado e funcionando!
   echo.
 )

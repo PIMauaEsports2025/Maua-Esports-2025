@@ -34,17 +34,24 @@ function TimeValorantPurple() {
   return (
     <section className="team-page">
       <Header />
-      
+
       <div className="team-banner">
         <h1>VALORANT</h1>
         <h2>Equipe Purple</h2>
       </div>
-      
+
       <main className="team-container">
         <div className="team-description">
-          <p>Nossa equipe Purple de Valorant representa a Mauá com talento e dedicação, buscando alcançar o topo das competições universitárias com estratégias inovadoras.</p>
+          <p>
+            Em Valorant, a precisão de CS:GO se junta às habilidades únicas de
+            cada agente, criando um FPS moderno e competitivo. A Mauá E-Sports
+            conta com três equipes oficiais – Line Blue, Line Purple e Line
+            White – cada uma com seu estilo e estratégia. Elas refletem a força
+            e profundidade do nosso time, treinando com disciplina e foco para
+            brilhar em torneios universitários e além.
+          </p>
         </div>
-        
+
         <div className="player-grid">
           {jogadores.map((jogador, index) => (
             <div className="player-card" key={index}>
@@ -53,7 +60,15 @@ function TimeValorantPurple() {
               </div>
               <div className="player-info">
                 <span className="player-fullname">{jogador.nomeCompleto}</span>
-                <span className={`player-role-container ${jogador.funcao === "CAPITÃ" ? "captain" : jogador.funcao === "COACH" ? "coach" : ""}`}>
+                <span
+                  className={`player-role-container ${
+                    jogador.funcao === "CAPITÃ"
+                      ? "captain"
+                      : jogador.funcao === "COACH"
+                      ? "coach"
+                      : ""
+                  }`}
+                >
                   {jogador.funcao}
                 </span>
               </div>
@@ -61,7 +76,7 @@ function TimeValorantPurple() {
           ))}
         </div>
       </main>
-      
+
       <Footer />
     </section>
   );

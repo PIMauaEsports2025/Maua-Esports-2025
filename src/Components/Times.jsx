@@ -51,29 +51,29 @@ function Times() {
   return (
     <div className="times-container">
       <Header />
-      
+
       <div className="teams-hero">
         <div className="hero-content">
-          <h1>NOSSAS EQUIPES</h1>
-            A elite dos games universitários representa o Instituto Mauá com talento, estratégia e paixão. 
-            Mais que jogadores, somos um time unido que leva o nome Mauá ao topo dos eSports!
+          <h1>NOSSAS EQUIPES</h1>A elite dos games universitários representa o
+          Instituto Mauá com talento, estratégia e paixão. Mais que jogadores,
+          somos um time unido que leva o nome Mauá ao topo dos eSports!
         </div>
       </div>
-      
+
       <main className="teams-description">
         <div className="description-container">
           <h2>EXCELÊNCIA NOS E-SPORTS</h2>
           <p>
             A Mauá e-Sports reúne times formados por alunos talentosos e
-            apaixonados por jogos eletrônicos, que trabalham juntos para alcançar
-            a excelência em suas modalidades.
+            apaixonados por jogos eletrônicos, que trabalham juntos para
+            alcançar a excelência em suas modalidades.
           </p>
           <p>
             Competimos em grandes arenas de e-sports com títulos renomados como
-            Counter Strike, League of Legends, Valorant, Rocket League, Team Fight
-            Tactics, Rainbow Six Siege e EA FC 25. Nossas equipes são estruturadas
-            com treinamentos regulares e estratégias personalizadas para enfrentar
-            desafios.
+            Counter Strike, League of Legends, Valorant, Rocket League, Team
+            Fight Tactics, Rainbow Six Siege e EA FC 25. Nossas equipes são
+            estruturadas com treinamentos regulares e estratégias personalizadas
+            para enfrentar desafios.
           </p>
           <p>
             Mais do que vitórias, promovemos valores como trabalho em equipe,
@@ -85,7 +85,7 @@ function Times() {
 
       <section className="teams-grid-section">
         <h2 className="section-title">CONHEÇA NOSSAS EQUIPES</h2>
-        
+
         <div className="teams-grid">
           {times.map((time, index) => (
             <Link to={time.link} className="team-card" key={index}>
@@ -102,7 +102,7 @@ function Times() {
           ))}
         </div>
       </section>
-      
+
       <Footer />
     </div>
   );

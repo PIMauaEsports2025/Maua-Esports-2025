@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/GerenciarTreinosEquipe.css";
-import { FaSearch, FaEdit, FaTrashAlt, FaFilter, FaPlus, FaUsers } from "react-icons/fa";
+import {
+  FaSearch,
+  FaEdit,
+  FaTrashAlt,
+  FaFilter,
+  FaPlus,
+  FaUsers,
+} from "react-icons/fa";
 import Footer from "./Layout/Footer.jsx";
 import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
 
@@ -31,21 +38,21 @@ const GerenciarTreinosEquipe = () => {
   const [deletingTreino, setDeletingTreino] = useState(null);
   const [showAttendanceModal, setShowAttendanceModal] = useState(false);
   const [currentAttendance, setCurrentAttendance] = useState([]);
-  
+
   // Simulação de informações do capitão (em uma aplicação real, viria do contexto de autenticação)
   const captainInfo = {
     name: "LEOZIN",
     modality: "Counter-Strike: Global Offensive A",
-    modalityId: "cs2a"
+    modalityId: "cs2a",
   };
-  
+
   // Lista simulada de jogadores da equipe
   const teamPlayers = [
     { id: "1", name: "LEOZIN", email: "24.01193-2@maua.br" },
     { id: "2", name: "SIMON_", email: "24.00981-4@maua.br" },
     { id: "3", name: "LUCKFERO", email: "24.01567-9@maua.br" },
     { id: "4", name: "RFODS", email: "24.00345-1@maua.br" },
-    { id: "5", name: "RK", email: "24.00759-7@maua.br" }
+    { id: "5", name: "RK", email: "24.00759-7@maua.br" },
   ];
 
   // Função para fazer requisições à API (similar à do componente GerenciarTreinos)
@@ -100,16 +107,16 @@ const GerenciarTreinosEquipe = () => {
       // Em uma implementação real, você filtraria por modalidade na API
       // Aqui estamos simulando com dados mockados
       const data = await fazerRequisicao("/trains/all");
-      
+
       // Filtrar apenas os treinos da modalidade do capitão
       const treinosDaModalidade = data
-        .filter(treino => treino.ModalityId === captainInfo.modalityId)
-        .map(treino => ({
+        .filter((treino) => treino.ModalityId === captainInfo.modalityId)
+        .map((treino) => ({
           ...treino,
           modalidadeNome: captainInfo.modality,
-          modalidadeTag: "CS2"
+          modalidadeTag: "CS2",
         }));
-      
+
       setTreinos(treinosDaModalidade);
       setError(null);
     } catch (error) {
@@ -124,17 +131,19 @@ const GerenciarTreinosEquipe = () => {
   // Filtrar treinos pelo termo de busca
   const treinosFiltrados = treinos.filter((treino) => {
     // Primeiro, aplica o filtro de pesquisa
-    if (pesquisa.trim() && 
-        !treino.modalidadeNome.toLowerCase().includes(pesquisa.toLowerCase()) &&
-        !treino.Status.toLowerCase().includes(pesquisa.toLowerCase())) {
+    if (
+      pesquisa.trim() &&
+      !treino.modalidadeNome.toLowerCase().includes(pesquisa.toLowerCase()) &&
+      !treino.Status.toLowerCase().includes(pesquisa.toLowerCase())
+    ) {
       return false;
     }
-    
+
     // Depois, aplica filtro de status
     if (filtroStatus && treino.Status !== filtroStatus) {
       return false;
     }
-    
+
     // Finalmente, aplica filtro de período
     if (filtroPeriodo) {
       const agora = Date.now();
@@ -145,7 +154,7 @@ const GerenciarTreinosEquipe = () => {
         return false;
       }
     }
-    
+
     return true;
   });
 
@@ -168,9 +177,7 @@ const GerenciarTreinosEquipe = () => {
       );
 
       setShowEditModal(false);
-      alert(
-        "Treino atualizado no modo simulação!"
-      );
+      alert("Treino atualizado no modo simulação!");
     } catch (error) {
       alert(`Erro na simulação: ${error.message}`);
     }
@@ -207,9 +214,7 @@ const GerenciarTreinosEquipe = () => {
 
       setTreinos([...treinos, novoTreinoCompleto]);
       setShowAddModal(false);
-      alert(
-        "Treino adicionado em modo simulação!"
-      );
+      alert("Treino adicionado em modo simulação!");
     } catch (error) {
       alert(`Erro na simulação: ${error.message}`);
     }
@@ -230,61 +235,59 @@ const GerenciarTreinosEquipe = () => {
 
       setShowDeleteModal(false);
       setDeletingTreino(null);
-      alert(
-        "Treino excluído em modo simulação!"
-      );
+      alert("Treino excluído em modo simulação!");
     } catch (error) {
       alert(`Erro na simulação: ${error.message}`);
     }
   };
-  
+
   // Gerenciar presença
   const handleManageAttendance = (treino) => {
     // No mundo real, você buscaria os jogadores presentes da API
     // Aqui estamos simulando com base nos dados do treino
     setCurrentTreino(treino);
-    
+
     // Inicializa o array de presença com todos os jogadores do time
     // e marca como presentes aqueles que já estão em AttendedPlayers
-    const attendance = teamPlayers.map(player => ({
+    const attendance = teamPlayers.map((player) => ({
       ...player,
-      present: treino.AttendedPlayers.includes(player.id)
+      present: treino.AttendedPlayers.includes(player.id),
     }));
-    
+
     setCurrentAttendance(attendance);
     setShowAttendanceModal(true);
   };
-  
+
   // Alternar presença de um jogador
   const toggleAttendance = (playerId) => {
     setCurrentAttendance(
-      currentAttendance.map(player => 
-        player.id === playerId 
-          ? { ...player, present: !player.present } 
+      currentAttendance.map((player) =>
+        player.id === playerId
+          ? { ...player, present: !player.present }
           : player
       )
     );
   };
-  
+
   // Salvar lista de presença
   const handleSaveAttendance = () => {
     try {
       // Lista de IDs dos jogadores presentes
       const presentPlayerIds = currentAttendance
-        .filter(player => player.present)
-        .map(player => player.id);
-      
+        .filter((player) => player.present)
+        .map((player) => player.id);
+
       // Atualiza o treino atual com a nova lista de presença
       const updatedTreino = {
         ...currentTreino,
-        AttendedPlayers: presentPlayerIds
+        AttendedPlayers: presentPlayerIds,
       };
-      
+
       // Atualiza na lista de treinos
       setTreinos(
-        treinos.map(t => t._id === currentTreino._id ? updatedTreino : t)
+        treinos.map((t) => (t._id === currentTreino._id ? updatedTreino : t))
       );
-      
+
       setShowAttendanceModal(false);
       alert("Lista de presença atualizada com sucesso!");
     } catch (error) {
@@ -323,7 +326,7 @@ const GerenciarTreinosEquipe = () => {
           <h1>GERENCIAR TREINOS DA EQUIPE</h1>
           <p className="team-info">Modalidade: {captainInfo.modality}</p>
         </div>
-        
+
         <div className="title-search">
           <div className="title-actions">
             <button className="add-button" onClick={handleAddTreinoClick}>
@@ -535,11 +538,7 @@ const GerenciarTreinosEquipe = () => {
             <form onSubmit={handleSaveNewTreino}>
               <div className="form-group">
                 <label>Modalidade:</label>
-                <input
-                  type="text"
-                  value={captainInfo.modality}
-                  disabled
-                />
+                <input type="text" value={captainInfo.modality} disabled />
               </div>
               <div className="form-group">
                 <label>Data/Hora de Início:</label>
@@ -624,7 +623,7 @@ const GerenciarTreinosEquipe = () => {
           </div>
         </div>
       )}
-      
+
       {/* Modal de Gerenciamento de Presença */}
       {showAttendanceModal && currentTreino && (
         <div className="modal-overlay">
@@ -633,9 +632,9 @@ const GerenciarTreinosEquipe = () => {
             <p className="training-date">
               Treino: {formatarData(currentTreino.StartTimestamp)}
             </p>
-            
+
             <div className="attendance-list">
-              {currentAttendance.map(player => (
+              {currentAttendance.map((player) => (
                 <div key={player.id} className="attendance-item">
                   <label className="attendance-label">
                     <input
@@ -651,9 +650,12 @@ const GerenciarTreinosEquipe = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className="modal-actions">
-              <button type="button" onClick={() => setShowAttendanceModal(false)}>
+              <button
+                type="button"
+                onClick={() => setShowAttendanceModal(false)}
+              >
                 Cancelar
               </button>
               <button

@@ -21,28 +21,33 @@ const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { instance } = useMsal();
   const navigate = useNavigate();
-  const [loginError, setLoginError] = useState("");  const handleMicrosoftLogin = async () => {
+  const [loginError, setLoginError] = useState("");
+  const handleMicrosoftLogin = async () => {
     try {
       // Configuração específica para o tenant da Mauá
       const response = await instance.loginPopup(loginRequest);
       const account = response.account;
-      
+
       console.log("Login bem-sucedido:", account);
-      
+
       // Salva os dados do usuário
       localStorage.setItem("token", response.accessToken);
       localStorage.setItem("userEmail", account.username);
-      
+
       // Verifica o domínio de email para decidir para onde redirecionar
-      const emailDomain = account.username.split('@')[1];
-      if (emailDomain === 'maua.br') {
+      const emailDomain = account.username.split("@")[1];
+      if (emailDomain === "maua.br") {
         navigate("/admin");
       } else {
         navigate("/painelUsuario");
       }
     } catch (error) {
       console.error("Erro ao fazer login com Microsoft:", error);
-      setLoginError(`Erro ao fazer login com Microsoft. Detalhes: ${error.message || 'Erro desconhecido'}`);
+      setLoginError(
+        `Erro ao fazer login com Microsoft. Detalhes: ${
+          error.message || "Erro desconhecido"
+        }`
+      );
     }
   };
 
@@ -51,13 +56,22 @@ const Home = () => {
   };
 
   const stats = [
-    { number: "22+", description: <strong>Torneios universitários disputados</strong> },
+    {
+      number: "22+",
+      description: <strong>Torneios universitários disputados</strong>,
+    },
     { number: "10+", description: <strong>Títulos conquistados</strong> },
     { number: "20+", description: <strong>Jogadores ativos na equipe</strong> },
-    { number: "14+", description: <strong>Jogos diferentes competidos</strong> },
-    { number: "8+", description: <strong>Anos de tradição em e-sports</strong> },
+    {
+      number: "14+",
+      description: <strong>Jogos diferentes competidos</strong>,
+    },
+    {
+      number: "8+",
+      description: <strong>Anos de tradição em e-sports</strong>,
+    },
   ];
-  
+
   const games = [
     {
       name: "Counter Strike 2",
@@ -131,9 +145,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Header
-        onLoginClick={handleMicrosoftLogin}
-      />
+      <Header onLoginClick={handleMicrosoftLogin} />
 
       <main
         className="hero-section"
@@ -174,9 +186,9 @@ const Home = () => {
         <p className="quem-somos-texto">
           O <strong>Mauá e-Sports</strong> é uma comunidade universitária
           apaixonada por <strong>jogos eletrônicos</strong>,{" "}
-          <strong>inovação</strong> e <strong>competitividade</strong>.
-          Fundado em 2018, começamos como um grupo de amigos com um sonho em
-          comum: colocar o nome da Mauá no cenário dos e-sports.
+          <strong>inovação</strong> e <strong>competitividade</strong>. Fundado
+          em 2018, começamos como um grupo de amigos com um sonho em comum:
+          colocar o nome da Mauá no cenário dos e-sports.
         </p>
         <p className="quem-somos-texto">
           Hoje, somos uma organização com presença regional, diversas{" "}
@@ -186,11 +198,10 @@ const Home = () => {
         <p className="quem-somos-texto">
           Valorizamos o <strong>crescimento pessoal</strong>, o{" "}
           <strong>trabalho em equipe</strong> e o desenvolvimento de{" "}
-          <strong>habilidades técnicas e emocionais</strong>. Para nós,
-          e-sports é mais do que jogo, é{" "}
-          <strong>formação e transformação</strong>. Seja como atleta, staff,
-          analista ou criador de conteúdo, cada membro ajuda a construir algo
-          maior. Mais do que um time, somos uma{" "}
+          <strong>habilidades técnicas e emocionais</strong>. Para nós, e-sports
+          é mais do que jogo, é <strong>formação e transformação</strong>. Seja
+          como atleta, staff, analista ou criador de conteúdo, cada membro ajuda
+          a construir algo maior. Mais do que um time, somos uma{" "}
           <strong>família que joga, aprende e cresce junto</strong>.
         </p>
       </div>
@@ -212,7 +223,7 @@ const Home = () => {
           <p>
             <strong>Competições de e-sports</strong> são uma forma de testar
             suas habilidades contra jogadores de diferentes níveis, oferecendo{" "}
-            <strong>desafios constantes</strong>. 
+            <strong>desafios constantes</strong>.
           </p>
         </div>
         <div className="feature-card">
@@ -221,7 +232,7 @@ const Home = () => {
           <p>
             Participar do <strong>Mauá E-Sports</strong> oferece uma ótima
             oportunidade de fazer novas amizades com pessoas que compartilham o
-            mesmo interesse por <strong>jogos online</strong>. 
+            mesmo interesse por <strong>jogos online</strong>.
           </p>
         </div>
       </section>

@@ -2,9 +2,10 @@
 export const msalConfig = {
   auth: {
     clientId: "5c2f6178-194c-414d-a1f1-6c91a80eff28", // Client ID do Azure Portal
-    authority: "https://login.microsoftonline.com/c49e1939-4b53-4738-bb64-41fb2990e41c", // Usando Tenant ID específico da Mauá
+    authority:
+      "https://login.microsoftonline.com/c49e1939-4b53-4738-bb64-41fb2990e41c", // Usando Tenant ID específico da Mauá
     redirectUri: window.location.origin, // Redireciona para a página atual após login
-    navigateToLoginRequestUrl: true
+    navigateToLoginRequestUrl: true,
   },
   cache: {
     cacheLocation: "sessionStorage",
@@ -14,5 +15,5 @@ export const msalConfig = {
 
 // Escopos que a aplicação solicita
 export const loginRequest = {
-  scopes: ["User.Read", "email", "profile"]
+  scopes: ["User.Read", "email", "profile"],
 };

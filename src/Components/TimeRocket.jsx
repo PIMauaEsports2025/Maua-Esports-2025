@@ -35,17 +35,22 @@ function TimeRocket() {
   return (
     <section className="team-page">
       <Header />
-      
+
       <div className="team-banner">
         <h1>ROCKET LEAGUE</h1>
         <h2>Equipe RL</h2>
       </div>
-      
+
       <main className="team-container">
         <div className="team-description">
-          <p>Nossa equipe de Rocket League combina habilidade, reflexos e trabalho em equipe para representar o Instituto Mauá de Tecnologia nas principais competições universitárias do cenário nacional.</p>
+          <p>
+            Futebol com carros turbo é exatamente o que você encontra no Rocket
+            League. Uma mistura de precisão, velocidade e jogadas acrobáticas.
+            Nossos jogadores dominam os ares e o campo, garantindo partidas
+            emocionantes e cheias de espetáculo nas arenas digitais.
+          </p>
         </div>
-        
+
         <div className="player-grid">
           {jogadores.map((jogador, index) => (
             <div className="player-card" key={index}>
@@ -54,7 +59,15 @@ function TimeRocket() {
               </div>
               <div className="player-info">
                 <span className="player-fullname">{jogador.nomeCompleto}</span>
-                <span className={`player-role-container ${jogador.funcao === "CAPITÃO" ? "captain" : jogador.funcao === "COACH" ? "coach" : ""}`}>
+                <span
+                  className={`player-role-container ${
+                    jogador.funcao === "CAPITÃO"
+                      ? "captain"
+                      : jogador.funcao === "COACH"
+                      ? "coach"
+                      : ""
+                  }`}
+                >
                   {jogador.funcao}
                 </span>
               </div>
@@ -62,7 +75,7 @@ function TimeRocket() {
           ))}
         </div>
       </main>
-      
+
       <Footer />
     </section>
   );

@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../styles/ConsultaHorasPAE.css";
-import { FaSearch, FaUserCircle, FaClock, FaGamepad, FaDiscord } from "react-icons/fa";
+import {
+  FaSearch,
+  FaUserCircle,
+  FaClock,
+  FaGamepad,
+  FaDiscord,
+} from "react-icons/fa";
 import { fetchMembers } from "../Service/memberApi.js";
 import Footer from "./Layout/Footer";
 import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
@@ -35,18 +41,18 @@ const ConsultaHorasPAE = () => {
     e.preventDefault();
     setError("");
     setResult(null);
-    
+
     if (!input.trim()) {
       setError("Por favor, digite seu e-mail institucional ou Discord ID.");
       return;
     }
-    
+
     const found = members.find(
       (m) =>
         (m.email && m.email.toLowerCase() === input.toLowerCase()) ||
         (m.discordId && m.discordId.toLowerCase() === input.toLowerCase())
     );
-    
+
     if (found) {
       setResult(found);
     } else {
@@ -57,12 +63,12 @@ const ConsultaHorasPAE = () => {
   return (
     <div className="consulta-pae-page">
       <HeaderAdmin />
-      
+
       <main className="consulta-pae-main">
         <div className="title-section">
           <h1>CONSULTA DE HORAS PAE</h1>
         </div>
-        
+
         <div className="consulta-pae-content">
           <div className="search-section">
             <h2>Digite seu e-mail institucional ou Discord ID</h2>
@@ -85,13 +91,9 @@ const ConsultaHorasPAE = () => {
             </form>
           </div>
 
-          {loading && (
-            <div className="loading">Carregando dados...</div>
-          )}
+          {loading && <div className="loading">Carregando dados...</div>}
 
-          {error && !loading && (
-            <div className="error-message">{error}</div>
-          )}
+          {error && !loading && <div className="error-message">{error}</div>}
 
           {result && !loading && (
             <div className="result-container">
@@ -101,7 +103,7 @@ const ConsultaHorasPAE = () => {
                 </div>
                 <h2>{result.name}</h2>
               </div>
-              
+
               <div className="result-details">
                 <div className="detail-row">
                   <div className="detail-icon">
@@ -109,10 +111,12 @@ const ConsultaHorasPAE = () => {
                   </div>
                   <div className="detail-content">
                     <span className="detail-label">Discord ID</span>
-                    <span className="detail-value">{result.discordId || "-"}</span>
+                    <span className="detail-value">
+                      {result.discordId || "-"}
+                    </span>
                   </div>
                 </div>
-                
+
                 <div className="detail-row">
                   <div className="detail-icon">
                     <FaSearch />
@@ -122,24 +126,28 @@ const ConsultaHorasPAE = () => {
                     <span className="detail-value">{result.email}</span>
                   </div>
                 </div>
-                
+
                 <div className="detail-row">
                   <div className="detail-icon">
                     <FaGamepad />
                   </div>
                   <div className="detail-content">
                     <span className="detail-label">Modalidade</span>
-                    <span className="detail-value">{result.modality || "-"}</span>
+                    <span className="detail-value">
+                      {result.modality || "-"}
+                    </span>
                   </div>
                 </div>
-                
+
                 <div className="detail-row hours-row">
                   <div className="detail-icon">
                     <FaClock />
                   </div>
                   <div className="detail-content">
                     <span className="detail-label">Horas PAE</span>
-                    <span className="detail-value hours-value">{result.paeHours || 0}</span>
+                    <span className="detail-value hours-value">
+                      {result.paeHours || 0}
+                    </span>
                   </div>
                 </div>
               </div>

@@ -48,12 +48,10 @@ const Header = ({ onLoginClick }) => {
           {/* LINKS TEMPORÁRIOS PARA REALIZAR ALTERÇÕES NO FRONT-END E DEPOIS ALTERAMOS O BACK-END */}
           <li>
             <Link to="/painelUsuario">Usuário</Link>
-          </li>          <li>
+          </li>{" "}
+          <li>
             <div className="auth-links">
-              <button
-                className="login-btn"
-                onClick={onLoginClick}
-              >
+              <button className="login-btn" onClick={onLoginClick}>
                 Login com Microsoft
                 <CiLogin className="login-icon" />
               </button>
