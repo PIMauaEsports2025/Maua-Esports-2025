@@ -2,11 +2,33 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { CiLogin } from "react-icons/ci";
+import { useMsal } from "@azure/msal-react";
 import mauaLogo from "../../assets/ui/maua-branco.png";
 import "../../styles/Layout/Header.css";
 
 const Header = ({ onLoginClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // MSAL hooks para autenticação Microsoft
+  const { instance, accounts } = useMsal();
+  const isAuthenticated = accounts && accounts.length > 0;
+
+  const handleLogin = async () => {
+  try {
+    await instance.loginPopup();
+  } catch (error) {
+    if (error.errorCode === "user_cancelled") {
+      // Usuário fechou o popup, não faz nada
+      return;
+    }
+    // Outros erros podem ser tratados aqui
+    console.error("Erro ao fazer login:", error);
+  }
+};
+
+  const handleLogout = () => {
+    instance.logoutPopup();
+  };
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -42,19 +64,27 @@ const Header = ({ onLoginClick }) => {
           <li>
             <Link to="/contato">Contato</Link>
           </li>
+          {/* LINKS TEMPORÁRIOS PARA REALIZAR ALTERÇÕES NO FRONT-END E DEPOIS ALTERAMOS O BACK-END */}
           <li>
             <Link to="/capitao">Capitao</Link>
           </li>
-          {/* LINKS TEMPORÁRIOS PARA REALIZAR ALTERÇÕES NO FRONT-END E DEPOIS ALTERAMOS O BACK-END */}
           <li>
             <Link to="/painelUsuario">Usuário</Link>
           </li>{" "}
+          {/* AQUI ACABOU OS LINKS TEMPORÁRIOS, SENDO SOMENTE O CAPITÃO E O USUÁRIO */}
           <li>
             <div className="auth-links">
-              <button className="login-btn" onClick={onLoginClick}>
-                Login com Microsoft
-                <CiLogin className="login-icon" />
-              </button>
+              {!isAuthenticated ? (
+                <button className="login-btn" onClick={handleLogin}>
+                  Login com Microsoft
+                  <CiLogin className="login-icon" />
+                </button>
+              ) : (
+                <button className="login-btn" onClick={handleLogout}>
+                  Logout ({accounts[0]?.name || "Usuário"})
+                  <CiLogin className="login-icon" />
+                </button>
+              )}
             </div>
           </li>
         </ul>
