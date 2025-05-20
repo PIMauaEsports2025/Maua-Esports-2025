@@ -5,6 +5,42 @@ const User = require('../models/User');
 // GET /api/users - Obter todos os usuários
 router.get('/', async (req, res) => {
   try {
+    // Se estamos usando dados mockados, retornar os dados mockados
+    if (global.useMockData) {
+      console.log('Retornando dados mockados de usuários');
+      const mockUsers = [
+        {
+          _id: '1',
+          discordId: "000000000000000001",
+          email: "24.01193-2@maua.br",
+          name: "Lucas Silva",
+          role: "captain",
+          modality: "Counter-Strike 2",
+          paeHours: 15
+        },
+        {
+          _id: '2',
+          discordId: "000000000000000002",
+          email: "24.02193-3@maua.br",
+          name: "Maria Oliveira",
+          role: "member",
+          modality: "League of Legends",
+          paeHours: 12
+        },
+        {
+          _id: '3',
+          discordId: "000000000000000003",
+          email: "24.03193-4@maua.br",
+          name: "João Santos",
+          role: "member",
+          modality: "Valorant",
+          paeHours: 10
+        }
+      ];
+      return res.json(mockUsers);
+    }
+    
+    // Se não, buscar do banco de dados
     const users = await User.find({});
     console.log('Usuários encontrados:', users);
     res.json(users);
