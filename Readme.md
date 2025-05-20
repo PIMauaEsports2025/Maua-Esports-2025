@@ -7,7 +7,6 @@ O **Mauá Esports** é a plataforma oficial da equipe de esports do Instituto Ma
 
 ### **Frontend**
 - ⚛️ **React.js** - Framework principal para construção da interface dinâmica e responsiva.
-- ☁️ **AWS Amplify** - Serviço de hospedagem e backend serverless para escalabilidade.
 
 ### **Backend**
 - 🟢 **Node.js** + **Express.js** - Servidor robusto e escalável para processar as requisições da aplicação.
@@ -24,14 +23,36 @@ O **Mauá Esports** é a plataforma oficial da equipe de esports do Instituto Ma
 ## 📂 Estrutura do Projeto
 ```
 Maua-Esports-2025/
+├─ api/
+│  └─ Stage-API-Maua-Esports-main/
+│     ├─ .env.example
+│     ├─ .gitattributes
+│     ├─ .gitignore
+│     ├─ defaultModalities.json
+│     ├─ defaultTrains.json
+│     ├─ index.js
+│     ├─ LICENSE
+│     ├─ package.json
+│     └─ README.md
 ├─ public/
 │  ├─ index.html
-│  ├─ logo192.png
-│  ├─ logo512.png
 │  ├─ manifest.json
 │  ├─ maua-branco.png
 │  └─ robots.txt
+├─ server/
+│  ├─ config/
+│  │  └─ db.js
+│  ├─ models/
+│  │  └─ User.js
+│  ├─ routes/
+│  │  └─ userRoutes.js
+│  ├─ seedDB.js
+│  └─ server.js
 ├─ src/
+│  ├─ API-Server/
+│  │  ├─ README.md
+│  │  ├─ server.js
+│  │  └─ users.json
 │  ├─ assets/
 │  │  ├─ games/
 │  │  │  ├─ cs2.jpg
@@ -51,9 +72,14 @@ Maua-Esports-2025/
 │  │     ├─ maua-branco.png
 │  │     ├─ rainbow.png
 │  │     ├─ rocket.png
+│  │     ├─ TeamGamer.jpg
+│  │     ├─ teams-hero-bg.jpg
 │  │     ├─ tft.png
 │  │     ├─ valorant.png
 │  │     └─ valorantBanner.jpeg
+│  ├─ auth/
+│  │  ├─ AuthProvider.jsx
+│  │  └─ msalConfig.js
 │  ├─ Components/
 │  │  ├─ Layout/
 │  │  │  ├─ Footer.jsx
@@ -61,13 +87,17 @@ Maua-Esports-2025/
 │  │  │  └─ HeaderAdmin.jsx
 │  │  ├─ AdminInterface.jsx
 │  │  ├─ Campeonato.jsx
+│  │  ├─ CapitaoInterface.jsx
+│  │  ├─ ConsultaHorasEquipe.jsx
+│  │  ├─ ConsultaHorasPAE.jsx
 │  │  ├─ Contato.jsx
 │  │  ├─ Equipes.jsx
 │  │  ├─ GerenciarMembros.jsx
 │  │  ├─ GerenciarModalidades.jsx
 │  │  ├─ GerenciarTreinos.jsx
+│  │  ├─ GerenciarTreinosEquipe.jsx
 │  │  ├─ Home.jsx
-│  │  ├─ LoginRegister.jsx
+│  │  ├─ PainelUsuario.jsx
 │  │  ├─ Sobre.jsx
 │  │  ├─ TimeCs.jsx
 │  │  ├─ TimeEaFc.jsx
@@ -84,16 +114,6 @@ Maua-Esports-2025/
 │  ├─ Service/
 │  │  ├─ api.js
 │  │  └─ memberApi.js
-│  ├─ Stage-API-Maua-Esports-main/
-│  │  ├─ .env.example
-│  │  ├─ .gitattributes
-│  │  ├─ .gitignore
-│  │  ├─ defaultModalities.json
-│  │  ├─ defaultTrains.json
-│  │  ├─ index.js
-│  │  ├─ LICENSE
-│  │  ├─ package.json
-│  │  └─ README.md
 │  ├─ styles/
 │  │  ├─ Layout/
 │  │  │  ├─ Footer.css
@@ -102,40 +122,51 @@ Maua-Esports-2025/
 │  │  ├─ AdminInterface.css
 │  │  ├─ App.css
 │  │  ├─ Campeonato.css
+│  │  ├─ CaptainInterface.css
+│  │  ├─ ConsultaHorasEquipe.css
+│  │  ├─ ConsultaHorasPAE.css
 │  │  ├─ Contato.css
 │  │  ├─ Equipes.css
 │  │  ├─ GerenciarMembros.css
 │  │  ├─ GerenciarModalidades.css
 │  │  ├─ GerenciarTreinos.css
+│  │  ├─ GerenciarTreinosEquipe.css
 │  │  ├─ Home.css
 │  │  ├─ index.css
 │  │  ├─ LoginRegister.css
+│  │  ├─ PainelUsuario.css
 │  │  ├─ Sobre.css
-│  │  ├─ Time-ValorantBlue.css
-│  │  ├─ Time-ValorantPurple.css
-│  │  ├─ Time-ValorantWhite.css
+│  │  ├─ TeamPage.css
 │  │  ├─ TimeCs.css
 │  │  ├─ TimeEaFc.css
 │  │  ├─ TimeLol.css
 │  │  ├─ TimeRainbow.css
 │  │  ├─ TimeRocket.css
 │  │  ├─ Times.css
-│  │  └─ TimeTft.css
-│  ├─ .env
+│  │  ├─ TimeTft.css
+│  │  ├─ TimeValorantBlue.css
+│  │  ├─ TimeValorantPurple.css
+│  │  └─ TimeValorantWhite.css
 │  ├─ App.js
 │  ├─ App.test.js
+│  ├─ authConfig.js
 │  ├─ index.js
-│  ├─ logo.svg
+│  ├─ ProtectedRoute.js
 │  ├─ reportWebVitals.js
+│  ├─ setupProxy.js
 │  ├─ setupTests.js
 │  └─ test-api.html
+├─ tools/
+│  ├─ start_app.bat
+│  ├─ test_db.bat
+│  └─ test_mongodb.js
+├─ .env.development
 ├─ .gitignore
 ├─ .hintrc
 ├─ LICENSE
 ├─ package-lock.json
 ├─ package.json
-└─ README.md
-
+└─ Readme.md
 ```
 
 ## 📜 Instalação e Execução
@@ -155,14 +186,21 @@ cd maua-esports
 #### 📌 **Rodar o Projeto**
 ```sh
 npm install  # Instalar dependências
-npm start  # Iniciar servidor backend e frontend 
+npm start  # Iniciar servidor backend e frontend
 # Dependências já instaladas no npm
 ```
+
+#### ✂️ **Rodar a API**
+```sh
+cd C:\repositorios-github\Maua-Esports-2025\api\Stage-API-Maua-Esports-main
+node index.js
+```
+
 ## 📌 Funcionalidades
-#### ✅ Cadastro e login de usuários 
-#### ✅ Página principal com informações e atualizações
-#### ✅ Sistema de gerenciamento de torneios
-#### ✅ Perfil dos jogadores e estatísticas
+#### ✅ Cadastro e login de usuários com autenticação da Microsoft
+#### ✅ Página principal com informações e atualizações sobre a entidade acadêmica
+#### ✅ Sistema de gerenciamento de treinos e pessoas
+#### ✅ Perfil dos jogadores e contagem de horas PAE
 #### ✅ Dashboard para administradores
 
 ## 📸 Preview (Figma)
