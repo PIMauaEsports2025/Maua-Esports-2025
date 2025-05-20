@@ -21,20 +21,28 @@ const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { instance } = useMsal();
   const navigate = useNavigate();
-  const [loginError, setLoginError] = useState("");
-
-  const handleMicrosoftLogin = async () => {
+  const [loginError, setLoginError] = useState("");  const handleMicrosoftLogin = async () => {
     try {
+      // Configuração específica para o tenant da Mauá
       const response = await instance.loginPopup(loginRequest);
       const account = response.account;
-
-      localStorage.setItem("token", response.idToken);
+      
+      console.log("Login bem-sucedido:", account);
+      
+      // Salva os dados do usuário
+      localStorage.setItem("token", response.accessToken);
       localStorage.setItem("userEmail", account.username);
-
-      navigate("/admin");
+      
+      // Verifica o domínio de email para decidir para onde redirecionar
+      const emailDomain = account.username.split('@')[1];
+      if (emailDomain === 'maua.br') {
+        navigate("/admin");
+      } else {
+        navigate("/painelUsuario");
+      }
     } catch (error) {
       console.error("Erro ao fazer login com Microsoft:", error);
-      setLoginError("Erro ao fazer login com Microsoft. Por favor, tente novamente.");
+      setLoginError(`Erro ao fazer login com Microsoft. Detalhes: ${error.message || 'Erro desconhecido'}`);
     }
   };
 

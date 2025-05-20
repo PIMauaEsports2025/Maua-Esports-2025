@@ -44,6 +44,21 @@ const getHeaders = () => {
 // Função para buscar modalidades
 export const fetchModalities = async (tag = null) => {
   try {
+    // Devido a problemas de CORS, vamos retornar imediatamente os dados mockados
+    // Isso resolve temporariamente o problema até que o backend seja configurado corretamente
+    console.log('Usando dados mockados para modalidades devido a CORS');
+    
+    // Filtrar por tag se necessário
+    if (tag) {
+      const filtered = {};
+      Object.entries(MOCK_MODALITIES).forEach(([id, modality]) => {
+        if (modality.Tag === tag) filtered[id] = modality;
+      });
+      return filtered;
+    }
+    return MOCK_MODALITIES;
+    
+    /* Mantenha este código comentado para quando o CORS for resolvido
     let url = `${API_URL}/modality/all`;
     
     // Adicionar filtro por tag se fornecido
@@ -64,13 +79,9 @@ export const fetchModalities = async (tag = null) => {
     }
     
     return await response.json();
+    */
   } catch (error) {
     console.error('Erro ao buscar modalidades:', error);
-    
-    // Notificar o usuário sobre o uso de dados locais
-    if (typeof window.showNotification === 'function') {
-      window.showNotification('warning', 'Usando dados locais: Não foi possível conectar à API.', 5000);
-    }
     
     // Retornar dados mockados em caso de erro
     if (tag) {
