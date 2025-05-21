@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { CiLogin } from "react-icons/ci";
 import { useMsal } from "@azure/msal-react";
@@ -8,14 +8,19 @@ import "../../styles/Layout/Header.css";
 
 const Header = ({ onLoginClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   // MSAL hooks para autenticação Microsoft
   const { instance, accounts } = useMsal();
-  const isAuthenticated = accounts && accounts.length > 0;
-
-  const handleLogin = async () => {
+  const isAuthenticated = accounts && accounts.length > 0;  const handleLogin = async () => {
   try {
-    await instance.loginPopup();
+    const loginResponse = await instance.loginPopup();
+    if (loginResponse) {
+      // Salvar token no localStorage
+      localStorage.setItem("token", loginResponse.accessToken || "authenticated");
+      // Redirecionar para a página de admin após login bem-sucedido
+      navigate("/admin");
+    }
   } catch (error) {
     if (error.errorCode === "user_cancelled") {
       // Usuário fechou o popup, não faz nada
@@ -25,9 +30,12 @@ const Header = ({ onLoginClick }) => {
     console.error("Erro ao fazer login:", error);
   }
 };
-
   const handleLogout = () => {
     instance.logoutPopup();
+    // Limpar o token do localStorage
+    localStorage.removeItem("token");
+    // Redirecionar para a página inicial
+    navigate("/");
   };
 
   const toggleMobileMenu = () => {
