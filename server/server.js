@@ -86,7 +86,6 @@ app.post('/api/seed', async (req, res) => {
   }
 });
 
-// Define a porta (5000 em vez de 5001)
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
