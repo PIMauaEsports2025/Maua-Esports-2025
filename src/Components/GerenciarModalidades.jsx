@@ -13,7 +13,7 @@ import Footer from "./Layout/Footer.jsx";
 import Header from "./Layout/HeaderAdmin.jsx";
 import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
 
-const API_URL = "http://localhost:3000";
+const API_URL = "http://localhost:5001";
 const API_TOKEN = "frontendmauaesports";
 
 const GerenciarModalidades = () => {
