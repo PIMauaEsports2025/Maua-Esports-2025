@@ -28,9 +28,11 @@ const userSchema = new mongoose.Schema({
     default: 0
   }
 }, {
-  timestamps: true
+  timestamps: true,
+  collection: 'Usuários' // Definindo explicitamente o nome da coleção
 });
 
-const User = mongoose.model('User', userSchema);
+// Verificar se o modelo já foi registrado para evitar erros
+const User = mongoose.models.User || mongoose.model('User', userSchema);
 
 module.exports = User;
