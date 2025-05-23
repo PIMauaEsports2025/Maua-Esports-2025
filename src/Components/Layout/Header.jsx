@@ -20,6 +20,7 @@ const Header = ({ onLoginClick }) => {
         localStorage.setItem("token", loginResponse.accessToken || "authenticated");
         navigate("/admin");
       }
+      
     } catch (error) {
       if (error.errorCode === "user_cancelled") {
         return;
