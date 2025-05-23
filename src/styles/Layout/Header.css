@@ -62,31 +62,74 @@
 }
 
 .navigation a:hover, .navigation a.active {
-  color: #003B6D;
+  color: #003B6D; /* Consider a theme color for active/hover links */
   transform: translateY(-2px);
 }
 
-.login-btn {
-  border-radius: 10px;
-  padding: 8px 20px;
-  background-color: #003B6D;
+/* General Button Styles (applied to both login and logout) */
+.login-btn { /* This class is still on both buttons, so it provides base styling */
+  border-radius: 8px;
+  padding: 10px 22px;
   color: white !important;
   text-decoration: none;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: 1rem;
-}
-
-.login-icon {
-  margin-left: 5px;
-  font-size: 1.2rem;
-  vertical-align: middle;
+  margin-right: 1rem; /* Keep or adjust as needed */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 0.95rem; /* Standardized font size */
 }
 
 .login-btn:hover {
-  background-color: #002f58;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.login-btn:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon base styles (can be overridden) */
+.login-icon, .microsoft-icon, .logout-icon {
+  vertical-align: middle;
+  font-size: 1.3rem;
+}
+
+/* Specific styles for Microsoft Login Button */
+.microsoft-login-btn {
+  background: linear-gradient(135deg, #0078D4 0%, #005A9E 100%); /* Microsoft blue gradient */
+  padding: 12px 25px; /* More prominent padding */
+}
+
+.microsoft-icon {
+  margin-right: 10px;
+  font-size: 1.4rem;
+}
+
+.microsoft-login-btn:hover {
+  background: linear-gradient(135deg, #005A9E 0%, #003B6D 100%);
+  box-shadow: 0 6px 12px rgba(0, 120, 212, 0.3); /* Glow effect with Microsoft blue */
+}
+
+/* Specific styles for Logout Button */
+.logout-btn {
+  background: linear-gradient(135deg, #D83B01 0%, #B72E00 100%); /* Example: Orange/Red gradient */
+  padding: 12px 25px; /* Consistent padding with login button */
+}
+
+.logout-icon {
+  margin-left: 8px; /* Space between text and icon */
+  font-size: 1.4rem; /* Consistent icon size */
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, #B72E00 0%, #8C2300 100%); /* Darker gradient on hover */
+  box-shadow: 0 6px 12px rgba(216, 59, 1, 0.3); /* Glow effect with logout color */
 }
 
 .mobile-menu-button {
@@ -115,22 +158,23 @@
   }
 
   .logo-img {
-    height: 30px;
+    height: 30px; /* Adjusted from 40px to 30px for better fit */
   }
 
   .navigation {
     width: 100%;
-    overflow-x: auto;
+    /* overflow-x: auto; */ /* Can be removed if mobile menu handles overflow */
   }
 
   .navigation ul {
     flex-direction: column;
     padding: 0.5rem 0;
-    align-items: flex-start;
+    align-items: flex-start; /* Align items to the start for column layout */
   }
 
   .navigation li {
-    margin: 0.5rem 0;
+    margin: 0.5rem 0; /* Vertical spacing for mobile */
+    width: 100%; /* Make li take full width for button alignment */
   }
 
   .mobile-menu-button {
@@ -140,21 +184,24 @@
   .navigation {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease-out; /* Smoother transition */
   }
 
   .navigation.mobile-open {
-    max-height: 100%;
-    align-items: flex-start;
+    max-height: 500px; /* Increased max-height to ensure all items fit */
+    /* align-items: flex-start; */ /* Already set in .navigation ul */
   }
 
-  .navigation ul {
-    flex-direction: column;
-    padding: 0.5rem 0;
+  .navigation.mobile-open .auth-links,
+  .navigation.mobile-open .login-btn { /* Targets both buttons */
+    width: calc(100% - 2rem); /* Adjust width to account for padding/margin if needed */
+    text-align: left;
+    margin-bottom: 0.5rem;
+    margin-right: 0; /* Remove right margin in mobile view */
+    justify-content: center; /* Center content within the button */
   }
-
-  .navigation li {
-    margin: 0.5rem 0;
+   .navigation.mobile-open .login-btn { /* General styling for buttons in mobile */
+    padding: 12px 15px;
   }
 }
 
@@ -164,6 +211,22 @@
   }
 
   .navigation li {
-    margin: 0 0.5rem;
+    margin: 0.5rem 0; /* Consistent with 768px */
+  }
+
+  .logo h1 {
+    font-size: 1.2rem;
+  }
+
+
+  .login-btn { /* General button font size for small screens */
+    font-size: 0.9rem;
+  }
+
+  .microsoft-login-btn, .logout-btn { /* Specific padding for small screens */
+    padding: 10px 20px;
+  }
+  .microsoft-icon, .logout-icon { /* Icon size for small screens */
+    font-size: 1.2rem;
   }
 }
