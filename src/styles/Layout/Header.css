@@ -141,11 +141,19 @@
   cursor: pointer;
 }
 
+/* Auth links container styling */
+.auth-links {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 /* Responsividade para o Header */
 @media screen and (max-width: 768px) {
   .home-header {
     flex-direction: column;
     align-items: flex-start;
+    background:  #001324c0;
   }
 
   .logo {
@@ -191,42 +199,81 @@
     max-height: 500px; /* Increased max-height to ensure all items fit */
     /* align-items: flex-start; */ /* Already set in .navigation ul */
   }
-
   .navigation.mobile-open .auth-links,
   .navigation.mobile-open .login-btn { /* Targets both buttons */
-    width: calc(100% - 2rem); /* Adjust width to account for padding/margin if needed */
-    text-align: left;
+    width: 100%; /* Full width for better mobile responsiveness */
+    text-align: center;
     margin-bottom: 0.5rem;
     margin-right: 0; /* Remove right margin in mobile view */
     justify-content: center; /* Center content within the button */
+    max-width: 90%; /* Limit width to improve appearance */
   }
    .navigation.mobile-open .login-btn { /* General styling for buttons in mobile */
     padding: 12px 15px;
+    width: 100%; /* Ensure button takes full width of its container */
+    margin: 0 auto; /* Center the button */
+  }
+
+  .login-btn {
+    width: 85%; /* More appropriate width for tablets */
+    font-size: 0.95rem;
+    margin: 0 auto 10px auto;
+  }
+
+  .auth-links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .microsoft-login-btn, .logout-btn { 
+    padding: 10px 20px;
+  }
+  .microsoft-icon, .logout-icon { 
+    font-size: 2.5rem; 
+    height: 20px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .home-header {
+    background:  #001324c0;
     padding: 1rem;
   }
 
   .navigation li {
-    margin: 0.5rem 0; /* Consistent with 768px */
+    margin: 0.5rem 0; 
   }
-
   .logo h1 {
     font-size: 1.2rem;
   }
 
-
-  .login-btn { /* General button font size for small screens */
+  .login-btn {
     font-size: 0.9rem;
+    width: 90%; 
+    padding: 10px 15px; 
+    margin: 5px auto;
   }
 
-  .microsoft-login-btn, .logout-btn { /* Specific padding for small screens */
+  .microsoft-login-btn, .logout-btn { 
     padding: 10px 20px;
   }
-  .microsoft-icon, .logout-icon { /* Icon size for small screens */
-    font-size: 1.2rem;
+  .microsoft-icon, .logout-icon { 
+    font-size: 2.5rem; 
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .login-btn {
+    width: 95%; 
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+  
+  .microsoft-icon, .logout-icon {
+    font-size: 2.5rem; 
+    height: 20px;
   }
 }

@@ -90,7 +90,7 @@ const Header = ({ onLoginClick }) => {
                 </button>
               ) : (
                 <button className="login-btn logout-btn" onClick={handleLogout}>
-                  Logout ({getFirstName(accounts[0]?.name)}) {/* Use getFirstName function */}
+                  Logout ({getFirstName(accounts[0]?.name)})
                   <CiLogin className="logout-icon" />
                 </button>
               )}

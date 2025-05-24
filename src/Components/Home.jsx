@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/Home.css";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../authConfig.js";
@@ -58,7 +58,7 @@ const Home = () => {
   const stats = [
     {
       number: "22+",
-      description: <strong>Torneios universitários disputados</strong>,
+      description: <strong>Torneios disputados</strong>,
     },
     { number: "10+", description: <strong>Títulos conquistados</strong> },
     { number: "20+", description: <strong>Jogadores ativos na equipe</strong> },
