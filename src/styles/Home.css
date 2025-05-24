@@ -106,35 +106,86 @@ h1 .bemvindo {
 }
 
 .stats-section {
-  padding-top: 5%;
-  padding-bottom: 2%;
+  padding: 5% 0 3%;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-section::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .stats-container {
-  margin-left: 10%;
-  margin-right: 10%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
   color: #fff;
+  position: relative;
+  z-index: 2;
 }
 
 .stat-item {
   text-align: center;
+  flex: 1;
+  min-width: 160px;
+  max-width: 200px;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.stat-item:hover {
+  transform: translateY(-8px);
+  background-color: rgba(0, 59, 109, 0.4);
+  border-color: rgba(1, 204, 254, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(1, 204, 254, 0.2);
 }
 
 .stat-number {
-  font-size: 50px;
+  font-size: 3.5rem;
   font-weight: bold;
+  color: white;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: inline-block;
 }
 
 .stat-plus {
-  color: #00CDFF;
+  color: #01CCFE;
+  font-size: 2.5rem;
+  position: relative;
+  top: -0.5rem;
+  margin-left: 2px;
+  text-shadow: 0 0 10px rgba(1, 204, 254, 0.5);
 }
 
 .stat-description {
-  margin-top: -2%;
-  font-size: 15px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.stat-item:hover .stat-description {
+  opacity: 1;
 }
 
 
@@ -331,11 +382,11 @@ h1 .bemvindo {
 
 .game-overlay {
   position: absolute;
-  top: 0;
+  top: 20px;
   left: 15px;
   right: 15px;
-  bottom: 0;
-  background-color: rgba(4, 19, 43, 0.696);
+  bottom: 5px;
+  background-color: rgba(4, 19, 43, 0.308);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -516,7 +567,7 @@ img {
   border: none;
   width: 40px;
   height: 40px;
-  border-radius: 5px;
+  border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -526,7 +577,7 @@ img {
 }
 
 .carousel-control:hover {
-  background: rgba(0, 32, 59, 0.466);
+  background: rgba(0, 32, 59, 0.123);
 }
 
 .carousel-control.prev {
