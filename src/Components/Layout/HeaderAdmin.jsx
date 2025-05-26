@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useMsal, useAccount } from "@azure/msal-react";
 import { useNavigate } from "react-router-dom";
-import { FaUserCog, FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 import "../../styles/Layout/HeaderAdmin.css";
 
 const HeaderAdmin = () => {
@@ -17,10 +17,6 @@ const HeaderAdmin = () => {
       instance.logoutRedirect();
     }
   }, [account, instance]);
-
-  const handleEditProfile = () => {
-    alert("Editar perfil clicado");
-  };
 
   const handleLogout = () => {
     instance.logoutRedirect();
@@ -59,9 +55,6 @@ const HeaderAdmin = () => {
 
         {isDropdownOpen && (
           <div className="dropdown-menu">
-            <button onClick={handleEditProfile}>
-              <FaUserCog /> Editar Perfil
-            </button>
             <button onClick={handleLogout}>
               <FaSignOutAlt /> Sair da Conta
             </button>
