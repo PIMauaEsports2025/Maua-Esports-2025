@@ -9,6 +9,7 @@ const PainelUsuario = () => {
     nome: "Mateus Martins",
     email: "mateus.martins@maua.br",
     modalidade: "Valorant",
+    time: "Blue",
     horasPAE: 48,
   });
 
@@ -86,9 +87,16 @@ const PainelUsuario = () => {
             <p>{usuario.email}</p>
           </div>
 
-          <div className="info-card">
-            <label>Modalidade:</label>
-            <p>{usuario.modalidade}</p>
+          <div className="info-row">
+            <div className="info-card">
+              <label>Modalidade:</label>
+              <p>{usuario.modalidade}</p>
+            </div>
+
+            <div className="info-card">
+              <label>Time:</label>
+              <p>{usuario.time}</p>
+            </div>
           </div>
 
           <div className="info-card">

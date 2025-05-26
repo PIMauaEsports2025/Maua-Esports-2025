@@ -200,7 +200,7 @@ const GerenciarMembros = () => {
               <FaSearch className="search-icon" />
               <input
                 type="text"
-                placeholder="Pesquise por nome, Discord ID ou email"
+                placeholder="Pesquise por nome, ID ou email"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
