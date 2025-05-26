@@ -35,7 +35,7 @@
 .add-button:hover {
   background-color: #2ea043;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(46, 160, 67, 0.3);
+  transform: scale(2);
 }
 
 .add-member-btn {

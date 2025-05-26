@@ -111,8 +111,6 @@ function Sobre() {
         </div>
       </section>
 
-      <hr className="divisoria-premios" />
-
       <section className="processo-content">
         <div className="processo-seletivo">
           <h2 className="titulo">PROCESSO SELETIVO</h2>

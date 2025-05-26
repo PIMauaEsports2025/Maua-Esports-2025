@@ -2,10 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/AdminInterface.css";
 import {
-  FaUserCog,
   FaSignOutAlt,
   FaUsers,
-  FaUserShield,
   FaClock,
   FaGamepad,
   FaCalendarAlt,
@@ -24,34 +22,22 @@ const AdminInterface = () => {
   // Verifica se o usuário está autenticado
   useEffect(() => {
     if (!account) {
-      // Se não estiver autenticado, redireciona para login
       navigate("/login");
     }
   }, [account, navigate]);
 
-  const handleEditProfile = () => {
-    alert("Editar perfil clicado");
-  };
-
-  const handleLogout = async () => {
+  const handleLogout = () => {
     try {
-      await instance.logoutPopup({
+      instance.logoutRedirect({
         postLogoutRedirectUri: "http://localhost:3000",
-        mainWindowRedirectUri: "http://localhost:3000",
       });
 
-      // Limpa o localStorage
-      localStorage.removeItem("token");
-      localStorage.removeItem("userEmail");
-
-      // Redireciona para a página inicial
-      navigate("/");
+      // Não precisa de navigate, pois o logoutRedirect cuida do redirecionamento
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
     }
   };
 
-  // Handles navigation to different sections
   const handleNavigation = (route) => {
     navigate(route);
   };
@@ -67,7 +53,6 @@ const AdminInterface = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Se não há conta (não autenticado), retorna null (será redirecionado pelo useEffect)
   if (!account) {
     return null;
   }
@@ -80,7 +65,6 @@ const AdminInterface = () => {
           <h1 className="title">E-SPORTS</h1>
         </div>
 
-        {/* Wrapper com clique e ref para detectar clique fora */}
         <div className="user-dropdown-wrapper" ref={dropdownRef}>
           <div
             className="user-section"

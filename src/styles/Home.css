@@ -136,25 +136,12 @@ h1 .bemvindo {
   z-index: 2;
 }
 
-.stat-item {
+.stat-item-number {
   text-align: center;
   flex: 1;
   min-width: 160px;
   max-width: 200px;
   padding: 1.5rem;
-  border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
-}
-
-.stat-item:hover {
-  transform: translateY(-8px);
-  background-color: rgba(0, 59, 109, 0.4);
-  border-color: rgba(1, 204, 254, 0.3);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(1, 204, 254, 0.2);
 }
 
 .stat-number {
@@ -184,7 +171,7 @@ h1 .bemvindo {
   transition: opacity 0.3s ease;
 }
 
-.stat-item:hover .stat-description {
+.stat-item-number:hover .stat-description {
   opacity: 1;
 }
 
@@ -755,7 +742,7 @@ img {
     padding: 0 5%;
   }
   
-  .stat-item {
+  .stat-item-number {
     flex: 1 1 45%; 
     max-width: 150px;
     min-width: 120px;

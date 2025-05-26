@@ -170,7 +170,7 @@ const Home = () => {
       <section className="stats-section">
         <div className="stats-container">
           {stats.map((statItem, index) => (
-            <div key={index} className="stat-item">
+            <div key={index} className="stat-item-number">
               <div className="stat-number">
                 {statItem.number.split("+")[0]}
                 <span className="stat-plus">+</span>
