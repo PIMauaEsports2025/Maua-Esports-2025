@@ -60,6 +60,26 @@ function Times() {
         </div>
       </div>
 
+      <section className="teams-grid-section">
+        <h2 className="secao-title-equipes">CONHEÇA NOSSAS EQUIPES</h2>
+
+        <div className="teams-grid">
+          {times.map((time, index) => (
+            <Link to={time.link} className="team-card" key={index}>
+              <div className="team-card-content">
+                <div className="team-card-icon">
+                  <img src={time.imagem} alt={time.nome} />
+                </div>
+                <h3 className="team-name">{time.nome}</h3>
+                <div className="team-card-overlay">
+                  <span className="view-text">Ver Equipe</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <main className="teams-description">
         <div className="description-container">
           <h2>EXCELÊNCIA NOS E-SPORTS</h2>
@@ -82,26 +102,6 @@ function Times() {
           </p>
         </div>
       </main>
-
-      <section className="teams-grid-section">
-        <h2 className="section-title">CONHEÇA NOSSAS EQUIPES</h2>
-
-        <div className="teams-grid">
-          {times.map((time, index) => (
-            <Link to={time.link} className="team-card" key={index}>
-              <div className="team-card-content">
-                <div className="team-card-icon">
-                  <img src={time.imagem} alt={time.nome} />
-                </div>
-                <h3 className="team-name">{time.nome}</h3>
-                <div className="team-card-overlay">
-                  <span className="view-text">Ver Equipe</span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
 
       <Footer />
     </div>

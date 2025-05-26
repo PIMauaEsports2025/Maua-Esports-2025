@@ -7,7 +7,7 @@
 }
 
 .team-banner {
-  background: rgba(1, 204, 254, 0.1);
+  background: #0101015d;
   padding: 100px 0 40px 0;
   position: relative;
   overflow: hidden;
@@ -16,7 +16,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.team-banner::before {
+.team-banner::after {
   content: "";
   position: absolute;
   top: 0;
