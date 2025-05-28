@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Home.css";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../authConfig.js";
@@ -16,6 +16,8 @@ import valorantImage from "../assets/games/valorant.jpg";
 import tftImage from "../assets/games/tft.jpg";
 import Header from "./Layout/Header.jsx";
 import Footer from "./Layout/Footer.jsx";
+
+import ReactVLibras from "react-vlibras-plugin";
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -44,8 +46,7 @@ const Home = () => {
     } catch (error) {
       console.error("Erro ao fazer login com Microsoft:", error);
       setLoginError(
-        `Erro ao fazer login com Microsoft. Detalhes: ${
-          error.message || "Erro desconhecido"
+        `Erro ao fazer login com Microsoft. Detalhes: ${error.message || "Erro desconhecido"
         }`
       );
     }
@@ -142,6 +143,18 @@ const Home = () => {
       prevSlide();
     }
   };
+
+  useEffect(() => {
+    const checkVLibras = setInterval(() => {
+      const pluginRoot = document.querySelector(".vw-plugin-wrapper");
+      if (pluginRoot) {
+        console.log("VLibras carregado com sucesso");
+        clearInterval(checkVLibras);
+      }
+    }, 500);
+
+    return () => clearInterval(checkVLibras);
+  }, []);
 
   return (
     <div className="home-container">
@@ -316,6 +329,10 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <div style={{ zIndex: 9999, position: "relative" }}>
+        <ReactVLibras position="right" avatar="guga" opacity={1} />
+      </div>
 
       <Footer />
     </div>

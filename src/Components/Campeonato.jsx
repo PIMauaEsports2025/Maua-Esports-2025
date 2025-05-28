@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Campeonato.css";
 import Header from "./Layout/Header";
 import Footer from "./Layout/Footer";
 
+import ReactVLibras from "react-vlibras-plugin";
+
 function Campeonato() {
+  useEffect(() => {
+    const checkVLibras = setInterval(() => {
+      const pluginRoot = document.querySelector(".vw-plugin-wrapper");
+      if (pluginRoot) {
+        console.log("VLibras carregado com sucesso");
+        clearInterval(checkVLibras);
+      }
+    }, 500);
+
+    return () => clearInterval(checkVLibras);
+  }, []);
   return (
     <div>
       <div className="campeonato-container">
@@ -97,6 +110,10 @@ function Campeonato() {
           </div>
         </div>
       </section>
+
+      <div style={{ zIndex: 9999, position: "relative" }}>
+        <ReactVLibras position="right" avatar="guga" opacity={1} />
+      </div>
 
       <Footer />
     </div>

@@ -40,46 +40,46 @@ html, body, #root {
 }
 
 
-/* Teams Description */
 .teams-description {
-  padding: 60px 20px;
-  max-width: 1200px;
+  padding: 30px 1px 10px 1px;
+  max-width: 1250px;
   margin: 0 auto;
 }
 
 .description-container {
-  background-color: rgba(13, 17, 23, 0.8);
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .teams-description h2 {
   font-size: 2.2rem;
   color: #01CCFE;
   margin-bottom: 30px;
-  text-align: center;
+  text-align: left;
   font-family: 'Jersey 25', sans-serif;
   letter-spacing: 1px;
 }
 
 .teams-description p {
   margin-bottom: 20px;
-  font-size: 1.1rem;
+  font-size: 16px;
   line-height: 1.6;
   color: #e6edf3;
 }
 
 /* Teams Grid */
 .teams-grid-section {
-  padding: 60px 20px;
+  padding: 100px 1px 10px 1px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
-.section-title {
-  text-align: left;
+.secao-title-equipes {
   font-size: 2.2rem;
   color: #01CCFE;
-  margin-bottom: 40px;
+  margin-bottom: 5%;
+  margin-left: 4%;
+  text-align: left;
   font-family: 'Jersey 25', sans-serif;
   letter-spacing: 1px;
 }
@@ -94,7 +94,7 @@ html, body, #root {
 
 .team-card {
   text-decoration: none;
-  background: rgba(13, 17, 23, 0.8);
+  background: #0000005f;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
@@ -119,13 +119,12 @@ html, body, #root {
 }
 
 .team-card-icon {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(1, 204, 254, 0.1);
   border-radius: 50%;
   padding: 15px;
 }

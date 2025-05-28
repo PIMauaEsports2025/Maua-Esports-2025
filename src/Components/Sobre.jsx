@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Sobre.css";
 import Header from "./Layout/Header";
 import Footer from "./Layout/Footer";
@@ -10,6 +10,8 @@ import {
   FaEye,
   FaHeart,
 } from "react-icons/fa";
+
+import ReactVLibras from "react-vlibras-plugin";
 
 function Sobre() {
   const premios = [
@@ -26,6 +28,18 @@ function Sobre() {
       descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     },
   ];
+
+  useEffect(() => {
+    const checkVLibras = setInterval(() => {
+      const pluginRoot = document.querySelector(".vw-plugin-wrapper");
+      if (pluginRoot) {
+        console.log("VLibras carregado com sucesso");
+        clearInterval(checkVLibras);
+      }
+    }, 500);
+
+    return () => clearInterval(checkVLibras);
+  }, []);
 
   return (
     <div className="sobre-container">
@@ -155,6 +169,10 @@ function Sobre() {
           </div>
         </div>
       </section>
+
+      <div style={{ zIndex: 9999, position: "relative" }}>
+        <ReactVLibras position="right" avatar="guga" opacity={1} />
+      </div>
 
       <Footer />
     </div>
