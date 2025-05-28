@@ -1,24 +1,27 @@
 # 🎮 Mauá Esports - Plataforma Oficial
 
 ## 📌 Sobre o Projeto
-O **Mauá Esports** é a plataforma oficial da equipe de esports do Instituto Mauá de Tecnologia. O site tem como objetivo centralizar informações sobre eventos, campeonatos, jogadores e notícias, proporcionando uma experiência interativa e dinâmica para a comunidade.
+O Mauá Esports é a plataforma oficial da equipe de esports do Instituto Mauá de Tecnologia. O site tem como objetivo centralizar informações sobre eventos, campeonatos, jogadores e notícias, proporcionando uma experiência interativa e dinâmica para a comunidade.
 
 ## 🚀 Tecnologias Utilizadas
 
-### **Frontend**
-- ⚛️ **React.js** - Framework principal para construção da interface dinâmica e responsiva.
+### Frontend
+* ⚛️ React.js — Construção de interfaces dinâmicas e responsivas.
+* 🎨 CSS — Estilização das páginas com organização modular por componente.
+* 🔐 MSAL (Microsoft Authentication Library) — Integração de autenticação segura via contas institucionais (Azure AD).
 
-### **Backend**
-- 🟢 **Node.js** + **Express.js** - Servidor robusto e escalável para processar as requisições da aplicação.
-- 🗂️ **MongoDB** - Banco de dados NoSQL para armazenamento flexível das informações.
-- 🔑 **Microsoft Azure AD OAuth** - Autenticação segura e gerenciamento de identidades.
+### Backend
+* 🟢 Node.js + Express.js — Servidor robusto e escalável.
+* 🗂️ MongoDB — Banco de dados NoSQL para armazenamento flexível.
+* 🔑 Microsoft Azure AD OAuth — Gerenciamento seguro de identidades e autenticação.
+* ✨ JavaScript — Linguagem principal tanto no backend quanto na integração entre serviços.
+* 📄 JSON — Formato para troca de dados entre APIs e banco de dados.
 
-### **Ferramentas Auxiliares**
-- 🔧 **GitHub** - Controle de versão e colaboração no código-fonte.
-- 🎨 **Figma** - Protótipos e design da interface.
-- ☁️ **MongoDB Atlas** - Banco de dados hospedado na nuvem para maior disponibilidade.
-- 🚀 **Vercel/Netlify** - Hospedagem do frontend.
-- 🌍 **Railway/Render** - Hospedagem do backend.
+### Outras Tecnologias e Ferramentas
+* 🔧 Git + GitHub — Versionamento e colaboração.
+* 🎨 Figma — Protótipos e UI Design.
+* 🖥️ VLibras — Inclusão e acessibilidade digital para tradução de conteúdo em Libras.
+* ⚙️ Batch Scripts — Scripts para automação de processos locais (start de servidores, testes, etc.).
 
 ## 📂 Estrutura do Projeto
 ```
@@ -33,7 +36,8 @@ Maua-Esports-2025/
 │     ├─ index.js
 │     ├─ LICENSE
 │     ├─ package.json
-│     └─ README.md
+│     ├─ README.md
+│     └─ trainingService.js
 ├─ public/
 │  ├─ index.html
 │  ├─ manifest.json
@@ -43,9 +47,13 @@ Maua-Esports-2025/
 │  ├─ config/
 │  │  └─ db.js
 │  ├─ models/
+│  │  ├─ Training.js
 │  │  └─ User.js
 │  ├─ routes/
+│  │  ├─ trainingRoutes.js
 │  │  └─ userRoutes.js
+│  ├─ utils/
+│  │  └─ db-diagnostico.js
 │  ├─ seedDB.js
 │  └─ server.js
 ├─ src/
@@ -109,11 +117,14 @@ Maua-Esports-2025/
 │  │  ├─ TimeValorantBlue.jsx
 │  │  ├─ TimeValorantPurple.jsx
 │  │  └─ TimeValorantWhite.jsx
+│  ├─ hooks/
+│  │  └─ useVLibras.js
 │  ├─ models/
 │  │  └─ models.js
 │  ├─ Service/
 │  │  ├─ api.js
-│  │  └─ memberApi.js
+│  │  ├─ memberApi.js
+│  │  └─ trainingApi.js
 │  ├─ styles/
 │  │  ├─ Layout/
 │  │  │  ├─ Footer.css
@@ -158,6 +169,7 @@ Maua-Esports-2025/
 │  └─ test-api.html
 ├─ tools/
 │  ├─ start_app.bat
+│  ├─ start_project.bat
 │  ├─ test_db.bat
 │  └─ test_mongodb.js
 ├─ .env.development
@@ -166,28 +178,68 @@ Maua-Esports-2025/
 ├─ LICENSE
 ├─ package-lock.json
 ├─ package.json
-└─ Readme.md
+└─ README.md
+
 ```
+## 🗺️ Descrição das Pastas e Arquivos Principais
+
+🔸 **`api/Stage-API-Maua-Esports-main/`**
+API simples para manipulação de treinos.
+Arquivo `trainingService.js` centraliza as regras dessa API.
+Útil para desenvolvimento e testes isolados.
+
+🔸 **`server/`**
+Servidor Node.js + Express com integração MongoDB.
+Arquivos principais:
+* `server.js`: inicia o backend.
+* `config/db.js`: configuração da conexão com MongoDB.
+* `models/`: esquemas do banco (User, Training).
+* `routes/`: rotas de usuário e treinos.
+* `utils/db-diagnostico.js`: utilitário para diagnósticos de banco.
+
+🔸 **`src/`**
+Código-fonte do frontend em React.
+Componentização modular (cada página e função possui seu arquivo e estilo próprio):
+* Interfaces específicas: usuário, capitão, administrador.
+* Gerenciamento: treinos, membros, modalidades.
+* Páginas de informações: Home, Sobre, Contato, Equipes.
+Integração com MSAL no diretório `auth/`.
+
+🔸 **`tools/`**
+Scripts `.bat` e `.js` que facilitam:
+* Início dos servidores (`start_app.bat`, `start_project.bat`).
+* Testes no MongoDB (`test_db.bat`, `test_mongodb.js`).
 
 ## 📜 Instalação e Execução
 
-### 🔧 **Pré-requisitos**
-Antes de iniciar, certifique-se de ter instalado:
-- [Node.js](https://nodejs.org/)
-- [Git](https://git-scm.com/)
+### 🔧 Pré-requisitos
+* ✔️ Node.js
+* ✔️ MongoDB (local ou em nuvem, ex.: MongoDB Atlas)
+* ✔️ Conta institucional Microsoft (para autenticação Azure AD)
+* ✔️ Git
 
-### 🛠️ **Passo a Passo**
+## 🛠️ **Passo a Passo**
 ```sh
 # Clone o repositório
 git clone https://github.com/PIMauaEsports2025/Maua-Esports-2025.git
 cd maua-esports
 ```
 
-#### 📌 **Rodar o Projeto**
+#### 📌 **Instale as dependências**
 ```sh
-npm install  # Instalar dependências
-npm start  # Iniciar servidor backend e frontend
-# Dependências já instaladas no npm
+npm install
+```
+
+#### ⚙️ **Execute o Backend**
+```sh
+cd server
+node server.js
+```
+
+#### 🌎 **Execute o Frontend**
+```sh
+cd ..
+npm start
 ```
 
 #### ✂️ **Rodar a API**
@@ -218,9 +270,10 @@ Quer contribuir com o projeto? Siga os passos:
 Utilizamos o padrão [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/) para manter um histórico de commits organizado e padronizado.
 
 ## 📝 Licença
-Este projeto está sob a licença **MIT**. Sinta-se à vontade para utilizá-lo e modificá-lo conforme necessário.
+Distribuído sob a licença MIT. Veja LICENSE para mais informações.
 
 ---
+
 **Desenvolvido com 💙 pela equipe Mauá Esports.**
 #### 🧑‍💻 [Breno Augusto - 24.01496-6](https://github.com/BrenoAugustoOG)
 #### 🧑‍💻 [Gustavo Seripierri - 24.00630-0](https://github.com/GustavoSeripierri)
