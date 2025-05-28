@@ -315,22 +315,14 @@ body {
 }
 
 .etapa {
-  background-color: #0b0b0f;
-  border-radius: 12px;
+  background-color: #00000068;
+  border-radius: 5px;
   padding: 2rem;
   text-align: left;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  border-left: 4px solid #003B6D;
   transition: all 0.3s ease;
   position: relative;
   display: flex;
   flex-direction: column;
-}
-
-.etapa:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  border-left-color: #00CDFF;
 }
 
 .etapa-numero {

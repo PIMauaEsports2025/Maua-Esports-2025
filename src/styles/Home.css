@@ -770,16 +770,16 @@ img {
     position: static;
     margin: 20px 0 0 0;
     display: flex;
-    flex-direction: row; /* LADO A LADO */
-    justify-content: flex-start; /* ALINHADO À ESQUERDA */
+    flex-direction: row; 
+    justify-content: flex-start;
     align-items: center;
     gap: 1rem;
-    padding-left: 7%; /* mesmo recuo do título e parágrafo */
+    padding-left: 7%; 
   }
 
   .botoes {
     display: flex;
-    flex-direction: row; /* lado a lado */
+    flex-direction: row; 
     gap: 1rem;
     align-items: center;
     justify-content: flex-start;
@@ -791,3 +791,5 @@ img {
     padding: 0.6rem 1rem;
     font-size: 0.95rem;
   }
+
+  
