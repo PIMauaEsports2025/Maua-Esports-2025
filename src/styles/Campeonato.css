@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     padding: 60px 40px;
-    background: #030b17;
+
 }
 
 .championships-wrapper {
@@ -30,8 +30,7 @@
 }
 
 .championship-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 15px #00CDFF;
+    box-shadow: 0 0 20px #00CDFF;
 }
 
 .card-image {
