@@ -27,6 +27,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import ConsultaHorasEquipe from "./Components/ConsultaHorasEquipe";
 import GerenciarTreinosEquipe from "./Components/GerenciarTreinosEquipe";
 import { AuthProvider } from "./auth/AuthProvider";
+import EditSiteInfo from "./Components/EditSiteInfo";
 
 function AppRoutes() {
   useVLibras(); // hook dentro do BrowserRouter
@@ -37,6 +38,7 @@ function AppRoutes() {
       <Route path="/gerenciar-membros" element={<GerenciarMembros />} />
       <Route path="/gerenciar-modalidades" element={<GerenciarModalidades />} />
       <Route path="/gerenciar-treinos" element={<GerenciarTreinos />} />
+      <Route path="/editar-site" element={<EditSiteInfo />} />
 
       <Route path="/sobre" element={<Sobre />} />
       <Route path="/times" element={<Times />} />

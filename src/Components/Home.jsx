@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/Home.css";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../authConfig.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FaMedal, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import heroBanner from "../assets/ui/HeroBanner.jpg";
 import { IoGameController } from "react-icons/io5";
@@ -16,27 +16,44 @@ import valorantImage from "../assets/games/valorant.jpg";
 import tftImage from "../assets/games/tft.jpg";
 import Header from "./Layout/Header.jsx";
 import Footer from "./Layout/Footer.jsx";
-
 import ReactVLibras from "react-vlibras-plugin";
 
 const Home = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const isEdit = params.get("edit") === "1";
+
+  // Conteúdo editável
+  const [info, setInfo] = useState({
+    titulo: "",
+    descricao: "",
+  });
+
+  useEffect(() => {
+    const saved = localStorage.getItem("siteInfo");
+    if (saved) setInfo(JSON.parse(saved));
+  }, []);
+
+  const handleChange = (e) => {
+    setInfo({ ...info, [e.target.name]: e.target.value });
+  };
+
+  const handleSave = () => {
+    localStorage.setItem("siteInfo", JSON.stringify(info));
+    alert("Informações salvas!");
+    window.location.href = "/home";
+  };
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { instance } = useMsal();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const handleMicrosoftLogin = async () => {
     try {
-      // Configuração específica para o tenant da Mauá
       const response = await instance.loginPopup(loginRequest);
       const account = response.account;
-
-      console.log("Login bem-sucedido:", account);
-
-      // Salva os dados do usuário
       localStorage.setItem("token", response.accessToken);
       localStorage.setItem("userEmail", account.username);
-
-      // Verifica o domínio de email para decidir para onde redirecionar
       const emailDomain = account.username.split("@")[1];
       if (emailDomain === "maua.br") {
         navigate("/admin");
@@ -44,10 +61,8 @@ const Home = () => {
         navigate("/painelUsuario");
       }
     } catch (error) {
-      console.error("Erro ao fazer login com Microsoft:", error);
       setLoginError(
-        `Erro ao fazer login com Microsoft. Detalhes: ${error.message || "Erro desconhecido"
-        }`
+        `Erro ao fazer login com Microsoft. Detalhes: ${error.message || "Erro desconhecido"}`
       );
     }
   };
@@ -148,7 +163,6 @@ const Home = () => {
     const checkVLibras = setInterval(() => {
       const pluginRoot = document.querySelector(".vw-plugin-wrapper");
       if (pluginRoot) {
-        console.log("VLibras carregado com sucesso");
         clearInterval(checkVLibras);
       }
     }, 500);
@@ -195,28 +209,62 @@ const Home = () => {
       </section>
 
       <div className="quem-somos-conteudo">
-        <h2 className="quem-somos-titulo">QUEM SOMOS</h2>
-        <p className="quem-somos-texto">
-          O <strong>Mauá e-Sports</strong> é uma comunidade universitária
-          apaixonada por <strong>jogos eletrônicos</strong>,{" "}
-          <strong>inovação</strong> e <strong>competitividade</strong>. Fundado
-          em 2018, começamos como um grupo de amigos com um sonho em comum:
-          colocar o nome da Mauá no cenário dos e-sports.
-        </p>
-        <p className="quem-somos-texto">
-          Hoje, somos uma organização com presença regional, diversas{" "}
-          <strong>modalidades ativas</strong> e uma base sólida de jogadores,
-          staffs e entusiastas.
-        </p>
-        <p className="quem-somos-texto">
-          Valorizamos o <strong>crescimento pessoal</strong>, o{" "}
-          <strong>trabalho em equipe</strong> e o desenvolvimento de{" "}
-          <strong>habilidades técnicas e emocionais</strong>. Para nós, e-sports
-          é mais do que jogo, é <strong>formação e transformação</strong>. Seja
-          como atleta, staff, analista ou criador de conteúdo, cada membro ajuda
-          a construir algo maior. Mais do que um time, somos uma{" "}
-          <strong>família que joga, aprende e cresce junto</strong>.
-        </p>
+        <h2 className="quem-somos-titulo">
+          {isEdit ? (
+            <input
+              type="text"
+              name="titulo"
+              value={info.titulo}
+              onChange={handleChange}
+              placeholder="Título"
+              style={{ fontSize: 28, fontWeight: "bold", width: "100%" }}
+            />
+          ) : info.titulo ? (
+            info.titulo
+          ) : (
+            "QUEM SOMOS"
+          )}
+        </h2>
+        {isEdit ? (
+          <textarea
+            name="descricao"
+            value={info.descricao}
+            onChange={handleChange}
+            placeholder="Descrição"
+            style={{ width: "100%", minHeight: 120, marginBottom: 12 }}
+          />
+        ) : info.descricao ? (
+          <p className="quem-somos-texto">{info.descricao}</p>
+        ) : (
+          <>
+            <p className="quem-somos-texto">
+              O <strong>Mauá e-Sports</strong> é uma comunidade universitária
+              apaixonada por <strong>jogos eletrônicos</strong>,{" "}
+              <strong>inovação</strong> e <strong>competitividade</strong>. Fundado
+              em 2018, começamos como um grupo de amigos com um sonho em comum:
+              colocar o nome da Mauá no cenário dos e-sports.
+            </p>
+            <p className="quem-somos-texto">
+              Hoje, somos uma organização com presença regional, diversas{" "}
+              <strong>modalidades ativas</strong> e uma base sólida de jogadores,
+              staffs e entusiastas.
+            </p>
+            <p className="quem-somos-texto">
+              Valorizamos o <strong>crescimento pessoal</strong>, o{" "}
+              <strong>trabalho em equipe</strong> e o desenvolvimento de{" "}
+              <strong>habilidades técnicas e emocionais</strong>. Para nós, e-sports
+              é mais do que jogo, é <strong>formação e transformação</strong>. Seja
+              como atleta, staff, analista ou criador de conteúdo, cada membro ajuda
+              a construir algo maior. Mais do que um time, somos uma{" "}
+              <strong>família que joga, aprende e cresce junto</strong>.
+            </p>
+          </>
+        )}
+        {isEdit && (
+          <button onClick={handleSave} style={{ marginTop: 8 }}>
+            Salvar
+          </button>
+        )}
       </div>
 
       <section className="features-hobbie">
