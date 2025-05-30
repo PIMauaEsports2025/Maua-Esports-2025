@@ -9,6 +9,7 @@ import {
   FaCalendarAlt,
   FaChevronRight,
   FaEdit,
+  FaChartBar,
 } from "react-icons/fa";
 import { useMsal, useAccount } from "@azure/msal-react";
 import Footer from "./Layout/Footer";
@@ -152,6 +153,18 @@ const AdminInterface = () => {
               <FaEdit />
             </span>
             <span className="button-text">EDITAR INFORMAÇÕES DO SITE</span>
+            <span className="button-arrow">
+              <FaChevronRight />
+            </span>
+          </button>
+          <button
+            className="main-button"
+            onClick={() => handleNavigation("/dashboard")}
+          >
+            <span className="button-icon">
+              <FaChartBar />
+            </span>
+            <span className="button-text">DASHBOARD</span>
             <span className="button-arrow">
               <FaChevronRight />
             </span>
