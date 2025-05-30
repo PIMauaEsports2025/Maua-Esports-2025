@@ -28,6 +28,7 @@ import ConsultaHorasEquipe from "./Components/ConsultaHorasEquipe";
 import GerenciarTreinosEquipe from "./Components/GerenciarTreinosEquipe";
 import { AuthProvider } from "./auth/AuthProvider";
 import EditSiteInfo from "./Components/EditSiteInfo";
+import Dashboard from "./Components/Dashboard";
 
 function AppRoutes() {
   useVLibras(); // hook dentro do BrowserRouter
@@ -39,6 +40,7 @@ function AppRoutes() {
       <Route path="/gerenciar-modalidades" element={<GerenciarModalidades />} />
       <Route path="/gerenciar-treinos" element={<GerenciarTreinos />} />
       <Route path="/editar-site" element={<EditSiteInfo />} />
+      <Route path="/dashboard" element={<Dashboard />} />
 
       <Route path="/sobre" element={<Sobre />} />
       <Route path="/times" element={<Times />} />
