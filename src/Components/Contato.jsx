@@ -10,6 +10,15 @@ import Footer from "./Layout/Footer";
 import ReactVLibras from "react-vlibras-plugin";
 
 function Contato() {
+  const [siteData, setSiteData] = useState({
+    contato: {
+      title: "CONTATO",
+      description:
+        "Preencha o formulário abaixo com sua mensagem, dúvida ou sugestão. As informações enviadas serão encaminhadas diretamente para o nosso e-mail institucional e entraremos em contato o mais breve possível.",
+      faqTitle: "Perguntas Frequentes",
+    },
+  });
+
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -79,6 +88,12 @@ function Contato() {
   };
 
   useEffect(() => {
+    const savedSiteData = localStorage.getItem("siteData");
+    if (savedSiteData) {
+      const parsedData = JSON.parse(savedSiteData);
+      setSiteData(parsedData);
+    }
+
     const checkVLibras = setInterval(() => {
       const pluginRoot = document.querySelector(".vw-plugin-wrapper");
       if (pluginRoot) {
@@ -95,12 +110,8 @@ function Contato() {
       <Header />
 
       <main className="comeco-content">
-        <h1>CONTATO</h1>
-        <p>
-          Preencha o formulário abaixo com sua mensagem, dúvida ou sugestão. As
-          informações enviadas serão encaminhadas diretamente para o nosso
-          e-mail institucional e entraremos em contato o mais breve possível.
-        </p>
+        <h1>{siteData.contato.title}</h1>
+        <p>{siteData.contato.description}</p>
       </main>
       <section className="formulario-secao">
         <form className="formulario-contato" onSubmit={handleSubmit}>
@@ -164,7 +175,7 @@ function Contato() {
       </div>
 
       <section className="faq-container">
-        <h2 className="faq-title">Perguntas Frequentes</h2>
+        <h2 className="faq-title">{siteData.contato.faqTitle}</h2>
         <div className="faq-list">
           {faqList.map((item, index) => (
             <div
