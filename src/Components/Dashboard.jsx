@@ -76,11 +76,13 @@ const Dashboard = () => {
         const captainsCount = membersData.filter(member => member.role === 'captain').length;
         const adminsCount = membersData.filter(member => member.role === 'admin').length;        
         const membersCount = membersData.filter(member => member.role === 'member').length;
-        
-        // Calcular estatísticas de treinos
-        const totalAttendees = trainingsData.reduce((sum, training) => 
-          sum + (training.AttendedPlayers ? training.AttendedPlayers.length : 0), 0
-        );
+          // Calcular estatísticas de treinos
+        const totalAttendees = trainingsData.reduce((sum, training) => {
+          const attendeesCount = training.AttendedPlayers ? training.AttendedPlayers.length : 0;
+          console.log(`Treino ${training._id}: ${attendeesCount} participantes`);
+          return sum + attendeesCount;
+        }, 0);
+                
         const averageAttendance = trainingsData.length > 0 ? 
           (totalAttendees / trainingsData.length).toFixed(1) : 0;
         
