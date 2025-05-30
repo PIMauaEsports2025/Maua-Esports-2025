@@ -146,7 +146,7 @@ const AdminInterface = () => {
 
           <button
             className="main-button"
-            onClick={() => handleNavigation("/home?edit=1")}
+            onClick={() => handleNavigation("/editar-site")}
           >
             <span className="button-icon">
               <FaEdit />

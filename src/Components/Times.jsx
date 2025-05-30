@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Times.css";
 import Header from "./Layout/Header.jsx";
 import Footer from "./Layout/Footer.jsx";
@@ -9,6 +9,30 @@ import rainbowImage from "../assets/ui/rainbow.png";
 import valorantImage from "../assets/ui/valorant.png";
 
 function Times() {
+  const [siteData, setSiteData] = useState({
+    times: {
+      heroTitle: "NOSSAS EQUIPES",
+      heroDescription:
+        "A elite dos games universitários representa o Instituto Mauá com talento, estratégia e paixão. Mais que jogadores, somos um time unido que leva o nome Mauá ao topo dos eSports!",
+      sectionTitle: "CONHEÇA NOSSAS EQUIPES",
+      descriptionTitle: "EXCELÊNCIA NOS E-SPORTS",
+      descriptionText1:
+        "A Mauá e-Sports reúne times formados por alunos talentosos e apaixonados por jogos eletrônicos, que trabalham juntos para alcançar a excelência em suas modalidades.",
+      descriptionText2:
+        "Competimos em grandes arenas de e-sports com títulos renomados como Counter Strike, League of Legends, Valorant, Rocket League, Team Fight Tactics, Rainbow Six Siege e EA FC 25. Nossas equipes são estruturadas com treinamentos regulares e estratégias personalizadas para enfrentar desafios.",
+      descriptionText3:
+        "Mais do que vitórias, promovemos valores como trabalho em equipe, disciplina, inclusão e respeito, acreditando que o crescimento como jogador está ligado ao desenvolvimento pessoal.",
+    },
+  });
+
+  useEffect(() => {
+    const savedSiteData = localStorage.getItem("siteData");
+    if (savedSiteData) {
+      const parsedData = JSON.parse(savedSiteData);
+      setSiteData(parsedData);
+    }
+  }, []);
+
   const times = [
     { nome: "Counter Strike", imagem: csImage, link: "/time-cs" },
     {
@@ -54,14 +78,13 @@ function Times() {
 
       <div className="teams-hero">
         <div className="hero-content">
-          <h1>NOSSAS EQUIPES</h1>A elite dos games universitários representa o
-          Instituto Mauá com talento, estratégia e paixão. Mais que jogadores,
-          somos um time unido que leva o nome Mauá ao topo dos eSports!
+          <h1>{siteData.times.heroTitle}</h1>
+          {siteData.times.heroDescription}
         </div>
       </div>
 
       <section className="teams-grid-section">
-        <h2 className="secao-title-equipes">CONHEÇA NOSSAS EQUIPES</h2>
+        <h2 className="secao-title-equipes">{siteData.times.sectionTitle}</h2>
 
         <div className="teams-grid">
           {times.map((time, index) => (
@@ -82,24 +105,10 @@ function Times() {
 
       <main className="teams-description">
         <div className="description-container">
-          <h2>EXCELÊNCIA NOS E-SPORTS</h2>
-          <p>
-            A Mauá e-Sports reúne times formados por alunos talentosos e
-            apaixonados por jogos eletrônicos, que trabalham juntos para
-            alcançar a excelência em suas modalidades.
-          </p>
-          <p>
-            Competimos em grandes arenas de e-sports com títulos renomados como
-            Counter Strike, League of Legends, Valorant, Rocket League, Team
-            Fight Tactics, Rainbow Six Siege e EA FC 25. Nossas equipes são
-            estruturadas com treinamentos regulares e estratégias personalizadas
-            para enfrentar desafios.
-          </p>
-          <p>
-            Mais do que vitórias, promovemos valores como trabalho em equipe,
-            disciplina, inclusão e respeito, acreditando que o crescimento como
-            jogador está ligado ao desenvolvimento pessoal.
-          </p>
+          <h2>{siteData.times.descriptionTitle}</h2>
+          <p>{siteData.times.descriptionText1}</p>
+          <p>{siteData.times.descriptionText2}</p>
+          <p>{siteData.times.descriptionText3}</p>
         </div>
       </main>
 

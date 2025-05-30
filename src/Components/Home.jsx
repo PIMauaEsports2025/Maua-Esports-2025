@@ -29,9 +29,35 @@ const Home = () => {
     descricao: "",
   });
 
+  // Dados do site editáveis
+  const [siteData, setSiteData] = useState({
+    home: {
+      heroTitle: "BEM-VINDO",
+      heroDescription:
+        "O Mauá e-Sports é a equipe de esportes eletrônicos do Instituto Mauá de Tecnologia (IMT), representando a instituição em competições universitárias e promovendo o desenvolvimento de habilidades em áreas como engenharia, design, administração e comunicação.",
+      quemSomosTitle: "QUEM SOMOS",
+      quemSomosText1:
+        "O Mauá e-Sports é uma comunidade universitária apaixonada por jogos eletrônicos, inovação e competitividade. Fundado em 2018, começamos como um grupo de amigos com um sonho em comum: colocar o nome da Mauá no cenário dos e-sports.",
+      quemSomosText2:
+        "Hoje, somos uma organização com presença regional, diversas modalidades ativas e uma base sólida de jogadores, staffs e entusiastas.",
+      quemSomosText3:
+        "Valorizamos o crescimento pessoal, o trabalho em equipe e o desenvolvimento de habilidades técnicas e emocionais. Para nós, e-sports é mais do que jogo, é formação e transformação. Seja como atleta, staff, analista ou criador de conteúdo, cada membro ajuda a construir algo maior. Mais do que um time, somos uma família que joga, aprende e cresce junto.",
+      gamesDescription1:
+        "A equipe é composta por representantes de diferentes cursos que atuam de forma organizada e disciplinada em diversos títulos do cenário competitivo, como League of Legends, Valorant, Counter-Strike 2, EA FC e Teamfight Tactics, entre outros.",
+      gamesDescription2:
+        "Mais do que participar de torneios, buscamos consolidar uma cultura de e-sports responsável, integrando atividades de treinamento, planejamento estratégico e representação institucional.",
+    },
+  });
+
   useEffect(() => {
     const saved = localStorage.getItem("siteInfo");
     if (saved) setInfo(JSON.parse(saved));
+
+    const savedSiteData = localStorage.getItem("siteData");
+    if (savedSiteData) {
+      const parsedData = JSON.parse(savedSiteData);
+      setSiteData(parsedData);
+    }
   }, []);
 
   const handleChange = (e) => {
@@ -172,19 +198,14 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Header onLoginClick={handleMicrosoftLogin} />
-
-      <main
+      <Header onLoginClick={handleMicrosoftLogin} />      <main
         className="hero-section"
         style={{ backgroundImage: `url(${heroBanner})` }}
       >
         <div className="hero-content">
-          <h1 className="bemvindo">BEM-VINDO</h1>
+          <h1 className="bemvindo">{siteData.home.heroTitle}</h1>
           <p>
-            O Mauá e-Sports é a equipe de esportes eletrônicos do Instituto Mauá
-            de Tecnologia (IMT), representando a instituição em competições
-            universitárias e promovendo o desenvolvimento de habilidades em
-            áreas como engenharia, design, administração e comunicação.
+            {siteData.home.heroDescription}
           </p>
           <div className="hero-buttons">
             <button className="inscrever-button">SOBRE NÓS</button>
@@ -206,9 +227,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </section>
-
-      <div className="quem-somos-conteudo">
+      </section>      <div className="quem-somos-conteudo">
         <h2 className="quem-somos-titulo">
           {isEdit ? (
             <input
@@ -222,7 +241,7 @@ const Home = () => {
           ) : info.titulo ? (
             info.titulo
           ) : (
-            "QUEM SOMOS"
+            siteData.home.quemSomosTitle
           )}
         </h2>
         {isEdit ? (
@@ -238,25 +257,13 @@ const Home = () => {
         ) : (
           <>
             <p className="quem-somos-texto">
-              O <strong>Mauá e-Sports</strong> é uma comunidade universitária
-              apaixonada por <strong>jogos eletrônicos</strong>,{" "}
-              <strong>inovação</strong> e <strong>competitividade</strong>. Fundado
-              em 2018, começamos como um grupo de amigos com um sonho em comum:
-              colocar o nome da Mauá no cenário dos e-sports.
+              {siteData.home.quemSomosText1}
             </p>
             <p className="quem-somos-texto">
-              Hoje, somos uma organização com presença regional, diversas{" "}
-              <strong>modalidades ativas</strong> e uma base sólida de jogadores,
-              staffs e entusiastas.
+              {siteData.home.quemSomosText2}
             </p>
             <p className="quem-somos-texto">
-              Valorizamos o <strong>crescimento pessoal</strong>, o{" "}
-              <strong>trabalho em equipe</strong> e o desenvolvimento de{" "}
-              <strong>habilidades técnicas e emocionais</strong>. Para nós, e-sports
-              é mais do que jogo, é <strong>formação e transformação</strong>. Seja
-              como atleta, staff, analista ou criador de conteúdo, cada membro ajuda
-              a construir algo maior. Mais do que um time, somos uma{" "}
-              <strong>família que joga, aprende e cresce junto</strong>.
+              {siteData.home.quemSomosText3}
             </p>
           </>
         )}
@@ -296,20 +303,13 @@ const Home = () => {
             mesmo interesse por <strong>jogos online</strong>.
           </p>
         </div>
-      </section>
-
-      <section className="games-carousel-section">
+      </section>      <section className="games-carousel-section">
         <h2>GAMES</h2>
         <p>
-          A equipe é composta por representantes de diferentes cursos que atuam
-          de forma organizada e disciplinada em diversos títulos do cenário
-          competitivo, como League of Legends, Valorant, Counter-Strike 2, EA FC
-          e Teamfight Tactics, entre outros.
+          {siteData.home.gamesDescription1}
         </p>
         <p className="last-p">
-          Mais do que participar de torneios, buscamos consolidar uma cultura de
-          e-sports responsável, integrando atividades de treinamento,
-          planejamento estratégico e representação institucional.
+          {siteData.home.gamesDescription2}
         </p>
 
         <div className="games-carousel-container">

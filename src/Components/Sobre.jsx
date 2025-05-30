@@ -14,22 +14,27 @@ import {
 import ReactVLibras from "react-vlibras-plugin";
 
 function Sobre() {
-  const premios = [
-    {
-      titulo: "PRÊMIO FREE FIRE",
-      descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+  const [siteData, setSiteData] = useState({
+    sobre: {
+      comecoTitle: "COMO COMEÇAMOS",
+      comecoText:
+        "A Mauá e-Sports nasceu da paixão de um grupo de estudantes do Instituto Mauá de Tecnologia por e-sports e pela vontade de representar a instituição em torneios acadêmicos. O projeto surgiu de conversas informais entre amigos que, unidos pelo interesse comum, decidiram formar uma equipe organizada para competir e promover a cultura gamer dentro da Mauá. Desde o início, a missão foi criar um ambiente de aprendizado, disciplina e crescimento, tanto no competitivo quanto no desenvolvimento pessoal.",
+      missao:
+        "Promover os e-sports de forma estruturada e responsável, aliando desempenho competitivo, crescimento pessoal e espírito de equipe, sempre em alinhamento com os valores educacionais e tecnológicos da Mauá.",
+      visao:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      valores:
+        "Valorizamos o trabalho em equipe, a disciplina nos treinos e competições, e promovemos a inclusão e o respeito entre os membros. Acreditamos na competitividade saudável e no desenvolvimento contínuo.",
     },
-    {
-      titulo: "PRÊMIO FREE FIRE",
-      descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    },
-    {
-      titulo: "PRÊMIO FREE FIRE",
-      descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    },
-  ];
+  });
 
   useEffect(() => {
+    const savedSiteData = localStorage.getItem("siteData");
+    if (savedSiteData) {
+      const parsedData = JSON.parse(savedSiteData);
+      setSiteData(parsedData);
+    }
+
     const checkVLibras = setInterval(() => {
       const pluginRoot = document.querySelector(".vw-plugin-wrapper");
       if (pluginRoot) {
@@ -46,49 +51,25 @@ function Sobre() {
       <Header />
 
       <main className="comeco-content">
-        <h1>COMO COMEÇAMOS</h1>
-        <p>
-          A Mauá e-Sports nasceu da paixão de um grupo de estudantes do
-          Instituto Mauá de Tecnologia por e-sports e pela vontade de
-          representar a instituição em torneios acadêmicos. O projeto surgiu de
-          conversas informais entre amigos que, unidos pelo interesse comum,
-          decidiram formar uma equipe organizada para competir e promover a
-          cultura gamer dentro da Mauá. Desde o início, a missão foi criar um
-          ambiente de aprendizado, disciplina e crescimento, tanto no
-          competitivo quanto no desenvolvimento pessoal.
-        </p>
+        <h1>{siteData.sobre.comecoTitle}</h1>
+        <p>{siteData.sobre.comecoText}</p>
       </main>
 
       <section className="features-mvv">
         <div className="feature-mvv-card">
           <FaBullseye className="feature-mvv-icon" />
           <h1>Missão</h1>
-          <p>
-            Promover os e-sports de forma estruturada e responsável, aliando
-            desempenho competitivo, crescimento pessoal e espírito de equipe,
-            sempre em alinhamento com os valores educacionais e tecnológicos da
-            Mauá.
-          </p>
+          <p>{siteData.sobre.missao}</p>
         </div>
         <div className="feature-mvv-card">
           <FaEye className="feature-mvv-icon" />
           <h1>Visão</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
+          <p>{siteData.sobre.visao}</p>
         </div>
         <div className="feature-mvv-card">
           <FaHeart className="feature-mvv-icon" />
           <h1>Valores</h1>
-          <p>
-            Valorizamos o trabalho em equipe, a disciplina nos treinos e
-            competições, e promovemos a inclusão e o respeito entre os membros.
-            Acreditamos na competitividade saudável e no desenvolvimento
-            contínuo.
-          </p>
+          <p>{siteData.sobre.valores}</p>
         </div>
       </section>
 
@@ -124,7 +105,6 @@ function Sobre() {
           ))}
         </div>
       </section>
-
 
       <section className="processo-content">
         <div className="processo-seletivo">

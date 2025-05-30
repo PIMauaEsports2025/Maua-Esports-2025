@@ -6,7 +6,21 @@ import Footer from "./Layout/Footer";
 import ReactVLibras from "react-vlibras-plugin";
 
 function Campeonato() {
+  const [siteData, setSiteData] = useState({
+    campeonatos: {
+      title: "CAMPEONATOS",
+      description:
+        "Venha acompanhar de perto a emoção dos nossos campeonatos! A Mauá E-Sports reúne os melhores talentos da instituição em partidas cheias de estratégia, adrenalina e espírito de equipe. Fique ligado nas transmissões e torça com a gente por cada vitória!",
+    },
+  });
+
   useEffect(() => {
+    const savedSiteData = localStorage.getItem("siteData");
+    if (savedSiteData) {
+      const parsedData = JSON.parse(savedSiteData);
+      setSiteData(parsedData);
+    }
+
     const checkVLibras = setInterval(() => {
       const pluginRoot = document.querySelector(".vw-plugin-wrapper");
       if (pluginRoot) {
@@ -17,19 +31,15 @@ function Campeonato() {
 
     return () => clearInterval(checkVLibras);
   }, []);
+
   return (
     <div>
       <div className="campeonato-container">
         <Header />
 
         <main className="comeco-content">
-          <h1>CAMPEONATOS</h1>
-          <p>
-            Venha acompanhar de perto a emoção dos nossos campeonatos! A Mauá
-            E-Sports reúne os melhores talentos da instituição em partidas
-            cheias de estratégia, adrenalina e espírito de equipe. Fique ligado
-            nas transmissões e torça com a gente por cada vitória!
-          </p>
+          <h1>{siteData.campeonatos.title}</h1>
+          <p>{siteData.campeonatos.description}</p>
         </main>
       </div>
 
