@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Layout/Footer";
-import Header from "./Layout/HeaderAdmin.jsx";
+import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
 import { FaSearch, FaPencilAlt, FaTrashAlt, FaUserPlus } from "react-icons/fa";
 import "../styles/GerenciarMembros.css";
 import {
@@ -10,8 +10,7 @@ import {
   deleteMember,
   createMember,
 } from "../Service/memberApi.js";
-import { fetchModalities } from "../Service/api.js";
-import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
+import { fetchExternalModalities } from "../Service/trainingApi.js";
 
 const GerenciarMembros = () => {
   const navigate = useNavigate();
@@ -52,17 +51,22 @@ const GerenciarMembros = () => {
 
     loadMembers();
   }, []);
-
   // Fetch modalities from API
   useEffect(() => {
     const loadModalities = async () => {
       try {
         setLoadingModalities(true);
-        const data = await fetchModalities();
-        setModalities(Object.values(data));
-        console.log("Modalidades carregadas:", data);
+        const data = await fetchExternalModalities();
+        // Convert to array format similar to GerenciarTreinos
+        const modalitiesArray = Object.values(data).map(mod => ({
+          _id: mod._id,
+          Name: mod.Name,
+          Tag: mod.Tag,
+        }));
+        setModalities(modalitiesArray);
+        console.log("Modalidades externas carregadas:", modalitiesArray);
       } catch (err) {
-        console.error("Erro ao carregar modalidades:", err);
+        console.error("Erro ao carregar modalidades externas:", err);
       } finally {
         setLoadingModalities(false);
       }
@@ -305,8 +309,7 @@ const GerenciarMembros = () => {
                   setCurrentMember({ ...currentMember, name: e.target.value })
                 }
               />
-            </div>{" "}
-            <div className="form-group">
+            </div>{" "}            <div className="form-group">
               <label>MODALIDADE</label>
               <div className="select-wrapper">
                 {loadingModalities ? (
@@ -325,8 +328,8 @@ const GerenciarMembros = () => {
                     {modalities &&
                       modalities.length > 0 &&
                       modalities.map((modality) => (
-                        <option key={modality._id} value={modality.Tag}>
-                          {modality.Name}
+                        <option key={modality._id} value={modality.Name}>
+                          {modality.Name} ({modality.Tag})
                         </option>
                       ))}
                   </select>
@@ -429,8 +432,7 @@ const GerenciarMembros = () => {
                   <option value="admin">Admin</option>
                 </select>
               </div>
-            </div>{" "}
-            <div className="form-group">
+            </div>{" "}            <div className="form-group">
               <label>MODALIDADE</label>
               <div className="select-wrapper">
                 {loadingModalities ? (
@@ -446,8 +448,8 @@ const GerenciarMembros = () => {
                     {modalities &&
                       modalities.length > 0 &&
                       modalities.map((modality) => (
-                        <option key={modality._id} value={modality.Tag}>
-                          {modality.Name}
+                        <option key={modality._id} value={modality.Name}>
+                          {modality.Name} ({modality.Tag})
                         </option>
                       ))}
                   </select>
