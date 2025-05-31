@@ -57,7 +57,6 @@ const GerenciarMembros = () => {
       try {
         setLoadingModalities(true);
         const data = await fetchExternalModalities();
-        // Convert to array format similar to GerenciarTreinos
         const modalitiesArray = Object.values(data).map(mod => ({
           _id: mod._id,
           Name: mod.Name,

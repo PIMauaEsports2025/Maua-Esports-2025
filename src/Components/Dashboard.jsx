@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import "../styles/Dashboard.css";
 import { fetchMembers } from "../Service/memberApi.js";
-import { fetchModalities } from "../Service/api.js";
+import { fetchExternalModalities } from "../Service/trainingApi.js";
 import { fetchTrainings } from "../Service/trainingApi.js";
 import {
   Chart as ChartJS,
@@ -61,15 +61,20 @@ const Dashboard = () => {
 
   useEffect(() => {
     const loadData = async () => {      try {
-        setLoading(true);
-        const [membersData, modalitiesData, trainingsData] = await Promise.all([
+        setLoading(true);        const [membersData, modalitiesData, trainingsData] = await Promise.all([
           fetchMembers(),
-          fetchModalities(),
+          fetchExternalModalities(),
           fetchTrainings()
         ]);
         
         setMembers(membersData);
-        setModalities(Object.values(modalitiesData));
+        // Convert modalities to array format
+        const modalitiesArray = Object.values(modalitiesData).map(mod => ({
+          _id: mod._id,
+          Name: mod.Name,
+          Tag: mod.Tag,
+        }));
+        setModalities(modalitiesArray);
         setTrainings(trainingsData);
         
         const totalPaeHours = membersData.reduce((sum, member) => sum + (member.paeHours || 0), 0);
@@ -140,7 +145,6 @@ const Dashboard = () => {
       }]
     };
   };
-
   // Dados para ranking de horas PAE por modalidade
   const getPaeHoursByModalityData = () => {
     const modalityHours = {};
@@ -154,13 +158,18 @@ const Dashboard = () => {
     });
 
     const modalityAverages = {};
+    const modalityTags = {};
     Object.keys(modalityHours).forEach(modality => {
       const hours = modalityHours[modality];
       modalityAverages[modality] = hours.reduce((sum, h) => sum + h, 0) / hours.length;
+      
+      // Buscar a tag correspondente da modalidade
+      const modalityData = modalities.find(mod => mod.Name === modality);
+      modalityTags[modality] = modalityData ? modalityData.Tag : modality;
     });
 
     return {
-      labels: Object.keys(modalityAverages),
+      labels: Object.keys(modalityAverages).map(modality => modalityTags[modality]),
       datasets: [{
         label: 'Média de Horas PAE',
         data: Object.values(modalityAverages),
