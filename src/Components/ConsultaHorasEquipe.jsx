@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useMsal } from "@azure/msal-react";
 import "../styles/ConsultaHorasEquipe.css";
 import { FaSearch, FaUserCircle, FaFilter, FaClock } from "react-icons/fa";
 import { fetchMembers } from "../Service/memberApi.js";
@@ -6,6 +7,7 @@ import Footer from "./Layout/Footer";
 import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
 
 const ConsultaHorasEquipe = () => {
+  const { accounts } = useMsal();
   const [members, setMembers] = useState([]);
   const [filteredMembers, setFilteredMembers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,28 +15,48 @@ const ConsultaHorasEquipe = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState("name");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState("asc");  const [captainData, setCaptainData] = useState(null);
 
-  // Simulação de dados do capitão (em uma aplicação real, viria do contexto de autenticação)
-  const captainInfo = {
-    name: "LEOZIN",
-    modality: "Counter-Strike: Global Offensive A",
-  };
+  // Buscar dados do capitão logado
+  useEffect(() => {
+    const fetchCaptainData = async () => {
+      if (accounts && accounts.length > 0) {
+        const userEmail = accounts[0].username;
+        try {
+          const response = await fetch(`http://localhost:5000/api/users/email/${userEmail}`);
+          if (response.ok) {
+            const userData = await response.json();
+            setCaptainData(userData);
+            console.log("Dados do capitão:", userData);
+          } else {
+            console.error("Erro ao buscar dados do capitão");
+          }
+        } catch (error) {
+          console.error("Erro ao buscar dados do capitão:", error);
+        }
+      }
+    };
+
+    fetchCaptainData();
+  }, [accounts]);
 
   useEffect(() => {
     const loadMembers = async () => {
+      if (!captainData || !captainData.modality) return;
+      
       try {
         setLoading(true);
         const allMembers = await fetchMembers();
 
         // Filtra apenas membros da mesma modalidade que o capitão
         const teamMembers = allMembers.filter(
-          (member) => member.modality === captainInfo.modality
+          (member) => member.modality === captainData.modality
         );
 
         setMembers(teamMembers);
         setFilteredMembers(teamMembers);
         setError("");
+        console.log("Membros da mesma modalidade carregados:", teamMembers);
       } catch (err) {
         console.error("Erro ao carregar membros:", err);
         setError("Não foi possível carregar os dados dos membros da equipe.");
@@ -44,7 +66,7 @@ const ConsultaHorasEquipe = () => {
     };
 
     loadMembers();
-  }, []);
+  }, [captainData]);
 
   useEffect(() => {
     // Aplica filtros e ordenação aos membros
@@ -84,9 +106,22 @@ const ConsultaHorasEquipe = () => {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
       setSortBy(field);
-      setSortOrder("asc");
-    }
+      setSortOrder("asc");    }
   };
+
+  if (!captainData) {
+    return (
+      <div className="consulta-equipe-page">
+        <HeaderAdmin />
+        <main className="consulta-equipe-main">
+          <div className="loading">
+            <p>Carregando dados do capitão...</p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="consulta-equipe-page">
@@ -95,7 +130,7 @@ const ConsultaHorasEquipe = () => {
       <main className="consulta-equipe-main">
         <div className="title-section">
           <h1>HORAS PAE DA EQUIPE</h1>
-          <p className="team-info">Modalidade: {captainInfo.modality}</p>
+          <p className="team-info">Modalidade: {captainData.modality}</p>
         </div>
 
         <div className="search-filter-container">

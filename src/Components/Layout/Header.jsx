@@ -12,13 +12,48 @@ const Header = ({ onLoginClick }) => {
 
   const { instance, accounts } = useMsal();
   const isAuthenticated = accounts && accounts.length > 0;
-
   const handleLogin = async () => {
     try {
       const loginResponse = await instance.loginPopup();
       if (loginResponse) {
         localStorage.setItem("token", loginResponse.accessToken || "authenticated");
-        navigate("/admin");
+          // Buscar dados do usuário pelo email para determinar o role
+        const userEmail = loginResponse.account.username;
+        console.log("Email do usuário logado:", userEmail);
+        
+        try {
+          const response = await fetch(`http://localhost:5000/api/users/email/${userEmail}`);
+          console.log("Status da resposta:", response.status);
+          
+          if (response.ok) {
+            const userData = await response.json();
+            console.log("Dados do usuário encontrados:", userData);
+            
+            // Redirecionar baseado no role do usuário
+            switch (userData.role) {
+              case 'admin':
+                navigate("/admin");
+                break;
+              case 'captain':
+                navigate("/capitao-interface");
+                break;
+              case 'member':
+                navigate("/painel-usuario");
+                break;
+              default:
+                navigate("/painel-usuario");
+            }
+          } else {
+            console.log("Usuário não encontrado no banco de dados. Status:", response.status);
+            const errorData = await response.text();
+            console.log("Resposta de erro:", errorData);
+            // Se o usuário não existe no banco, redirecionar para painel de usuário
+            navigate("/painel-usuario");
+          }
+        } catch (fetchError) {
+          console.error("Erro ao buscar dados do usuário:", fetchError);
+          navigate("/painel-usuario");
+        }
       }
       
     } catch (error) {

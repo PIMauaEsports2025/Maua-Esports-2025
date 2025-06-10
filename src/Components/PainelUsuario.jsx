@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useMsal } from "@azure/msal-react";
 import "../styles/PainelUsuario.css";
 import Footer from "./Layout/Footer";
 import { 
@@ -16,6 +17,7 @@ import { fetchTrainings } from "../Service/trainingApi.js";
 import { fetchExternalModalities } from "../Service/trainingApi.js";
 
 const PainelUsuario = () => {
+  const { accounts } = useMsal();
   const [usuario, setUsuario] = useState(null);
   const [trainings, setTrainings] = useState([]);
   const [modalities, setModalities] = useState([]);
@@ -27,41 +29,54 @@ const PainelUsuario = () => {
     proximosTreinos: 0,
     horasPAE: 0
   });
-
-  // ID do usuário (em uma aplicação real, viria do contexto de autenticação)
-  const USUARIO_ID = "Gustavo Seripierri da Conceição";
-
   useEffect(() => {
     const loadUserData = async () => {
+      if (!accounts || accounts.length === 0) {
+        setError("Usuário não autenticado");
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
         
-        // Carregar dados em paralelo
-        const [membersData, trainingsData, modalitiesData] = await Promise.all([
-          fetchMembers(),
+        // Buscar dados do usuário logado
+        const userEmail = accounts[0].username;
+        console.log("Email do usuário logado:", userEmail);
+
+        // Buscar dados do usuário no banco
+        let currentUser = null;
+        try {
+          const response = await fetch(`http://localhost:5000/api/users/email/${userEmail}`);
+          if (response.ok) {
+            currentUser = await response.json();
+            console.log("Dados do usuário encontrados:", currentUser);
+          } else {
+            console.log("Usuário não encontrado no banco de dados");
+          }
+        } catch (fetchError) {
+          console.error("Erro ao buscar dados do usuário:", fetchError);
+        }
+
+        // Se não encontrou no banco, criar usuário com dados básicos do MSAL
+        if (!currentUser) {
+          currentUser = {
+            _id: `temp-${userEmail}`,
+            name: accounts[0].name || "Usuário",
+            email: userEmail,
+            modality: "Não definida",
+            paeHours: 0,
+            role: "member"
+          };
+        }
+
+        setUsuario(currentUser);
+
+        // Carregar dados adicionais
+        const [trainingsData, modalitiesData] = await Promise.all([
           fetchTrainings(),
           fetchExternalModalities()
         ]);
-
-        // Encontrar o usuário específico
-        const currentUser = membersData.find(member => 
-          member.name === USUARIO_ID || member.name.includes("Gustavo")
-        );
-
-        if (!currentUser) {
-          // Se não encontrar, criar usuário mockado
-          const mockUser = {
-            _id: "mock-gustavo",
-            name: "Gustavo Seripierri da Conceição",
-            email: "24.00630-0@maua.br",
-            modality: "Counter-Strike: Global Offensive A",
-            paeHours: 42,
-            role: "member"
-          };
-          setUsuario(mockUser);
-        } else {
-          setUsuario(currentUser);
-        }
 
         // Converter modalidades para array
         const modalitiesArray = Object.values(modalitiesData).map(mod => ({
@@ -69,33 +84,48 @@ const PainelUsuario = () => {
           Name: mod.Name,
           Tag: mod.Tag,
         }));
-        setModalities(modalitiesArray);
-
-        // Filtrar treinos do usuário (simulando participação)
-        const userTrainings = trainingsData.filter(training => {
-          // Simular que o usuário participa de treinos de CS2
-          return training.ModalityId === "641246ec14a24f13c339bb1f" || 
-                 training.modalityName?.includes("Counter-Strike");
-        });
+        setModalities(modalitiesArray);        // Filtrar treinos do usuário pela modalidade
+        let userTrainings = [];
+        if (currentUser.modality && currentUser.modality !== "Não definida") {
+          userTrainings = trainingsData.filter(training => {
+            // Filtrar apenas treinos da modalidade exata do usuário
+            return training.modalityName === currentUser.modality ||
+                   training.ModalityName === currentUser.modality ||
+                   (training.modalityId && currentUser.modalityId && training.modalityId === currentUser.modalityId);
+          });
+          
+          console.log(`Treinos filtrados para modalidade "${currentUser.modality}":`, userTrainings);
+        } else {
+          console.log("Usuário não tem modalidade definida, não mostrando treinos");
+        }
 
         setTrainings(userTrainings);
 
-        // Calcular estatísticas
+        // Calcular estatísticas baseadas apenas nos treinos da modalidade do usuário
         const now = Date.now();
-        const proximosTreinos = userTrainings.filter(t => 
-          new Date(t.startTimestamp || t.StartTimestamp).getTime() > now
-        ).length;
+        const proximosTreinos = userTrainings.filter(t => {
+          const trainingDate = new Date(t.startTimestamp || t.StartTimestamp).getTime();
+          return trainingDate > now;
+        }).length;
 
-        const treinosParticipados = userTrainings.filter(t => 
-          t.AttendedPlayers?.includes(currentUser?._id) || 
-          Math.random() > 0.3 // Simular participação
-        ).length;
+        // Verificar participação do usuário nos treinos
+        const treinosParticipados = userTrainings.filter(t => {
+          if (t.AttendedPlayers && Array.isArray(t.AttendedPlayers)) {
+            return t.AttendedPlayers.includes(currentUser._id);
+          }
+          if (t.attendedPlayers && Array.isArray(t.attendedPlayers)) {
+            return t.attendedPlayers.some(p => 
+              (typeof p === 'string' ? p : p._id) === currentUser._id
+            );
+          }
+          return false;
+        }).length;
 
         setStats({
           totalTreinos: userTrainings.length,
           treinosParticipados,
           proximosTreinos,
-          horasPAE: currentUser?.paeHours || 42
+          horasPAE: currentUser.paeHours || 0
         });
 
         setError(null);
@@ -108,7 +138,7 @@ const PainelUsuario = () => {
     };
 
     loadUserData();
-  }, []);
+  }, [accounts]);
 
   const formatarData = (timestamp) => {
     if (!timestamp) return "N/A";
@@ -127,7 +157,6 @@ const PainelUsuario = () => {
     };
     return statusMap[status] || { label: status, class: "unknown" };
   };
-
   if (loading) {
     return (
       <div className="user-panel-page">
@@ -161,6 +190,23 @@ const PainelUsuario = () => {
       </div>
     );
   }
+
+  if (!usuario) {
+    return (
+      <div className="user-panel-page">
+        <header className="top-header">
+          <div className="logo-section">
+            <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
+            <h1 className="title">Painel do Usuário</h1>
+          </div>
+        </header>
+        <main className="user-main">
+          <div className="loading">Carregando dados do usuário...</div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
   return (
     <div className="user-panel-page">
       <header className="top-header">
@@ -181,9 +227,7 @@ const PainelUsuario = () => {
               <h2>Bem-vindo, {usuario.name}!</h2>
             </div>
           </div>
-        </div>
-
-        {/* Stats Cards */}
+        </div>        {/* Stats Cards */}
         <div className="user-stats-grid">
           <div className="user-stat-card">
             <div className="stat-icon">
@@ -191,7 +235,7 @@ const PainelUsuario = () => {
             </div>
             <div className="stat-info">
               <h3>{stats.totalTreinos}</h3>
-              <p>Treinos Disponíveis</p>
+              <p>Treinos da Modalidade</p>
             </div>
           </div>
           
@@ -270,11 +314,14 @@ const PainelUsuario = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Training Schedule Section */}
+        </div>        {/* Training Schedule Section */}
         <div className="training-section">
-          <h3>Meus Treinos</h3>
+          <h3>Treinos da Minha Modalidade</h3>
+          {usuario.modality !== "Não definida" && (
+            <p style={{ color: '#8b949e', marginBottom: '20px', textAlign: 'center' }}>
+              Exibindo treinos da modalidade: <strong style={{ color: '#01CCFE' }}>{usuario.modality}</strong>
+            </p>
+          )}
           {trainings.length > 0 ? (
             <div className="training-table-container">
               <table className="training-table">
@@ -286,22 +333,50 @@ const PainelUsuario = () => {
                     <th>DURAÇÃO</th>
                     <th>PARTICIPANTES</th>
                   </tr>
-                </thead>
-                <tbody>
+                </thead>                <tbody>
                   {trainings.map((training) => {
-                    const modalityInfo = modalities.find(m => m._id === training.ModalityId);
-                    const statusInfo = getStatusBadge(training.Status);
+                    // Buscar informações da modalidade
+                    const modalityInfo = modalities.find(m => 
+                      m._id === training.modalityId || 
+                      m.Name === training.modalityName
+                    );
+                    
+                    // Determinar status
+                    const status = training.status || training.Status || "SCHEDULED";
+                    const statusInfo = getStatusBadge(status);
+                    
+                    // Calcular duração
                     const startTime = new Date(training.StartTimestamp || training.startTimestamp);
                     const endTime = new Date(training.EndTimestamp || training.endTimestamp);
-                    const duration = Math.round((endTime - startTime) / (1000 * 60 * 60 * 100)) / 10; // hours with 1 decimal
+                    const durationMs = endTime.getTime() - startTime.getTime();
+                    const duration = Math.round(durationMs / (1000 * 60 * 60) * 10) / 10; // hours with 1 decimal
+                    
+                    // Verificar se o usuário está participando deste treino
+                    const isParticipating = training.AttendedPlayers?.includes(usuario._id) ||
+                      training.attendedPlayers?.some(p => 
+                        (typeof p === 'string' ? p : p._id) === usuario._id
+                      );
                     
                     return (
-                      <tr key={training._id}>
+                      <tr key={training._id} style={{ backgroundColor: isParticipating ? 'rgba(1, 204, 254, 0.1)' : 'transparent' }}>
                         <td>
                           <span className="modalidade-tag">
-                            {modalityInfo?.Tag || 'CSA'}
+                            {modalityInfo?.Tag || training.modalityTag || 'MOD'}
                           </span>
-                          {modalityInfo?.Name || 'Counter-Strike: Global Offensive A'}
+                          {modalityInfo?.Name || training.modalityName || usuario.modality}
+                          {isParticipating && (
+                            <span style={{ 
+                              marginLeft: '10px', 
+                              backgroundColor: '#01CCFE', 
+                              color: '#0B060F', 
+                              padding: '2px 6px', 
+                              borderRadius: '4px', 
+                              fontSize: '0.7rem', 
+                              fontWeight: '600' 
+                            }}>
+                              Participando
+                            </span>
+                          )}
                         </td>
                         <td>{formatarData(training.StartTimestamp || training.startTimestamp)}</td>
                         <td>
@@ -309,19 +384,26 @@ const PainelUsuario = () => {
                             {statusInfo.label}
                           </span>
                         </td>
-                        <td>{duration}h</td>
-                        <td>{training.AttendedPlayers?.length || 0} pessoas</td>
+                        <td>{duration > 0 ? `${duration}h` : '2h'}</td>
+                        <td>
+                          {training.AttendedPlayers?.length || 
+                           training.attendedPlayers?.length || 
+                           0} pessoas
+                        </td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
-            </div>
-          ) : (
+            </div>          ) : (
             <div className="no-trainings">
               <FaCalendarAlt size={48} />
               <h4>Nenhum treino encontrado</h4>
-              <p>Você ainda não está inscrito em nenhum treino.</p>
+              {usuario.modality === "Não definida" ? (
+                <p>Você precisa ser adicionado a uma modalidade para ver treinos.</p>
+              ) : (
+                <p>Não há treinos programados para sua modalidade ({usuario.modality}).</p>
+              )}
             </div>
           )}
         </div>
