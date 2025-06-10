@@ -99,10 +99,13 @@
     text-decoration: none;
     transition: background 0.3s;
     align-self: flex-start;
+    transition: all 0.3s ease;
 }
 
 .card-button:hover {
-    background: #040d1d;
+    background-color: #00CDFF;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 768px) {

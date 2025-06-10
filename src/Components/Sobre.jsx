@@ -145,7 +145,7 @@ function Sobre() {
               rel="noopener noreferrer"
               className="botao"
             >
-              FAZER PARTE <span>→</span>
+              FAZER PARTE
             </a>
           </div>
         </div>

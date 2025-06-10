@@ -142,12 +142,13 @@
 }
 
 .faq-title {
-  font-family: "Jersey 25", sans-serif;
   text-align: center;
-  font-size: 2.5rem;
+  font-family: 'Akira Expanded', Arial, sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+  color: #00CDFF;
   margin-bottom: 2.5rem;
   font-weight: bold;
-  color: #00CDFF;
   text-transform: uppercase;
   position: relative;
 }
@@ -158,7 +159,7 @@
   width: 80px;
   height: 3px;
   background-color: #00CDFF;
-  margin: 0.8rem auto 0;
+  margin: 1% auto 3%;
   border-radius: 3px;
 }
 
@@ -171,12 +172,13 @@
 }
 
 .faq-item {
-  background-color: #12121f;
+  background-color: #0b060fd5;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   border-left: 3px solid #003B6D;
+  margin-top: 1%;
 }
 
 .faq-item:hover {
@@ -184,7 +186,7 @@
 }
 
 .faq-item.open {
-  background-color: #1E1E2F;
+  background-color: rgba(255, 255, 255, 0.05);
   border-left-color: #00CDFF;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }

@@ -23,13 +23,11 @@ const Home = () => {
   const params = new URLSearchParams(location.search);
   const isEdit = params.get("edit") === "1";
 
-  // Conteúdo editável
   const [info, setInfo] = useState({
     titulo: "",
     descricao: "",
   });
 
-  // Dados do site editáveis
   const [siteData, setSiteData] = useState({
     home: {
       heroTitle: "BEM-VINDO",
@@ -116,38 +114,38 @@ const Home = () => {
 
   const games = [
     {
+      name: "Rainbow Six Siege",
+      image: "https://s2-ge.glbimg.com/Mn4MpbfOftUzZYusjMjY6ucisp4=/0x0:1920x1080/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2023/b/d/MsAo0RQq25hzLuK95lew/r6-thumb.jpg",
+      url: "https://www.ubisoft.com/en-us/game/rainbow-six/siege",
+    },
+    {
+      name: "Rocket League",
+      image: "https://vonguru.fr/wp-content/uploads/2020/03/rocket-league-jeux-video-cover-vonguru-min.jpg",
+      url: "https://www.rocketleague.com/",
+    },
+    {
+      name: "EA FC 25",
+      image: "https://image.api.playstation.com/vulcan/ap/rnd/202409/2712/1e1c42b14d92280e17bda697b8c4ae13ff9f91bdb10fca89.png",
+      url: "https://www.ea.com/games/ea-sports-fc/fc-25",
+    },
+    {
+      name: "League of Legends",
+      image: "https://cdn.prod.website-files.com/66e1e7e2979a571dc056efb6/66e3ce4ac36ea96ee53486b9_66df30655a91e77fa8ffe849_lol.jpeg",
+      url: "https://www.leagueoflegends.com/",
+    },
+        {
       name: "Counter Strike 2",
       image: cs2Image,
       url: "https://www.counter-strike.net/",
     },
     {
-      name: "Rainbow Six Siege",
-      image: r6Image,
-      url: "https://www.ubisoft.com/en-us/game/rainbow-six/siege",
-    },
-    {
-      name: "Rocket League",
-      image: rocketLeagueImage,
-      url: "https://www.rocketleague.com/",
-    },
-    {
-      name: "EA FC 25",
-      image: eafc25Image,
-      url: "https://www.ea.com/games/ea-sports-fc/fc-25",
-    },
-    {
-      name: "League of Legends",
-      image: lolImage,
-      url: "https://www.leagueoflegends.com/",
-    },
-    {
       name: "Valorant",
-      image: valorantImage,
+      image: "https://updateordie.com/wp-content/uploads/2020/08/valorant-couldnt-start-how-to-fix.jpg",
       url: "https://playvalorant.com/",
     },
     {
       name: "Team Fight Tactics",
-      image: tftImage,
+      image: "https://mir-s3-cdn-cf.behance.net/projects/404/26ac8e139901507.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png",
       url: "https://teamfighttactics.leagueoflegends.com/",
     },
   ];
