@@ -11,7 +11,7 @@
 .consulta-equipe-main {
   flex: 1;
   padding: 20px 40px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   width: 100%;
 }
@@ -22,7 +22,7 @@
 }
 
 .title-section h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 1px;
   color: #01CCFE;
@@ -32,17 +32,17 @@
 
 .team-info {
   font-size: 1.1rem;
-  color: #e6edf3;
-  opacity: 0.8;
+  color: #8b949e;
+  margin: 0;
 }
 
-/* Search and filter */
+/* Search and filter controls */
 .search-filter-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
   gap: 15px;
+  margin-bottom: 25px;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-box {
@@ -51,14 +51,12 @@
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 8px 15px;
-  flex-grow: 1;
-  max-width: 400px;
+  width: 300px;
 }
 
 .search-icon {
   color: #8b949e;
   margin-right: 8px;
-  font-size: 1rem;
 }
 
 .search-box input {
@@ -67,7 +65,7 @@
   color: white;
   outline: none;
   width: 100%;
-  font-size: 1rem;
+  font-size: 14px;
 }
 
 .search-box input::placeholder {
@@ -77,45 +75,31 @@
 .filter-button {
   display: flex;
   align-items: center;
-  gap: 6px;
-  background-color: #01CCFE;
-  color: #0D1117;
+  gap: 8px;
+  background-color: #21262d;
+  color: white;
   border: none;
   border-radius: 20px;
-  padding: 8px 15px;
+  padding: 8px 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .filter-button:hover {
-  background-color: #33d6ff;
-  transform: translateY(-2px);
+  background-color: #30363d;
 }
 
-/* Filters panel */
 .filters-panel {
-  background-color: rgba(13, 17, 23, 0.8);
-  padding: 15px 20px;
+  background-color: #161B22;
   border-radius: 8px;
+  padding: 20px;
   margin-bottom: 20px;
   display: flex;
   gap: 20px;
   align-items: center;
-  flex-wrap: wrap;
-  border: 1px solid rgba(1, 204, 254, 0.3);
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  justify-content: center;
 }
 
 .filter-option {
@@ -127,19 +111,19 @@
 .filter-option label {
   font-size: 0.8rem;
   color: #8b949e;
+  font-weight: 600;
 }
 
 .filter-option select {
   padding: 8px 12px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 1px solid rgba(1, 204, 254, 0.3);
+  background-color: #0d1117;
+  border: 1px solid #30363d;
   border-radius: 4px;
-  outline: none;
-  min-width: 140px;
+  color: #e6edf3;
+  font-size: 0.9rem;
 }
 
-/* Team members grid */
+/* Members grid */
 .team-members-container {
   margin-bottom: 30px;
 }
@@ -148,152 +132,182 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+  margin-bottom: 30px;
 }
 
 .member-card {
-  background-color: rgba(13, 17, 23, 0.8);
-  border-radius: 10px;
-  overflow: hidden;
+  background-color: #161B22;
+  border-radius: 8px;
+  padding: 20px;
   display: flex;
-  border: 1px solid rgba(1, 204, 254, 0.2);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #21262d;
 }
 
 .member-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(1, 204, 254, 0.3);
-  border-color: rgba(1, 204, 254, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(1, 204, 254, 0.1);
+  border-color: #01CCFE;
 }
 
 .member-avatar {
-  background-color: rgba(1, 204, 254, 0.1);
+  font-size: 2.5rem;
   color: #01CCFE;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  font-size: 3rem;
 }
 
 .member-info {
   flex: 1;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
 }
 
 .member-name {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #e6edf3;
+  margin: 0 0 5px 0;
 }
 
 .member-email {
   font-size: 0.9rem;
   color: #8b949e;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
 }
 
 .member-hours {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: auto;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 8px;
 }
 
 .hours-icon {
   color: #01CCFE;
+  font-size: 0.9rem;
 }
 
 .hours-value {
   font-weight: 600;
   color: #01CCFE;
+  font-size: 1rem;
 }
 
 /* Summary panel */
 .summary-panel {
-  background-color: rgba(13, 17, 23, 0.8);
+  background-color: #161B22;
   border-radius: 8px;
-  padding: 20px;
-  border: 1px solid rgba(1, 204, 254, 0.3);
-  margin-bottom: 30px;
+  padding: 25px;
+  border: 1px solid #21262d;
 }
 
 .summary-panel h3 {
-  margin-bottom: 15px;
-  color: #01CCFE;
   font-size: 1.3rem;
+  color: #01CCFE;
+  margin: 0 0 20px 0;
   text-align: center;
+  font-family: "Jersey 25", sans-serif;
 }
 
 .summary-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
+  gap: 20px;
 }
 
 .stat-item {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 15px;
-  border-radius: 8px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #0d1117;
+  border-radius: 6px;
+  border: 1px solid #30363d;
 }
 
 .stat-label {
   font-size: 0.9rem;
   color: #8b949e;
-  margin-bottom: 5px;
+  font-weight: 500;
 }
 
 .stat-value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #e6edf3;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #01CCFE;
 }
 
 /* Loading and error states */
-.loading, .error-message, .no-results {
+.loading {
   text-align: center;
   padding: 40px;
   font-size: 1rem;
+  color: #8b949e;
 }
 
 .error-message {
+  text-align: center;
+  padding: 40px;
+  font-size: 1rem;
   color: #f85149;
   background-color: rgba(248, 81, 73, 0.1);
   border-radius: 8px;
-  padding: 20px;
+  border: 1px solid rgba(248, 81, 73, 0.3);
 }
 
-/* Responsive adjustments */
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: #8b949e;
+  font-size: 1rem;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
   .consulta-equipe-main {
-    padding: 15px;
+    padding: 15px 20px;
   }
-  
+
+  .title-section h1 {
+    font-size: 2rem;
+  }
+
   .search-filter-container {
     flex-direction: column;
-    align-items: stretch;
+    gap: 10px;
   }
-  
+
   .search-box {
-    max-width: none;
+    width: 100%;
   }
-  
+
   .filters-panel {
     flex-direction: column;
-    align-items: stretch;
+    gap: 15px;
   }
-  
+
   .members-grid {
     grid-template-columns: 1fr;
   }
-  
+
+  .member-card {
+    padding: 15px;
+  }
+
   .summary-stats {
     grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .member-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .stat-item {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
   }
 }

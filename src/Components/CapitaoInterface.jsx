@@ -1,11 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/AdminInterface.css";
+import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
+
 import {
   FaUsers,
   FaClock,
   FaCalendarAlt,
   FaChevronRight,
+  FaChartBar,
 } from "react-icons/fa";
 import Footer from "./Layout/Footer";
 
@@ -14,16 +17,7 @@ const CapitaoInterface = ({ user }) => {
 
   return (
     <div className="admin-container">
-      <header className="top-header">
-        <div className="logo-section" onClick={() => navigate("/capitao")}>
-          <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
-          <h1 className="title">Painel do Capitão</h1>
-        </div>
-
-        <div className="user-section">
-          <span>Capitão, {user?.nome}</span>
-        </div>
-      </header>
+      <HeaderAdmin/>
 
       <main className="main-panel">
         <div className="button-panel">
@@ -34,7 +28,7 @@ const CapitaoInterface = ({ user }) => {
 
           <button
             className="main-button"
-            onClick={() => navigate("/capitao/membros")}
+            onClick={() => navigate("/gerenciar-membros-equipe")}
           >
             <FaUsers />
             <span className="button-text">MEMBROS DA EQUIPE</span>
@@ -56,6 +50,14 @@ const CapitaoInterface = ({ user }) => {
           >
             <FaCalendarAlt />
             <span className="button-text">TREINOS</span>
+            <FaChevronRight />
+          </button>
+          <button
+            className="main-button"
+            onClick={() => navigate("/dashboard-capitao")}
+          >
+            <FaChartBar />
+            <span className="button-text">DASHBOARD</span>
             <FaChevronRight />
           </button>
         </div>

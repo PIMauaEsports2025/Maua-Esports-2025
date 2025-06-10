@@ -11,6 +11,7 @@ import Campeonato from "./Components/Campeonato";
 import GerenciarModalidades from "./Components/GerenciarModalidades";
 import GerenciarTreinos from "./Components/GerenciarTreinos";
 import GerenciarMembros from "./Components/GerenciarMembros";
+import GerenciarMembrosEquipe from "./Components/GerenciarMembrosEquipe";
 import TimeCs from "./Components/TimeCs";
 import TimeEaFc from "./Components/TimeEaFc";
 import TimeLol from "./Components/TimeLol";
@@ -27,7 +28,11 @@ import GerenciarTreinosEquipe from "./Components/GerenciarTreinosEquipe";
 import { AuthProvider } from "./auth/AuthProvider";
 import EditSiteInfo from "./Components/EditSiteInfo";
 import Dashboard from "./Components/Dashboard";
-import GerenciarMembrosEquipe from "./Components/GerenciarMembrosEquipe";
+import PainelUsuario from "./Components/PainelUsuario";
+import CapitaoInterface from "./Components/CapitaoInterface";
+import DashboardCapitao from "./Components/DashboardCapitao";
+
+
 
 function AppRoutes() {
   useVLibras(); // hook dentro do BrowserRouter
@@ -40,12 +45,16 @@ function AppRoutes() {
       <Route path="/gerenciar-treinos" element={<GerenciarTreinos />} />
       <Route path="/editar-site" element={<EditSiteInfo />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard-capitao" element={<DashboardCapitao />} />
 
       <Route path="/sobre" element={<Sobre />} />
       <Route path="/times" element={<Times />} />
       <Route path="/gerenciar-membros-equipe" element={<GerenciarMembrosEquipe />} />
       <Route path="/capitao/horas-pae" element={<ConsultaHorasEquipe />} />
       <Route path="/capitao/treinos-equipe" element={<GerenciarTreinosEquipe />} />
+      <Route path="/painel-usuario" element={<PainelUsuario />} />
+      <Route path="/capitao-interface" element={<CapitaoInterface />} />
+
       <Route path="/campeonatos" element={<Campeonato />} />
       <Route path="/contato" element={<Contato />} />
 

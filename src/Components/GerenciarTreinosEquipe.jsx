@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMsal } from "@azure/msal-react";
 import "../styles/GerenciarTreinosEquipe.css";
 import {
   FaSearch,
@@ -8,328 +9,328 @@ import {
   FaFilter,
   FaPlus,
   FaUsers,
+  FaUserPlus,
+  FaUserMinus,
 } from "react-icons/fa";
 import Footer from "./Layout/Footer.jsx";
 import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
-
-// URL e token da API (mesmo do componente GerenciarTreinos)
-const API_URL = "http://localhost:3000";
-const API_TOKEN = "frontendmauaesports";
+import {
+  fetchTrainings,
+  createTraining,
+  updateTraining,
+  deleteTraining,
+  fetchExternalModalities,
+  fetchUsers,
+} from "../Service/trainingApi.js";
 
 const GerenciarTreinosEquipe = () => {
   const navigate = useNavigate();
-  const [treinos, setTreinos] = useState([]);
+  const { accounts } = useMsal();
+  const [trainings, setTrainings] = useState([]);
+  const [externalModalities, setExternalModalities] = useState([]);
+  const [users, setUsers] = useState([]);
   const [filtroStatus, setFiltroStatus] = useState("");
   const [filtroPeriodo, setFiltroPeriodo] = useState("");
   const [pesquisa, setPesquisa] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showFilterMenu, setShowFilterMenu] = useState(false);
-  const [currentTreino, setCurrentTreino] = useState(null);
+  const [currentTraining, setCurrentTraining] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [newTreino, setNewTreino] = useState({
-    Status: "SCHEDULED",
-    StartTimestamp: Date.now(),
-    EndTimestamp: Date.now() + 7200000, // 2 horas por padrão
-    AttendedPlayers: [],
-  });
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [deletingTreino, setDeletingTreino] = useState(null);
-  const [showAttendanceModal, setShowAttendanceModal] = useState(false);
-  const [currentAttendance, setCurrentAttendance] = useState([]);
+  const [deletingTraining, setDeletingTraining] = useState(null);
+  const [captainData, setCaptainData] = useState(null);
+  const [teamMembers, setTeamMembers] = useState([]);
 
-  // Simulação de informações do capitão (em uma aplicação real, viria do contexto de autenticação)
-  const captainInfo = {
-    name: "LEOZIN",
-    modality: "Counter-Strike: Global Offensive A",
-    modalityId: "cs2a",
-  };
+  const initialNewTrainingState = {
+    modalityId: "",
+    modalityName: "",
+    modalityTag: "",
+    status: "SCHEDULED",
+    startTimestamp: new Date().toISOString().slice(0, 16),
+    endTimestamp: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString().slice(0, 16),
+    attendedPlayers: [],
+    description: "",
+  };  const [newTraining, setNewTraining] = useState(initialNewTrainingState);
 
-  // Lista simulada de jogadores da equipe
-  const teamPlayers = [
-    { id: "1", name: "LEOZIN", email: "24.01193-2@maua.br" },
-    { id: "2", name: "SIMON_", email: "24.00981-4@maua.br" },
-    { id: "3", name: "LUCKFERO", email: "24.01567-9@maua.br" },
-    { id: "4", name: "RFODS", email: "24.00345-1@maua.br" },
-    { id: "5", name: "RK", email: "24.00759-7@maua.br" },
-  ];
-
-  // Função para fazer requisições à API (similar à do componente GerenciarTreinos)
-  const fazerRequisicao = async (
-    endpoint,
-    params = {},
-    method = "GET",
-    body = null
-  ) => {
-    try {
-      const url = new URL(`${API_URL}${endpoint}`);
-      Object.keys(params).forEach((key) =>
-        url.searchParams.append(key, params[key])
-      );
-
-      console.log(`Fazendo requisição ${method} para:`, url.toString());
-
-      const options = {
-        method,
-        headers: {
-          Authorization: `Bearer ${API_TOKEN}`,
-        },
-      };
-
-      if (body && (method === "POST" || method === "PATCH")) {
-        options.headers["Content-Type"] = "application/json";
-        options.body = JSON.stringify(body);
+  // Buscar dados do capitão logado
+  useEffect(() => {
+    const fetchCaptainData = async () => {
+      if (accounts && accounts.length > 0) {
+        const userEmail = accounts[0].username;
+        try {
+          const response = await fetch(`http://localhost:5000/api/users/email/${userEmail}`);
+          if (response.ok) {
+            const userData = await response.json();
+            setCaptainData(userData);
+            console.log("Dados do capitão:", userData);
+          } else {
+            console.error("Erro ao buscar dados do capitão");
+          }
+        } catch (error) {
+          console.error("Erro ao buscar dados do capitão:", error);
+        }
       }
+    };
 
-      const response = await fetch(url, options);
+    fetchCaptainData();
+  }, [accounts]);
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(
-          `Erro ${response.status}: ${response.statusText}\nResposta: ${errorText}`
-        );
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Erro detalhado na requisição:", error);
-      setError(error.message);
-      throw error;
-    }
-  };
-
-  // Buscar os treinos da modalidade do capitão
-  const buscarTreinos = async () => {
+  // Carregar treinos da modalidade do capitão
+  const loadTrainings = useCallback(async () => {
+    if (!captainData || !captainData.modality) return;
+    
     setLoading(true);
+    setError(null);
     try {
-      // Em uma implementação real, você filtraria por modalidade na API
-      // Aqui estamos simulando com dados mockados
-      const data = await fazerRequisicao("/trains/all");
-
-      // Filtrar apenas os treinos da modalidade do capitão
-      const treinosDaModalidade = data
-        .filter((treino) => treino.ModalityId === captainInfo.modalityId)
-        .map((treino) => ({
-          ...treino,
-          modalidadeNome: captainInfo.modality,
-          modalidadeTag: "CS2",
-        }));
-
-      setTreinos(treinosDaModalidade);
-      setError(null);
-    } catch (error) {
-      console.error("Erro ao buscar treinos:", error);
-      setError("Falha ao carregar treinos. Tente novamente.");
-      setTreinos([]);
+      const data = await fetchTrainings();
+      
+      // Filtrar apenas treinos da mesma modalidade do capitão
+      let filteredData = data.filter(training => 
+        training.modalityName === captainData.modality
+      );
+      
+      // Aplicar filtros adicionais
+      if (filtroStatus) {
+        filteredData = filteredData.filter(t => t.status === filtroStatus);
+      }
+      if (filtroPeriodo) {
+        const now = Date.now();
+        if (filtroPeriodo === "proximos") {
+          filteredData = filteredData.filter(t => new Date(t.startTimestamp).getTime() >= now);
+        } else if (filtroPeriodo === "passados") {
+          filteredData = filteredData.filter(t => new Date(t.startTimestamp).getTime() < now);
+        }
+      }
+      
+      setTrainings(filteredData);
+      console.log("Treinos da modalidade carregados:", filteredData);
+    } catch (err) {
+      setError("Falha ao carregar treinos: " + err.message);
+      setTrainings([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, [captainData, filtroStatus, filtroPeriodo]);
 
-  // Filtrar treinos pelo termo de busca
-  const treinosFiltrados = treinos.filter((treino) => {
-    // Primeiro, aplica o filtro de pesquisa
-    if (
-      pesquisa.trim() &&
-      !treino.modalidadeNome.toLowerCase().includes(pesquisa.toLowerCase()) &&
-      !treino.Status.toLowerCase().includes(pesquisa.toLowerCase())
-    ) {
-      return false;
-    }
-
-    // Depois, aplica filtro de status
-    if (filtroStatus && treino.Status !== filtroStatus) {
-      return false;
-    }
-
-    // Finalmente, aplica filtro de período
-    if (filtroPeriodo) {
-      const agora = Date.now();
-      if (filtroPeriodo === "proximos" && treino.StartTimestamp < agora) {
-        return false;
-      }
-      if (filtroPeriodo === "passados" && treino.StartTimestamp > agora) {
-        return false;
-      }
-    }
-
-    return true;
-  });
-
-  // Editar treino
-  const handleEditTreino = (treino) => {
-    setCurrentTreino({ ...treino });
-    setShowEditModal(true);
-  };
-
-  // Salvar alterações no treino
-  const handleSaveTreino = async (event) => {
-    event.preventDefault();
-
+  // Carregar membros da equipe (mesmo modalidade do capitão)
+  const loadTeamMembers = useCallback(async () => {
+    if (!captainData || !captainData.modality) return;
+    
     try {
-      console.log("Simulando atualização do treino:", currentTreino);
+      const data = await fetchUsers();
+      const teamUsers = data.filter(user => user.modality === captainData.modality);
+      setTeamMembers(teamUsers);
+      console.log("Membros da equipe carregados:", teamUsers);
+    } catch (err) {
+      console.error("Erro ao carregar membros da equipe:", err);
+    }
+  }, [captainData]);
 
-      // Atualizar apenas no estado local (sem chamada API)
-      setTreinos(
-        treinos.map((t) => (t._id === currentTreino._id ? currentTreino : t))
-      );
+  // Carregar modalidades externas
+  const loadExternalModalities = async () => {
+    try {
+      const data = await fetchExternalModalities();
+      const modalitiesArray = Object.values(data).map(mod => ({
+        id: mod._id,
+        name: mod.Name,
+        tag: mod.Tag,
+      }));
+      setExternalModalities(modalitiesArray);
+    } catch (err) {
+      console.error("Erro ao buscar modalidades externas:", err);
+    }
+  };
 
-      setShowEditModal(false);
-      alert("Treino atualizado no modo simulação!");
-    } catch (error) {
-      alert(`Erro na simulação: ${error.message}`);
+  useEffect(() => {
+    loadTrainings();
+  }, [loadTrainings]);
+
+  useEffect(() => {
+    loadTeamMembers();
+  }, [loadTeamMembers]);
+  useEffect(() => {
+    loadExternalModalities();
+  }, []);
+
+  // Gerenciar mudanças nos inputs dos formulários
+  const handleInputChange = (e, formType) => {
+    const { name, value } = e.target;
+    if (formType === "new") {
+      setNewTraining((prev) => ({ ...prev, [name]: value }));
+      if (name === "modalityId") {
+        const selectedMod = externalModalities.find(mod => mod.id === value);
+        if (selectedMod) {
+          setNewTraining((prev) => ({
+            ...prev,
+            modalityName: selectedMod.name,
+            modalityTag: selectedMod.tag,
+          }));
+        }
+      }
+    } else if (formType === "edit" && currentTraining) {
+      setCurrentTraining((prev) => ({ ...prev, [name]: value }));
+      if (name === "modalityId") {
+        const selectedMod = externalModalities.find(mod => mod.id === value);
+        if (selectedMod) {
+          setCurrentTraining((prev) => ({
+            ...prev,
+            modalityName: selectedMod.name,
+            modalityTag: selectedMod.tag,
+          }));
+        }
+      }
+    }
+  };
+
+  // Gerenciar participantes
+  const handleParticipantChange = (userId, action, formType) => {
+    if (formType === "new") {
+      setNewTraining(prev => ({
+        ...prev,
+        attendedPlayers: action === 'add'
+          ? [...prev.attendedPlayers, userId]
+          : prev.attendedPlayers.filter(id => id !== userId)
+      }));
+    } else if (formType === "edit" && currentTraining) {
+      setCurrentTraining(prev => ({
+        ...prev,
+        attendedPlayers: action === 'add'
+          ? [...prev.attendedPlayers, userId]
+          : prev.attendedPlayers.filter(id => id !== userId)
+      }));
     }
   };
 
   // Abrir modal para adicionar treino
-  const handleAddTreinoClick = () => {
-    setNewTreino({
-      ModalityId: captainInfo.modalityId,
-      Status: "SCHEDULED",
-      StartTimestamp: Date.now(),
-      EndTimestamp: Date.now() + 7200000,
-      AttendedPlayers: [],
+  const handleAddTrainingClick = () => {
+    if (!captainData) return;
+    
+    // Encontrar a modalidade do capitão nas modalidades externas
+    const captainModality = externalModalities.find(mod => mod.name === captainData.modality);
+    
+    setNewTraining({
+      ...initialNewTrainingState,
+      modalityId: captainModality?.id || "",
+      modalityName: captainData.modality,
+      modalityTag: captainModality?.tag || "",
     });
-
     setShowAddModal(true);
   };
 
   // Salvar novo treino
-  const handleSaveNewTreino = async (event) => {
+  const handleSaveNewTraining = async (event) => {
     event.preventDefault();
-
+    setError(null);
     try {
-      console.log("Simulando criação de novo treino:", newTreino);
-
-      const tempId = `temp-${Date.now()}`;
-
-      const novoTreinoCompleto = {
-        ...newTreino,
-        _id: tempId,
-        modalidadeNome: captainInfo.modality,
-        modalidadeTag: "CS2",
+      const trainingToSave = {
+        ...newTraining,
+        startTimestamp: new Date(newTraining.startTimestamp).toISOString(),
+        endTimestamp: new Date(newTraining.endTimestamp).toISOString(),
       };
-
-      setTreinos([...treinos, novoTreinoCompleto]);
+      const created = await createTraining(trainingToSave);
+      setTrainings((prev) => [...prev, created]);
       setShowAddModal(false);
-      alert("Treino adicionado em modo simulação!");
-    } catch (error) {
-      alert(`Erro na simulação: ${error.message}`);
+    } catch (err) {
+      setError("Erro ao criar treino: " + err.message);
+    }
+  };
+
+  // Editar treino
+  const handleEditTraining = (training) => {
+    setCurrentTraining({
+      ...training,
+      startTimestamp: new Date(training.startTimestamp).toISOString().slice(0, 16),
+      endTimestamp: new Date(training.endTimestamp).toISOString().slice(0, 16),
+      attendedPlayers: training.attendedPlayers.map(p => p._id)
+    });
+    setShowEditModal(true);
+  };
+
+  // Salvar alterações no treino
+  const handleSaveTraining = async (event) => {
+    event.preventDefault();
+    if (!currentTraining) return;
+    setError(null);
+    try {
+      const trainingToUpdate = {
+        ...currentTraining,
+        startTimestamp: new Date(currentTraining.startTimestamp).toISOString(),
+        endTimestamp: new Date(currentTraining.endTimestamp).toISOString(),
+      };
+      const updated = await updateTraining(currentTraining._id, trainingToUpdate);
+      setTrainings((prev) =>
+        prev.map((t) => (t._id === updated._id ? updated : t))
+      );
+      setShowEditModal(false);
+      setCurrentTraining(null);
+    } catch (err) {
+      setError("Erro ao atualizar treino: " + err.message);
     }
   };
 
   // Iniciar processo de exclusão
-  const handleDeleteClick = (treino) => {
-    setDeletingTreino(treino);
+  const handleDeleteClick = (training) => {
+    setDeletingTraining(training);
     setShowDeleteModal(true);
   };
 
   // Confirmar exclusão
   const handleDeleteConfirm = async () => {
+    if (!deletingTraining) return;
+    setError(null);
     try {
-      console.log("Simulando exclusão do treino:", deletingTreino);
-
-      setTreinos(treinos.filter((t) => t._id !== deletingTreino._id));
-
+      await deleteTraining(deletingTraining._id);
+      setTrainings((prev) => prev.filter((t) => t._id !== deletingTraining._id));
       setShowDeleteModal(false);
-      setDeletingTreino(null);
-      alert("Treino excluído em modo simulação!");
-    } catch (error) {
-      alert(`Erro na simulação: ${error.message}`);
-    }
-  };
-
-  // Gerenciar presença
-  const handleManageAttendance = (treino) => {
-    // No mundo real, você buscaria os jogadores presentes da API
-    // Aqui estamos simulando com base nos dados do treino
-    setCurrentTreino(treino);
-
-    // Inicializa o array de presença com todos os jogadores do time
-    // e marca como presentes aqueles que já estão em AttendedPlayers
-    const attendance = teamPlayers.map((player) => ({
-      ...player,
-      present: treino.AttendedPlayers.includes(player.id),
-    }));
-
-    setCurrentAttendance(attendance);
-    setShowAttendanceModal(true);
-  };
-
-  // Alternar presença de um jogador
-  const toggleAttendance = (playerId) => {
-    setCurrentAttendance(
-      currentAttendance.map((player) =>
-        player.id === playerId
-          ? { ...player, present: !player.present }
-          : player
-      )
-    );
-  };
-
-  // Salvar lista de presença
-  const handleSaveAttendance = () => {
-    try {
-      // Lista de IDs dos jogadores presentes
-      const presentPlayerIds = currentAttendance
-        .filter((player) => player.present)
-        .map((player) => player.id);
-
-      // Atualiza o treino atual com a nova lista de presença
-      const updatedTreino = {
-        ...currentTreino,
-        AttendedPlayers: presentPlayerIds,
-      };
-
-      // Atualiza na lista de treinos
-      setTreinos(
-        treinos.map((t) => (t._id === currentTreino._id ? updatedTreino : t))
-      );
-
-      setShowAttendanceModal(false);
-      alert("Lista de presença atualizada com sucesso!");
-    } catch (error) {
-      alert(`Erro ao salvar lista de presença: ${error.message}`);
+      setDeletingTraining(null);
+    } catch (err) {
+      setError("Erro ao excluir treino: " + err.message);
     }
   };
 
   // Formatar data para exibição
   const formatarData = (timestamp) => {
-    return new Date(timestamp).toLocaleString("pt-BR");
+    if (!timestamp) return "N/A";
+    return new Date(timestamp).toLocaleString("pt-BR", {
+      dateStyle: "short",
+      timeStyle: "short",
+    });
   };
 
-  // Formatar data para input datetime-local
-  const formatarDataParaInput = (timestamp) => {
-    const data = new Date(timestamp);
-    return data.toISOString().slice(0, 16);
-  };
+  // Filtrar treinos pelo termo de busca
+  const treinosFiltradosPorPesquisa = trainings.filter((treino) => {
+    if (!pesquisa.trim()) return true;
+    const termo = pesquisa.toLowerCase();
+    return (
+      (treino.modalityName && treino.modalityName.toLowerCase().includes(termo)) ||
+      (treino.modalityTag && treino.modalityTag.toLowerCase().includes(termo)) ||
+      (treino.status && treino.status.toLowerCase().includes(termo)) ||
+      (treino.description && treino.description.toLowerCase().includes(termo))
+    );  });
 
-  // Carregar dados iniciais
-  useEffect(() => {
-    buscarTreinos();
-  }, []);
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      buscarTreinos();
-    }
-  };
+  if (!captainData) {
+    return (
+      <div className="gerenciar-treinos-equipe-page">
+        <HeaderAdmin />
+        <main className="treinos-main">
+          <div className="loading">Carregando dados do capitão...</div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="gerenciar-treinos-equipe-page">
       <HeaderAdmin />
 
       <main className="treinos-main">
-        <div className="title-section">
-          <h1>GERENCIAR TREINOS DA EQUIPE</h1>
-          <p className="team-info">Modalidade: {captainInfo.modality}</p>
-        </div>
-
         <div className="title-search">
           <div className="title-actions">
-            <button className="add-button" onClick={handleAddTreinoClick}>
+            <h1>GERENCIAR TREINOS - {captainData.modality}</h1>
+            <button className="add-button" onClick={handleAddTrainingClick}>
               <FaPlus /> Novo Treino
             </button>
           </div>
@@ -338,10 +339,9 @@ const GerenciarTreinosEquipe = () => {
               <FaSearch className="search-icon" />
               <input
                 type="text"
-                placeholder="Pesquisar treinos"
+                placeholder="Pesquisar por modalidade, status..."
                 value={pesquisa}
                 onChange={(e) => setPesquisa(e.target.value)}
-                onKeyPress={handleKeyPress}
               />
             </div>
             <button
@@ -356,11 +356,8 @@ const GerenciarTreinosEquipe = () => {
         {showFilterMenu && (
           <div className="filtros-container">
             <div className="filtro-grupo">
-              <label>Status:</label>
-              <select
-                value={filtroStatus}
-                onChange={(e) => setFiltroStatus(e.target.value)}
-              >
+              <label htmlFor="filtroStatus">Status:</label>
+              <select id="filtroStatus" value={filtroStatus} onChange={(e) => setFiltroStatus(e.target.value)}>
                 <option value="">Todos</option>
                 <option value="SCHEDULED">Agendado</option>
                 <option value="RUNNING">Em andamento</option>
@@ -369,17 +366,14 @@ const GerenciarTreinosEquipe = () => {
               </select>
             </div>
             <div className="filtro-grupo">
-              <label>Período:</label>
-              <select
-                value={filtroPeriodo}
-                onChange={(e) => setFiltroPeriodo(e.target.value)}
-              >
+              <label htmlFor="filtroPeriodo">Período:</label>
+              <select id="filtroPeriodo" value={filtroPeriodo} onChange={(e) => setFiltroPeriodo(e.target.value)}>
                 <option value="">Todos</option>
                 <option value="proximos">Próximos treinos</option>
                 <option value="passados">Treinos passados</option>
               </select>
             </div>
-            <button onClick={buscarTreinos} className="aplicar-filtros">
+            <button onClick={loadTrainings} className="aplicar-filtros">
               Aplicar Filtros
             </button>
           </div>
@@ -391,61 +385,40 @@ const GerenciarTreinosEquipe = () => {
           <div className="loading">Carregando treinos...</div>
         ) : (
           <div className="treinos-grid">
-            {treinosFiltrados.length > 0 ? (
+            {treinosFiltradosPorPesquisa.length > 0 ? (
               <table className="treinos-table">
                 <thead>
                   <tr>
                     <th>MODALIDADE</th>
+                    <th>DESCRIÇÃO</th>
                     <th>INÍCIO</th>
                     <th>FIM</th>
                     <th>STATUS</th>
-                    <th>PRESENÇA</th>
+                    <th>PARTICIPANTES</th>
                     <th>AÇÕES</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {treinosFiltrados.map((treino) => (
+                  {treinosFiltradosPorPesquisa.map((treino) => (
                     <tr key={treino._id}>
                       <td>
-                        <span className="modalidade-tag">
-                          {treino.modalidadeTag}
-                        </span>
-                        {treino.modalidadeNome}
+                        <span className="modalidade-tag">{treino.modalityTag}</span>
+                        {treino.modalityName}
                       </td>
-                      <td>{formatarData(treino.StartTimestamp)}</td>
-                      <td>{formatarData(treino.EndTimestamp)}</td>
+                      <td>{treino.description || "-"}</td>
+                      <td>{formatarData(treino.startTimestamp)}</td>
+                      <td>{formatarData(treino.endTimestamp)}</td>
                       <td>
-                        <span
-                          className={`status-badge ${treino.Status.toLowerCase()}`}
-                        >
-                          {treino.Status}
+                        <span className={`status-badge ${treino.status ? treino.status.toLowerCase() : ''}`}>
+                          {treino.status}
                         </span>
                       </td>
-                      <td>
-                        <span className="attendance-info">
-                          {treino.AttendedPlayers.length}/{teamPlayers.length}
-                        </span>
-                      </td>
+                      <td>{treino.attendedPlayers ? treino.attendedPlayers.length : 0}</td>
                       <td className="acoes-cell">
-                        <button
-                          className="action-btn attendance"
-                          onClick={() => handleManageAttendance(treino)}
-                          title="Gerenciar presença"
-                        >
-                          <FaUsers />
-                        </button>
-                        <button
-                          className="action-btn edit"
-                          onClick={() => handleEditTreino(treino)}
-                          title="Editar treino"
-                        >
+                        <button className="action-btn edit" onClick={() => handleEditTraining(treino)}>
                           <FaEdit />
                         </button>
-                        <button
-                          className="action-btn delete"
-                          onClick={() => handleDeleteClick(treino)}
-                          title="Excluir treino"
-                        >
+                        <button className="action-btn delete" onClick={() => handleDeleteClick(treino)}>
                           <FaTrashAlt />
                         </button>
                       </td>
@@ -454,130 +427,65 @@ const GerenciarTreinosEquipe = () => {
                 </tbody>
               </table>
             ) : (
-              <div className="no-results">Nenhum treino encontrado</div>
+              <div className="no-results">Nenhum treino encontrado.</div>
             )}
           </div>
-        )}
-      </main>
+        )}      </main>
 
-      {/* Modal de Edição */}
-      {showEditModal && currentTreino && (
-        <div className="modal-overlay">
-          <div className="edit-modal">
-            <h2>Editar Treino</h2>
-            <form onSubmit={handleSaveTreino}>
+      {/* Add Training Modal */}
+      {showAddModal && (
+        <div className="modal-overlay" onClick={() => setShowAddModal(false)}>
+          <div className="edit-modal" onClick={(e) => e.stopPropagation()}>
+            <h2>Adicionar Novo Treino</h2>
+            <form onSubmit={handleSaveNewTraining}>
               <div className="form-group">
-                <label>Modalidade:</label>
+                <label htmlFor="modalityIdAdd">Modalidade:</label>
                 <input
                   type="text"
-                  value={currentTreino.modalidadeNome}
-                  disabled
+                  value={captainData.modality}
+                  readOnly
+                  style={{ backgroundColor: '#0d1117', color: '#8b949e' }}
                 />
               </div>
               <div className="form-group">
-                <label>Data/Hora de Início:</label>
+                <label htmlFor="descriptionAdd">Descrição (Opcional):</label>
                 <input
-                  type="datetime-local"
-                  value={formatarDataParaInput(currentTreino.StartTimestamp)}
-                  onChange={(e) =>
-                    setCurrentTreino({
-                      ...currentTreino,
-                      StartTimestamp: new Date(e.target.value).getTime(),
-                    })
-                  }
+                  type="text"
+                  id="descriptionAdd"
+                  name="description"
+                  value={newTraining.description}
+                  onChange={(e) => handleInputChange(e, "new")}
                 />
               </div>
               <div className="form-group">
-                <label>Data/Hora de Término:</label>
+                <label htmlFor="startTimestampAdd">Data/Hora de Início:</label>
                 <input
                   type="datetime-local"
-                  value={formatarDataParaInput(currentTreino.EndTimestamp)}
-                  onChange={(e) =>
-                    setCurrentTreino({
-                      ...currentTreino,
-                      EndTimestamp: new Date(e.target.value).getTime(),
-                    })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Status:</label>
-                <select
-                  value={currentTreino.Status}
-                  onChange={(e) =>
-                    setCurrentTreino({
-                      ...currentTreino,
-                      Status: e.target.value,
-                    })
-                  }
-                >
-                  <option value="SCHEDULED">Agendado</option>
-                  <option value="RUNNING">Em andamento</option>
-                  <option value="COMPLETED">Finalizado</option>
-                  <option value="CANCELED">Cancelado</option>
-                </select>
-              </div>
-              <div className="modal-actions">
-                <button type="button" onClick={() => setShowEditModal(false)}>
-                  Cancelar
-                </button>
-                <button type="submit" className="save-button">
-                  Salvar Alterações
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Modal de Adição */}
-      {showAddModal && (
-        <div className="modal-overlay">
-          <div className="edit-modal">
-            <h2>Adicionar Novo Treino</h2>
-            <form onSubmit={handleSaveNewTreino}>
-              <div className="form-group">
-                <label>Modalidade:</label>
-                <input type="text" value={captainInfo.modality} disabled />
-              </div>
-              <div className="form-group">
-                <label>Data/Hora de Início:</label>
-                <input
-                  type="datetime-local"
-                  value={formatarDataParaInput(newTreino.StartTimestamp)}
-                  onChange={(e) =>
-                    setNewTreino({
-                      ...newTreino,
-                      StartTimestamp: new Date(e.target.value).getTime(),
-                    })
-                  }
+                  id="startTimestampAdd"
+                  name="startTimestamp"
+                  value={newTraining.startTimestamp}
+                  onChange={(e) => handleInputChange(e, "new")}
                   required
                 />
               </div>
               <div className="form-group">
-                <label>Data/Hora de Término:</label>
+                <label htmlFor="endTimestampAdd">Data/Hora de Término:</label>
                 <input
                   type="datetime-local"
-                  value={formatarDataParaInput(newTreino.EndTimestamp)}
-                  onChange={(e) =>
-                    setNewTreino({
-                      ...newTreino,
-                      EndTimestamp: new Date(e.target.value).getTime(),
-                    })
-                  }
+                  id="endTimestampAdd"
+                  name="endTimestamp"
+                  value={newTraining.endTimestamp}
+                  onChange={(e) => handleInputChange(e, "new")}
                   required
                 />
               </div>
               <div className="form-group">
-                <label>Status:</label>
+                <label htmlFor="statusAdd">Status:</label>
                 <select
-                  value={newTreino.Status}
-                  onChange={(e) =>
-                    setNewTreino({
-                      ...newTreino,
-                      Status: e.target.value,
-                    })
-                  }
+                  id="statusAdd"
+                  name="status"
+                  value={newTraining.status}
+                  onChange={(e) => handleInputChange(e, "new")}
                   required
                 >
                   <option value="SCHEDULED">Agendado</option>
@@ -586,85 +494,139 @@ const GerenciarTreinosEquipe = () => {
                   <option value="CANCELED">Cancelado</option>
                 </select>
               </div>
+              <div className="form-group">
+                <label>Participantes:</label>
+                <div className="participants-list">
+                  {newTraining.attendedPlayers.map(playerId => {
+                    const player = teamMembers.find(u => u._id === playerId);
+                    return player ? (
+                      <span key={playerId} className="participant-tag">
+                        {player.name} 
+                        <FaUserMinus onClick={() => handleParticipantChange(playerId, 'remove', 'new')} />
+                      </span>
+                    ) : null;
+                  })}
+                </div>
+                <select onChange={(e) => e.target.value && handleParticipantChange(e.target.value, 'add', 'new')} value="">
+                  <option value="">Adicionar participante...</option>
+                  {teamMembers.filter(user => !newTraining.attendedPlayers.includes(user._id)).map(user => (
+                    <option key={user._id} value={user._id}>{user.name} ({user.email})</option>
+                  ))}
+                </select>
+              </div>
               <div className="modal-actions">
-                <button type="button" onClick={() => setShowAddModal(false)}>
-                  Cancelar
-                </button>
-                <button type="submit" className="save-button">
-                  Criar Treino
-                </button>
+                <button type="button" onClick={() => setShowAddModal(false)}>Cancelar</button>
+                <button type="submit" className="save-button">Criar Treino</button>
               </div>
             </form>
           </div>
         </div>
       )}
 
-      {/* Modal de Confirmação de Exclusão */}
-      {showDeleteModal && deletingTreino && (
-        <div className="modal-overlay">
-          <div className="delete-modal">
+      {/* Edit Training Modal */}
+      {showEditModal && currentTraining && (
+        <div className="modal-overlay" onClick={() => { setShowEditModal(false); setCurrentTraining(null); }}>
+          <div className="edit-modal" onClick={(e) => e.stopPropagation()}>
+            <h2>Editar Treino</h2>
+            <form onSubmit={handleSaveTraining}>
+              <div className="form-group">
+                <label htmlFor="modalityIdEdit">Modalidade:</label>
+                <input
+                  type="text"
+                  value={captainData.modality}
+                  readOnly
+                  style={{ backgroundColor: '#0d1117', color: '#8b949e' }}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="descriptionEdit">Descrição (Opcional):</label>
+                <input
+                  type="text"
+                  id="descriptionEdit"
+                  name="description"
+                  value={currentTraining.description}
+                  onChange={(e) => handleInputChange(e, "edit")}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="startTimestampEdit">Data/Hora de Início:</label>
+                <input
+                  type="datetime-local"
+                  id="startTimestampEdit"
+                  name="startTimestamp"
+                  value={currentTraining.startTimestamp}
+                  onChange={(e) => handleInputChange(e, "edit")}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="endTimestampEdit">Data/Hora de Término:</label>
+                <input
+                  type="datetime-local"
+                  id="endTimestampEdit"
+                  name="endTimestamp"
+                  value={currentTraining.endTimestamp}
+                  onChange={(e) => handleInputChange(e, "edit")}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="statusEdit">Status:</label>
+                <select
+                  id="statusEdit"
+                  name="status"
+                  value={currentTraining.status}
+                  onChange={(e) => handleInputChange(e, "edit")}
+                  required
+                >
+                  <option value="SCHEDULED">Agendado</option>
+                  <option value="RUNNING">Em andamento</option>
+                  <option value="COMPLETED">Finalizado</option>
+                  <option value="CANCELED">Cancelado</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Participantes:</label>
+                <div className="participants-list">
+                  {currentTraining.attendedPlayers.map(playerId => {
+                    const player = teamMembers.find(u => u._id === playerId);
+                    return player ? (
+                      <span key={playerId} className="participant-tag">
+                        {player.name} 
+                        <FaUserMinus onClick={() => handleParticipantChange(playerId, 'remove', 'edit')} />
+                      </span>
+                    ) : null;
+                  })}
+                </div>
+                <select onChange={(e) => e.target.value && handleParticipantChange(e.target.value, 'add', 'edit')} value="">
+                  <option value="">Adicionar participante...</option>
+                  {teamMembers.filter(user => !currentTraining.attendedPlayers.includes(user._id)).map(user => (
+                    <option key={user._id} value={user._id}>{user.name} ({user.email})</option>
+                  ))}
+                </select>
+              </div>
+              <div className="modal-actions">
+                <button type="button" onClick={() => { setShowEditModal(false); setCurrentTraining(null); }}>Cancelar</button>
+                <button type="submit" className="save-button">Salvar Alterações</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && deletingTraining && (
+        <div className="modal-overlay" onClick={() => setShowDeleteModal(false)}>
+          <div className="delete-modal" onClick={(e) => e.stopPropagation()}>
             <h2>Confirmar Exclusão</h2>
             <p>
-              Tem certeza que deseja excluir o treino agendado para{" "}
-              <strong>{formatarData(deletingTreino.StartTimestamp)}</strong>?
+              Tem certeza que deseja excluir o treino de{" "}
+              <strong>{deletingTraining.modalityName}</strong> agendado para{" "}
+              <strong>{formatarData(deletingTraining.startTimestamp)}</strong>?
             </p>
             <div className="modal-actions">
-              <button type="button" onClick={() => setShowDeleteModal(false)}>
-                Cancelar
-              </button>
-              <button
-                type="button"
-                className="delete-button"
-                onClick={handleDeleteConfirm}
-              >
-                Excluir Treino
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Modal de Gerenciamento de Presença */}
-      {showAttendanceModal && currentTreino && (
-        <div className="modal-overlay">
-          <div className="attendance-modal">
-            <h2>Gerenciar Presença</h2>
-            <p className="training-date">
-              Treino: {formatarData(currentTreino.StartTimestamp)}
-            </p>
-
-            <div className="attendance-list">
-              {currentAttendance.map((player) => (
-                <div key={player.id} className="attendance-item">
-                  <label className="attendance-label">
-                    <input
-                      type="checkbox"
-                      checked={player.present}
-                      onChange={() => toggleAttendance(player.id)}
-                    />
-                    <div className="player-attendance-info">
-                      <span className="player-name">{player.name}</span>
-                      <span className="player-email">{player.email}</span>
-                    </div>
-                  </label>
-                </div>
-              ))}
-            </div>
-
-            <div className="modal-actions">
-              <button
-                type="button"
-                onClick={() => setShowAttendanceModal(false)}
-              >
-                Cancelar
-              </button>
-              <button
-                type="button"
-                className="save-button"
-                onClick={handleSaveAttendance}
-              >
-                Salvar Presenças
-              </button>
+              <button type="button" onClick={() => setShowDeleteModal(false)}>Cancelar</button>
+              <button type="button" className="delete-button" onClick={handleDeleteConfirm}>Excluir Treino</button>
             </div>
           </div>
         </div>
