@@ -201,11 +201,11 @@ const Home = () => {
         style={{ backgroundImage: `url(${heroBanner})` }}
       >
         <div className="hero-content">
-          <h1 className="bemvindo">{siteData.home.heroTitle}</h1>
+          <h1 className="bemvindo-new">{siteData.home.heroTitle}</h1>
           <p>
             {siteData.home.heroDescription}
           </p>
-          <div className="hero-buttons">
+          <div className="hero-buttons-ts">
             <button className="inscrever-button">SOBRE NÓS</button>
             <button className="times-button">TIMES</button>
           </div>

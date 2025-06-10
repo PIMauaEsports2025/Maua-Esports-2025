@@ -61,49 +61,35 @@
   font-family: "Jersey 25", sans-serif;
 }
 
-.navigation a:hover, .navigation a.active {
-  color: #003B6D; /* Consider a theme color for active/hover links */
+.navigation a:hover,
+.navigation a.active {
+  color: #003B6D;
   transform: translateY(-2px);
 }
 
-/* General Button Styles (applied to both login and logout) */
-.login-btn { /* This class is still on both buttons, so it provides base styling */
-  border-radius: 8px;
-  padding: 10px 22px;
+.login-btn {
+  border-radius: 5px;
+  padding: 12px 20px;
+  background: #003B6D;
   color: white !important;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: bold;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: 1rem; /* Keep or adjust as needed */
+  margin-right: 1rem;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 0.95rem; /* Standardized font size */
+  transition: all 0.3s ease;
+  outline: none;
+  box-shadow: none;
+  font-size: 0.95rem;
 }
 
 .login-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.login-btn:active {
-  transform: translateY(0px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Icon base styles (can be overridden) */
-.login-icon, .microsoft-icon, .logout-icon {
-  vertical-align: middle;
-  font-size: 1.3rem;
-}
-
-/* Specific styles for Microsoft Login Button */
-.microsoft-login-btn {
-  background: linear-gradient(135deg, #0078D4 0%, #005A9E 100%); /* Microsoft blue gradient */
-  padding: 12px 25px; /* More prominent padding */
+  background-color: #00CDFF;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .microsoft-icon {
@@ -111,25 +97,19 @@
   font-size: 1.4rem;
 }
 
-.microsoft-login-btn:hover {
-  background: linear-gradient(135deg, #005A9E 0%, #003B6D 100%);
-  box-shadow: 0 6px 12px rgba(0, 120, 212, 0.3); /* Glow effect with Microsoft blue */
-}
-
-/* Specific styles for Logout Button */
 .logout-btn {
-  background: linear-gradient(135deg, #D83B01 0%, #B72E00 100%); /* Example: Orange/Red gradient */
-  padding: 12px 25px; /* Consistent padding with login button */
+  background: linear-gradient(135deg, #D83B01 0%, #B72E00 100%);
+  padding: 12px 25px;
 }
 
 .logout-icon {
-  margin-left: 8px; /* Space between text and icon */
-  font-size: 1.4rem; /* Consistent icon size */
+  margin-left: 8px;
+  font-size: 1.4rem;
 }
 
 .logout-btn:hover {
-  background: linear-gradient(135deg, #B72E00 0%, #8C2300 100%); /* Darker gradient on hover */
-  box-shadow: 0 6px 12px rgba(216, 59, 1, 0.3); /* Glow effect with logout color */
+  background: linear-gradient(135deg, #B72E00 0%, #8C2300 100%);
+  box-shadow: 0 6px 12px rgba(216, 59, 1, 0.3);
 }
 
 .mobile-menu-button {
@@ -141,19 +121,17 @@
   cursor: pointer;
 }
 
-/* Auth links container styling */
 .auth-links {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-/* Responsividade para o Header */
 @media screen and (max-width: 768px) {
   .home-header {
     flex-direction: column;
     align-items: flex-start;
-    background:  #001324c0;
+    background: #001324c0;
   }
 
   .logo {
@@ -166,23 +144,22 @@
   }
 
   .logo-img {
-    height: 30px; /* Adjusted from 40px to 30px for better fit */
+    height: 30px;
   }
 
   .navigation {
     width: 100%;
-    /* overflow-x: auto; */ /* Can be removed if mobile menu handles overflow */
   }
 
   .navigation ul {
     flex-direction: column;
     padding: 0.5rem 0;
-    align-items: flex-start; /* Align items to the start for column layout */
+    align-items: flex-start;
   }
 
   .navigation li {
-    margin: 0.5rem 0; /* Vertical spacing for mobile */
-    width: 100%; /* Make li take full width for button alignment */
+    margin: 0.5rem 0;
+    width: 100%;
   }
 
   .mobile-menu-button {
@@ -192,30 +169,35 @@
   .navigation {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out; /* Smoother transition */
+    transition: max-height 0.3s ease-out;
   }
 
   .navigation.mobile-open {
-    max-height: 500px; /* Increased max-height to ensure all items fit */
-    /* align-items: flex-start; */ /* Already set in .navigation ul */
+    max-height: 500px;
   }
+
   .navigation.mobile-open .auth-links,
-  .navigation.mobile-open .login-btn { /* Targets both buttons */
-    width: 100%; /* Full width for better mobile responsiveness */
+  .navigation.mobile-open .login-btn {
+    width: 100%;
     text-align: center;
     margin-bottom: 0.5rem;
-    margin-right: 0; /* Remove right margin in mobile view */
-    justify-content: center; /* Center content within the button */
-    max-width: 90%; /* Limit width to improve appearance */
+    margin-right: 0;
+    justify-content: center;
+    max-width: 90%;
   }
-   .navigation.mobile-open .login-btn { /* General styling for buttons in mobile */
+
+  .navigation.mobile-open .login-btn {
+    /* General styling for buttons in mobile */
     padding: 12px 15px;
-    width: 100%; /* Ensure button takes full width of its container */
-    margin: 0 auto; /* Center the button */
+    width: 100%;
+    /* Ensure button takes full width of its container */
+    margin: 0 auto;
+    /* Center the button */
   }
 
   .login-btn {
-    width: 85%; /* More appropriate width for tablets */
+    width: 85%;
+    /* More appropriate width for tablets */
     font-size: 0.95rem;
     margin: 0 auto 10px auto;
   }
@@ -227,53 +209,61 @@
     align-items: center;
   }
 
-  .microsoft-login-btn, .logout-btn { 
+  .microsoft-login-btn,
+  .logout-btn {
     padding: 10px 20px;
   }
-  .microsoft-icon, .logout-icon { 
-    font-size: 2.5rem; 
+
+  .microsoft-icon,
+  .logout-icon {
+    font-size: 2.5rem;
     height: 20px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .home-header {
-    background:  #001324c0;
+    background: #001324c0;
     padding: 1rem;
   }
 
   .navigation li {
-    margin: 0.5rem 0; 
+    margin: 0.5rem 0;
   }
+
   .logo h1 {
     font-size: 1.2rem;
   }
 
   .login-btn {
     font-size: 0.9rem;
-    width: 90%; 
-    padding: 10px 15px; 
+    width: 90%;
+    padding: 10px 15px;
     margin: 5px auto;
   }
 
-  .microsoft-login-btn, .logout-btn { 
+  .microsoft-login-btn,
+  .logout-btn {
     padding: 10px 20px;
   }
-  .microsoft-icon, .logout-icon { 
-    font-size: 2.5rem; 
+
+  .microsoft-icon,
+  .logout-icon {
+    font-size: 2.5rem;
     height: 20px;
   }
 }
 
 @media screen and (max-width: 360px) {
   .login-btn {
-    width: 95%; 
+    width: 95%;
     font-size: 0.85rem;
     padding: 8px 12px;
   }
-  
-  .microsoft-icon, .logout-icon {
-    font-size: 2.5rem; 
+
+  .microsoft-icon,
+  .logout-icon {
+    font-size: 2.5rem;
     height: 20px;
   }
 }

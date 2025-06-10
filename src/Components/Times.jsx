@@ -14,7 +14,6 @@ function Times() {
       heroTitle: "NOSSAS EQUIPES",
       heroDescription:
         "A elite dos games universitários representa o Instituto Mauá com talento, estratégia e paixão. Mais que jogadores, somos um time unido que leva o nome Mauá ao topo dos eSports!",
-      sectionTitle: "CONHEÇA NOSSAS EQUIPES",
       descriptionTitle: "EXCELÊNCIA NOS E-SPORTS",
       descriptionText1:
         "A Mauá e-Sports reúne times formados por alunos talentosos e apaixonados por jogos eletrônicos, que trabalham juntos para alcançar a excelência em suas modalidades.",

@@ -113,7 +113,6 @@ const Header = ({ onLoginClick }) => {
             <div className="auth-links">
               {!isAuthenticated ? (
                 <button className="login-btn microsoft-login-btn" onClick={handleLogin}>
-                  <FaMicrosoft className="microsoft-icon" />
                   Login
                 </button>
               ) : (
