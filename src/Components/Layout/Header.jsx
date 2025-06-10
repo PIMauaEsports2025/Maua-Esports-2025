@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaMicrosoft } from "react-icons/fa";
-import { CiLogin } from "react-icons/ci"; // Keep CiLogin for logout
+import { CiLogin } from "react-icons/ci"; 
 import { useMsal } from "@azure/msal-react";
 import mauaLogo from "../../assets/ui/maua-branco.png";
 import "../../styles/Layout/Header.css";
@@ -39,7 +39,6 @@ const Header = ({ onLoginClick }) => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  // Function to get the first name
   const getFirstName = (fullName) => {
     if (!fullName) return "Usuário";
     return fullName.split(' ')[0];
@@ -74,12 +73,6 @@ const Header = ({ onLoginClick }) => {
           </li>
           <li>
             <Link to="/contato">Contato</Link>
-          </li>
-          <li>
-            <Link to="/capitao">Capitao</Link>
-          </li>
-          <li>
-            <Link to="/painelUsuario">Usuário</Link>
           </li>
           <li>
             <div className="auth-links">

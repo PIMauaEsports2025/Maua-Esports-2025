@@ -115,7 +115,7 @@ function Sobre() {
                 numero: "1",
                 titulo: "Inscrição Online",
                 descricao:
-                  "Preenchimento de formulário online com informações pessoais, interesses e experiências prévias. Essa etapa nos ajuda a conhecer melhor você e suas motivações.",
+                  "Preenchimento de formulário online com informações pessoais, interesses e experiências prévias. Essa etapa nos ajuda a conhecer melhor você.",
               },
               {
                 numero: "2",
@@ -137,6 +137,7 @@ function Sobre() {
               </div>
             ))}
           </div>
+          <p className="etapas-abertas">* Etapas abertas apenas nos meses de março e agosto</p>
           <div className="botao-container">
             <a
               href="https://linktr.ee/mauaesports"

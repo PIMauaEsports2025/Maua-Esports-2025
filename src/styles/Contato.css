@@ -84,11 +84,11 @@
 .botao-enviar {
   margin-top: 2rem;
   padding: 1rem 2rem;
-  background: linear-gradient(90deg, #003B6D 0%, #0052a3 100%);
+  background: #003B6D;
   border: none;
   color: white;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
@@ -100,8 +100,7 @@
 }
 
 .botao-enviar:hover {
-  background: linear-gradient(90deg, #004d8c 0%, #00CDFF 100%);
-  transform: translateY(-2px);
+  background: #040d1d;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 

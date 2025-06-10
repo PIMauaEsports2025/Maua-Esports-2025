@@ -1,6 +1,6 @@
 .team-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #040D1D 0%, #0B1423 100%);
+  background: #040D1D;
   color: white;
   display: flex;
   flex-direction: column;
@@ -54,7 +54,7 @@
 
 .team-description {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 90px;
 }
 
 .team-description p {
@@ -68,7 +68,7 @@
 .player-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
+  gap: 50px;
 }
 
 .player-card {

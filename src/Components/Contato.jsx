@@ -35,9 +35,13 @@ function Contato() {
 
     emailjs
       .send(
-        "service_ujdd19b",
-        "template_q76er4c",
-        formData,
+        "service_fjastyl",
+        "template_h27a4vd",
+        {
+          from_name: formData.nome,
+          reply_to: formData.email,
+          message: formData.mensagem
+        },
         "TndTwX4-rmLTk0oRe"
       )
       .then((response) => {
@@ -65,16 +69,6 @@ function Contato() {
     {
       question: "Quais campeonatos vocês participam?",
       answer: "Participamos de torneios universitários e campeonatos online.",
-    },
-    {
-      question: "Quais times que tem no Mauá E-Sports?",
-      answer:
-        "Temos times de League of Legends, Valorant, CS:GO, e Rocket League.",
-    },
-    {
-      question: "Quais times que tem no Mauá E-Sports?",
-      answer:
-        "Temos times de League of Legends, Valorant, CS:GO, e Rocket League.",
     },
     {
       question: "Quais times que tem no Mauá E-Sports?",

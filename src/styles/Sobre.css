@@ -223,6 +223,13 @@ body {
   transition: color 0.3s ease;
 }
 
+.etapas-abertas {
+  font-size: 15px;
+  color: #5d5d5d;
+  margin-top: 2%;
+  margin-left: 1%;
+}
+
 .premio-descricao {
   font-size: 1rem;
   color: #ccc;
@@ -230,14 +237,10 @@ body {
 }
 
 
-
-
-/* Responsive adjustments */
 @media (max-width: 960px) {
   .premios-container {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .premio-titulo {
     font-size: 1.3rem;
   }
@@ -247,7 +250,6 @@ body {
   .premios-section {
     padding: 3rem 1.5rem;
   }
-
   .premios-title {
     font-size: 2rem;
     margin-bottom: 2rem;
@@ -259,14 +261,13 @@ body {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-
   .premio-card {
     padding: 1.5rem;
   }
 }
 
 .processo-content {
-  padding: 4rem 0;
+  padding: 5% 0 3% 0;
 }
 
 .processo-seletivo {
@@ -368,7 +369,7 @@ body {
   color: white;
   font-size: 1.1rem;
   text-decoration: none;
-  padding: 1rem 2.5rem;
+  padding: 1% 2.5rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
