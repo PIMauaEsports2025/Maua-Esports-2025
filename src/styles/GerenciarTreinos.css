@@ -1,4 +1,3 @@
-/* Base Layout */
 .gerenciar-treinos-page {
   background-color: #0B060F;
   color: white;
@@ -7,7 +6,6 @@
   flex-direction: column;
 }
 
-/* Header styling */
 .treinos-header {
   display: flex;
   justify-content: space-between;
@@ -45,7 +43,6 @@
   font-size: 0.7rem;
 }
 
-/* Main content styling */
 .treinos-main {
   flex: 1;
   padding: 20px 40px;
@@ -127,7 +124,6 @@
   transform: translateY(-2px);
 }
 
-/* Estilos para o botão de adicionar */
 .title-actions {
   display: flex;
   align-items: center;
@@ -154,7 +150,6 @@
   transform: translateY(-2px);
 }
 
-/* Filtros container */
 .filtros-container {
   background-color: #161B22;
   border-radius: 8px;
@@ -213,7 +208,6 @@
   transform: translateY(-2px);
 }
 
-/* Treinos table styling */
 .treinos-grid {
   background-color: #161B22;
   border-radius: 8px;
@@ -351,7 +345,6 @@
   border-left: 4px solid #f85149;
 }
 
-/* Modal de edição */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -449,7 +442,6 @@
   transform: translateY(-2px);
 }
 
-/* Modal de exclusão */
 .delete-modal {
   background-color: #1c2330;
   border-radius: 8px;
@@ -490,7 +482,6 @@
   background-color: #da3633;
 }
 
-/* Responsividade */
 @media screen and (max-width: 992px) {
   .treinos-main {
     padding: 15px 20px;

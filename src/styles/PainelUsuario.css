@@ -15,54 +15,39 @@ body, p, span, li, a, button, input, textarea {
   font-size: 21px;
 }
 
-/* --- INÍCIO DAS ADIÇÕES NECESSÁRIAS PARA O BOTÃO DE SAIR NO CANTO --- */
-
 .top-header {
-  /* SEU CSS ORIGINAL PARA O CABEÇALHO COMEÇA AQUI */
-  /* Mantendo background-color, padding, border-bottom, box-shadow */
   background-color: #1A1A2E;
   padding: 20px 40px;
   border-bottom: 2px solid #01CCFE;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-
-  /* ADICIONANDO POSICIONAMENTO RELATIVO PARA CONTER O BOTÃO ABSOLUTO */
-  position: relative; /* ESSENCIAL para que o 'logout-button' posicione em relação a ele */
-  /* Se você já tinha 'display: flex' aqui, ele foi removido para evitar quebras */
-  /* O layout atual do seu cabeçalho (logo e título) não será afetado diretamente */
+  position: relative; 
 }
-
-/* Estilos para o botão de sair usando posicionamento absoluto */
 .logout-button {
-  background-color: #dc3545; /* Cor vermelha para o botão de sair */
+  background-color: #dc3545; 
   color: white;
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
-  display: flex; /* Para alinhar o ícone e o texto */
+  display: flex; 
   align-items: center;
-  gap: 8px; /* Espaçamento entre o ícone e o texto */
-  font-size: 1rem; /* Ajustar conforme sua preferência, ou usar a base '21px' */
+  gap: 8px; 
+  font-size: 18px;
   transition: background-color 0.3s ease;
-  font-family: 'Agency FB', sans-serif; /* Aplicar a fonte Agency FB */
-  letter-spacing: 0.5px; /* Aplicar o espaçamento de letras */
-  text-transform: uppercase; /* Para combinar com o estilo do seu título */
-  font-weight: bold; /* Para dar destaque ao botão */
-
-  /* PROPRIEDADES DE POSICIONAMENTO ABSOLUTO */
-  position: absolute; /* Tira o botão do fluxo normal, permitindo posicionamento livre */
-  right: 40px; /* Alinha o botão 40px da borda direita do cabeçalho */
-  top: 50%; /* Move o topo do botão para o meio do cabeçalho */
-  transform: translateY(-50%); /* Ajusta verticalmente para centralizar o botão */
-  z-index: 10; /* Garante que o botão fique acima de outros elementos se houver sobreposição */
+  font-family: 'Agency FB', sans-serif; 
+  letter-spacing: 0.5px;
+  text-transform: uppercase; 
+  font-weight: bold;
+  position: absolute;
+  right: 40px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  z-index: 10; 
 }
 
 .logout-button:hover {
-  background-color: #c82333; /* Vermelho mais escuro no hover */
+  background-color: #c82333; 
 }
-
-/* --- FIM DAS ADIÇÕES NECESSÁRIAS PARA O BOTÃO DE SAIR NO CANTO --- */
-
 
 .logo-section {
   display: flex;

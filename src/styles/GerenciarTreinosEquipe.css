@@ -1,4 +1,3 @@
-/* Base Layout */
 .gerenciar-treinos-equipe-page {
   background-color: #0B060F;
   color: white;
@@ -7,7 +6,6 @@
   flex-direction: column;
 }
 
-/* Main content styling */
 .treinos-main {
   flex: 1;
   padding: 20px 40px;
@@ -113,7 +111,6 @@
   background-color: #30363d;
 }
 
-/* Filters container */
 .filtros-container {
   background-color: #161B22;
   border-radius: 8px;
@@ -163,7 +160,6 @@
   transform: translateY(-2px);
 }
 
-/* Training table styling */
 .treinos-grid {
   width: 100%;
   overflow-x: auto;
@@ -260,7 +256,6 @@
   color: #f85149;
 }
 
-/* Loading and error states */
 .loading {
   text-align: center;
   padding: 40px;
@@ -286,7 +281,6 @@
   font-size: 1rem;
 }
 
-/* Modal styling */
 .modal-overlay {
   position: fixed;
   top: 0;
