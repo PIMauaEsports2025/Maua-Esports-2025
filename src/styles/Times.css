@@ -15,7 +15,7 @@ body {
   padding-bottom: 50px;
   margin: 0 auto;
   background-color: #01010187;
-  font-size: 15px;
+  font-size: 21px;
   position: relative;
 }
 
@@ -58,18 +58,17 @@ body {
 }
 
 .teams-description h2 {
-  font-size: 2.2rem;
+  font-size: 28px;
   color: #01CCFE;
   margin-top: 5%;
   margin-bottom: 5%;
   text-align: left;
-  font-family: 'Jersey 25', sans-serif;
   letter-spacing: 1px;
 }
 
 .teams-description p {
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 21px;
   line-height: 1.6;
   color: #e6edf3;
 }
@@ -87,7 +86,6 @@ body {
   margin-bottom: 5%;
   margin-left: 4%;
   text-align: left;
-  font-family: 'Jersey 25', sans-serif;
   letter-spacing: 1px;
 }
 
@@ -148,7 +146,7 @@ body {
 }
 
 .team-name {
-  font-size: 1.3rem;
+  font-size: 18px;
   color: white;
   margin: 0;
   transition: color 0.3s ease;
@@ -208,7 +206,6 @@ body {
   font-size: 2.2rem;
   color: #01CCFE;
   margin-bottom: 40px;
-  font-family: 'Jersey 25', sans-serif;
   letter-spacing: 1px;
 }
 

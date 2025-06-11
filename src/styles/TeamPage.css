@@ -8,7 +8,7 @@
 
 .team-banner {
   background: #0101015d;
-  padding: 100px 0 40px 0;
+  padding: 150px 0 40px 0;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -17,31 +17,27 @@
 }
 
 .team-banner::after {
-  content: "";
+  content: '';
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 5px;
   background: linear-gradient(90deg, transparent, #01CCFE, transparent);
 }
 
 .team-banner h1 {
-  font-size: 3.5rem;
+  font-size: 45px;
   font-weight: 800;
   margin-bottom: 10px;
   color: #fff;
-  text-shadow: 0 0 15px rgba(1, 204, 254, 0.7);
-  letter-spacing: 2px;
-  font-family: 'Jersey 25', sans-serif;
 }
 
 .team-banner h2 {
-  font-size: 1.5rem;
+  font-size: 18px;
   font-weight: 400;
   color: #01CCFE;
   text-transform: uppercase;
-  letter-spacing: 3px;
   margin: 0;
 }
 
@@ -58,7 +54,7 @@
 }
 
 .team-description p {
-  font-size: 1.1rem;
+  font-size: 21px;
   line-height: 1.6;
   max-width: 800px;
   margin: 0 auto;
@@ -99,7 +95,6 @@
 
 .player-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(1, 204, 254, 0.4);
 }
 
 .player-card:hover::after {
@@ -119,7 +114,7 @@
 }
 
 .player-fullname {
-  font-size: 0.9rem;
+  font-size: 18px;
   color: #aaa;
   display: block;
   margin-bottom: 10px;
@@ -127,14 +122,11 @@
 }
 
 .player-name {
-  font-size: 2.2rem;
+  font-size: 21px;
   color: #fff;
   margin: 0;
   margin-bottom: 10px;
-  letter-spacing: 1px;
   line-height: 1;
-  font-family: 'Jersey 25', sans-serif;
-  text-shadow: 0 0 10px rgba(1, 204, 254, 0.5);
 }
 
 .player-role-container {
@@ -145,7 +137,6 @@
   color: #040D1D;
   font-weight: 600;
   font-size: 0.85rem;
-  letter-spacing: 0.5px;
 }
 
 .captain {
