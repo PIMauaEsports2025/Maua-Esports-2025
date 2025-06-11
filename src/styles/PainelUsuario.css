@@ -1,12 +1,18 @@
 @import "./AdminInterface.css";
 
-/* Base Layout */
 .user-panel-page {
   background-color: #0B060F;
   color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+body, p, span, li, a, button, input, textarea {
+  font-family: 'Agency FB', sans-serif;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  font-size: 21px;
 }
 
 .logo-section {
@@ -20,14 +26,12 @@
 }
 
 .title {
-  font-size: 1.8rem;
+  font-size: 18px;
   font-weight: 700;
   color: #01CCFE;
-  font-family: "Jersey 25", sans-serif;
   letter-spacing: 1px;
 }
 
-/* Main content styling */
 .user-main {
   flex: 1;
   padding: 20px 40px;
@@ -36,7 +40,6 @@
   width: 100%;
 }
 
-/* Welcome Section */
 .welcome-section {
   margin-bottom: 30px;
 }
@@ -52,14 +55,8 @@
   transition: all 0.3s ease;
 }
 
-.user-welcome:hover {
-  border-color: #01CCFE;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(1, 204, 254, 0.15);
-}
-
 .user-avatar {
-  background: linear-gradient(135deg, #01CCFE, #003B6D);
+  background:#003B6D;
   border-radius: 50%;
   padding: 20px;
   display: flex;
@@ -70,11 +67,10 @@
 }
 
 .user-info h2 {
-  font-size: 2rem;
+  font-size: 23px;
   font-weight: 700;
   color: #01CCFE;
   margin: 0 0 5px 0;
-  font-family: "Jersey 25", sans-serif;
 }
 
 
@@ -100,12 +96,10 @@
 
 .user-stat-card:hover {
   border-color: #01CCFE;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(1, 204, 254, 0.2);
 }
 
 .stat-icon {
-  background: linear-gradient(135deg, #01CCFE, #003B6D);
+  background: #003B6D;
   border-radius: 12px;
   padding: 15px;
   display: flex;
@@ -122,7 +116,6 @@
   font-weight: 700;
   color: #01CCFE;
   margin: 0;
-  font-family: "Jersey 25", sans-serif;
 }
 
 .stat-info p {
@@ -149,7 +142,6 @@
   color: #01CCFE;
   margin-bottom: 20px;
   text-align: center;
-  font-family: "Jersey 25", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -173,11 +165,10 @@
 
 .info-card:hover {
   border-color: #01CCFE;
-  background-color: #1c2330;
 }
 
 .info-icon {
-  background: linear-gradient(135deg, #01CCFE, #003B6D);
+  background: #003B6D;
   border-radius: 8px;
   padding: 12px;
   display: flex;
@@ -221,7 +212,6 @@
   color: #01CCFE;
   margin-bottom: 20px;
   text-align: center;
-  font-family: "Jersey 25", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -256,9 +246,7 @@
   color: #e6edf3;
 }
 
-.training-table tr:hover {
-  background-color: #1c2330;
-}
+
 
 .modalidade-tag {
   background-color: #01CCFE;
@@ -330,7 +318,6 @@
   color: #01CCFE;
   margin-bottom: 20px;
   text-align: center;
-  font-family: "Jersey 25", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -351,7 +338,6 @@
 
 .progress-card:hover {
   border-color: #01CCFE;
-  background-color: #1c2330;
 }
 
 .progress-header {
@@ -370,9 +356,8 @@
 
 .progress-percentage {
   color: #01CCFE;
-  font-size: 1.2rem;
+  font-size: 25px;
   font-weight: 700;
-  font-family: "Jersey 25", sans-serif;
 }
 
 .progress-bar {
@@ -396,7 +381,7 @@
 
 .progress-card p {
   color: #8b949e;
-  font-size: 0.9rem;
+  font-size: 21px;
   margin: 0;
 }
 
@@ -414,7 +399,7 @@
 .error-message {
   color: #f85149;
   background-color: rgba(248, 81, 73, 0.1);
-  border-radius: 8px;
+  border-radius: 5px;
   border: 1px solid rgba(248, 81, 73, 0.3);
 }
 

@@ -22,7 +22,7 @@ function Sobre() {
       missao:
         "Promover os e-sports de forma estruturada e responsável, aliando desempenho competitivo, crescimento pessoal e espírito de equipe, sempre em alinhamento com os valores educacionais e tecnológicos da Mauá.",
       visao:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Ser reconhecida como uma referência nacional no cenário acadêmico de e-sports, destacando-se pela excelência competitiva, formação de talentos e contribuição para o desenvolvimento da comunidade gamer. ",
       valores:
         "Valorizamos o trabalho em equipe, a disciplina nos treinos e competições, e promovemos a inclusão e o respeito entre os membros. Acreditamos na competitividade saudável e no desenvolvimento contínuo.",
     },

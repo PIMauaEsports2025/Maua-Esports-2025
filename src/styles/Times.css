@@ -5,6 +5,10 @@ html, body, #root {
   min-height: 100vh;
   overflow-x: hidden;
 }
+body {
+  font-family: 'Agency FB', sans-serif;
+  line-height: 1.4;
+}
 
 .teams-hero {
   padding-top: 190px;
@@ -32,10 +36,9 @@ html, body, #root {
 }
 
 .hero-content h1 {
-  font-size: 45px;
+  font-size: 28px;
   margin-bottom: 2rem;
   color: #00CDFF;
-  font-family: "Jersey 25", sans-serif;
   position: relative;
 }
 
@@ -44,6 +47,9 @@ html, body, #root {
   padding: 30px 1px 10px 1px;
   max-width: 1250px;
   margin: 0 auto;
+    font-family: 'Agency FB', sans-serif;
+
+  
 }
 
 .description-container {

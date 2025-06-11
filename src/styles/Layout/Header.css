@@ -19,7 +19,7 @@
 }
 
 .logo h1 {
-  font-size: 1.8rem;
+  font-size: 15px;
   color: #fff;
   margin: 0;
 }
@@ -58,7 +58,7 @@
   font-weight: 500;
   transition: color 0.3s;
   white-space: nowrap;
-  font-family: "Jersey 25", sans-serif;
+    font-family: 'Agency FB', sans-serif;
 }
 
 .navigation a:hover,

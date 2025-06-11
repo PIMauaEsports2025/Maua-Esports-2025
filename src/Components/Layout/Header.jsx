@@ -83,7 +83,7 @@ const Header = ({ onLoginClick }) => {
     <header className="home-header">
       <div className="logo">
         <img src={mauaLogo} alt="Logo Mauá" className="logo-img" />
-        <h1>MAUÁ E-SPORTS</h1>
+        <h1>MAUÁ<br />E-SPORTS</h1>
         <button
           className="mobile-menu-button"
           onClick={toggleMobileMenu}
