@@ -11,6 +11,20 @@ html, body, #root {
   box-sizing: border-box;
 }
 
+body, p, span, li, a, button, input, textarea {
+  font-family: 'Agency FB', sans-serif;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  font-size: 21px;
+
+}
+
+h1, h2, h3, h4, h5, h6, .stat-number, .inscrever-button, .times-button, .navigation a {
+  font-family: 'Akira Expanded', Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+
 h1, .stat-number, .inscrever-button, .times-button, .navigation a {
   font-family: 'Akira Expanded', Arial, sans-serif;
     letter-spacing: 1px;
@@ -167,18 +181,19 @@ h1 .bemvindo-new {
 
 .stat-plus {
   color: #01CCFE;
-  font-size: 40px;
+  font-size: 60px;
   position: relative;
-  top: -0.5rem;
+  top: 9px;
   margin-left: 2px;
   text-shadow: 0 0 10px rgba(1, 204, 254, 0.5);
 }
 
 .stat-description {
-  font-size: 0.95rem;
+  font-size: 21px;
   line-height: 1.4;
   opacity: 0.9;
   transition: opacity 0.3s ease;
+  font-family: 'Agency FB', sans-serif;
 }
 
 .stat-item-number:hover .stat-description {
@@ -206,10 +221,10 @@ h1 .bemvindo-new {
 }
 
 .quem-somos-texto {
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: 21px;
   color: #ffffff;
   margin-bottom: -1%;
+  font-family: 'Agency FB', sans-serif;
 }
 
 .features-hobbie {
@@ -246,7 +261,7 @@ h1 .bemvindo-new {
 
 .feature-card h1 {
   font-family: 'Akira Expanded', Arial, sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 900;
   color: #ffffff;
   margin-bottom: 15px;
@@ -254,9 +269,10 @@ h1 .bemvindo-new {
 
 .feature-card p {
   color: #ffffff;
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
+  font-family: 'Agency FB', sans-serif;
+  font-size: 21px;
   margin-bottom: 1rem;
+  letter-spacing: 0.5px;
 }
 
 .depoimentos-section {
@@ -272,7 +288,7 @@ h1 .bemvindo-new {
 }
 .depoimentos-descricao{
   margin-left: 160px;
-  font-size: 15px;
+  font-size: 21px;
   color: #ccc;
   max-width: 500px;
   margin-bottom: 2%;
@@ -305,27 +321,26 @@ h1 .bemvindo-new {
   border: 1px solid #2c2c2c;
   backdrop-filter: blur(4px);
   color: #fff;
-  font-family: sans-serif;
+  font-family: 'Agency FB', sans-serif;
   position: relative;
   margin-top: 30px;
 }
 
 .depoimento-texto {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 21px;
   color: #cccccc;
   font-style: italic;
   margin-bottom: 1rem;
 }
 
 .depoimento-autor {
-  font-size: 1.1rem;
+  font-size: 18px;
   font-weight: bold;
   color: #00CDFF;
 }
 
 .depoimento-cargo {
-  font-size: 0.9rem;
+  font-size: 18px;
   color: #aaa;
 }
 

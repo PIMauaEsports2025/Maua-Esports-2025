@@ -3,10 +3,10 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Agency FB', sans-serif;
   line-height: 1.4;
-
 }
+
 
 .main-panel {
   flex: 1;
@@ -31,7 +31,7 @@ body {
   color: white;
   border: none;
   padding: 1rem;
-  font-size: 15px;
+  font-size: 21px;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
@@ -70,7 +70,7 @@ body {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 21px;
 }
 
 .social-icons {
@@ -101,7 +101,7 @@ body {
   padding-bottom: 50px;
   margin: 0 auto;
   background-color: #0101015d;
-  font-size: 15px;
+  font-size: 21px;
   position: relative;
 }
 
@@ -168,15 +168,14 @@ body {
 .feature-mvv-card h1 {
   color: white;
   font-family: 'Akira Expanded', Arial, sans-serif;
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 900;
   margin-bottom: 15px;
 }
 
 .feature-mvv-card p {
   color: #ffffff;
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
+  font-size: 21px;
   margin-bottom: 1rem;
 }
 
@@ -221,23 +220,22 @@ body {
 }
 
 .premio-titulo {
-  font-size: 1.3rem;
+  font-size: 25px;
   font-weight: 600;
   margin-bottom: 0.5rem;
   transition: color 0.3s ease;
 }
 
 .etapas-abertas {
-  font-size: 15px;
+  font-size: 21px;
   color: #5d5d5d;
   margin-top: 2%;
   margin-left: 1%;
 }
 
 .premio-descricao {
-  font-size: 1rem;
+  font-size: 18px;
   color: #ccc;
-  line-height: 1.6;
 }
 
 
@@ -348,7 +346,7 @@ body {
 }
 
 .etapa-titulo {
-  font-size: 1.5rem;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 1rem;
   color: #fff;
@@ -357,9 +355,8 @@ body {
 }
 
 .etapa-texto {
-  font-size: 1rem;
+  font-size: 21px;
   color: #ccc;
-  line-height: 1.6;
 }
 
 .botao-container {
@@ -369,7 +366,6 @@ body {
 }
 
 .botao {
-  font-family: "Jersey 25", sans-serif;
   background-color: #003B6D;
   color: white;
   font-size: 1.1rem;
@@ -385,6 +381,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  font-weight: 900;
 }
 
 .botao:hover {

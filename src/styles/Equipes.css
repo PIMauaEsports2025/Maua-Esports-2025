@@ -1,4 +1,3 @@
-/* ValorantTeamPage.css */
 
 .valorant-header {
   display: flex;
@@ -17,9 +16,9 @@
 }
 
 .valorant-title {
-  font-size: 2rem;
+  font-size: 25px;
   font-weight: bold;
   color: white;
-  font-family: 'Roboto', sans-serif;
   margin-top: 0.5rem;
+  font-family: 'Akira Expanded', Arial, sans-serif;
 }
