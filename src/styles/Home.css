@@ -1,17 +1,26 @@
-html, body, #root {
+html,
+body,
+#root {
   margin: 0;
   padding: 0;
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  
+
 }
 
 * {
   box-sizing: border-box;
 }
 
-body, p, span, li, a, button, input, textarea {
+body,
+p,
+span,
+li,
+a,
+button,
+input,
+textarea {
   font-family: 'Agency FB', sans-serif;
   letter-spacing: 0.5px;
   color: #ffffff;
@@ -19,15 +28,28 @@ body, p, span, li, a, button, input, textarea {
 
 }
 
-h1, h2, h3, h4, h5, h6, .stat-number, .inscrever-button, .times-button, .navigation a {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.stat-number,
+.inscrever-button,
+.times-button,
+.navigation a {
   font-family: 'Akira Expanded', Arial, sans-serif;
   letter-spacing: 1px;
 }
 
 
-h1, .stat-number, .inscrever-button, .times-button, .navigation a {
+h1,
+.stat-number,
+.inscrever-button,
+.times-button,
+.navigation a {
   font-family: 'Akira Expanded', Arial, sans-serif;
-    letter-spacing: 1px;
+  letter-spacing: 1px;
 
 }
 
@@ -100,32 +122,35 @@ h1 .bemvindo-new {
   padding-top: 2%;
 }
 
-.inscrever-button, .times-button {
-    margin-top: auto;
-    padding: 12px 20px;
-    background: #003B6D;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background 0.3s;
-    align-self: flex-start;
-    transition: all 0.3s ease;
-    outline: none;
-    border: none;
+.inscrever-button,
+.times-button {
+  margin-top: auto;
+  padding: 12px 20px;
+  background: #003B6D;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+  outline: none;
+  border: none;
+  font-family: 'Agency FB', sans-serif;
 
 }
 
 .inscrever-button:hover {
-    background-color: #00CDFF;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  background-color: #00CDFF;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .times-button:hover {
-    background-color: #00CDFF;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  background-color: #00CDFF;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -231,7 +256,7 @@ h1 .bemvindo-new {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   padding: 2rem;
 }
 
@@ -245,7 +270,7 @@ h1 .bemvindo-new {
   align-items: center;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
-  flex: 1 1 300px; 
+  flex: 1 1 300px;
   max-width: 350px;
 }
 
@@ -286,7 +311,8 @@ h1 .bemvindo-new {
   margin-bottom: 2rem;
 
 }
-.depoimentos-descricao{
+
+.depoimentos-descricao {
   margin-left: 160px;
   font-size: 21px;
   color: #ccc;
@@ -470,7 +496,8 @@ img {
     align-items: flex-start;
   }
 
-  .inscrever-button, .times-button {
+  .inscrever-button,
+  .times-button {
     margin: 8px;
 
   }
@@ -642,6 +669,7 @@ img {
   .stat-description {
     font-size: 13px;
   }
+
   .depoimentos-conteudo {
     padding: 1.5rem;
     text-align: center;
@@ -693,8 +721,9 @@ img {
   .games-carousel-container {
     gap: 1rem;
   }
+
   .hero-section {
-    min-height: 60vh; 
+    min-height: 60vh;
     padding-top: 80px;
     padding: 1rem;
     justify-content: center;
@@ -723,16 +752,16 @@ img {
     position: static;
     margin: 20px 0 0 0;
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
-    padding-left: 7%; 
+    padding-left: 7%;
   }
 
   .botoes {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     gap: 1rem;
     align-items: center;
     justify-content: flex-start;
@@ -753,7 +782,7 @@ img {
     padding-top: 5%;
     padding-bottom: 5%;
   }
-  
+
   .stats-container {
     display: flex;
     flex-wrap: wrap;
@@ -763,45 +792,44 @@ img {
     text-align: center;
     padding: 0 5%;
   }
-  
+
   .stat-item-number {
-    flex: 1 1 45%; 
+    flex: 1 1 45%;
     max-width: 150px;
     min-width: 120px;
   }
-  
+
   .stat-number {
     font-size: 2.2rem;
     font-weight: bold;
     color: #ffffff;
   }
-  
+
   .stat-description {
     font-size: 0.85rem;
     line-height: 1.3;
     margin-top: 0.3rem;
   }
 
-  .inscrever-button, .times-button {
+  .inscrever-button,
+  .times-button {
     width: 100px;
     font-size: 16px;
   }
 }
-  
 
-  .botoes {
-    display: flex;
-    flex-direction: row; 
-    gap: 1rem;
-    align-items: center;
-    justify-content: flex-start;
-  }
 
-  .botoes button {
-    width: auto;
-    min-width: 100px;
-    padding: 0.6rem 1rem;
-    font-size: 0.95rem;
-  }
+.botoes {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+}
 
-  
+.botoes button {
+  width: auto;
+  min-width: 100px;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+}

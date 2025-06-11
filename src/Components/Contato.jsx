@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import "../styles/Contato.css";
 import { FaInstagram } from "react-icons/fa";
@@ -63,8 +62,7 @@ function Contato() {
     },
     {
       question: "Devo cumprir algum pré-requisito para me inscrever?",
-      answer:
-        "Não há pré-requisitos técnicos. Qualquer aluno pode se inscrever!",
+      answer: "Não há pré-requisitos técnicos. Qualquer aluno pode se inscrever!",
     },
     {
       question: "Quais campeonatos vocês participam?",
@@ -72,8 +70,7 @@ function Contato() {
     },
     {
       question: "Quais times que tem no Mauá E-Sports?",
-      answer:
-        "Temos times de League of Legends, Valorant, CS:GO, e Rocket League.",
+      answer: "Temos times de League of Legends, Valorant, CS:GO, e Rocket League.",
     },
   ];
 

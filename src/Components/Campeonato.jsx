@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../styles/Campeonato.css";
 import Header from "./Layout/Header";
 import Footer from "./Layout/Footer";
@@ -10,7 +10,7 @@ function Campeonato() {
     campeonatos: {
       title: "CAMPEONATOS",
       description:
-        "Venha acompanhar de perto a emoção dos nossos campeonatos! A Mauá E-Sports reúne os melhores talentos da instituição em partidas cheias de estratégia, adrenalina e espírito de equipe. Fique ligado nas transmissões e torça com a gente por cada vitória!",
+        "Venha acompanhar de perto a emoção dos nossos campeonatos! A Mauá e-Sports reúne os melhores talentos da instituição em partidas cheias de estratégia, adrenalina e espírito de equipe. Fique ligado nas transmissões e torça com a gente por cada vitória!",
     },
   });
 
@@ -52,7 +52,7 @@ function Campeonato() {
                 <span className="card-type">INTER</span>
                 <h3 className="card-title">CAMPEONATO VALORANT</h3>
                 <p className="card-date">22 de dezembro, 10h</p>
-                <a href="#" className="card-button">
+                <a href="https://liquipedia.net/valorant/College_VALORANT/2023-2024/Championship" className="card-button">
                   VER MAIS
                 </a>
               </div>
@@ -64,19 +64,19 @@ function Campeonato() {
                 <span className="card-type">INTER</span>
                 <h3 className="card-title">CAMPEONATO RAINBOW SIX</h3>
                 <p className="card-date">24 de agosto, 13h30</p>
-                <a href="#" className="card-button">
+                <a href="https://www.ubisoft.com/pt-br/esports/rainbow-six/siege" className="card-button">
                   VER MAIS
                 </a>
               </div>
             </div>
 
-            <div className="championship-card fc24">
+            <div className="championship-card fc25">
               <div className="card-image"></div>
               <div className="card-content">
                 <span className="card-type">INTER</span>
-                <h3 className="card-title">CAMPEONATO FC24</h3>
+                <h3 className="card-title">CAMPEONATO FC25</h3>
                 <p className="card-date">04 de janeiro, 8h</p>
-                <a href="#" className="card-button">
+                <a href="https://www.sympla.com.br/evento/copa-universitaria-ea-fc-25-ps5/2920594?referrer=www.google.com" className="card-button">
                   VER MAIS
                 </a>
               </div>
@@ -88,7 +88,7 @@ function Campeonato() {
                 <span className="card-type">INTER</span>
                 <h3 className="card-title">CAMPEONATO LEAGUE OF LEGENDS</h3>
                 <p className="card-date">15 de fevereiro, 16h</p>
-                <a href="#" className="card-button">
+                <a href="https://support-leagueoflegends.riotgames.com/hc/pt-br/articles/203237850-Programa-de-Clubes-Universit%C3%A1rios-de-League-of-Legends-Perguntas-Frequentes" className="card-button">
                   VER MAIS
                 </a>
               </div>

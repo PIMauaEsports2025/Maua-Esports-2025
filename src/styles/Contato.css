@@ -23,7 +23,7 @@
   display: block;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 18px;
   font-weight: 600;
   color: #ffffff;
   letter-spacing: 1px;
@@ -41,7 +41,7 @@
   background-color: rgba(255, 255, 255, 0.05);
   border: 2px solid rgba(255, 255, 255, 0.1);
   color: white;
-  font-size: 1rem;
+  font-size: 18px;
   border-radius: 6px;
   transition: all 0.3s ease;
 }
@@ -90,8 +90,9 @@
 }
 
 .botao-enviar:hover {
-  background: #040d1d;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background-color: #00CDFF;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .botao-enviar:active {
@@ -134,10 +135,10 @@
 .faq-title {
   text-align: center;
   font-family: 'Akira Expanded', Arial, sans-serif;
-  font-size: 25px;
+  font-size: 21px;
   font-weight: 900;
   color: #00CDFF;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3%;
   font-weight: bold;
   text-transform: uppercase;
   position: relative;
@@ -188,8 +189,7 @@
   border: none;
   text-align: left;
   color: white;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 21px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -219,7 +219,7 @@
   opacity: 0;
   transition: all 0.3s ease;
   color: #ccc;
-  font-size: 0.95rem;
+  font-size: 21px;
   line-height: 1.6;
 }
 
@@ -229,22 +229,18 @@
   opacity: 1;
 }
 
-/* Responsive styling */
 @media (max-width: 768px) {
   .formulario-contato {
     padding: 2rem;
     width: 90%;
   }
-
   .botao-enviar {
     width: 100%;
   }
-
   .faq-container {
     padding: 3rem 1.5rem;
     margin-bottom: 3rem;
   }
-
   .faq-title {
     font-size: 2rem;
   }
@@ -255,21 +251,17 @@
     padding: 1.5rem;
     width: 95%;
   }
-
   .rotulo-campo {
     font-size: 0.8rem;
   }
-
   .faq-container {
     padding: 2rem 1rem;
     border-radius: 8px;
   }
-
   .faq-question {
     font-size: 1rem;
     padding: 1rem;
   }
-
   .faq-answer {
     font-size: 0.9rem;
   }

@@ -7,90 +7,6 @@ body {
   line-height: 1.4;
 }
 
-
-.main-panel {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-}
-
-.button-panel {
-  background-color: #0d1117;
-  border: 1px solid #0084ff;
-  padding: 2rem;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.main-button {
-  background-color: #0070d1;
-  color: white;
-  border: none;
-  padding: 1rem;
-  font-size: 21px;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.main-button:hover {
-  background-color: #005bb5;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem;
-  background-color: #0d1117;
-  border-top: 1px solid #0084ff;
-}
-
-.footer-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.footer-logo {
-  height: 60px;
-}
-
-.footer-right nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.footer-right a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 21px;
-}
-
-.social-icons {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
-}
-
-.icon-gamepad::before {
-  content: '\1F3AE';
-}
-
-.icon-discord::before {
-  content: '\1F47E';
-}
-
-.icon-twitch::before {
-  content: '\1F4FA';
-}
-
 .sobre-container {
   color: #f5f5f5;
   width: 100%;
@@ -112,7 +28,7 @@ body {
   left: 0;
   right: 0;
   height: 5px;
-  background: linear-gradient(90deg, transparent, #01CCFE, transparent);
+  background: linear-gradient(90deg, transparent, #00CDFF, transparent);
 }
 
 .comeco-content h1 {
@@ -121,7 +37,7 @@ body {
   margin-top: 7%;
   margin-bottom: 2rem;
   font-family: 'Akira Expanded', Arial, sans-serif;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 900;
   color: #00CDFF;
   position: relative;
@@ -180,19 +96,8 @@ body {
 }
 
 .premios-section {
-  padding: 4rem 1.5rem;
+  padding: 4% 3%;
   color: white;
-}
-
-.premios-title {
-  text-align: center;
-  font-family: 'Akira Expanded', Arial, sans-serif;
-  font-size: 25px;
-  font-weight: 900;
-  color: #00CDFF;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .premios-container {
@@ -214,15 +119,15 @@ body {
 }
 
 .premio-icon {
-  font-size: 1.8rem;
+  font-size: 21px;
   color: #00CDFF;
-  margin-bottom: 0.8rem;
+  margin-bottom: 2%;
 }
 
 .premio-titulo {
-  font-size: 25px;
+  font-size: 21px;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2%;
   transition: color 0.3s ease;
 }
 
@@ -234,38 +139,8 @@ body {
 }
 
 .premio-descricao {
-  font-size: 18px;
+  font-size: 21px;
   color: #ccc;
-}
-
-
-@media (max-width: 960px) {
-  .premios-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .premio-titulo {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .premios-section {
-    padding: 3rem 1.5rem;
-  }
-  .premios-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .premios-container {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  .premio-card {
-    padding: 1.5rem;
-  }
 }
 
 .processo-content {
@@ -280,11 +155,21 @@ body {
 
 .titulo {
   font-family: 'Akira Expanded', Arial, sans-serif;
-  font-size: 25px;
+  font-size: 21px;
   font-weight: 900;
   color: #00CDFF;
   margin-bottom: 6%;
   text-align: center;
+}
+
+.titulo::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: #00CDFF;
+  margin: 1% auto 3%;
+  border-radius: 3px;
 }
 
 .etapas-container {
@@ -294,32 +179,21 @@ body {
   gap: 2rem;
 }
 
-@media (min-width: 768px) {
-  .etapas-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
-  }
+.divisoria-premios {
+  border: none;
+  height: 1px;
+  background-color: #5d5d5d;
+  width: 85%;
+  margin: 40px auto;
+}
 
-  .etapa {
-    flex: 1;
-    position: relative;
-  }
-
-  .etapa:not(:last-child)::after {
-    content: "→";
-    position: absolute;
-    right: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2rem;
-    color: #00CDFF;
-    z-index: 2;
-  }
+.feature-icon {
+  font-size: 2.5rem;
+  color: #ffffff;
 }
 
 .etapa {
-  background-color: #00000068;
+  background-color: #0b060fd5;
   border-radius: 5px;
   padding: 2rem;
   text-align: left;
@@ -342,13 +216,14 @@ body {
   justify-content: center;
   border-radius: 50%;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 15px;
 }
 
 .etapa-titulo {
-  font-size: 20px;
+  font-family: 'Agency FB', sans-serif;
+  font-size: 21px;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 8%;
   color: #fff;
   position: relative;
   padding-left: 0.5rem;
@@ -368,7 +243,7 @@ body {
 .botao {
   background-color: #003B6D;
   color: white;
-  font-size: 1.1rem;
+  font-size: 15px;
   text-decoration: none;
   padding: 1% 2.5rem;
   border: none;
@@ -399,11 +274,9 @@ body {
     font-size: 2rem;
     margin-bottom: 2rem;
   }
-
   .etapa {
     padding: 1.5rem;
   }
-
   .etapa:not(:last-child)::after {
     content: "↓";
     position: absolute;
@@ -420,7 +293,6 @@ body {
   .processo-content {
     padding: 3rem 0;
   }
-
   .botao {
     width: 100%;
     justify-content: center;
@@ -428,15 +300,53 @@ body {
   }
 }
 
-.divisoria-premios {
-  border: none;
-  height: 1px;
-  background-color: #5d5d5d;
-  width: 85%;
-  margin: 40px auto;
+@media (max-width: 960px) {
+  .premios-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .premio-titulo {
+    font-size: 1.3rem;
+  }
 }
 
-.feature-icon {
-  font-size: 2.5rem;
-  color: #ffffff;
+@media (max-width: 768px) {
+  .premios-section {
+    padding: 3rem 1.5rem;
+  }
+  .premios-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .premios-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .premio-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .etapas-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  .etapa {
+    flex: 1;
+    position: relative;
+  }
+  .etapa:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: #00CDFF;
+    z-index: 2;
+  }
 }
