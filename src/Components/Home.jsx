@@ -47,6 +47,10 @@ const Home = () => {
     },
   });
 
+  const { instance, accounts } = useMsal(); // Importar 'accounts' para verificar o login
+  const navigate = useNavigate();
+  const [loginError, setLoginError] = useState("");
+
   useEffect(() => {
     const saved = localStorage.getItem("siteInfo");
     if (saved) setInfo(JSON.parse(saved));
@@ -56,7 +60,23 @@ const Home = () => {
       const parsedData = JSON.parse(savedSiteData);
       setSiteData(parsedData);
     }
-  }, []);
+
+    // --- LÓGICA DE REDIRECIONAMENTO AO CARREGAR A PÁGINA ---
+    // Verifica se o usuário já está logado
+    if (accounts && accounts.length > 0) {
+      const userEmail = accounts[0].username;
+      const emailDomain = userEmail.split("@")[1];
+
+      // Redireciona imediatamente se logado
+      if (emailDomain === "maua.br") {
+        navigate("/admin", { replace: true }); // Usar replace para evitar que o usuário volte para a home
+      } else {
+        navigate("/painelUsuario", { replace: true }); // Usar replace
+      }
+    }
+    // --- FIM DA LÓGICA DE REDIRECIONAMENTO ---
+
+  }, [accounts, navigate]); // Adicionar 'accounts' e 'navigate' às dependências do useEffect
 
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
@@ -69,25 +89,34 @@ const Home = () => {
   };
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { instance } = useMsal();
-  const navigate = useNavigate();
-  const [loginError, setLoginError] = useState("");
+
+  // Função de login que será passada para o Header
   const handleMicrosoftLogin = async () => {
+    setLoginError(""); // Limpa qualquer erro anterior antes de tentar o login
     try {
       const response = await instance.loginPopup(loginRequest);
       const account = response.account;
       localStorage.setItem("token", response.accessToken);
       localStorage.setItem("userEmail", account.username);
       const emailDomain = account.username.split("@")[1];
+
+      // Se o login foi bem-sucedido, redireciona diretamente.
       if (emailDomain === "maua.br") {
-        navigate("/admin");
+        navigate("/admin", { replace: true }); // Usar replace
       } else {
-        navigate("/painelUsuario");
+        navigate("/painelUsuario", { replace: true }); // Usar replace
       }
     } catch (error) {
-      setLoginError(
-        `Erro ao fazer login com Microsoft. Detalhes: ${error.message || "Erro desconhecido"}`
-      );
+      // Em caso de erro, define a mensagem de erro
+      if (error.errorCode === "user_cancelled") {
+        // Ignora o erro se o usuário cancelou o login
+        console.log("Login cancelado pelo usuário.");
+        setLoginError(""); // Garante que nenhuma mensagem de erro apareça
+      } else {
+        setLoginError(
+          `Erro ao fazer login com Microsoft. Detalhes: ${error.message || "Erro desconhecido"}`
+        );
+      }
     }
   };
 
@@ -111,32 +140,32 @@ const Home = () => {
     },
     {
       name: "Rocket League",
-      image: "https://vonguru.fr/wp-content/uploads/2020/03/rocket-league-jeux-video-cover-vonguru-min.jpg",
+      image: rocketLeagueImage,
       url: "https://www.rocketleague.com/",
     },
     {
       name: "EA FC 25",
-      image: "https://image.api.playstation.com/vulcan/ap/rnd/202409/2712/1e1c42b14d92280e17bda697b8c4ae13ff9f91bdb10fca89.png",
+      image: eafc25Image,
       url: "https://www.ea.com/games/ea-sports-fc/fc-25",
     },
     {
       name: "League of Legends",
-      image: "https://cdn.prod.website-files.com/66e1e7e2979a571dc056efb6/66e3ce4ac36ea96ee53486b9_66df30655a91e77fa8ffe849_lol.jpeg",
+      image: lolImage,
       url: "https://www.leagueoflegends.com/",
     },
-        {
+    {
       name: "Counter Strike 2",
       image: cs2Image,
       url: "https://www.counter-strike.net/",
     },
     {
       name: "Valorant",
-      image: "https://updateordie.com/wp-content/uploads/2020/08/valorant-couldnt-start-how-to-fix.jpg",
+      image: valorantImage,
       url: "https://playvalorant.com/",
     },
     {
       name: "Team Fight Tactics",
-      image: "https://mir-s3-cdn-cf.behance.net/projects/404/26ac8e139901507.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png",
+      image: tftImage,
       url: "https://teamfighttactics.leagueoflegends.com/",
     },
   ];
@@ -187,7 +216,13 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Header onLoginClick={handleMicrosoftLogin} />      
+      {/* Condicionalmente renderiza o Header e o botão de login */}
+      {/* Se o usuário NÃO ESTIVER AUTENTICADO, exibe o Header com o botão de Login */}
+      {/* Se o usuário ESTIVER AUTENTICADO, o useEffect acima já o redirecionará, então este Header não será visto */}
+      {!accounts || accounts.length === 0 ? (
+        <Header onLoginClick={handleMicrosoftLogin} />
+      ) : null}
+      
       <main
         className="hero-section"
         style={{ backgroundImage: `url(${heroBanner})` }}
@@ -201,6 +236,7 @@ const Home = () => {
             <button className="inscrever-button">SOBRE NÓS</button>
             <button className="times-button">TIMES</button>
           </div>
+          {/* Condicionalmente renderiza a mensagem de erro APENAS se houver um erro */}
           {loginError && <div className="error-message">{loginError}</div>}
         </div>
       </main>
@@ -217,7 +253,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </section>      <div className="quem-somos-conteudo">
+      </section>      <div className="quem-somos-conteudo">
         <h2 className="quem-somos-titulo">
           {isEdit ? (
             <input
@@ -293,7 +329,7 @@ const Home = () => {
             mesmo interesse por <strong>jogos online</strong>.
           </p>
         </div>
-      </section>      <section className="games-carousel-section">
+      </section>      <section className="games-carousel-section">
         <h2>GAMES</h2>
         <p>
           {siteData.home.gamesDescription1}

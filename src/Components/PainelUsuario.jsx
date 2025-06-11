@@ -2,33 +2,37 @@ import React, { useState, useEffect } from "react";
 import { useMsal } from "@azure/msal-react";
 import "../styles/PainelUsuario.css";
 import Footer from "./Layout/Footer";
-import { 
-  FaUser, 
-  FaEnvelope, 
-  FaGamepad, 
-  FaClock, 
+import {
+  FaUser,
+  FaEnvelope,
+  FaGamepad,
+  FaClock,
   FaCalendarCheck,
   FaTrophy,
   FaChartLine,
-  FaCalendarAlt
+  FaCalendarAlt,
+  FaSignOutAlt // Importar o ícone de sair
 } from "react-icons/fa";
 import { fetchMembers } from "../Service/memberApi.js";
 import { fetchTrainings } from "../Service/trainingApi.js";
 import { fetchExternalModalities } from "../Service/trainingApi.js";
+import { useNavigate } from "react-router-dom"; // Importar useNavigate
 
 const PainelUsuario = () => {
-  const { accounts } = useMsal();
+  const { accounts, instance } = useMsal(); // Obter a instância do msal
   const [usuario, setUsuario] = useState(null);
   const [trainings, setTrainings] = useState([]);
   const [modalities, setModalities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Inicializar useNavigate
   const [stats, setStats] = useState({
     totalTreinos: 0,
     treinosParticipados: 0,
     proximosTreinos: 0,
     horasPAE: 0
   });
+
   useEffect(() => {
     const loadUserData = async () => {
       if (!accounts || accounts.length === 0) {
@@ -39,7 +43,7 @@ const PainelUsuario = () => {
 
       try {
         setLoading(true);
-        
+
         // Buscar dados do usuário logado
         const userEmail = accounts[0].username;
         console.log("Email do usuário logado:", userEmail);
@@ -84,16 +88,16 @@ const PainelUsuario = () => {
           Name: mod.Name,
           Tag: mod.Tag,
         }));
-        setModalities(modalitiesArray);        // Filtrar treinos do usuário pela modalidade
+        setModalities(modalitiesArray);        // Filtrar treinos do usuário pela modalidade
         let userTrainings = [];
         if (currentUser.modality && currentUser.modality !== "Não definida") {
           userTrainings = trainingsData.filter(training => {
             // Filtrar apenas treinos da modalidade exata do usuário
             return training.modalityName === currentUser.modality ||
-                   training.ModalityName === currentUser.modality ||
-                   (training.modalityId && currentUser.modalityId && training.modalityId === currentUser.modalityId);
+              training.ModalityName === currentUser.modality ||
+              (training.modalityId && currentUser.modalityId && training.modalityId === currentUser.modalityId);
           });
-          
+
           console.log(`Treinos filtrados para modalidade "${currentUser.modality}":`, userTrainings);
         } else {
           console.log("Usuário não tem modalidade definida, não mostrando treinos");
@@ -114,7 +118,7 @@ const PainelUsuario = () => {
             return t.AttendedPlayers.includes(currentUser._id);
           }
           if (t.attendedPlayers && Array.isArray(t.attendedPlayers)) {
-            return t.attendedPlayers.some(p => 
+            return t.attendedPlayers.some(p =>
               (typeof p === 'string' ? p : p._id) === currentUser._id
             );
           }
@@ -138,7 +142,7 @@ const PainelUsuario = () => {
     };
 
     loadUserData();
-  }, [accounts]);
+  }, [accounts, instance, navigate]); // Adicionado 'instance' e 'navigate' como dependências do useEffect
 
   const formatarData = (timestamp) => {
     if (!timestamp) return "N/A";
@@ -157,6 +161,19 @@ const PainelUsuario = () => {
     };
     return statusMap[status] || { label: status, class: "unknown" };
   };
+
+  const handleLogout = () => {
+    instance.logoutPopup()
+      .then(() => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userEmail");
+        navigate("/"); // Redirecionar para a página inicial após o logout
+      })
+      .catch(e => {
+        console.error("Erro ao fazer logout:", e);
+      });
+  };
+
   if (loading) {
     return (
       <div className="user-panel-page">
@@ -165,6 +182,10 @@ const PainelUsuario = () => {
             <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
             <h1 className="title">Painel do Usuário</h1>
           </div>
+          {/* Adicionado o botão de sair aqui também para o estado de loading */}
+          <button className="logout-button" onClick={handleLogout}>
+            <FaSignOutAlt /> Sair
+          </button>
         </header>
         <main className="user-main">
           <div className="loading">Carregando seus dados...</div>
@@ -182,6 +203,10 @@ const PainelUsuario = () => {
             <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
             <h1 className="title">Painel do Usuário</h1>
           </div>
+          {/* Adicionado o botão de sair aqui também para o estado de erro */}
+          <button className="logout-button" onClick={handleLogout}>
+            <FaSignOutAlt /> Sair
+          </button>
         </header>
         <main className="user-main">
           <div className="error-message">{error}</div>
@@ -199,6 +224,10 @@ const PainelUsuario = () => {
             <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
             <h1 className="title">Painel do Usuário</h1>
           </div>
+          {/* Adicionado o botão de sair aqui também para o estado de !usuario */}
+          <button className="logout-button" onClick={handleLogout}>
+            <FaSignOutAlt /> Sair
+          </button>
         </header>
         <main className="user-main">
           <div className="loading">Carregando dados do usuário...</div>
@@ -214,6 +243,10 @@ const PainelUsuario = () => {
           <img src="/maua-branco.png" alt="Mauá E-SPORTS" className="logo" />
           <h1 className="title">Painel do Usuário</h1>
         </div>
+        {/* O BOTÃO DE SAIR AGORA TEM UMA CLASSE PARA POSICIONAMENTO ABSOLUTO */}
+        <button className="logout-button" onClick={handleLogout}>
+          <FaSignOutAlt /> Sair
+        </button>
       </header>
 
       <main className="user-main">
@@ -227,7 +260,7 @@ const PainelUsuario = () => {
               <h2>Bem-vindo, {usuario.name}!</h2>
             </div>
           </div>
-        </div>        {/* Stats Cards */}
+        </div>        {/* Stats Cards */}
         <div className="user-stats-grid">
           <div className="user-stat-card">
             <div className="stat-icon">
@@ -238,7 +271,7 @@ const PainelUsuario = () => {
               <p>Treinos da Modalidade</p>
             </div>
           </div>
-          
+
           <div className="user-stat-card">
             <div className="stat-icon">
               <FaTrophy />
@@ -248,7 +281,7 @@ const PainelUsuario = () => {
               <p>Treinos Participados</p>
             </div>
           </div>
-          
+
           <div className="user-stat-card">
             <div className="stat-icon">
               <FaCalendarAlt />
@@ -258,7 +291,7 @@ const PainelUsuario = () => {
               <p>Próximos Treinos</p>
             </div>
           </div>
-          
+
           <div className="user-stat-card">
             <div className="stat-icon">
               <FaClock />
@@ -314,7 +347,7 @@ const PainelUsuario = () => {
               </div>
             </div>
           </div>
-        </div>        {/* Training Schedule Section */}
+        </div>        {/* Training Schedule Section */}
         <div className="training-section">
           <h3>Treinos da Minha Modalidade</h3>
           {usuario.modality !== "Não definida" && (
@@ -333,30 +366,30 @@ const PainelUsuario = () => {
                     <th>DURAÇÃO</th>
                     <th>PARTICIPANTES</th>
                   </tr>
-                </thead>                <tbody>
+                </thead><tbody>
                   {trainings.map((training) => {
                     // Buscar informações da modalidade
-                    const modalityInfo = modalities.find(m => 
-                      m._id === training.modalityId || 
+                    const modalityInfo = modalities.find(m =>
+                      m._id === training.modalityId ||
                       m.Name === training.modalityName
                     );
-                    
+
                     // Determinar status
                     const status = training.status || training.Status || "SCHEDULED";
                     const statusInfo = getStatusBadge(status);
-                    
+
                     // Calcular duração
                     const startTime = new Date(training.StartTimestamp || training.startTimestamp);
                     const endTime = new Date(training.EndTimestamp || training.endTimestamp);
                     const durationMs = endTime.getTime() - startTime.getTime();
                     const duration = Math.round(durationMs / (1000 * 60 * 60) * 10) / 10; // hours with 1 decimal
-                    
+
                     // Verificar se o usuário está participando deste treino
                     const isParticipating = training.AttendedPlayers?.includes(usuario._id) ||
-                      training.attendedPlayers?.some(p => 
+                      training.attendedPlayers?.some(p =>
                         (typeof p === 'string' ? p : p._id) === usuario._id
                       );
-                    
+
                     return (
                       <tr key={training._id} style={{ backgroundColor: isParticipating ? 'rgba(1, 204, 254, 0.1)' : 'transparent' }}>
                         <td>
@@ -365,14 +398,14 @@ const PainelUsuario = () => {
                           </span>
                           {modalityInfo?.Name || training.modalityName || usuario.modality}
                           {isParticipating && (
-                            <span style={{ 
-                              marginLeft: '10px', 
-                              backgroundColor: '#01CCFE', 
-                              color: '#0B060F', 
-                              padding: '2px 6px', 
-                              borderRadius: '4px', 
-                              fontSize: '0.7rem', 
-                              fontWeight: '600' 
+                            <span style={{
+                              marginLeft: '10px',
+                              backgroundColor: '#01CCFE',
+                              color: '#0B060F',
+                              padding: '2px 6px',
+                              borderRadius: '4px',
+                              fontSize: '0.7rem',
+                              fontWeight: '600'
                             }}>
                               Participando
                             </span>
@@ -386,16 +419,16 @@ const PainelUsuario = () => {
                         </td>
                         <td>{duration > 0 ? `${duration}h` : '2h'}</td>
                         <td>
-                          {training.AttendedPlayers?.length || 
-                           training.attendedPlayers?.length || 
-                           0} pessoas
+                          {training.AttendedPlayers?.length ||
+                            training.attendedPlayers?.length ||
+                            0} pessoas
                         </td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
-            </div>          ) : (
+            </div> ) : (
             <div className="no-trainings">
               <FaCalendarAlt size={48} />
               <h4>Nenhum treino encontrado</h4>
@@ -420,9 +453,9 @@ const PainelUsuario = () => {
                 </span>
               </div>
               <div className="progress-bar">
-                <div 
-                  className="progress-fill" 
-                  style={{width: `${Math.min(100, (stats.horasPAE / 40) * 100)}%`}}
+                <div
+                  className="progress-fill"
+                  style={{ width: `${Math.min(100, (stats.horasPAE / 40) * 100)}%` }}
                 ></div>
               </div>
               <p>{stats.horasPAE} de 40 horas completadas</p>
@@ -436,9 +469,9 @@ const PainelUsuario = () => {
                 </span>
               </div>
               <div className="progress-bar">
-                <div 
-                  className="progress-fill participation" 
-                  style={{width: `${stats.totalTreinos > 0 ? (stats.treinosParticipados / stats.totalTreinos) * 100 : 0}%`}}
+                <div
+                  className="progress-fill participation"
+                  style={{ width: `${stats.totalTreinos > 0 ? (stats.treinosParticipados / stats.totalTreinos) * 100 : 0}%` }}
                 ></div>
               </div>
               <p>{stats.treinosParticipados} de {stats.totalTreinos} treinos participados</p>
