@@ -63,8 +63,7 @@
 
 .stat-card:hover {
   border-color: #01CCFE;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(1, 204, 254, 0.2);
+
 }
 
 .stat-icon {
@@ -85,7 +84,6 @@
   font-weight: 700;
   color: #01CCFE;
   margin: 0;
-  font-family: "Jersey 25", sans-serif;
 }
 
 .stat-info p {
@@ -128,7 +126,6 @@
   position: relative;
 }
 
-/* Ranking Section */
 .ranking-section {
   background-color: #161B22;
   border: 1px solid #30363d;
@@ -143,7 +140,6 @@
   color: #01CCFE;
   margin-bottom: 20px;
   text-align: center;
-  font-family: "Jersey 25", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -182,7 +178,6 @@
 .position {
   font-weight: 700;
   color: #01CCFE;
-  font-family: "Jersey 25", sans-serif;
   font-size: 1.1rem;
 }
 
