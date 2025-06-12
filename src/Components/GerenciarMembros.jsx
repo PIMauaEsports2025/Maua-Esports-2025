@@ -160,27 +160,27 @@ const GerenciarMembros = () => {
   const filteredMembers =
     members && members.length > 0
       ? members.filter(
-          (member) =>
-            (member.name &&
-              member.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-            (member.discordId &&
-              member.discordId
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())) ||
-            (member.email &&
-              member.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
-            (member.modality &&
-              member.modality
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())) ||
-            (member.teams &&
-              Array.isArray(member.teams) &&
-              member.teams.some((team) =>
-                team.toLowerCase().includes(searchTerm.toLowerCase())
-              )) ||
-            (member.role &&
-              member.role.toLowerCase().includes(searchTerm.toLowerCase()))
-        )
+        (member) =>
+          (member.name &&
+            member.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+          (member.discordId &&
+            member.discordId
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase())) ||
+          (member.email &&
+            member.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
+          (member.modality &&
+            member.modality
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase())) ||
+          (member.teams &&
+            Array.isArray(member.teams) &&
+            member.teams.some((team) =>
+              team.toLowerCase().includes(searchTerm.toLowerCase())
+            )) ||
+          (member.role &&
+            member.role.toLowerCase().includes(searchTerm.toLowerCase()))
+      )
       : [];
 
   return (
@@ -240,8 +240,8 @@ const GerenciarMembros = () => {
                       {member.role === "member"
                         ? "Membro"
                         : member.role === "captain"
-                        ? "Capitão"
-                        : "Admin"}
+                          ? "Capitão"
+                          : "Admin"}
                     </td>
                     <td>{member.paeHours || 0}</td>
                     <td className="actions-column">

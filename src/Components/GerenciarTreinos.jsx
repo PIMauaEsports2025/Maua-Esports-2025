@@ -10,15 +10,14 @@ import {
   updateTraining,
   deleteTraining,
   fetchExternalModalities,
-  fetchUsers, // Make sure you have a fetchUsers in your memberApi or a similar service
-} from "../Service/trainingApi.js"; // Adjust path as needed
+  fetchUsers,
+} from "../Service/trainingApi.js";
 
 const GerenciarTreinos = () => {
   const navigate = useNavigate();
   const [trainings, setTrainings] = useState([]);
-  const [externalModalities, setExternalModalities] = useState([]); // For dropdown
-  const [users, setUsers] = useState([]); // For participant selection
-
+  const [externalModalities, setExternalModalities] = useState([]);
+  const [users, setUsers] = useState([]);
   const [filtroStatus, setFiltroStatus] = useState("");
   const [filtroPeriodo, setFiltroPeriodo] = useState(""); // "proximos", "passados"
   const [pesquisa, setPesquisa] = useState("");
@@ -26,7 +25,7 @@ const GerenciarTreinos = () => {
   const [error, setError] = useState(null);
 
   const [showFilterMenu, setShowFilterMenu] = useState(false);
-  const [currentTraining, setCurrentTraining] = useState(null); // For edit modal
+  const [currentTraining, setCurrentTraining] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -38,13 +37,12 @@ const GerenciarTreinos = () => {
     modalityTag: "",
     status: "SCHEDULED",
     startTimestamp: new Date().toISOString().slice(0, 16),
-    endTimestamp: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString().slice(0, 16), // 2 hours later
-    attendedPlayers: [], // Array of user IDs
+    endTimestamp: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString().slice(0, 16),
+    attendedPlayers: [],
     description: "",
   };
   const [newTraining, setNewTraining] = useState(initialNewTrainingState);
-  
-  // For managing participants in modals
+
   const [selectedParticipants, setSelectedParticipants] = useState([]);
 
 
@@ -53,7 +51,6 @@ const GerenciarTreinos = () => {
     setError(null);
     try {
       const data = await fetchTrainings();
-      // Apply client-side filtering if backend doesn't support all filters yet
       let filteredData = data;
       if (filtroStatus) {
         filteredData = filteredData.filter(t => t.status === filtroStatus);
@@ -78,9 +75,8 @@ const GerenciarTreinos = () => {
   const loadExternalModalities = async () => {
     try {
       const data = await fetchExternalModalities();
-      // The API returns an object, convert to array if needed or use as is
       const modalitiesArray = Object.values(data).map(mod => ({
-        id: mod._id, // Make sure the ID field is correct
+        id: mod._id,
         name: mod.Name,
         tag: mod.Tag,
       }));
@@ -93,7 +89,7 @@ const GerenciarTreinos = () => {
 
   const loadUsers = async () => {
     try {
-      const data = await fetchUsers(); // From your user/member API
+      const data = await fetchUsers();
       setUsers(data);
     } catch (err) {
       console.error("Erro ao buscar usuários:", err);
@@ -103,7 +99,7 @@ const GerenciarTreinos = () => {
 
   useEffect(() => {
     loadTrainings();
-  }, [loadTrainings]); // Reload when filters change
+  }, [loadTrainings]);
 
   useEffect(() => {
     loadExternalModalities();
@@ -118,57 +114,57 @@ const GerenciarTreinos = () => {
       if (name === "modalityId") {
         const selectedMod = externalModalities.find(mod => mod.id === value);
         if (selectedMod) {
-            setNewTraining((prev) => ({
-                ...prev,
-                modalityName: selectedMod.name,
-                modalityTag: selectedMod.tag,
-            }));
+          setNewTraining((prev) => ({
+            ...prev,
+            modalityName: selectedMod.name,
+            modalityTag: selectedMod.tag,
+          }));
         }
       }
     } else if (formType === "edit" && currentTraining) {
       setCurrentTraining((prev) => ({ ...prev, [name]: value }));
-       if (name === "modalityId") {
+      if (name === "modalityId") {
         const selectedMod = externalModalities.find(mod => mod.id === value);
         if (selectedMod) {
-            setCurrentTraining((prev) => ({
-                ...prev,
-                modalityName: selectedMod.name,
-                modalityTag: selectedMod.tag,
-            }));
+          setCurrentTraining((prev) => ({
+            ...prev,
+            modalityName: selectedMod.name,
+            modalityTag: selectedMod.tag,
+          }));
         }
       }
     }
   };
-  
+
   const handleParticipantChange = (userId, action, formType) => {
     if (formType === "new") {
-        setNewTraining(prev => ({
-            ...prev,
-            attendedPlayers: action === 'add'
-                ? [...prev.attendedPlayers, userId]
-                : prev.attendedPlayers.filter(id => id !== userId)
-        }));
+      setNewTraining(prev => ({
+        ...prev,
+        attendedPlayers: action === 'add'
+          ? [...prev.attendedPlayers, userId]
+          : prev.attendedPlayers.filter(id => id !== userId)
+      }));
     } else if (formType === "edit" && currentTraining) {
-        setCurrentTraining(prev => ({
-            ...prev,
-            attendedPlayers: action === 'add'
-                ? [...prev.attendedPlayers, userId]
-                : prev.attendedPlayers.filter(id => id !== userId)
-        }));
+      setCurrentTraining(prev => ({
+        ...prev,
+        attendedPlayers: action === 'add'
+          ? [...prev.attendedPlayers, userId]
+          : prev.attendedPlayers.filter(id => id !== userId)
+      }));
     }
   };
 
 
   const handleAddTrainingClick = () => {
     setNewTraining(initialNewTrainingState);
-    if (externalModalities.length > 0) { // Pre-select first modality if available
-        const firstMod = externalModalities[0];
-        setNewTraining(prev => ({
-            ...prev,
-            modalityId: firstMod.id,
-            modalityName: firstMod.name,
-            modalityTag: firstMod.tag,
-        }));
+    if (externalModalities.length > 0) { 
+      const firstMod = externalModalities[0];
+      setNewTraining(prev => ({
+        ...prev,
+        modalityId: firstMod.id,
+        modalityName: firstMod.name,
+        modalityTag: firstMod.tag,
+      }));
     }
     setShowAddModal(true);
   };
@@ -185,7 +181,6 @@ const GerenciarTreinos = () => {
       const created = await createTraining(trainingToSave);
       setTrainings((prev) => [...prev, created]);
       setShowAddModal(false);
-      // Optionally, show success notification
     } catch (err) {
       setError("Erro ao criar treino: " + err.message);
     }
@@ -196,7 +191,7 @@ const GerenciarTreinos = () => {
       ...training,
       startTimestamp: new Date(training.startTimestamp).toISOString().slice(0, 16),
       endTimestamp: new Date(training.endTimestamp).toISOString().slice(0, 16),
-      attendedPlayers: training.attendedPlayers.map(p => p._id) // Store only IDs for editing
+      attendedPlayers: training.attendedPlayers.map(p => p._id)
     });
     setShowEditModal(true);
   };
@@ -217,7 +212,6 @@ const GerenciarTreinos = () => {
       );
       setShowEditModal(false);
       setCurrentTraining(null);
-      // Optionally, show success notification
     } catch (err) {
       setError("Erro ao atualizar treino: " + err.message);
     }
@@ -236,7 +230,6 @@ const GerenciarTreinos = () => {
       setTrainings((prev) => prev.filter((t) => t._id !== deletingTraining._id));
       setShowDeleteModal(false);
       setDeletingTraining(null);
-      // Optionally, show success notification
     } catch (err) {
       setError("Erro ao excluir treino: " + err.message);
     }
@@ -245,15 +238,14 @@ const GerenciarTreinos = () => {
   const formatarData = (timestamp) => {
     if (!timestamp) return "N/A";
     return new Date(timestamp).toLocaleString("pt-BR", {
-        dateStyle: "short",
-        timeStyle: "short",
+      dateStyle: "short",
+      timeStyle: "short",
     });
   };
-  
+
   const formatarDataParaInput = (timestamp) => {
     if (!timestamp) return "";
     const date = new Date(timestamp);
-    // Adjust for timezone offset to display correctly in datetime-local
     const timezoneOffset = date.getTimezoneOffset() * 60000;
     const localDate = new Date(date.getTime() - timezoneOffset);
     return localDate.toISOString().slice(0, 16);
@@ -451,19 +443,19 @@ const GerenciarTreinos = () => {
                   <option value="CANCELED">Cancelado</option>
                 </select>
               </div>
-               <div className="form-group">
+              <div className="form-group">
                 <label>Participantes:</label>
                 <div className="participants-list">
-                    {newTraining.attendedPlayers.map(playerId => {
-                        const player = users.find(u => u._id === playerId);
-                        return player ? <span key={playerId} className="participant-tag">{player.name} <FaUserMinus onClick={() => handleParticipantChange(playerId, 'remove', 'new')} /></span> : null;
-                    })}
+                  {newTraining.attendedPlayers.map(playerId => {
+                    const player = users.find(u => u._id === playerId);
+                    return player ? <span key={playerId} className="participant-tag">{player.name} <FaUserMinus onClick={() => handleParticipantChange(playerId, 'remove', 'new')} /></span> : null;
+                  })}
                 </div>
                 <select onChange={(e) => e.target.value && handleParticipantChange(e.target.value, 'add', 'new')} value="">
-                    <option value="">Adicionar participante...</option>
-                    {users.filter(user => !newTraining.attendedPlayers.includes(user._id)).map(user => (
-                        <option key={user._id} value={user._id}>{user.name} ({user.email})</option>
-                    ))}
+                  <option value="">Adicionar participante...</option>
+                  {users.filter(user => !newTraining.attendedPlayers.includes(user._id)).map(user => (
+                    <option key={user._id} value={user._id}>{user.name} ({user.email})</option>
+                  ))}
                 </select>
               </div>
               <div className="modal-actions">
@@ -475,7 +467,7 @@ const GerenciarTreinos = () => {
         </div>
       )}
 
-      {/* Edit Training Modal */}
+      {/* Edição de treino */}
       {showEditModal && currentTraining && (
         <div className="modal-overlay" onClick={() => { setShowEditModal(false); setCurrentTraining(null); }}>
           <div className="edit-modal" onClick={(e) => e.stopPropagation()}>
@@ -483,7 +475,7 @@ const GerenciarTreinos = () => {
             <form onSubmit={handleSaveTraining}>
               <div className="form-group">
                 <label htmlFor="modalityIdEdit">Modalidade:</label>
-                 <select
+                <select
                   id="modalityIdEdit"
                   name="modalityId"
                   value={currentTraining.modalityId}
@@ -498,7 +490,7 @@ const GerenciarTreinos = () => {
                   ))}
                 </select>
               </div>
-               <div className="form-group">
+              <div className="form-group">
                 <label htmlFor="descriptionEdit">Descrição (Opcional):</label>
                 <input
                   type="text"
@@ -548,16 +540,16 @@ const GerenciarTreinos = () => {
               <div className="form-group">
                 <label>Participantes:</label>
                 <div className="participants-list">
-                    {currentTraining.attendedPlayers.map(playerId => {
-                        const player = users.find(u => u._id === playerId);
-                        return player ? <span key={playerId} className="participant-tag">{player.name} <FaUserMinus onClick={() => handleParticipantChange(playerId, 'remove', 'edit')} /></span> : null;
-                    })}
+                  {currentTraining.attendedPlayers.map(playerId => {
+                    const player = users.find(u => u._id === playerId);
+                    return player ? <span key={playerId} className="participant-tag">{player.name} <FaUserMinus onClick={() => handleParticipantChange(playerId, 'remove', 'edit')} /></span> : null;
+                  })}
                 </div>
                 <select onChange={(e) => e.target.value && handleParticipantChange(e.target.value, 'add', 'edit')} value="">
-                    <option value="">Adicionar participante...</option>
-                    {users.filter(user => !currentTraining.attendedPlayers.includes(user._id)).map(user => (
-                        <option key={user._id} value={user._id}>{user.name} ({user.email})</option>
-                    ))}
+                  <option value="">Adicionar participante...</option>
+                  {users.filter(user => !currentTraining.attendedPlayers.includes(user._id)).map(user => (
+                    <option key={user._id} value={user._id}>{user.name} ({user.email})</option>
+                  ))}
                 </select>
               </div>
               <div className="modal-actions">
@@ -569,7 +561,7 @@ const GerenciarTreinos = () => {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
+      {/* Deleta confirmação do modal */}
       {showDeleteModal && deletingTraining && (
         <div className="modal-overlay" onClick={() => setShowDeleteModal(false)}>
           <div className="delete-modal" onClick={(e) => e.stopPropagation()}>

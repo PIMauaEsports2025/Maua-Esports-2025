@@ -1,4 +1,3 @@
-import React from "react";
 import EditSiteInfo from "./EditSiteInfo";
 import Header from "./Layout/Header";
 import Footer from "./Layout/Footer";

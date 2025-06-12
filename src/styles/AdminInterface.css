@@ -34,8 +34,6 @@ body {
   cursor: pointer;
 }
 
-
-
 .logo {
   height: 45px;
 }
@@ -44,8 +42,6 @@ body {
   font-size: 1.6rem;
   font-weight: bold;
   letter-spacing: 1px;
-  background-clip: text;
-  -webkit-background-clip: text;
 }
 
 .user-dropdown-wrapper {
@@ -103,7 +99,6 @@ body {
     opacity: 0;
     transform: translateY(-10px) scale(0.95);
   }
-
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -128,7 +123,7 @@ body {
 
 .dropdown-menu button:hover {
   background: rgba(14, 165, 233, 0.15);
-  color: #0ea5e9;
+  color: #00CDFF;
 }
 
 .dropdown-menu button:active {
@@ -163,7 +158,6 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -178,7 +172,7 @@ body {
 .admin-greeting h2 {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
-  background: linear-gradient(90deg, #0ea5e9, #6366f1);
+  background: #00CDFF;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -210,7 +204,7 @@ body {
 }
 
 .main-button:hover {
-  background: linear-gradient(135deg, #0284c7, #003B6D);
+  background: linear-gradient(135deg, #00CDFF, #003B6D);
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 }

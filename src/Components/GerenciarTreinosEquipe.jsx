@@ -8,8 +8,6 @@ import {
   FaTrashAlt,
   FaFilter,
   FaPlus,
-  FaUsers,
-  FaUserPlus,
   FaUserMinus,
 } from "react-icons/fa";
 import Footer from "./Layout/Footer.jsx";
@@ -432,7 +430,7 @@ const GerenciarTreinosEquipe = () => {
           </div>
         )}      </main>
 
-      {/* Add Training Modal */}
+      {/* Adiciona modal de treino */}
       {showAddModal && (
         <div className="modal-overlay" onClick={() => setShowAddModal(false)}>
           <div className="edit-modal" onClick={(e) => e.stopPropagation()}>
@@ -523,7 +521,7 @@ const GerenciarTreinosEquipe = () => {
         </div>
       )}
 
-      {/* Edit Training Modal */}
+      {/* Edição dos treinos modal */}
       {showEditModal && currentTraining && (
         <div className="modal-overlay" onClick={() => { setShowEditModal(false); setCurrentTraining(null); }}>
           <div className="edit-modal" onClick={(e) => e.stopPropagation()}>
@@ -614,7 +612,7 @@ const GerenciarTreinosEquipe = () => {
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
+      {/* Deleta confirmaççao do modal*/}
       {showDeleteModal && deletingTraining && (
         <div className="modal-overlay" onClick={() => setShowDeleteModal(false)}>
           <div className="delete-modal" onClick={(e) => e.stopPropagation()}>

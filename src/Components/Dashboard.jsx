@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Layout/Footer";
 import HeaderAdmin from "./Layout/HeaderAdmin";
-import { 
-  FaUsers, 
-  FaGamepad, 
-  FaClock, 
+import {
+  FaUsers,
+  FaGamepad,
+  FaClock,
   FaTrophy,
   FaChartLine,
   FaCalendarCheck,
-  FaUserTie 
+  FaUserTie
 } from "react-icons/fa";
 import "../styles/Dashboard.css";
 import { fetchMembers } from "../Service/memberApi.js";
@@ -42,7 +42,7 @@ ChartJS.register(
 );
 
 const Dashboard = () => {
-  const navigate = useNavigate();  const [members, setMembers] = useState([]);
+  const navigate = useNavigate(); const [members, setMembers] = useState([]);
   const [modalities, setModalities] = useState([]);
   const [trainings, setTrainings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,15 +60,15 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    const loadData = async () => {      try {
-        setLoading(true);        const [membersData, modalitiesData, trainingsData] = await Promise.all([
+    const loadData = async () => {
+      try {
+        setLoading(true); const [membersData, modalitiesData, trainingsData] = await Promise.all([
           fetchMembers(),
           fetchExternalModalities(),
           fetchTrainings()
         ]);
-        
+
         setMembers(membersData);
-        // Convert modalities to array format
         const modalitiesArray = Object.values(modalitiesData).map(mod => ({
           _id: mod._id,
           Name: mod.Name,
@@ -76,21 +76,21 @@ const Dashboard = () => {
         }));
         setModalities(modalitiesArray);
         setTrainings(trainingsData);
-        
+
         const totalPaeHours = membersData.reduce((sum, member) => sum + (member.paeHours || 0), 0);
         const captainsCount = membersData.filter(member => member.role === 'captain').length;
-        const adminsCount = membersData.filter(member => member.role === 'admin').length;        
+        const adminsCount = membersData.filter(member => member.role === 'admin').length;
         const membersCount = membersData.filter(member => member.role === 'member').length;
-          // Calcular estatísticas de treinos
+        // Calcular estatísticas de treinos
         const totalAttendees = trainingsData.reduce((sum, training) => {
           const attendeesCount = training.AttendedPlayers ? training.AttendedPlayers.length : 0;
           console.log(`Treino ${training._id}: ${attendeesCount} participantes`);
           return sum + attendeesCount;
         }, 0);
-                
-        const averageAttendance = trainingsData.length > 0 ? 
+
+        const averageAttendance = trainingsData.length > 0 ?
           (totalAttendees / trainingsData.length).toFixed(1) : 0;
-        
+
         setStats({
           totalMembers: membersData.length,
           totalModalities: Object.keys(modalitiesData).length,
@@ -102,7 +102,7 @@ const Dashboard = () => {
           totalTrainings: trainingsData.length,
           averageAttendance
         });
-        
+
         setError(null);
       } catch (err) {
         console.error("Erro ao carregar dados:", err);
@@ -162,7 +162,7 @@ const Dashboard = () => {
     Object.keys(modalityHours).forEach(modality => {
       const hours = modalityHours[modality];
       modalityAverages[modality] = hours.reduce((sum, h) => sum + h, 0) / hours.length;
-      
+
       // Buscar a tag correspondente da modalidade
       const modalityData = modalities.find(mod => mod.Name === modality);
       modalityTags[modality] = modalityData ? modalityData.Tag : modality;
@@ -343,7 +343,7 @@ const Dashboard = () => {
               <p>Total de Membros</p>
             </div>
           </div>
-          
+
           <div className="stat-card">
             <div className="stat-icon">
               <FaGamepad />
@@ -353,7 +353,7 @@ const Dashboard = () => {
               <p>Modalidades Ativas</p>
             </div>
           </div>
-          
+
           <div className="stat-card">
             <div className="stat-icon">
               <FaClock />
@@ -363,7 +363,7 @@ const Dashboard = () => {
               <p>Total Horas PAE</p>
             </div>
           </div>
-          
+
           <div className="stat-card">
             <div className="stat-icon">
               <FaChartLine />
@@ -373,7 +373,7 @@ const Dashboard = () => {
               <p>Média Horas PAE</p>
             </div>
           </div>
-          
+
           <div className="stat-card">
             <div className="stat-icon">
               <FaTrophy />
@@ -392,7 +392,7 @@ const Dashboard = () => {
               <p>Administradores</p>
             </div>
           </div>
-            <div className="stat-card">
+          <div className="stat-card">
             <div className="stat-icon">
               <FaCalendarCheck />
             </div>
@@ -401,7 +401,7 @@ const Dashboard = () => {
               <p>Treinos Realizados</p>
             </div>
           </div>
-          
+
           <div className="stat-card">
             <div className="stat-icon">
               <FaUsers />
@@ -420,21 +420,21 @@ const Dashboard = () => {
               <Pie data={getModalityDistributionData()} options={chartOptions} />
             </div>
           </div>
-          
+
           <div className="chart-container">
             <h3>Média de Horas PAE por Modalidade</h3>
             <div className="chart-wrapper">
               <Bar data={getPaeHoursByModalityData()} options={chartOptions} />
             </div>
           </div>
-          
+
           <div className="chart-container">
             <h3>Evolução de Membros</h3>
             <div className="chart-wrapper">
               <Line data={getEvolutionData()} options={chartOptions} />
             </div>
           </div>
-            <div className="chart-container">
+          <div className="chart-container">
             <h3>Dispersão de Horas PAE</h3>
             <div className="chart-wrapper">
               <Scatter data={getScatterData()} options={scatterOptions} />
@@ -465,8 +465,8 @@ const Dashboard = () => {
                     <td className="hours">{member.paeHours || 0}h</td>
                     <td>
                       <span className={`role-badge ${member.role}`}>
-                        {member.role === 'captain' ? 'Capitão' : 
-                         member.role === 'admin' ? 'Admin' : 'Membro'}
+                        {member.role === 'captain' ? 'Capitão' :
+                          member.role === 'admin' ? 'Admin' : 'Membro'}
                       </span>
                     </td>
                   </tr>

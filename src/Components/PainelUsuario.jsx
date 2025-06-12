@@ -11,21 +11,21 @@ import {
   FaTrophy,
   FaChartLine,
   FaCalendarAlt,
-  FaSignOutAlt // Importar o ícone de sair
+  FaSignOutAlt 
 } from "react-icons/fa";
 import { fetchMembers } from "../Service/memberApi.js";
 import { fetchTrainings } from "../Service/trainingApi.js";
 import { fetchExternalModalities } from "../Service/trainingApi.js";
-import { useNavigate } from "react-router-dom"; // Importar useNavigate
+import { useNavigate } from "react-router-dom"; 
 
 const PainelUsuario = () => {
-  const { accounts, instance } = useMsal(); // Obter a instância do msal
+  const { accounts, instance } = useMsal();
   const [usuario, setUsuario] = useState(null);
   const [trainings, setTrainings] = useState([]);
   const [modalities, setModalities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Inicializar useNavigate
+  const navigate = useNavigate(); 
   const [stats, setStats] = useState({
     totalTreinos: 0,
     treinosParticipados: 0,
@@ -88,11 +88,10 @@ const PainelUsuario = () => {
           Name: mod.Name,
           Tag: mod.Tag,
         }));
-        setModalities(modalitiesArray);        // Filtrar treinos do usuário pela modalidade
+        setModalities(modalitiesArray);
         let userTrainings = [];
         if (currentUser.modality && currentUser.modality !== "Não definida") {
           userTrainings = trainingsData.filter(training => {
-            // Filtrar apenas treinos da modalidade exata do usuário
             return training.modalityName === currentUser.modality ||
               training.ModalityName === currentUser.modality ||
               (training.modalityId && currentUser.modalityId && training.modalityId === currentUser.modalityId);
@@ -112,7 +111,6 @@ const PainelUsuario = () => {
           return trainingDate > now;
         }).length;
 
-        // Verificar participação do usuário nos treinos
         const treinosParticipados = userTrainings.filter(t => {
           if (t.AttendedPlayers && Array.isArray(t.AttendedPlayers)) {
             return t.AttendedPlayers.includes(currentUser._id);
@@ -142,7 +140,7 @@ const PainelUsuario = () => {
     };
 
     loadUserData();
-  }, [accounts, instance, navigate]); // Adicionado 'instance' e 'navigate' como dependências do useEffect
+  }, [accounts, instance, navigate]); 
 
   const formatarData = (timestamp) => {
     if (!timestamp) return "N/A";
@@ -250,7 +248,7 @@ const PainelUsuario = () => {
       </header>
 
       <main className="user-main">
-        {/* Welcome Section */}
+        {/* Seção de bem-vindo */}
         <div className="welcome-section">
           <div className="user-welcome">
             <div className="user-avatar">

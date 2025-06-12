@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../styles/ConsultaHorasPAE.css";
 import {
   FaSearch,
@@ -18,7 +18,6 @@ const ConsultaHorasPAE = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
 
-  // Fetch members data on component mount
   useEffect(() => {
     const loadMembers = async () => {
       try {

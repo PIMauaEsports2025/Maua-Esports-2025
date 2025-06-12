@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/AdminInterface.css";
 import HeaderAdmin from "./Layout/HeaderAdmin.jsx";
@@ -17,7 +16,7 @@ const CapitaoInterface = ({ user }) => {
 
   return (
     <div className="admin-container">
-      <HeaderAdmin/>
+      <HeaderAdmin />
 
       <main className="main-panel">
         <div className="button-panel">

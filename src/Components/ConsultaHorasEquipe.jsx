@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useMsal } from "@azure/msal-react";
 import "../styles/ConsultaHorasEquipe.css";
 import { FaSearch, FaUserCircle, FaFilter, FaClock } from "react-icons/fa";
@@ -15,7 +15,7 @@ const ConsultaHorasEquipe = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState("name");
-  const [sortOrder, setSortOrder] = useState("asc");  const [captainData, setCaptainData] = useState(null);
+  const [sortOrder, setSortOrder] = useState("asc"); const [captainData, setCaptainData] = useState(null);
 
   // Buscar dados do capitão logado
   useEffect(() => {
@@ -43,7 +43,7 @@ const ConsultaHorasEquipe = () => {
   useEffect(() => {
     const loadMembers = async () => {
       if (!captainData || !captainData.modality) return;
-      
+
       try {
         setLoading(true);
         const allMembers = await fetchMembers();
@@ -106,7 +106,8 @@ const ConsultaHorasEquipe = () => {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
       setSortBy(field);
-      setSortOrder("asc");    }
+      setSortOrder("asc");
+    }
   };
 
   if (!captainData) {
@@ -228,11 +229,11 @@ const ConsultaHorasEquipe = () => {
               <span className="stat-value">
                 {filteredMembers.length > 0
                   ? (
-                      filteredMembers.reduce(
-                        (sum, m) => sum + (m.paeHours || 0),
-                        0
-                      ) / filteredMembers.length
-                    ).toFixed(1)
+                    filteredMembers.reduce(
+                      (sum, m) => sum + (m.paeHours || 0),
+                      0
+                    ) / filteredMembers.length
+                  ).toFixed(1)
                   : 0}
               </span>
             </div>

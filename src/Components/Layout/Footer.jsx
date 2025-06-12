@@ -7,7 +7,7 @@ import "../../styles/Layout/Footer.css";
 const Footer = () => {
   return (
     <>
-      <div className="footer-gradient-line"></div> {/* Linha adicionada aqui */}
+      <div className="footer-gradient-line"></div> { }
       <footer className="site-footer">
         <div className="footer-wrapper">
           <div className="footer-brand">

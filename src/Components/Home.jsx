@@ -125,11 +125,11 @@ const Home = () => {
   };
 
   const stats = [
-    {number: "22+", description: <strong>Torneios disputados</strong> },
+    { number: "22+", description: <strong>Torneios disputados</strong> },
     { number: "10+", description: <strong>Títulos conquistados</strong> },
     { number: "20+", description: <strong>Jogadores ativos na equipe</strong> },
-    {number: "14+", description: <strong>Jogos diferentes competidos</strong> },
-    {number: "8+", description: <strong>Anos de tradição em e-sports</strong> },
+    { number: "14+", description: <strong>Jogos diferentes competidos</strong> },
+    { number: "8+", description: <strong>Anos de tradição em e-sports</strong> },
   ];
 
   const games = [
@@ -222,7 +222,7 @@ const Home = () => {
       {!accounts || accounts.length === 0 ? (
         <Header onLoginClick={handleMicrosoftLogin} />
       ) : null}
-      
+
       <main
         className="hero-section"
         style={{ backgroundImage: `url(${heroBanner})` }}

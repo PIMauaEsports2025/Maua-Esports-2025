@@ -305,7 +305,7 @@ const EditSiteInfo = () => {
             case "contato": return renderContatoTab();
             default: return renderHomeTab();
         }
-    };    return (
+    }; return (
         <div>
             <HeaderAdmin />
             <div className="edit-site-container">
@@ -328,7 +328,7 @@ const EditSiteInfo = () => {
 
                 <form onSubmit={handleSubmit} className="edit-form">
                     {renderActiveTab()}
-                    
+
                     <div className="form-actions">
                         <button type="submit" className="save-button">
                             Salvar Alterações

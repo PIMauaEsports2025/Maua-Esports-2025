@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaBars, FaMicrosoft } from "react-icons/fa";
-import { CiLogin } from "react-icons/ci"; 
+import { FaBars } from "react-icons/fa";
+import { CiLogin } from "react-icons/ci";
 import { useMsal } from "@azure/msal-react";
 import mauaLogo from "../../assets/ui/maua-branco.png";
 import "../../styles/Layout/Header.css";
@@ -17,19 +17,17 @@ const Header = ({ onLoginClick }) => {
       const loginResponse = await instance.loginPopup();
       if (loginResponse) {
         localStorage.setItem("token", loginResponse.accessToken || "authenticated");
-          // Buscar dados do usuário pelo email para determinar o role
         const userEmail = loginResponse.account.username;
         console.log("Email do usuário logado:", userEmail);
-        
+
         try {
           const response = await fetch(`http://localhost:5000/api/users/email/${userEmail}`);
           console.log("Status da resposta:", response.status);
-          
+
           if (response.ok) {
             const userData = await response.json();
             console.log("Dados do usuário encontrados:", userData);
-            
-            // Redirecionar baseado no role do usuário
+
             switch (userData.role) {
               case 'admin':
                 navigate("/admin");
@@ -47,7 +45,6 @@ const Header = ({ onLoginClick }) => {
             console.log("Usuário não encontrado no banco de dados. Status:", response.status);
             const errorData = await response.text();
             console.log("Resposta de erro:", errorData);
-            // Se o usuário não existe no banco, redirecionar para painel de usuário
             navigate("/painel-usuario");
           }
         } catch (fetchError) {
@@ -55,7 +52,7 @@ const Header = ({ onLoginClick }) => {
           navigate("/painel-usuario");
         }
       }
-      
+
     } catch (error) {
       if (error.errorCode === "user_cancelled") {
         return;
