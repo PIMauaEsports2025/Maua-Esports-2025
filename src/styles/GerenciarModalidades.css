@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 * {
   margin: 0;
@@ -18,7 +17,6 @@ body {
   flex-direction: column;
 }
 
-/* Header styling */
 .modalidades-header {
   display: flex;
   justify-content: space-between;
@@ -39,7 +37,7 @@ body {
 }
 
 .logo-title h1 {
-  font-size: 1.2rem;
+  font-size: 25px;
   font-weight: 700;
 }
 
@@ -100,7 +98,6 @@ body {
   color: #8b949e;
 }
 
-/* Modalidades grid styling */
 .modalidades-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -171,9 +168,17 @@ body {
 }
 
 .modalidade-info h3 {
-  font-size: 1.2rem;
+  font-size: 21px;      
   font-weight: 700;
   margin-bottom: 10px;
+}
+
+.modalidade-info h3,
+.modalidade-card h4,
+.times-cadastrados,
+.dados-incompletos,
+.tag-label {
+  font-family: 'Agency FB', sans-serif !important;
 }
 
 .times-cadastrados {

@@ -5,7 +5,22 @@
   display: flex;
   flex-direction: column;
 }
-
+@font-face {
+  font-family: 'Akira';
+  src: url('../assets/fonts/akira_expanded/Akira Expanded Demo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+body, p, span, li, a, button, input, textarea, td, label {
+  font-family: 'Agency FB', sans-serif;
+  font-size: 21px;
+}
+.logo-title h1,
+.title-search h1,
+.edit-modal-content h2 {
+  font-family: 'Akira', sans-serif !important;
+  font-size: 25px !important;
+}
 .membros-header {
   display: flex;
   justify-content: space-between;
@@ -126,11 +141,9 @@
 }
 
 .add-button:hover {
-  background-color: #2ea043;
-  transform: translateY(-2px);
+  background-color: rgb(31, 91, 43);
 }
 
-/* Members table styling */
 .members-table-container {
   width: 100%;
   overflow-x: auto;
@@ -188,7 +201,6 @@
   color: #f85149;
 }
 
-/* Loading and error states */
 .loading, .error-message {
   text-align: center;
   padding: 40px;
@@ -201,7 +213,6 @@
   border-radius: 8px;
 }
 
-/* Modal styling */
 .edit-modal-backdrop {
   position: fixed;
   top: 0;
@@ -335,13 +346,17 @@
 }
 
 .members-table td:first-child {
+  font-family: 'Agency FB', sans-serif !important;
   font-weight: bold;
   color: #01CCFE;
+  font-size: 21px;
 }
 
 .form-group.id-field label {
   color: #01CCFE;
   font-weight: bold;
+    font-size: 21px;
+
 }
 
 .form-group.id-field input {
