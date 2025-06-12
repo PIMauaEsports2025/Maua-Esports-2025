@@ -73,7 +73,6 @@ body {
   color: #e6edf3;
 }
 
-/* Teams Grid */
 .teams-grid-section {
   padding: 10px 0px 6px 0px;
   max-width: 1300px;
@@ -108,7 +107,6 @@ body {
 }
 
 .team-card:hover {
-  transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(1, 204, 254, 0.2);
 }
 
