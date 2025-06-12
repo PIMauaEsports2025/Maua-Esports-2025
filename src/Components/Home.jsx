@@ -385,18 +385,14 @@ const Home = () => {
         <div className="depoimentos-conteudo">
           <div className="depoimento">
             <p className="depoimento-texto">
-              “Fundar o Mauá E-Sports foi um dos maiores desafios da minha vida
-              universitária. Ver a equipe crescer e conquistar respeito no
-              cenário foi gratificante.”
+              “O Mauá Esports além de trazer divertimento e trazer varias amizades a experiencia que obtive durante meu tempo como membro, diretor e agora como presidente, além de me auxiliar à encontrar um estágio foram habilidades que desenvolvi e serão levadas comigo para o resto da vida!”
             </p>
             <h3 className="depoimento-autor">Leonardo Stubber</h3>
             <span className="depoimento-cargo">Presidente</span>
           </div>
           <div className="depoimento">
             <p className="depoimento-texto">
-              “Ter liderado o time feminino em campeonatos nacionais me ensinou
-              mais sobre trabalho em equipe do que qualquer sala de aula. Mauá
-              E-Sports mudou minha trajetória.”
+              “A Mauá E-Sports foi uma das experiências mais marcantes da minha faculdade. Lá, desenvolvi habilidades como liderança, comunicação e trabalho em equipe. Aprendi a lidar com pressão, organizar eventos e resolver conflitos. Mais do que jogar, me envolvi de verdade no projeto. Essa vivência me fez crescer e me sentir parte de algo maior.”
             </p>
             <h3 className="depoimento-autor">Carol Emoto</h3>
             <span className="depoimento-cargo">Vice-Presidente</span>

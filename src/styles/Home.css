@@ -99,10 +99,19 @@ h1,
   max-width: 800px;
 }
 
+.hero-content h1 {
+  font-family: 'Akira Expanded', Arial, sans-serif;
+  font-size: 30px;
+  color: #00CDFF;
+  margin-bottom: 20px;
+  text-align: left;
+  margin-left: -3%;
+}
+
 h1 .bemvindo-new {
   margin-bottom: 20px;
   font-family: 'Akira Expanded', Arial, sans-serif;
-  font-size: 25px;
+  font-size: 30px;
   color: #00CDFF;
   letter-spacing: 3px;
 }
@@ -155,7 +164,7 @@ h1 .bemvindo-new {
 
 
 .stats-section {
-  padding: 5% 0 3%;
+  padding: 3% 0 1%;
   position: relative;
   overflow: hidden;
 }
